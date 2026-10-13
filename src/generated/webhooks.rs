@@ -8,6 +8,11 @@ pub struct DeletedWebhookEndpointResource {
     #[doc = "The object type, which is always webhook_endpoint.deleted."]
     pub object: DeletedWebhookEndpointResourceObject,
 }
+impl DeletedWebhookEndpointResource {
+    pub fn builder() -> builder::DeletedWebhookEndpointResource {
+        Default::default()
+    }
+}
 #[doc = "The object type, which is always webhook_endpoint.deleted."]
 #[derive(
     :: serde :: Deserialize,
@@ -62,6 +67,11 @@ pub struct ListWebhookEndpointsParams {
     pub after: ::std::option::Option<::std::string::String>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub limit: ::std::option::Option<::std::num::NonZeroU64>,
+}
+impl ListWebhookEndpointsParams {
+    pub fn builder() -> builder::ListWebhookEndpointsParams {
+        Default::default()
+    }
 }
 #[doc = "`ProjectEventTypeEnum`"]
 #[derive(
@@ -224,6 +234,11 @@ pub struct PublicCreateEndpointBody {
     #[doc = "The HTTPS URL that receives webhook deliveries."]
     pub url: PublicCreateEndpointBodyUrl,
 }
+impl PublicCreateEndpointBody {
+    pub fn builder() -> builder::PublicCreateEndpointBody {
+        Default::default()
+    }
+}
 #[doc = "A human-readable name for the webhook endpoint."]
 #[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
@@ -339,11 +354,21 @@ pub struct PublicRotateSecretBody {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub keep_old_secret_active_for_24_hours: ::std::option::Option<bool>,
 }
+impl PublicRotateSecretBody {
+    pub fn builder() -> builder::PublicRotateSecretBody {
+        Default::default()
+    }
+}
 #[doc = "`PublicTestEndpointBody`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct PublicTestEndpointBody {
     #[doc = "The event type to send as a sample delivery."]
     pub event_type: ProjectEventTypeEnum,
+}
+impl PublicTestEndpointBody {
+    pub fn builder() -> builder::PublicTestEndpointBody {
+        Default::default()
+    }
 }
 #[doc = "`PublicUpdateEndpointBody`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
@@ -357,6 +382,11 @@ pub struct PublicUpdateEndpointBody {
     #[doc = "A new HTTPS URL that receives webhook deliveries."]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub url: ::std::option::Option<PublicUpdateEndpointBodyUrl>,
+}
+impl PublicUpdateEndpointBody {
+    pub fn builder() -> builder::PublicUpdateEndpointBody {
+        Default::default()
+    }
 }
 #[doc = "A new human-readable name for the webhook endpoint."]
 #[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
@@ -487,6 +517,11 @@ pub struct WebhookEndpointBody {
     #[doc = "The HTTPS URL that receives webhook deliveries."]
     pub url: ::std::string::String,
 }
+impl WebhookEndpointBody {
+    pub fn builder() -> builder::WebhookEndpointBody {
+        Default::default()
+    }
+}
 #[doc = "The object type, which is always webhook_endpoint."]
 #[derive(
     :: serde :: Deserialize,
@@ -548,6 +583,11 @@ pub struct WebhookEndpointListResource {
     #[doc = "The object type, which is always list."]
     pub object: WebhookEndpointListResourceObject,
 }
+impl WebhookEndpointListResource {
+    pub fn builder() -> builder::WebhookEndpointListResource {
+        Default::default()
+    }
+}
 #[doc = "The object type, which is always list."]
 #[derive(
     :: serde :: Deserialize,
@@ -608,6 +648,11 @@ pub struct WebhookEndpointTestResultResource {
     pub success: bool,
     #[doc = "The ID of the webhook endpoint that received the test."]
     pub webhook_endpoint_id: ::std::string::String,
+}
+impl WebhookEndpointTestResultResource {
+    pub fn builder() -> builder::WebhookEndpointTestResultResource {
+        Default::default()
+    }
 }
 #[doc = "The object type, which is always webhook_endpoint.test."]
 #[derive(
@@ -679,6 +724,11 @@ pub struct WebhookEndpointWithSecretResource {
     #[doc = "The HTTPS URL that receives webhook deliveries."]
     pub url: ::std::string::String,
 }
+impl WebhookEndpointWithSecretResource {
+    pub fn builder() -> builder::WebhookEndpointWithSecretResource {
+        Default::default()
+    }
+}
 #[doc = "The object type, which is always webhook_endpoint."]
 #[derive(
     :: serde :: Deserialize,
@@ -733,6 +783,11 @@ pub struct WebhookEventTypeListResource {
     pub data: ::std::vec::Vec<::std::string::String>,
     #[doc = "The object type, which is always list."]
     pub object: WebhookEventTypeListResourceObject,
+}
+impl WebhookEventTypeListResource {
+    pub fn builder() -> builder::WebhookEventTypeListResource {
+        Default::default()
+    }
 }
 #[doc = "The object type, which is always list."]
 #[derive(
@@ -810,6 +865,1204 @@ pub struct WebhooksApiSchema {
     pub update_webhook_endpoint_request: PublicUpdateEndpointBody,
     #[serde(rename = "UpdateWebhookEndpointResponse")]
     pub update_webhook_endpoint_response: WebhookEndpointBody,
+}
+impl WebhooksApiSchema {
+    pub fn builder() -> builder::WebhooksApiSchema {
+        Default::default()
+    }
+}
+#[doc = " Types for composing complex structures."]
+pub mod builder {
+    #[derive(Clone, Debug)]
+    pub struct DeletedWebhookEndpointResource {
+        deleted: ::std::result::Result<bool, ::std::string::String>,
+        id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        object: ::std::result::Result<
+            super::DeletedWebhookEndpointResourceObject,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for DeletedWebhookEndpointResource {
+        fn default() -> Self {
+            Self {
+                deleted: Err("no value supplied for deleted".to_string()),
+                id: Err("no value supplied for id".to_string()),
+                object: Err("no value supplied for object".to_string()),
+            }
+        }
+    }
+    impl DeletedWebhookEndpointResource {
+        pub fn deleted<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<bool>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.deleted = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for deleted: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::DeletedWebhookEndpointResourceObject>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<DeletedWebhookEndpointResource>
+        for super::DeletedWebhookEndpointResource
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: DeletedWebhookEndpointResource,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                deleted: value.deleted?,
+                id: value.id?,
+                object: value.object?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::DeletedWebhookEndpointResource>
+        for DeletedWebhookEndpointResource
+    {
+        fn from(value: super::DeletedWebhookEndpointResource) -> Self {
+            Self {
+                deleted: Ok(value.deleted),
+                id: Ok(value.id),
+                object: Ok(value.object),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct ListWebhookEndpointsParams {
+        after: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        limit: ::std::result::Result<
+            ::std::option::Option<::std::num::NonZeroU64>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for ListWebhookEndpointsParams {
+        fn default() -> Self {
+            Self {
+                after: Ok(Default::default()),
+                limit: Ok(Default::default()),
+            }
+        }
+    }
+    impl ListWebhookEndpointsParams {
+        pub fn after<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.after = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for after: {e}"));
+            self
+        }
+        pub fn limit<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::num::NonZeroU64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.limit = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for limit: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<ListWebhookEndpointsParams> for super::ListWebhookEndpointsParams {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: ListWebhookEndpointsParams,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                after: value.after?,
+                limit: value.limit?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::ListWebhookEndpointsParams> for ListWebhookEndpointsParams {
+        fn from(value: super::ListWebhookEndpointsParams) -> Self {
+            Self {
+                after: Ok(value.after),
+                limit: Ok(value.limit),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct PublicCreateEndpointBody {
+        event_types: ::std::result::Result<
+            ::std::vec::Vec<super::ProjectEventTypeEnum>,
+            ::std::string::String,
+        >,
+        name: ::std::result::Result<super::PublicCreateEndpointBodyName, ::std::string::String>,
+        url: ::std::result::Result<super::PublicCreateEndpointBodyUrl, ::std::string::String>,
+    }
+    impl ::std::default::Default for PublicCreateEndpointBody {
+        fn default() -> Self {
+            Self {
+                event_types: Err("no value supplied for event_types".to_string()),
+                name: Err("no value supplied for name".to_string()),
+                url: Err("no value supplied for url".to_string()),
+            }
+        }
+    }
+    impl PublicCreateEndpointBody {
+        pub fn event_types<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<super::ProjectEventTypeEnum>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_types = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_types: {e}"));
+            self
+        }
+        pub fn name<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::PublicCreateEndpointBodyName>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.name = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for name: {e}"));
+            self
+        }
+        pub fn url<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::PublicCreateEndpointBodyUrl>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.url = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for url: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<PublicCreateEndpointBody> for super::PublicCreateEndpointBody {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: PublicCreateEndpointBody,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_types: value.event_types?,
+                name: value.name?,
+                url: value.url?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::PublicCreateEndpointBody> for PublicCreateEndpointBody {
+        fn from(value: super::PublicCreateEndpointBody) -> Self {
+            Self {
+                event_types: Ok(value.event_types),
+                name: Ok(value.name),
+                url: Ok(value.url),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct PublicRotateSecretBody {
+        keep_old_secret_active_for_24_hours:
+            ::std::result::Result<::std::option::Option<bool>, ::std::string::String>,
+    }
+    impl ::std::default::Default for PublicRotateSecretBody {
+        fn default() -> Self {
+            Self {
+                keep_old_secret_active_for_24_hours: Ok(Default::default()),
+            }
+        }
+    }
+    impl PublicRotateSecretBody {
+        pub fn keep_old_secret_active_for_24_hours<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<bool>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.keep_old_secret_active_for_24_hours = value.try_into().map_err(|e| {
+                format!(
+                    "error converting supplied value for keep_old_secret_active_for_24_hours: {e}"
+                )
+            });
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<PublicRotateSecretBody> for super::PublicRotateSecretBody {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: PublicRotateSecretBody,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                keep_old_secret_active_for_24_hours: value.keep_old_secret_active_for_24_hours?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::PublicRotateSecretBody> for PublicRotateSecretBody {
+        fn from(value: super::PublicRotateSecretBody) -> Self {
+            Self {
+                keep_old_secret_active_for_24_hours: Ok(value.keep_old_secret_active_for_24_hours),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct PublicTestEndpointBody {
+        event_type: ::std::result::Result<super::ProjectEventTypeEnum, ::std::string::String>,
+    }
+    impl ::std::default::Default for PublicTestEndpointBody {
+        fn default() -> Self {
+            Self {
+                event_type: Err("no value supplied for event_type".to_string()),
+            }
+        }
+    }
+    impl PublicTestEndpointBody {
+        pub fn event_type<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ProjectEventTypeEnum>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_type = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_type: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<PublicTestEndpointBody> for super::PublicTestEndpointBody {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: PublicTestEndpointBody,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_type: value.event_type?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::PublicTestEndpointBody> for PublicTestEndpointBody {
+        fn from(value: super::PublicTestEndpointBody) -> Self {
+            Self {
+                event_type: Ok(value.event_type),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct PublicUpdateEndpointBody {
+        event_types: ::std::result::Result<
+            ::std::vec::Vec<super::ProjectEventTypeEnum>,
+            ::std::string::String,
+        >,
+        name: ::std::result::Result<
+            ::std::option::Option<super::PublicUpdateEndpointBodyName>,
+            ::std::string::String,
+        >,
+        url: ::std::result::Result<
+            ::std::option::Option<super::PublicUpdateEndpointBodyUrl>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for PublicUpdateEndpointBody {
+        fn default() -> Self {
+            Self {
+                event_types: Ok(Default::default()),
+                name: Ok(Default::default()),
+                url: Ok(Default::default()),
+            }
+        }
+    }
+    impl PublicUpdateEndpointBody {
+        pub fn event_types<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<super::ProjectEventTypeEnum>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_types = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_types: {e}"));
+            self
+        }
+        pub fn name<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::PublicUpdateEndpointBodyName>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.name = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for name: {e}"));
+            self
+        }
+        pub fn url<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::PublicUpdateEndpointBodyUrl>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.url = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for url: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<PublicUpdateEndpointBody> for super::PublicUpdateEndpointBody {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: PublicUpdateEndpointBody,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_types: value.event_types?,
+                name: value.name?,
+                url: value.url?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::PublicUpdateEndpointBody> for PublicUpdateEndpointBody {
+        fn from(value: super::PublicUpdateEndpointBody) -> Self {
+            Self {
+                event_types: Ok(value.event_types),
+                name: Ok(value.name),
+                url: Ok(value.url),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct WebhookEndpointBody {
+        created_at: ::std::result::Result<i64, ::std::string::String>,
+        event_types:
+            ::std::result::Result<::std::vec::Vec<::std::string::String>, ::std::string::String>,
+        id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        name: ::std::result::Result<::std::string::String, ::std::string::String>,
+        object: ::std::result::Result<super::WebhookEndpointBodyObject, ::std::string::String>,
+        signing_secret_hint: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        updated_at: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        url: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for WebhookEndpointBody {
+        fn default() -> Self {
+            Self {
+                created_at: Err("no value supplied for created_at".to_string()),
+                event_types: Err("no value supplied for event_types".to_string()),
+                id: Err("no value supplied for id".to_string()),
+                name: Err("no value supplied for name".to_string()),
+                object: Err("no value supplied for object".to_string()),
+                signing_secret_hint: Err("no value supplied for signing_secret_hint".to_string()),
+                updated_at: Ok(Default::default()),
+                url: Err("no value supplied for url".to_string()),
+            }
+        }
+    }
+    impl WebhookEndpointBody {
+        pub fn created_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.created_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for created_at: {e}"));
+            self
+        }
+        pub fn event_types<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_types = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_types: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn name<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.name = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for name: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::WebhookEndpointBodyObject>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+        pub fn signing_secret_hint<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.signing_secret_hint = value.try_into().map_err(|e| {
+                format!("error converting supplied value for signing_secret_hint: {e}")
+            });
+            self
+        }
+        pub fn updated_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.updated_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for updated_at: {e}"));
+            self
+        }
+        pub fn url<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.url = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for url: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<WebhookEndpointBody> for super::WebhookEndpointBody {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: WebhookEndpointBody,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                created_at: value.created_at?,
+                event_types: value.event_types?,
+                id: value.id?,
+                name: value.name?,
+                object: value.object?,
+                signing_secret_hint: value.signing_secret_hint?,
+                updated_at: value.updated_at?,
+                url: value.url?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::WebhookEndpointBody> for WebhookEndpointBody {
+        fn from(value: super::WebhookEndpointBody) -> Self {
+            Self {
+                created_at: Ok(value.created_at),
+                event_types: Ok(value.event_types),
+                id: Ok(value.id),
+                name: Ok(value.name),
+                object: Ok(value.object),
+                signing_secret_hint: Ok(value.signing_secret_hint),
+                updated_at: Ok(value.updated_at),
+                url: Ok(value.url),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct WebhookEndpointListResource {
+        data: ::std::result::Result<
+            ::std::vec::Vec<super::WebhookEndpointBody>,
+            ::std::string::String,
+        >,
+        first_id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        has_more: ::std::result::Result<bool, ::std::string::String>,
+        last_id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        object:
+            ::std::result::Result<super::WebhookEndpointListResourceObject, ::std::string::String>,
+    }
+    impl ::std::default::Default for WebhookEndpointListResource {
+        fn default() -> Self {
+            Self {
+                data: Err("no value supplied for data".to_string()),
+                first_id: Err("no value supplied for first_id".to_string()),
+                has_more: Err("no value supplied for has_more".to_string()),
+                last_id: Err("no value supplied for last_id".to_string()),
+                object: Err("no value supplied for object".to_string()),
+            }
+        }
+    }
+    impl WebhookEndpointListResource {
+        pub fn data<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<super::WebhookEndpointBody>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.data = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for data: {e}"));
+            self
+        }
+        pub fn first_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.first_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for first_id: {e}"));
+            self
+        }
+        pub fn has_more<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<bool>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.has_more = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for has_more: {e}"));
+            self
+        }
+        pub fn last_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.last_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for last_id: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::WebhookEndpointListResourceObject>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<WebhookEndpointListResource> for super::WebhookEndpointListResource {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: WebhookEndpointListResource,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                data: value.data?,
+                first_id: value.first_id?,
+                has_more: value.has_more?,
+                last_id: value.last_id?,
+                object: value.object?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::WebhookEndpointListResource> for WebhookEndpointListResource {
+        fn from(value: super::WebhookEndpointListResource) -> Self {
+            Self {
+                data: Ok(value.data),
+                first_id: Ok(value.first_id),
+                has_more: Ok(value.has_more),
+                last_id: Ok(value.last_id),
+                object: Ok(value.object),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct WebhookEndpointTestResultResource {
+        event_type: ::std::result::Result<::std::string::String, ::std::string::String>,
+        object: ::std::result::Result<
+            super::WebhookEndpointTestResultResourceObject,
+            ::std::string::String,
+        >,
+        status_code: ::std::result::Result<i64, ::std::string::String>,
+        success: ::std::result::Result<bool, ::std::string::String>,
+        webhook_endpoint_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for WebhookEndpointTestResultResource {
+        fn default() -> Self {
+            Self {
+                event_type: Err("no value supplied for event_type".to_string()),
+                object: Err("no value supplied for object".to_string()),
+                status_code: Err("no value supplied for status_code".to_string()),
+                success: Err("no value supplied for success".to_string()),
+                webhook_endpoint_id: Err("no value supplied for webhook_endpoint_id".to_string()),
+            }
+        }
+    }
+    impl WebhookEndpointTestResultResource {
+        pub fn event_type<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_type = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_type: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::WebhookEndpointTestResultResourceObject>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+        pub fn status_code<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.status_code = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for status_code: {e}"));
+            self
+        }
+        pub fn success<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<bool>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.success = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for success: {e}"));
+            self
+        }
+        pub fn webhook_endpoint_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.webhook_endpoint_id = value.try_into().map_err(|e| {
+                format!("error converting supplied value for webhook_endpoint_id: {e}")
+            });
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<WebhookEndpointTestResultResource>
+        for super::WebhookEndpointTestResultResource
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: WebhookEndpointTestResultResource,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_type: value.event_type?,
+                object: value.object?,
+                status_code: value.status_code?,
+                success: value.success?,
+                webhook_endpoint_id: value.webhook_endpoint_id?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::WebhookEndpointTestResultResource>
+        for WebhookEndpointTestResultResource
+    {
+        fn from(value: super::WebhookEndpointTestResultResource) -> Self {
+            Self {
+                event_type: Ok(value.event_type),
+                object: Ok(value.object),
+                status_code: Ok(value.status_code),
+                success: Ok(value.success),
+                webhook_endpoint_id: Ok(value.webhook_endpoint_id),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct WebhookEndpointWithSecretResource {
+        created_at: ::std::result::Result<i64, ::std::string::String>,
+        event_types:
+            ::std::result::Result<::std::vec::Vec<::std::string::String>, ::std::string::String>,
+        id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        name: ::std::result::Result<::std::string::String, ::std::string::String>,
+        object: ::std::result::Result<
+            super::WebhookEndpointWithSecretResourceObject,
+            ::std::string::String,
+        >,
+        signing_secret: ::std::result::Result<::std::string::String, ::std::string::String>,
+        signing_secret_hint: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        updated_at: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        url: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for WebhookEndpointWithSecretResource {
+        fn default() -> Self {
+            Self {
+                created_at: Err("no value supplied for created_at".to_string()),
+                event_types: Err("no value supplied for event_types".to_string()),
+                id: Err("no value supplied for id".to_string()),
+                name: Err("no value supplied for name".to_string()),
+                object: Err("no value supplied for object".to_string()),
+                signing_secret: Err("no value supplied for signing_secret".to_string()),
+                signing_secret_hint: Err("no value supplied for signing_secret_hint".to_string()),
+                updated_at: Ok(Default::default()),
+                url: Err("no value supplied for url".to_string()),
+            }
+        }
+    }
+    impl WebhookEndpointWithSecretResource {
+        pub fn created_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.created_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for created_at: {e}"));
+            self
+        }
+        pub fn event_types<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_types = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_types: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn name<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.name = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for name: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::WebhookEndpointWithSecretResourceObject>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+        pub fn signing_secret<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.signing_secret = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for signing_secret: {e}"));
+            self
+        }
+        pub fn signing_secret_hint<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.signing_secret_hint = value.try_into().map_err(|e| {
+                format!("error converting supplied value for signing_secret_hint: {e}")
+            });
+            self
+        }
+        pub fn updated_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.updated_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for updated_at: {e}"));
+            self
+        }
+        pub fn url<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.url = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for url: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<WebhookEndpointWithSecretResource>
+        for super::WebhookEndpointWithSecretResource
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: WebhookEndpointWithSecretResource,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                created_at: value.created_at?,
+                event_types: value.event_types?,
+                id: value.id?,
+                name: value.name?,
+                object: value.object?,
+                signing_secret: value.signing_secret?,
+                signing_secret_hint: value.signing_secret_hint?,
+                updated_at: value.updated_at?,
+                url: value.url?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::WebhookEndpointWithSecretResource>
+        for WebhookEndpointWithSecretResource
+    {
+        fn from(value: super::WebhookEndpointWithSecretResource) -> Self {
+            Self {
+                created_at: Ok(value.created_at),
+                event_types: Ok(value.event_types),
+                id: Ok(value.id),
+                name: Ok(value.name),
+                object: Ok(value.object),
+                signing_secret: Ok(value.signing_secret),
+                signing_secret_hint: Ok(value.signing_secret_hint),
+                updated_at: Ok(value.updated_at),
+                url: Ok(value.url),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct WebhookEventTypeListResource {
+        data: ::std::result::Result<::std::vec::Vec<::std::string::String>, ::std::string::String>,
+        object:
+            ::std::result::Result<super::WebhookEventTypeListResourceObject, ::std::string::String>,
+    }
+    impl ::std::default::Default for WebhookEventTypeListResource {
+        fn default() -> Self {
+            Self {
+                data: Err("no value supplied for data".to_string()),
+                object: Err("no value supplied for object".to_string()),
+            }
+        }
+    }
+    impl WebhookEventTypeListResource {
+        pub fn data<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.data = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for data: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::WebhookEventTypeListResourceObject>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<WebhookEventTypeListResource> for super::WebhookEventTypeListResource {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: WebhookEventTypeListResource,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                data: value.data?,
+                object: value.object?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::WebhookEventTypeListResource> for WebhookEventTypeListResource {
+        fn from(value: super::WebhookEventTypeListResource) -> Self {
+            Self {
+                data: Ok(value.data),
+                object: Ok(value.object),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct WebhooksApiSchema {
+        create_webhook_endpoint_request:
+            ::std::result::Result<super::PublicCreateEndpointBody, ::std::string::String>,
+        create_webhook_endpoint_response:
+            ::std::result::Result<super::WebhookEndpointWithSecretResource, ::std::string::String>,
+        delete_webhook_endpoint_response:
+            ::std::result::Result<super::DeletedWebhookEndpointResource, ::std::string::String>,
+        list_webhook_endpoints_params:
+            ::std::result::Result<super::ListWebhookEndpointsParams, ::std::string::String>,
+        list_webhook_endpoints_response:
+            ::std::result::Result<super::WebhookEndpointListResource, ::std::string::String>,
+        list_webhook_event_types_response:
+            ::std::result::Result<super::WebhookEventTypeListResource, ::std::string::String>,
+        retrieve_webhook_endpoint_response:
+            ::std::result::Result<super::WebhookEndpointBody, ::std::string::String>,
+        rotate_webhook_endpoint_signing_secret_request:
+            ::std::result::Result<super::PublicRotateSecretBody, ::std::string::String>,
+        rotate_webhook_endpoint_signing_secret_response:
+            ::std::result::Result<super::WebhookEndpointWithSecretResource, ::std::string::String>,
+        test_webhook_endpoint_request:
+            ::std::result::Result<super::PublicTestEndpointBody, ::std::string::String>,
+        test_webhook_endpoint_response:
+            ::std::result::Result<super::WebhookEndpointTestResultResource, ::std::string::String>,
+        update_webhook_endpoint_request:
+            ::std::result::Result<super::PublicUpdateEndpointBody, ::std::string::String>,
+        update_webhook_endpoint_response:
+            ::std::result::Result<super::WebhookEndpointBody, ::std::string::String>,
+    }
+    impl ::std::default::Default for WebhooksApiSchema {
+        fn default() -> Self {
+            Self {
+                create_webhook_endpoint_request: Err(
+                    "no value supplied for create_webhook_endpoint_request".to_string(),
+                ),
+                create_webhook_endpoint_response: Err(
+                    "no value supplied for create_webhook_endpoint_response".to_string(),
+                ),
+                delete_webhook_endpoint_response: Err(
+                    "no value supplied for delete_webhook_endpoint_response".to_string(),
+                ),
+                list_webhook_endpoints_params: Err(
+                    "no value supplied for list_webhook_endpoints_params".to_string(),
+                ),
+                list_webhook_endpoints_response: Err(
+                    "no value supplied for list_webhook_endpoints_response".to_string(),
+                ),
+                list_webhook_event_types_response: Err(
+                    "no value supplied for list_webhook_event_types_response".to_string(),
+                ),
+                retrieve_webhook_endpoint_response: Err(
+                    "no value supplied for retrieve_webhook_endpoint_response".to_string(),
+                ),
+                rotate_webhook_endpoint_signing_secret_request: Err(
+                    "no value supplied for rotate_webhook_endpoint_signing_secret_request"
+                        .to_string(),
+                ),
+                rotate_webhook_endpoint_signing_secret_response: Err(
+                    "no value supplied for rotate_webhook_endpoint_signing_secret_response"
+                        .to_string(),
+                ),
+                test_webhook_endpoint_request: Err(
+                    "no value supplied for test_webhook_endpoint_request".to_string(),
+                ),
+                test_webhook_endpoint_response: Err(
+                    "no value supplied for test_webhook_endpoint_response".to_string(),
+                ),
+                update_webhook_endpoint_request: Err(
+                    "no value supplied for update_webhook_endpoint_request".to_string(),
+                ),
+                update_webhook_endpoint_response: Err(
+                    "no value supplied for update_webhook_endpoint_response".to_string(),
+                ),
+            }
+        }
+    }
+    impl WebhooksApiSchema {
+        pub fn create_webhook_endpoint_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::PublicCreateEndpointBody>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_webhook_endpoint_request = value.try_into().map_err(|e| {
+                format!("error converting supplied value for create_webhook_endpoint_request: {e}")
+            });
+            self
+        }
+        pub fn create_webhook_endpoint_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::WebhookEndpointWithSecretResource>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_webhook_endpoint_response = value.try_into().map_err(|e| {
+                format!("error converting supplied value for create_webhook_endpoint_response: {e}")
+            });
+            self
+        }
+        pub fn delete_webhook_endpoint_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::DeletedWebhookEndpointResource>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.delete_webhook_endpoint_response = value.try_into().map_err(|e| {
+                format!("error converting supplied value for delete_webhook_endpoint_response: {e}")
+            });
+            self
+        }
+        pub fn list_webhook_endpoints_params<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ListWebhookEndpointsParams>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.list_webhook_endpoints_params = value.try_into().map_err(|e| {
+                format!("error converting supplied value for list_webhook_endpoints_params: {e}")
+            });
+            self
+        }
+        pub fn list_webhook_endpoints_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::WebhookEndpointListResource>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.list_webhook_endpoints_response = value.try_into().map_err(|e| {
+                format!("error converting supplied value for list_webhook_endpoints_response: {e}")
+            });
+            self
+        }
+        pub fn list_webhook_event_types_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::WebhookEventTypeListResource>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.list_webhook_event_types_response = value.try_into().map_err(|e| {
+                format!(
+                    "error converting supplied value for list_webhook_event_types_response: {e}"
+                )
+            });
+            self
+        }
+        pub fn retrieve_webhook_endpoint_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::WebhookEndpointBody>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.retrieve_webhook_endpoint_response = value.try_into().map_err(|e| {
+                format!(
+                    "error converting supplied value for retrieve_webhook_endpoint_response: {e}"
+                )
+            });
+            self
+        }
+        pub fn rotate_webhook_endpoint_signing_secret_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::PublicRotateSecretBody>,
+            T::Error: ::std::fmt::Display,
+        {
+            self . rotate_webhook_endpoint_signing_secret_request = value . try_into () . map_err (| e | format ! ("error converting supplied value for rotate_webhook_endpoint_signing_secret_request: {e}")) ;
+            self
+        }
+        pub fn rotate_webhook_endpoint_signing_secret_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::WebhookEndpointWithSecretResource>,
+            T::Error: ::std::fmt::Display,
+        {
+            self . rotate_webhook_endpoint_signing_secret_response = value . try_into () . map_err (| e | format ! ("error converting supplied value for rotate_webhook_endpoint_signing_secret_response: {e}")) ;
+            self
+        }
+        pub fn test_webhook_endpoint_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::PublicTestEndpointBody>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.test_webhook_endpoint_request = value.try_into().map_err(|e| {
+                format!("error converting supplied value for test_webhook_endpoint_request: {e}")
+            });
+            self
+        }
+        pub fn test_webhook_endpoint_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::WebhookEndpointTestResultResource>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.test_webhook_endpoint_response = value.try_into().map_err(|e| {
+                format!("error converting supplied value for test_webhook_endpoint_response: {e}")
+            });
+            self
+        }
+        pub fn update_webhook_endpoint_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::PublicUpdateEndpointBody>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.update_webhook_endpoint_request = value.try_into().map_err(|e| {
+                format!("error converting supplied value for update_webhook_endpoint_request: {e}")
+            });
+            self
+        }
+        pub fn update_webhook_endpoint_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::WebhookEndpointBody>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.update_webhook_endpoint_response = value.try_into().map_err(|e| {
+                format!("error converting supplied value for update_webhook_endpoint_response: {e}")
+            });
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<WebhooksApiSchema> for super::WebhooksApiSchema {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: WebhooksApiSchema,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                create_webhook_endpoint_request: value.create_webhook_endpoint_request?,
+                create_webhook_endpoint_response: value.create_webhook_endpoint_response?,
+                delete_webhook_endpoint_response: value.delete_webhook_endpoint_response?,
+                list_webhook_endpoints_params: value.list_webhook_endpoints_params?,
+                list_webhook_endpoints_response: value.list_webhook_endpoints_response?,
+                list_webhook_event_types_response: value.list_webhook_event_types_response?,
+                retrieve_webhook_endpoint_response: value.retrieve_webhook_endpoint_response?,
+                rotate_webhook_endpoint_signing_secret_request: value
+                    .rotate_webhook_endpoint_signing_secret_request?,
+                rotate_webhook_endpoint_signing_secret_response: value
+                    .rotate_webhook_endpoint_signing_secret_response?,
+                test_webhook_endpoint_request: value.test_webhook_endpoint_request?,
+                test_webhook_endpoint_response: value.test_webhook_endpoint_response?,
+                update_webhook_endpoint_request: value.update_webhook_endpoint_request?,
+                update_webhook_endpoint_response: value.update_webhook_endpoint_response?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::WebhooksApiSchema> for WebhooksApiSchema {
+        fn from(value: super::WebhooksApiSchema) -> Self {
+            Self {
+                create_webhook_endpoint_request: Ok(value.create_webhook_endpoint_request),
+                create_webhook_endpoint_response: Ok(value.create_webhook_endpoint_response),
+                delete_webhook_endpoint_response: Ok(value.delete_webhook_endpoint_response),
+                list_webhook_endpoints_params: Ok(value.list_webhook_endpoints_params),
+                list_webhook_endpoints_response: Ok(value.list_webhook_endpoints_response),
+                list_webhook_event_types_response: Ok(value.list_webhook_event_types_response),
+                retrieve_webhook_endpoint_response: Ok(value.retrieve_webhook_endpoint_response),
+                rotate_webhook_endpoint_signing_secret_request: Ok(
+                    value.rotate_webhook_endpoint_signing_secret_request
+                ),
+                rotate_webhook_endpoint_signing_secret_response: Ok(
+                    value.rotate_webhook_endpoint_signing_secret_response
+                ),
+                test_webhook_endpoint_request: Ok(value.test_webhook_endpoint_request),
+                test_webhook_endpoint_response: Ok(value.test_webhook_endpoint_response),
+                update_webhook_endpoint_request: Ok(value.update_webhook_endpoint_request),
+                update_webhook_endpoint_response: Ok(value.update_webhook_endpoint_response),
+            }
+        }
+    }
 }
 #[doc = " Error types."]
 pub mod error {

@@ -15,6 +15,11 @@ pub struct C2paProvenanceResult {
     #[doc = "The validation status of the C2PA manifest in the uploaded image."]
     pub validation_state: C2paValidationStateApi,
 }
+impl C2paProvenanceResult {
+    pub fn builder() -> builder::C2paProvenanceResult {
+        Default::default()
+    }
+}
 #[doc = "The provenance signal type. Always `c2pa`."]
 #[derive(
     :: serde :: Deserialize,
@@ -129,11 +134,21 @@ pub struct ContentProvenanceApiSchema {
     #[serde(rename = "CreatecontentprovenancecheckResponse")]
     pub createcontentprovenancecheck_response: ProvenanceResource,
 }
+impl ContentProvenanceApiSchema {
+    pub fn builder() -> builder::ContentProvenanceApiSchema {
+        Default::default()
+    }
+}
 #[doc = "`CreateContentProvenanceBody`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct CreateContentProvenanceBody {
     #[doc = "The image or audio file to check for supported OpenAI provenance signals."]
     pub file: ::std::string::String,
+}
+impl CreateContentProvenanceBody {
+    pub fn builder() -> builder::CreateContentProvenanceBody {
+        Default::default()
+    }
 }
 #[doc = "`ProvenanceCheckObject`"]
 #[derive(
@@ -243,6 +258,11 @@ pub struct ProvenanceResource {
     #[doc = "The provenance results that apply to the uploaded file. Image results include C2PA and SynthID; audio results include SynthID."]
     pub results: ::std::vec::Vec<ProvenanceResourceResultsItem>,
 }
+impl ProvenanceResource {
+    pub fn builder() -> builder::ProvenanceResource {
+        Default::default()
+    }
+}
 #[doc = "`ProvenanceResourceResultsItem`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 #[serde(untagged)]
@@ -272,6 +292,11 @@ pub struct SynthIdProvenanceResult {
     #[doc = "The provenance signal type. Always `synthid`."]
     #[serde(rename = "type")]
     pub type_: SynthIdProvenanceResultType,
+}
+impl SynthIdProvenanceResult {
+    pub fn builder() -> builder::SynthIdProvenanceResult {
+        Default::default()
+    }
 }
 #[doc = "The provenance signal type. Always `synthid`."]
 #[derive(
@@ -318,6 +343,389 @@ impl ::std::convert::TryFrom<::std::string::String> for SynthIdProvenanceResultT
         value: ::std::string::String,
     ) -> ::std::result::Result<Self, self::error::ConversionError> {
         value.parse()
+    }
+}
+#[doc = " Types for composing complex structures."]
+pub mod builder {
+    #[derive(Clone, Debug)]
+    pub struct C2paProvenanceResult {
+        generated_at: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        issuer: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        model: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        outcome: ::std::result::Result<super::ProvenanceDetectionResultApi, ::std::string::String>,
+        type_: ::std::result::Result<super::C2paProvenanceResultType, ::std::string::String>,
+        validation_state:
+            ::std::result::Result<super::C2paValidationStateApi, ::std::string::String>,
+    }
+    impl ::std::default::Default for C2paProvenanceResult {
+        fn default() -> Self {
+            Self {
+                generated_at: Err("no value supplied for generated_at".to_string()),
+                issuer: Err("no value supplied for issuer".to_string()),
+                model: Err("no value supplied for model".to_string()),
+                outcome: Err("no value supplied for outcome".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+                validation_state: Err("no value supplied for validation_state".to_string()),
+            }
+        }
+    }
+    impl C2paProvenanceResult {
+        pub fn generated_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.generated_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for generated_at: {e}"));
+            self
+        }
+        pub fn issuer<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.issuer = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for issuer: {e}"));
+            self
+        }
+        pub fn model<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.model = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for model: {e}"));
+            self
+        }
+        pub fn outcome<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ProvenanceDetectionResultApi>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.outcome = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for outcome: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::C2paProvenanceResultType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+        pub fn validation_state<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::C2paValidationStateApi>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.validation_state = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for validation_state: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<C2paProvenanceResult> for super::C2paProvenanceResult {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: C2paProvenanceResult,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                generated_at: value.generated_at?,
+                issuer: value.issuer?,
+                model: value.model?,
+                outcome: value.outcome?,
+                type_: value.type_?,
+                validation_state: value.validation_state?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::C2paProvenanceResult> for C2paProvenanceResult {
+        fn from(value: super::C2paProvenanceResult) -> Self {
+            Self {
+                generated_at: Ok(value.generated_at),
+                issuer: Ok(value.issuer),
+                model: Ok(value.model),
+                outcome: Ok(value.outcome),
+                type_: Ok(value.type_),
+                validation_state: Ok(value.validation_state),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct ContentProvenanceApiSchema {
+        createcontentprovenancecheck_request:
+            ::std::result::Result<super::CreateContentProvenanceBody, ::std::string::String>,
+        createcontentprovenancecheck_response:
+            ::std::result::Result<super::ProvenanceResource, ::std::string::String>,
+    }
+    impl ::std::default::Default for ContentProvenanceApiSchema {
+        fn default() -> Self {
+            Self {
+                createcontentprovenancecheck_request: Err(
+                    "no value supplied for createcontentprovenancecheck_request".to_string(),
+                ),
+                createcontentprovenancecheck_response: Err(
+                    "no value supplied for createcontentprovenancecheck_response".to_string(),
+                ),
+            }
+        }
+    }
+    impl ContentProvenanceApiSchema {
+        pub fn createcontentprovenancecheck_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::CreateContentProvenanceBody>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.createcontentprovenancecheck_request = value.try_into().map_err(|e| {
+                format!(
+                    "error converting supplied value for createcontentprovenancecheck_request: {e}"
+                )
+            });
+            self
+        }
+        pub fn createcontentprovenancecheck_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ProvenanceResource>,
+            T::Error: ::std::fmt::Display,
+        {
+            self . createcontentprovenancecheck_response = value . try_into () . map_err (| e | format ! ("error converting supplied value for createcontentprovenancecheck_response: {e}")) ;
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<ContentProvenanceApiSchema> for super::ContentProvenanceApiSchema {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: ContentProvenanceApiSchema,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                createcontentprovenancecheck_request: value.createcontentprovenancecheck_request?,
+                createcontentprovenancecheck_response: value
+                    .createcontentprovenancecheck_response?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::ContentProvenanceApiSchema> for ContentProvenanceApiSchema {
+        fn from(value: super::ContentProvenanceApiSchema) -> Self {
+            Self {
+                createcontentprovenancecheck_request: Ok(value.createcontentprovenancecheck_request),
+                createcontentprovenancecheck_response: Ok(
+                    value.createcontentprovenancecheck_response
+                ),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct CreateContentProvenanceBody {
+        file: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for CreateContentProvenanceBody {
+        fn default() -> Self {
+            Self {
+                file: Err("no value supplied for file".to_string()),
+            }
+        }
+    }
+    impl CreateContentProvenanceBody {
+        pub fn file<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.file = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for file: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<CreateContentProvenanceBody> for super::CreateContentProvenanceBody {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: CreateContentProvenanceBody,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self { file: value.file? })
+        }
+    }
+    impl ::std::convert::From<super::CreateContentProvenanceBody> for CreateContentProvenanceBody {
+        fn from(value: super::CreateContentProvenanceBody) -> Self {
+            Self {
+                file: Ok(value.file),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct ProvenanceResource {
+        created_at: ::std::result::Result<i64, ::std::string::String>,
+        object: ::std::result::Result<super::ProvenanceCheckObject, ::std::string::String>,
+        results: ::std::result::Result<
+            ::std::vec::Vec<super::ProvenanceResourceResultsItem>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for ProvenanceResource {
+        fn default() -> Self {
+            Self {
+                created_at: Err("no value supplied for created_at".to_string()),
+                object: Err("no value supplied for object".to_string()),
+                results: Err("no value supplied for results".to_string()),
+            }
+        }
+    }
+    impl ProvenanceResource {
+        pub fn created_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.created_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for created_at: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ProvenanceCheckObject>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+        pub fn results<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<super::ProvenanceResourceResultsItem>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.results = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for results: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<ProvenanceResource> for super::ProvenanceResource {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: ProvenanceResource,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                created_at: value.created_at?,
+                object: value.object?,
+                results: value.results?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::ProvenanceResource> for ProvenanceResource {
+        fn from(value: super::ProvenanceResource) -> Self {
+            Self {
+                created_at: Ok(value.created_at),
+                object: Ok(value.object),
+                results: Ok(value.results),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct SynthIdProvenanceResult {
+        generated_at: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        model: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        outcome: ::std::result::Result<super::ProvenanceDetectionResultApi, ::std::string::String>,
+        type_: ::std::result::Result<super::SynthIdProvenanceResultType, ::std::string::String>,
+    }
+    impl ::std::default::Default for SynthIdProvenanceResult {
+        fn default() -> Self {
+            Self {
+                generated_at: Err("no value supplied for generated_at".to_string()),
+                model: Err("no value supplied for model".to_string()),
+                outcome: Err("no value supplied for outcome".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl SynthIdProvenanceResult {
+        pub fn generated_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.generated_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for generated_at: {e}"));
+            self
+        }
+        pub fn model<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.model = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for model: {e}"));
+            self
+        }
+        pub fn outcome<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ProvenanceDetectionResultApi>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.outcome = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for outcome: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::SynthIdProvenanceResultType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<SynthIdProvenanceResult> for super::SynthIdProvenanceResult {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: SynthIdProvenanceResult,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                generated_at: value.generated_at?,
+                model: value.model?,
+                outcome: value.outcome?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::SynthIdProvenanceResult> for SynthIdProvenanceResult {
+        fn from(value: super::SynthIdProvenanceResult) -> Self {
+            Self {
+                generated_at: Ok(value.generated_at),
+                model: Ok(value.model),
+                outcome: Ok(value.outcome),
+                type_: Ok(value.type_),
+            }
+        }
     }
 }
 #[doc = " Error types."]

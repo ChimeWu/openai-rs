@@ -98,7 +98,6 @@ def generate(mode: str) -> None:
                 [
                     "cargo",
                     "typify",
-                    "--no-builder",
                     "--additional-derive",
                     "PartialEq",
                     "--output",

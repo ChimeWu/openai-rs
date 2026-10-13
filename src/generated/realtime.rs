@@ -20,6 +20,11 @@ pub struct AudioTranscription {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub prompt: ::std::option::Option<::std::string::String>,
 }
+impl AudioTranscription {
+    pub fn builder() -> builder::AudioTranscription {
+        Default::default()
+    }
+}
 #[doc = "Controls how long the model waits before emitting transcription text.\nHigher values can improve transcription accuracy at the cost of latency.\nOnly supported with `gpt-realtime-whisper` in GA Realtime sessions.\n"]
 #[derive(
     :: serde :: Deserialize,
@@ -98,6 +103,11 @@ pub struct AudioTranscriptionResponse {
     #[doc = "The prompt configured for input audio transcription, when present.\n"]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub prompt: ::std::option::Option<::std::string::String>,
+}
+impl AudioTranscriptionResponse {
+    pub fn builder() -> builder::AudioTranscriptionResponse {
+        Default::default()
+    }
 }
 #[doc = "Enables tracing and sets default values for tracing configuration options. Always `auto`.\n"]
 #[derive(
@@ -206,6 +216,11 @@ pub struct ClientSecretExpiration {
     #[doc = "The number of seconds from the anchor point to the expiration. Select a value between `10` and `7200` (2 hours). This default to 600 seconds (10 minutes) if not specified.\n"]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub seconds: ::std::option::Option<i64>,
+}
+impl ClientSecretExpiration {
+    pub fn builder() -> builder::ClientSecretExpiration {
+        Default::default()
+    }
 }
 #[doc = "The anchor point for the client secret expiration, meaning that `seconds` will be added to the `created_at` time of the client secret to produce an expiration timestamp. Only `created_at` is currently supported.\n"]
 #[derive(
@@ -391,6 +406,11 @@ pub struct InputFileContent {
     #[serde(rename = "type")]
     pub type_: InputFileContentType,
 }
+impl InputFileContent {
+    pub fn builder() -> builder::InputFileContent {
+        Default::default()
+    }
+}
 #[doc = "The type of the input item. Always `input_file`."]
 #[derive(
     :: serde :: Deserialize,
@@ -453,6 +473,11 @@ pub struct InputImageContent {
     #[serde(rename = "type")]
     pub type_: InputImageContentType,
 }
+impl InputImageContent {
+    pub fn builder() -> builder::InputImageContent {
+        Default::default()
+    }
+}
 #[doc = "The type of the input item. Always `input_image`."]
 #[derive(
     :: serde :: Deserialize,
@@ -511,6 +536,11 @@ pub struct InputTextContent {
     #[serde(rename = "type")]
     pub type_: InputTextContentType,
 }
+impl InputTextContent {
+    pub fn builder() -> builder::InputTextContent {
+        Default::default()
+    }
+}
 #[doc = "The type of the input item. Always `input_text`."]
 #[derive(
     :: serde :: Deserialize,
@@ -568,6 +598,11 @@ pub struct LogProbProperties {
     #[doc = "The token that was used to generate the log probability.\n"]
     pub token: ::std::string::String,
 }
+impl LogProbProperties {
+    pub fn builder() -> builder::LogProbProperties {
+        Default::default()
+    }
+}
 #[doc = "A tool available on an MCP server.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct McpListToolsTool {
@@ -580,6 +615,11 @@ pub struct McpListToolsTool {
     pub input_schema: ::serde_json::Map<::std::string::String, ::serde_json::Value>,
     #[doc = "The name of the tool.\n"]
     pub name: ::std::string::String,
+}
+impl McpListToolsTool {
+    pub fn builder() -> builder::McpListToolsTool {
+        Default::default()
+    }
 }
 #[doc = "Give the model access to additional tools via remote Model Context Protocol\n(MCP) servers. [Learn more about MCP](https://developers.openai.com/api/docs/guides/tools-connectors-mcp).\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -617,6 +657,11 @@ pub struct McpTool {
     #[doc = "The type of the MCP tool. Always `mcp`."]
     #[serde(rename = "type")]
     pub type_: McpToolType,
+}
+impl McpTool {
+    pub fn builder() -> builder::McpTool {
+        Default::default()
+    }
 }
 #[doc = "List of allowed tool names or a filter object.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -771,6 +816,11 @@ pub struct McpToolFilter {
     #[doc = "List of allowed tool names."]
     #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
     pub tool_names: ::std::vec::Vec<::std::string::String>,
+}
+impl McpToolFilter {
+    pub fn builder() -> builder::McpToolFilter {
+        Default::default()
+    }
 }
 #[doc = "Specify which of the MCP server's tools require approval."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -1000,6 +1050,11 @@ pub struct PcmAudioFormat {
     )]
     pub type_: ::std::option::Option<PcmAudioFormatType>,
 }
+impl PcmAudioFormat {
+    pub fn builder() -> builder::PcmAudioFormat {
+        Default::default()
+    }
+}
 #[doc = "The sample rate of the audio. Always `24000`."]
 #[derive(:: serde :: Serialize, Clone, Debug, PartialEq)]
 #[serde(transparent)]
@@ -1091,6 +1146,11 @@ pub struct PcmaAudioFormat {
     )]
     pub type_: ::std::option::Option<PcmaAudioFormatType>,
 }
+impl PcmaAudioFormat {
+    pub fn builder() -> builder::PcmaAudioFormat {
+        Default::default()
+    }
+}
 #[doc = "The audio format. Always `audio/pcma`."]
 #[derive(
     :: serde :: Deserialize,
@@ -1147,6 +1207,11 @@ pub struct PcmuAudioFormat {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub type_: ::std::option::Option<PcmuAudioFormatType>,
+}
+impl PcmuAudioFormat {
+    pub fn builder() -> builder::PcmuAudioFormat {
+        Default::default()
+    }
 }
 #[doc = "The audio format. Always `audio/pcmu`."]
 #[derive(
@@ -1221,6 +1286,11 @@ pub struct PromptCacheBreakpointConfig {
     #[doc = "The breakpoint mode. Always `explicit`."]
     pub mode: PromptCacheBreakpointConfigMode,
 }
+impl PromptCacheBreakpointConfig {
+    pub fn builder() -> builder::PromptCacheBreakpointConfig {
+        Default::default()
+    }
+}
 #[doc = "The breakpoint mode. Always `explicit`."]
 #[derive(
     :: serde :: Deserialize,
@@ -1278,6 +1348,11 @@ pub struct PromptValue {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub version: ::std::option::Option<::std::string::String>,
 }
+impl PromptValue {
+    pub fn builder() -> builder::PromptValue {
+        Default::default()
+    }
+}
 #[doc = "`RealtimeApiSchema`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct RealtimeApiSchema {
@@ -1316,6 +1391,11 @@ pub struct RealtimeApiSchema {
     #[serde(rename = "RejectRealtimeCallRequest")]
     pub reject_realtime_call_request: RealtimeCallRejectRequest,
 }
+impl RealtimeApiSchema {
+    pub fn builder() -> builder::RealtimeApiSchema {
+        Default::default()
+    }
+}
 #[doc = "`RealtimeAudioFormats`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeAudioFormats {
@@ -1325,6 +1405,11 @@ pub struct RealtimeAudioFormats {
     pub subtype_1: ::std::option::Option<PcmuAudioFormat>,
     #[serde(flatten, skip_serializing_if = "::std::option::Option::is_none")]
     pub subtype_2: ::std::option::Option<PcmaAudioFormat>,
+}
+impl RealtimeAudioFormats {
+    pub fn builder() -> builder::RealtimeAudioFormats {
+        Default::default()
+    }
 }
 #[doc = "Parameters required to initiate a realtime call and receive the SDP answer\nneeded to complete a WebRTC peer connection. Provide an SDP offer generated\nby your client and optionally configure the session that will answer the call."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -1336,12 +1421,22 @@ pub struct RealtimeCallCreateRequest {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub session: ::std::option::Option<RealtimeSessionCreateRequestGa>,
 }
+impl RealtimeCallCreateRequest {
+    pub fn builder() -> builder::RealtimeCallCreateRequest {
+        Default::default()
+    }
+}
 #[doc = "Parameters required to transfer a SIP call to a new destination using the\nRealtime API."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub struct RealtimeCallReferRequest {
     #[doc = "URI that should appear in the SIP Refer-To header. Supports values like\n`tel:+14155550123` or `sip:agent@example.com`."]
     pub target_uri: ::std::string::String,
+}
+impl RealtimeCallReferRequest {
+    pub fn builder() -> builder::RealtimeCallReferRequest {
+        Default::default()
+    }
 }
 #[doc = "Parameters used to decline an incoming SIP call handled by the Realtime API."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
@@ -1350,6 +1445,11 @@ pub struct RealtimeCallRejectRequest {
     #[doc = "SIP response code to send back to the caller. Defaults to `603` (Decline)\nwhen omitted."]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub status_code: ::std::option::Option<i64>,
+}
+impl RealtimeCallRejectRequest {
+    pub fn builder() -> builder::RealtimeCallRejectRequest {
+        Default::default()
+    }
 }
 #[doc = "A realtime client event.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -1435,6 +1535,11 @@ pub struct RealtimeClientEventConversationItemCreate {
     #[doc = "The event type, must be `conversation.item.create`."]
     #[serde(rename = "type")]
     pub type_: RealtimeClientEventConversationItemCreateType,
+}
+impl RealtimeClientEventConversationItemCreate {
+    pub fn builder() -> builder::RealtimeClientEventConversationItemCreate {
+        Default::default()
+    }
 }
 #[doc = "Optional client-generated ID used to identify this event."]
 #[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
@@ -1551,6 +1656,11 @@ pub struct RealtimeClientEventConversationItemDelete {
     #[serde(rename = "type")]
     pub type_: RealtimeClientEventConversationItemDeleteType,
 }
+impl RealtimeClientEventConversationItemDelete {
+    pub fn builder() -> builder::RealtimeClientEventConversationItemDelete {
+        Default::default()
+    }
+}
 #[doc = "Optional client-generated ID used to identify this event."]
 #[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
@@ -1665,6 +1775,11 @@ pub struct RealtimeClientEventConversationItemRetrieve {
     #[doc = "The event type, must be `conversation.item.retrieve`."]
     #[serde(rename = "type")]
     pub type_: RealtimeClientEventConversationItemRetrieveType,
+}
+impl RealtimeClientEventConversationItemRetrieve {
+    pub fn builder() -> builder::RealtimeClientEventConversationItemRetrieve {
+        Default::default()
+    }
 }
 #[doc = "Optional client-generated ID used to identify this event."]
 #[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
@@ -1785,6 +1900,11 @@ pub struct RealtimeClientEventConversationItemTruncate {
     #[serde(rename = "type")]
     pub type_: RealtimeClientEventConversationItemTruncateType,
 }
+impl RealtimeClientEventConversationItemTruncate {
+    pub fn builder() -> builder::RealtimeClientEventConversationItemTruncate {
+        Default::default()
+    }
+}
 #[doc = "Optional client-generated ID used to identify this event."]
 #[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
@@ -1900,6 +2020,11 @@ pub struct RealtimeClientEventInputAudioBufferAppend {
     #[serde(rename = "type")]
     pub type_: RealtimeClientEventInputAudioBufferAppendType,
 }
+impl RealtimeClientEventInputAudioBufferAppend {
+    pub fn builder() -> builder::RealtimeClientEventInputAudioBufferAppend {
+        Default::default()
+    }
+}
 #[doc = "Optional client-generated ID used to identify this event."]
 #[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
@@ -2012,6 +2137,11 @@ pub struct RealtimeClientEventInputAudioBufferClear {
     #[doc = "The event type, must be `input_audio_buffer.clear`."]
     #[serde(rename = "type")]
     pub type_: RealtimeClientEventInputAudioBufferClearType,
+}
+impl RealtimeClientEventInputAudioBufferClear {
+    pub fn builder() -> builder::RealtimeClientEventInputAudioBufferClear {
+        Default::default()
+    }
 }
 #[doc = "Optional client-generated ID used to identify this event."]
 #[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
@@ -2126,6 +2256,11 @@ pub struct RealtimeClientEventInputAudioBufferCommit {
     #[serde(rename = "type")]
     pub type_: RealtimeClientEventInputAudioBufferCommitType,
 }
+impl RealtimeClientEventInputAudioBufferCommit {
+    pub fn builder() -> builder::RealtimeClientEventInputAudioBufferCommit {
+        Default::default()
+    }
+}
 #[doc = "Optional client-generated ID used to identify this event."]
 #[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
@@ -2239,6 +2374,11 @@ pub struct RealtimeClientEventOutputAudioBufferClear {
     #[serde(rename = "type")]
     pub type_: RealtimeClientEventOutputAudioBufferClearType,
 }
+impl RealtimeClientEventOutputAudioBufferClear {
+    pub fn builder() -> builder::RealtimeClientEventOutputAudioBufferClear {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `output_audio_buffer.clear`."]
 #[derive(
     :: serde :: Deserialize,
@@ -2300,6 +2440,11 @@ pub struct RealtimeClientEventResponseCancel {
     #[doc = "The event type, must be `response.cancel`."]
     #[serde(rename = "type")]
     pub type_: RealtimeClientEventResponseCancelType,
+}
+impl RealtimeClientEventResponseCancel {
+    pub fn builder() -> builder::RealtimeClientEventResponseCancel {
+        Default::default()
+    }
 }
 #[doc = "Optional client-generated ID used to identify this event."]
 #[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
@@ -2410,6 +2555,11 @@ pub struct RealtimeClientEventResponseCreate {
     #[serde(rename = "type")]
     pub type_: RealtimeClientEventResponseCreateType,
 }
+impl RealtimeClientEventResponseCreate {
+    pub fn builder() -> builder::RealtimeClientEventResponseCreate {
+        Default::default()
+    }
+}
 #[doc = "Optional client-generated ID used to identify this event."]
 #[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
@@ -2518,6 +2668,11 @@ pub struct RealtimeClientEventSessionUpdate {
     #[doc = "The event type, must be `session.update`."]
     #[serde(rename = "type")]
     pub type_: RealtimeClientEventSessionUpdateType,
+}
+impl RealtimeClientEventSessionUpdate {
+    pub fn builder() -> builder::RealtimeClientEventSessionUpdate {
+        Default::default()
+    }
 }
 #[doc = "Optional client-generated ID used to identify this event. This is an arbitrary string that a client may assign. It will be passed back if there is an error with the event, but the corresponding `session.updated` event will not include it."]
 #[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
@@ -2719,6 +2874,11 @@ pub struct RealtimeConversationItemFunctionCall {
     #[serde(rename = "type")]
     pub type_: RealtimeConversationItemFunctionCallType,
 }
+impl RealtimeConversationItemFunctionCall {
+    pub fn builder() -> builder::RealtimeConversationItemFunctionCall {
+        Default::default()
+    }
+}
 #[doc = "Identifier for the API object being returned - always `realtime.item`. Optional when creating a new item."]
 #[derive(
     :: serde :: Deserialize,
@@ -2785,6 +2945,11 @@ pub struct RealtimeConversationItemFunctionCallOutput {
     #[doc = "The type of the item. Always `function_call_output`."]
     #[serde(rename = "type")]
     pub type_: RealtimeConversationItemFunctionCallOutputType,
+}
+impl RealtimeConversationItemFunctionCallOutput {
+    pub fn builder() -> builder::RealtimeConversationItemFunctionCallOutput {
+        Default::default()
+    }
 }
 #[doc = "Identifier for the API object being returned - always `realtime.item`. Optional when creating a new item."]
 #[derive(
@@ -3063,6 +3228,11 @@ pub struct RealtimeConversationItemMessageAssistant {
     #[serde(rename = "type")]
     pub type_: RealtimeConversationItemMessageAssistantType,
 }
+impl RealtimeConversationItemMessageAssistant {
+    pub fn builder() -> builder::RealtimeConversationItemMessageAssistant {
+        Default::default()
+    }
+}
 #[doc = "`RealtimeConversationItemMessageAssistantContentItem`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeConversationItemMessageAssistantContentItem {
@@ -3081,6 +3251,11 @@ pub struct RealtimeConversationItemMessageAssistantContentItem {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub type_: ::std::option::Option<RealtimeConversationItemMessageAssistantContentItemType>,
+}
+impl RealtimeConversationItemMessageAssistantContentItem {
+    pub fn builder() -> builder::RealtimeConversationItemMessageAssistantContentItem {
+        Default::default()
+    }
 }
 #[doc = "The content type, `output_text` or `output_audio` depending on the session `output_modalities` configuration."]
 #[derive(
@@ -3359,6 +3534,11 @@ pub struct RealtimeConversationItemMessageSystem {
     #[serde(rename = "type")]
     pub type_: RealtimeConversationItemMessageSystemType,
 }
+impl RealtimeConversationItemMessageSystem {
+    pub fn builder() -> builder::RealtimeConversationItemMessageSystem {
+        Default::default()
+    }
+}
 #[doc = "`RealtimeConversationItemMessageSystemContentItem`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeConversationItemMessageSystemContentItem {
@@ -3371,6 +3551,11 @@ pub struct RealtimeConversationItemMessageSystemContentItem {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub type_: ::std::option::Option<RealtimeConversationItemMessageSystemContentItemType>,
+}
+impl RealtimeConversationItemMessageSystemContentItem {
+    pub fn builder() -> builder::RealtimeConversationItemMessageSystemContentItem {
+        Default::default()
+    }
 }
 #[doc = "The content type. Always `input_text` for system messages."]
 #[derive(
@@ -3641,6 +3826,11 @@ pub struct RealtimeConversationItemMessageUser {
     #[serde(rename = "type")]
     pub type_: RealtimeConversationItemMessageUserType,
 }
+impl RealtimeConversationItemMessageUser {
+    pub fn builder() -> builder::RealtimeConversationItemMessageUser {
+        Default::default()
+    }
+}
 #[doc = "`RealtimeConversationItemMessageUserContentItem`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeConversationItemMessageUserContentItem {
@@ -3665,6 +3855,11 @@ pub struct RealtimeConversationItemMessageUserContentItem {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub type_: ::std::option::Option<RealtimeConversationItemMessageUserContentItemType>,
+}
+impl RealtimeConversationItemMessageUserContentItem {
+    pub fn builder() -> builder::RealtimeConversationItemMessageUserContentItem {
+        Default::default()
+    }
 }
 #[doc = "The detail level of the image (for `input_image`). `auto` will default to `high`."]
 #[derive(
@@ -3985,6 +4180,11 @@ pub struct RealtimeCreateClientSecretRequest {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub session: ::std::option::Option<SessionConfiguration>,
 }
+impl RealtimeCreateClientSecretRequest {
+    pub fn builder() -> builder::RealtimeCreateClientSecretRequest {
+        Default::default()
+    }
+}
 #[doc = "Response from creating a session and client secret for the Realtime API.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct RealtimeCreateClientSecretResponse {
@@ -3994,6 +4194,11 @@ pub struct RealtimeCreateClientSecretResponse {
     pub session: SessionConfiguration,
     #[doc = "The generated client secret value."]
     pub value: ::std::string::String,
+}
+impl RealtimeCreateClientSecretResponse {
+    pub fn builder() -> builder::RealtimeCreateClientSecretResponse {
+        Default::default()
+    }
 }
 #[doc = "`RealtimeFunctionTool`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
@@ -4013,6 +4218,11 @@ pub struct RealtimeFunctionTool {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub type_: ::std::option::Option<RealtimeFunctionToolType>,
+}
+impl RealtimeFunctionTool {
+    pub fn builder() -> builder::RealtimeFunctionTool {
+        Default::default()
+    }
 }
 #[doc = "The type of the tool, i.e. `function`."]
 #[derive(
@@ -4076,6 +4286,11 @@ pub struct RealtimeMcpApprovalRequest {
     #[serde(rename = "type")]
     pub type_: RealtimeMcpApprovalRequestType,
 }
+impl RealtimeMcpApprovalRequest {
+    pub fn builder() -> builder::RealtimeMcpApprovalRequest {
+        Default::default()
+    }
+}
 #[doc = "The type of the item. Always `mcp_approval_request`."]
 #[derive(
     :: serde :: Deserialize,
@@ -4138,6 +4353,11 @@ pub struct RealtimeMcpApprovalResponse {
     #[serde(rename = "type")]
     pub type_: RealtimeMcpApprovalResponseType,
 }
+impl RealtimeMcpApprovalResponse {
+    pub fn builder() -> builder::RealtimeMcpApprovalResponse {
+        Default::default()
+    }
+}
 #[doc = "The type of the item. Always `mcp_approval_response`."]
 #[derive(
     :: serde :: Deserialize,
@@ -4199,6 +4419,11 @@ pub struct RealtimeMcpListTools {
     #[serde(rename = "type")]
     pub type_: RealtimeMcpListToolsType,
 }
+impl RealtimeMcpListTools {
+    pub fn builder() -> builder::RealtimeMcpListTools {
+        Default::default()
+    }
+}
 #[doc = "The type of the item. Always `mcp_list_tools`."]
 #[derive(
     :: serde :: Deserialize,
@@ -4253,6 +4478,11 @@ pub struct RealtimeMcpProtocolError {
     pub message: ::std::string::String,
     #[serde(rename = "type")]
     pub type_: RealtimeMcpProtocolErrorType,
+}
+impl RealtimeMcpProtocolError {
+    pub fn builder() -> builder::RealtimeMcpProtocolError {
+        Default::default()
+    }
 }
 #[doc = "`RealtimeMcpProtocolErrorType`"]
 #[derive(
@@ -4321,6 +4551,11 @@ pub struct RealtimeMcpToolCall {
     #[doc = "The type of the item. Always `mcp_call`."]
     #[serde(rename = "type")]
     pub type_: RealtimeMcpToolCallType,
+}
+impl RealtimeMcpToolCall {
+    pub fn builder() -> builder::RealtimeMcpToolCall {
+        Default::default()
+    }
 }
 #[doc = "The error from the tool call, if any."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -4399,6 +4634,11 @@ pub struct RealtimeMcpToolExecutionError {
     #[serde(rename = "type")]
     pub type_: RealtimeMcpToolExecutionErrorType,
 }
+impl RealtimeMcpToolExecutionError {
+    pub fn builder() -> builder::RealtimeMcpToolExecutionError {
+        Default::default()
+    }
+}
 #[doc = "`RealtimeMcpToolExecutionErrorType`"]
 #[derive(
     :: serde :: Deserialize,
@@ -4454,6 +4694,11 @@ pub struct RealtimeMcphttpError {
     #[serde(rename = "type")]
     pub type_: RealtimeMcphttpErrorType,
 }
+impl RealtimeMcphttpError {
+    pub fn builder() -> builder::RealtimeMcphttpError {
+        Default::default()
+    }
+}
 #[doc = "`RealtimeMcphttpErrorType`"]
 #[derive(
     :: serde :: Deserialize,
@@ -4506,6 +4751,11 @@ impl ::std::convert::TryFrom<::std::string::String> for RealtimeMcphttpErrorType
 pub struct RealtimeReasoning {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub effort: ::std::option::Option<RealtimeReasoningEffort>,
+}
+impl RealtimeReasoning {
+    pub fn builder() -> builder::RealtimeReasoning {
+        Default::default()
+    }
 }
 #[doc = "Constrains effort on reasoning for reasoning-capable Realtime models such as\n`gpt-realtime-2`.\n"]
 #[derive(
@@ -4603,11 +4853,21 @@ pub struct RealtimeResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub usage: ::std::option::Option<RealtimeResponseUsage>,
 }
+impl RealtimeResponse {
+    pub fn builder() -> builder::RealtimeResponse {
+        Default::default()
+    }
+}
 #[doc = "Configuration for audio output."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeResponseAudio {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub output: ::std::option::Option<RealtimeResponseAudioOutput>,
+}
+impl RealtimeResponseAudio {
+    pub fn builder() -> builder::RealtimeResponseAudio {
+        Default::default()
+    }
 }
 #[doc = "`RealtimeResponseAudioOutput`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
@@ -4618,6 +4878,11 @@ pub struct RealtimeResponseAudioOutput {
     #[doc = "The voice the model uses to respond. Voice cannot be changed during the\nsession once the model has responded with audio at least once. Current\nvoice options are `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`,\n`shimmer`, `verse`, `marin`, and `cedar`. We recommend `marin` and `cedar` for\nbest quality.\n"]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub voice: ::std::option::Option<VoiceIdsShared>,
+}
+impl RealtimeResponseAudioOutput {
+    pub fn builder() -> builder::RealtimeResponseAudioOutput {
+        Default::default()
+    }
 }
 #[doc = "Create a new Realtime response with these parameters"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
@@ -4655,11 +4920,21 @@ pub struct RealtimeResponseCreateParams {
     #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
     pub tools: ::std::vec::Vec<RealtimeResponseCreateParamsToolsItem>,
 }
+impl RealtimeResponseCreateParams {
+    pub fn builder() -> builder::RealtimeResponseCreateParams {
+        Default::default()
+    }
+}
 #[doc = "Configuration for audio input and output."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeResponseCreateParamsAudio {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub output: ::std::option::Option<RealtimeResponseCreateParamsAudioOutput>,
+}
+impl RealtimeResponseCreateParamsAudio {
+    pub fn builder() -> builder::RealtimeResponseCreateParamsAudio {
+        Default::default()
+    }
 }
 #[doc = "`RealtimeResponseCreateParamsAudioOutput`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
@@ -4670,6 +4945,11 @@ pub struct RealtimeResponseCreateParamsAudioOutput {
     #[doc = "The voice the model uses to respond. Supported built-in voices are\n`alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, `verse`,\n`marin`, and `cedar`. You may also provide a custom voice object with\nan `id`, for example `{ \"id\": \"voice_1234\" }`. Voice cannot be changed\nduring the session once the model has responded with audio at least once.\nCustom voices must be created from audio samples.\nWe recommend `marin` and `cedar` for best quality.\n"]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub voice: ::std::option::Option<VoiceIdsOrCustomVoice>,
+}
+impl RealtimeResponseCreateParamsAudioOutput {
+    pub fn builder() -> builder::RealtimeResponseCreateParamsAudioOutput {
+        Default::default()
+    }
 }
 #[doc = "Maximum number of output tokens for a single assistant response,\ninclusive of tool calls. Provide an integer between 1 and 4096 to\nlimit output tokens, or `inf` for the maximum available tokens for a\ngiven model. Defaults to `inf`.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -5144,6 +5424,11 @@ pub struct RealtimeResponseStatusDetails {
     )]
     pub type_: ::std::option::Option<RealtimeResponseStatusDetailsType>,
 }
+impl RealtimeResponseStatusDetails {
+    pub fn builder() -> builder::RealtimeResponseStatusDetails {
+        Default::default()
+    }
+}
 #[doc = "A description of the error that caused the response to fail, \npopulated when the `status` is `failed`.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeResponseStatusDetailsError {
@@ -5156,6 +5441,11 @@ pub struct RealtimeResponseStatusDetailsError {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub type_: ::std::option::Option<::std::string::String>,
+}
+impl RealtimeResponseStatusDetailsError {
+    pub fn builder() -> builder::RealtimeResponseStatusDetailsError {
+        Default::default()
+    }
 }
 #[doc = "The reason the Response did not complete. For a `cancelled` Response,  one of `turn_detected` (the server VAD detected a new start of speech)  or `client_cancelled` (the client sent a cancel event). For an  `incomplete` Response, one of `max_output_tokens` or `content_filter`  (the server-side safety filter activated and cut off the response).\n"]
 #[derive(
@@ -5292,6 +5582,11 @@ pub struct RealtimeResponseUsage {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub total_tokens: ::std::option::Option<i64>,
 }
+impl RealtimeResponseUsage {
+    pub fn builder() -> builder::RealtimeResponseUsage {
+        Default::default()
+    }
+}
 #[doc = "Details about the input tokens used in the Response. Cached tokens are tokens from previous turns in the conversation that are included as context for the current response. Cached tokens here are counted as a subset of input tokens, meaning input tokens will include cached and uncached tokens."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeResponseUsageInputTokenDetails {
@@ -5311,6 +5606,11 @@ pub struct RealtimeResponseUsageInputTokenDetails {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub text_tokens: ::std::option::Option<i64>,
 }
+impl RealtimeResponseUsageInputTokenDetails {
+    pub fn builder() -> builder::RealtimeResponseUsageInputTokenDetails {
+        Default::default()
+    }
+}
 #[doc = "Details about the cached tokens used as input for the Response."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeResponseUsageInputTokenDetailsCachedTokensDetails {
@@ -5324,6 +5624,11 @@ pub struct RealtimeResponseUsageInputTokenDetailsCachedTokensDetails {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub text_tokens: ::std::option::Option<i64>,
 }
+impl RealtimeResponseUsageInputTokenDetailsCachedTokensDetails {
+    pub fn builder() -> builder::RealtimeResponseUsageInputTokenDetailsCachedTokensDetails {
+        Default::default()
+    }
+}
 #[doc = "Details about the output tokens used in the Response."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeResponseUsageOutputTokenDetails {
@@ -5333,6 +5638,11 @@ pub struct RealtimeResponseUsageOutputTokenDetails {
     #[doc = "The number of text tokens used in the Response."]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub text_tokens: ::std::option::Option<i64>,
+}
+impl RealtimeResponseUsageOutputTokenDetails {
+    pub fn builder() -> builder::RealtimeResponseUsageOutputTokenDetails {
+        Default::default()
+    }
 }
 #[doc = "A realtime server event.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -5655,6 +5965,11 @@ pub struct RealtimeServerEventConversationCreated {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventConversationCreatedType,
 }
+impl RealtimeServerEventConversationCreated {
+    pub fn builder() -> builder::RealtimeServerEventConversationCreated {
+        Default::default()
+    }
+}
 #[doc = "The conversation resource."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeServerEventConversationCreatedConversation {
@@ -5664,6 +5979,11 @@ pub struct RealtimeServerEventConversationCreatedConversation {
     #[doc = "The object type, must be `realtime.conversation`."]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub object: ::std::option::Option<::std::string::String>,
+}
+impl RealtimeServerEventConversationCreatedConversation {
+    pub fn builder() -> builder::RealtimeServerEventConversationCreatedConversation {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be `conversation.created`."]
 #[derive(
@@ -5723,6 +6043,11 @@ pub struct RealtimeServerEventConversationItemAdded {
     #[doc = "The event type, must be `conversation.item.added`."]
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventConversationItemAddedType,
+}
+impl RealtimeServerEventConversationItemAdded {
+    pub fn builder() -> builder::RealtimeServerEventConversationItemAdded {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be `conversation.item.added`."]
 #[derive(
@@ -5785,6 +6110,11 @@ pub struct RealtimeServerEventConversationItemCreated {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventConversationItemCreatedType,
 }
+impl RealtimeServerEventConversationItemCreated {
+    pub fn builder() -> builder::RealtimeServerEventConversationItemCreated {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `conversation.item.created`."]
 #[derive(
     :: serde :: Deserialize,
@@ -5844,6 +6174,11 @@ pub struct RealtimeServerEventConversationItemDeleted {
     #[doc = "The event type, must be `conversation.item.deleted`."]
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventConversationItemDeletedType,
+}
+impl RealtimeServerEventConversationItemDeleted {
+    pub fn builder() -> builder::RealtimeServerEventConversationItemDeleted {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be `conversation.item.deleted`."]
 #[derive(
@@ -5905,6 +6240,11 @@ pub struct RealtimeServerEventConversationItemDone {
     #[doc = "The event type, must be `conversation.item.done`."]
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventConversationItemDoneType,
+}
+impl RealtimeServerEventConversationItemDone {
+    pub fn builder() -> builder::RealtimeServerEventConversationItemDone {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be `conversation.item.done`."]
 #[derive(
@@ -5976,6 +6316,12 @@ pub struct RealtimeServerEventConversationItemInputAudioTranscriptionCompleted {
     pub type_: RealtimeServerEventConversationItemInputAudioTranscriptionCompletedType,
     #[doc = "Usage statistics for the transcription, this is billed according to the ASR model's pricing rather than the realtime model's pricing."]
     pub usage: RealtimeServerEventConversationItemInputAudioTranscriptionCompletedUsage,
+}
+impl RealtimeServerEventConversationItemInputAudioTranscriptionCompleted {
+    pub fn builder() -> builder::RealtimeServerEventConversationItemInputAudioTranscriptionCompleted
+    {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be\n`conversation.item.input_audio_transcription.completed`.\n"]
 #[derive(
@@ -6076,6 +6422,11 @@ pub struct RealtimeServerEventConversationItemInputAudioTranscriptionDelta {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventConversationItemInputAudioTranscriptionDeltaType,
 }
+impl RealtimeServerEventConversationItemInputAudioTranscriptionDelta {
+    pub fn builder() -> builder::RealtimeServerEventConversationItemInputAudioTranscriptionDelta {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `conversation.item.input_audio_transcription.delta`."]
 #[derive(
     :: serde :: Deserialize,
@@ -6145,6 +6496,11 @@ pub struct RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventConversationItemInputAudioTranscriptionFailedType,
 }
+impl RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
+    pub fn builder() -> builder::RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
+        Default::default()
+    }
+}
 #[doc = "Details of the transcription error."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeServerEventConversationItemInputAudioTranscriptionFailedError {
@@ -6163,6 +6519,12 @@ pub struct RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub type_: ::std::option::Option<::std::string::String>,
+}
+impl RealtimeServerEventConversationItemInputAudioTranscriptionFailedError {
+    pub fn builder(
+    ) -> builder::RealtimeServerEventConversationItemInputAudioTranscriptionFailedError {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be\n`conversation.item.input_audio_transcription.failed`.\n"]
 #[derive(
@@ -6242,6 +6604,11 @@ pub struct RealtimeServerEventConversationItemInputAudioTranscriptionSegment {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventConversationItemInputAudioTranscriptionSegmentType,
 }
+impl RealtimeServerEventConversationItemInputAudioTranscriptionSegment {
+    pub fn builder() -> builder::RealtimeServerEventConversationItemInputAudioTranscriptionSegment {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `conversation.item.input_audio_transcription.segment`."]
 #[derive(
     :: serde :: Deserialize,
@@ -6307,6 +6674,11 @@ pub struct RealtimeServerEventConversationItemRetrieved {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventConversationItemRetrievedType,
 }
+impl RealtimeServerEventConversationItemRetrieved {
+    pub fn builder() -> builder::RealtimeServerEventConversationItemRetrieved {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `conversation.item.retrieved`."]
 #[derive(
     :: serde :: Deserialize,
@@ -6371,6 +6743,11 @@ pub struct RealtimeServerEventConversationItemTruncated {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventConversationItemTruncatedType,
 }
+impl RealtimeServerEventConversationItemTruncated {
+    pub fn builder() -> builder::RealtimeServerEventConversationItemTruncated {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `conversation.item.truncated`."]
 #[derive(
     :: serde :: Deserialize,
@@ -6430,6 +6807,11 @@ pub struct RealtimeServerEventError {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventErrorType,
 }
+impl RealtimeServerEventError {
+    pub fn builder() -> builder::RealtimeServerEventError {
+        Default::default()
+    }
+}
 #[doc = "Details of the error."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct RealtimeServerEventErrorError {
@@ -6444,6 +6826,11 @@ pub struct RealtimeServerEventErrorError {
     #[doc = "The type of error (e.g., \"invalid_request_error\", \"server_error\").\n"]
     #[serde(rename = "type")]
     pub type_: ::std::string::String,
+}
+impl RealtimeServerEventErrorError {
+    pub fn builder() -> builder::RealtimeServerEventErrorError {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be `error`."]
 #[derive(
@@ -6500,6 +6887,11 @@ pub struct RealtimeServerEventInputAudioBufferCleared {
     #[doc = "The event type, must be `input_audio_buffer.cleared`."]
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventInputAudioBufferClearedType,
+}
+impl RealtimeServerEventInputAudioBufferCleared {
+    pub fn builder() -> builder::RealtimeServerEventInputAudioBufferCleared {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be `input_audio_buffer.cleared`."]
 #[derive(
@@ -6563,6 +6955,11 @@ pub struct RealtimeServerEventInputAudioBufferCommitted {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventInputAudioBufferCommittedType,
 }
+impl RealtimeServerEventInputAudioBufferCommitted {
+    pub fn builder() -> builder::RealtimeServerEventInputAudioBufferCommitted {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `input_audio_buffer.committed`."]
 #[derive(
     :: serde :: Deserialize,
@@ -6622,6 +7019,11 @@ pub struct RealtimeServerEventInputAudioBufferDtmfEventReceived {
     #[doc = "The event type, must be `input_audio_buffer.dtmf_event_received`."]
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventInputAudioBufferDtmfEventReceivedType,
+}
+impl RealtimeServerEventInputAudioBufferDtmfEventReceived {
+    pub fn builder() -> builder::RealtimeServerEventInputAudioBufferDtmfEventReceived {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be `input_audio_buffer.dtmf_event_received`."]
 #[derive(
@@ -6687,6 +7089,11 @@ pub struct RealtimeServerEventInputAudioBufferSpeechStarted {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventInputAudioBufferSpeechStartedType,
 }
+impl RealtimeServerEventInputAudioBufferSpeechStarted {
+    pub fn builder() -> builder::RealtimeServerEventInputAudioBufferSpeechStarted {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `input_audio_buffer.speech_started`."]
 #[derive(
     :: serde :: Deserialize,
@@ -6748,6 +7155,11 @@ pub struct RealtimeServerEventInputAudioBufferSpeechStopped {
     #[doc = "The event type, must be `input_audio_buffer.speech_stopped`."]
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventInputAudioBufferSpeechStoppedType,
+}
+impl RealtimeServerEventInputAudioBufferSpeechStopped {
+    pub fn builder() -> builder::RealtimeServerEventInputAudioBufferSpeechStopped {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be `input_audio_buffer.speech_stopped`."]
 #[derive(
@@ -6813,6 +7225,11 @@ pub struct RealtimeServerEventInputAudioBufferTimeoutTriggered {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventInputAudioBufferTimeoutTriggeredType,
 }
+impl RealtimeServerEventInputAudioBufferTimeoutTriggered {
+    pub fn builder() -> builder::RealtimeServerEventInputAudioBufferTimeoutTriggered {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `input_audio_buffer.timeout_triggered`."]
 #[derive(
     :: serde :: Deserialize,
@@ -6875,6 +7292,11 @@ pub struct RealtimeServerEventMcpListToolsCompleted {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventMcpListToolsCompletedType,
 }
+impl RealtimeServerEventMcpListToolsCompleted {
+    pub fn builder() -> builder::RealtimeServerEventMcpListToolsCompleted {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `mcp_list_tools.completed`."]
 #[derive(
     :: serde :: Deserialize,
@@ -6935,6 +7357,11 @@ pub struct RealtimeServerEventMcpListToolsFailed {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventMcpListToolsFailedType,
 }
+impl RealtimeServerEventMcpListToolsFailed {
+    pub fn builder() -> builder::RealtimeServerEventMcpListToolsFailed {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `mcp_list_tools.failed`."]
 #[derive(
     :: serde :: Deserialize,
@@ -6992,6 +7419,11 @@ pub struct RealtimeServerEventMcpListToolsInProgress {
     #[doc = "The event type, must be `mcp_list_tools.in_progress`."]
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventMcpListToolsInProgressType,
+}
+impl RealtimeServerEventMcpListToolsInProgress {
+    pub fn builder() -> builder::RealtimeServerEventMcpListToolsInProgress {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be `mcp_list_tools.in_progress`."]
 #[derive(
@@ -7053,6 +7485,11 @@ pub struct RealtimeServerEventOutputAudioBufferCleared {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventOutputAudioBufferClearedType,
 }
+impl RealtimeServerEventOutputAudioBufferCleared {
+    pub fn builder() -> builder::RealtimeServerEventOutputAudioBufferCleared {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `output_audio_buffer.cleared`."]
 #[derive(
     :: serde :: Deserialize,
@@ -7112,6 +7549,11 @@ pub struct RealtimeServerEventOutputAudioBufferStarted {
     #[doc = "The event type, must be `output_audio_buffer.started`."]
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventOutputAudioBufferStartedType,
+}
+impl RealtimeServerEventOutputAudioBufferStarted {
+    pub fn builder() -> builder::RealtimeServerEventOutputAudioBufferStarted {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be `output_audio_buffer.started`."]
 #[derive(
@@ -7173,6 +7615,11 @@ pub struct RealtimeServerEventOutputAudioBufferStopped {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventOutputAudioBufferStoppedType,
 }
+impl RealtimeServerEventOutputAudioBufferStopped {
+    pub fn builder() -> builder::RealtimeServerEventOutputAudioBufferStopped {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `output_audio_buffer.stopped`."]
 #[derive(
     :: serde :: Deserialize,
@@ -7233,6 +7680,11 @@ pub struct RealtimeServerEventRateLimitsUpdated {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventRateLimitsUpdatedType,
 }
+impl RealtimeServerEventRateLimitsUpdated {
+    pub fn builder() -> builder::RealtimeServerEventRateLimitsUpdated {
+        Default::default()
+    }
+}
 #[doc = "`RealtimeServerEventRateLimitsUpdatedRateLimitsItem`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeServerEventRateLimitsUpdatedRateLimitsItem {
@@ -7248,6 +7700,11 @@ pub struct RealtimeServerEventRateLimitsUpdatedRateLimitsItem {
     #[doc = "Seconds until the rate limit resets."]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub reset_seconds: ::std::option::Option<f64>,
+}
+impl RealtimeServerEventRateLimitsUpdatedRateLimitsItem {
+    pub fn builder() -> builder::RealtimeServerEventRateLimitsUpdatedRateLimitsItem {
+        Default::default()
+    }
 }
 #[doc = "The name of the rate limit (`requests`, `tokens`).\n"]
 #[derive(
@@ -7368,6 +7825,11 @@ pub struct RealtimeServerEventResponseAudioDelta {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventResponseAudioDeltaType,
 }
+impl RealtimeServerEventResponseAudioDelta {
+    pub fn builder() -> builder::RealtimeServerEventResponseAudioDelta {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `response.output_audio.delta`."]
 #[derive(
     :: serde :: Deserialize,
@@ -7431,6 +7893,11 @@ pub struct RealtimeServerEventResponseAudioDone {
     #[doc = "The event type, must be `response.output_audio.done`."]
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventResponseAudioDoneType,
+}
+impl RealtimeServerEventResponseAudioDone {
+    pub fn builder() -> builder::RealtimeServerEventResponseAudioDone {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be `response.output_audio.done`."]
 #[derive(
@@ -7497,6 +7964,11 @@ pub struct RealtimeServerEventResponseAudioTranscriptDelta {
     #[doc = "The event type, must be `response.output_audio_transcript.delta`."]
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventResponseAudioTranscriptDeltaType,
+}
+impl RealtimeServerEventResponseAudioTranscriptDelta {
+    pub fn builder() -> builder::RealtimeServerEventResponseAudioTranscriptDelta {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be `response.output_audio_transcript.delta`."]
 #[derive(
@@ -7570,6 +8042,11 @@ pub struct RealtimeServerEventResponseAudioTranscriptDone {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventResponseAudioTranscriptDoneType,
 }
+impl RealtimeServerEventResponseAudioTranscriptDone {
+    pub fn builder() -> builder::RealtimeServerEventResponseAudioTranscriptDone {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `response.output_audio_transcript.done`."]
 #[derive(
     :: serde :: Deserialize,
@@ -7639,6 +8116,11 @@ pub struct RealtimeServerEventResponseContentPartAdded {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventResponseContentPartAddedType,
 }
+impl RealtimeServerEventResponseContentPartAdded {
+    pub fn builder() -> builder::RealtimeServerEventResponseContentPartAdded {
+        Default::default()
+    }
+}
 #[doc = "The content part that was added."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeServerEventResponseContentPartAddedPart {
@@ -7657,6 +8139,11 @@ pub struct RealtimeServerEventResponseContentPartAddedPart {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub type_: ::std::option::Option<RealtimeServerEventResponseContentPartAddedPartType>,
+}
+impl RealtimeServerEventResponseContentPartAddedPart {
+    pub fn builder() -> builder::RealtimeServerEventResponseContentPartAddedPart {
+        Default::default()
+    }
 }
 #[doc = "The content type (\"text\", \"audio\")."]
 #[derive(
@@ -7778,6 +8265,11 @@ pub struct RealtimeServerEventResponseContentPartDone {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventResponseContentPartDoneType,
 }
+impl RealtimeServerEventResponseContentPartDone {
+    pub fn builder() -> builder::RealtimeServerEventResponseContentPartDone {
+        Default::default()
+    }
+}
 #[doc = "The content part that is done."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeServerEventResponseContentPartDonePart {
@@ -7796,6 +8288,11 @@ pub struct RealtimeServerEventResponseContentPartDonePart {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub type_: ::std::option::Option<RealtimeServerEventResponseContentPartDonePartType>,
+}
+impl RealtimeServerEventResponseContentPartDonePart {
+    pub fn builder() -> builder::RealtimeServerEventResponseContentPartDonePart {
+        Default::default()
+    }
 }
 #[doc = "The content type (\"text\", \"audio\")."]
 #[derive(
@@ -7909,6 +8406,11 @@ pub struct RealtimeServerEventResponseCreated {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventResponseCreatedType,
 }
+impl RealtimeServerEventResponseCreated {
+    pub fn builder() -> builder::RealtimeServerEventResponseCreated {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `response.created`."]
 #[derive(
     :: serde :: Deserialize,
@@ -7965,6 +8467,11 @@ pub struct RealtimeServerEventResponseDone {
     #[doc = "The event type, must be `response.done`."]
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventResponseDoneType,
+}
+impl RealtimeServerEventResponseDone {
+    pub fn builder() -> builder::RealtimeServerEventResponseDone {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be `response.done`."]
 #[derive(
@@ -8031,6 +8538,11 @@ pub struct RealtimeServerEventResponseFunctionCallArgumentsDelta {
     #[doc = "The event type, must be `response.function_call_arguments.delta`.\n"]
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventResponseFunctionCallArgumentsDeltaType,
+}
+impl RealtimeServerEventResponseFunctionCallArgumentsDelta {
+    pub fn builder() -> builder::RealtimeServerEventResponseFunctionCallArgumentsDelta {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be `response.function_call_arguments.delta`.\n"]
 #[derive(
@@ -8106,6 +8618,11 @@ pub struct RealtimeServerEventResponseFunctionCallArgumentsDone {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventResponseFunctionCallArgumentsDoneType,
 }
+impl RealtimeServerEventResponseFunctionCallArgumentsDone {
+    pub fn builder() -> builder::RealtimeServerEventResponseFunctionCallArgumentsDone {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `response.function_call_arguments.done`.\n"]
 #[derive(
     :: serde :: Deserialize,
@@ -8176,6 +8693,11 @@ pub struct RealtimeServerEventResponseMcpCallArgumentsDelta {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventResponseMcpCallArgumentsDeltaType,
 }
+impl RealtimeServerEventResponseMcpCallArgumentsDelta {
+    pub fn builder() -> builder::RealtimeServerEventResponseMcpCallArgumentsDelta {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `response.mcp_call_arguments.delta`."]
 #[derive(
     :: serde :: Deserialize,
@@ -8242,6 +8764,11 @@ pub struct RealtimeServerEventResponseMcpCallArgumentsDone {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventResponseMcpCallArgumentsDoneType,
 }
+impl RealtimeServerEventResponseMcpCallArgumentsDone {
+    pub fn builder() -> builder::RealtimeServerEventResponseMcpCallArgumentsDone {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `response.mcp_call_arguments.done`."]
 #[derive(
     :: serde :: Deserialize,
@@ -8303,6 +8830,11 @@ pub struct RealtimeServerEventResponseMcpCallCompleted {
     #[doc = "The event type, must be `response.mcp_call.completed`."]
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventResponseMcpCallCompletedType,
+}
+impl RealtimeServerEventResponseMcpCallCompleted {
+    pub fn builder() -> builder::RealtimeServerEventResponseMcpCallCompleted {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be `response.mcp_call.completed`."]
 #[derive(
@@ -8366,6 +8898,11 @@ pub struct RealtimeServerEventResponseMcpCallFailed {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventResponseMcpCallFailedType,
 }
+impl RealtimeServerEventResponseMcpCallFailed {
+    pub fn builder() -> builder::RealtimeServerEventResponseMcpCallFailed {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `response.mcp_call.failed`."]
 #[derive(
     :: serde :: Deserialize,
@@ -8427,6 +8964,11 @@ pub struct RealtimeServerEventResponseMcpCallInProgress {
     #[doc = "The event type, must be `response.mcp_call.in_progress`."]
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventResponseMcpCallInProgressType,
+}
+impl RealtimeServerEventResponseMcpCallInProgress {
+    pub fn builder() -> builder::RealtimeServerEventResponseMcpCallInProgress {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be `response.mcp_call.in_progress`."]
 #[derive(
@@ -8491,6 +9033,11 @@ pub struct RealtimeServerEventResponseOutputItemAdded {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventResponseOutputItemAddedType,
 }
+impl RealtimeServerEventResponseOutputItemAdded {
+    pub fn builder() -> builder::RealtimeServerEventResponseOutputItemAdded {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `response.output_item.added`."]
 #[derive(
     :: serde :: Deserialize,
@@ -8553,6 +9100,11 @@ pub struct RealtimeServerEventResponseOutputItemDone {
     #[doc = "The event type, must be `response.output_item.done`."]
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventResponseOutputItemDoneType,
+}
+impl RealtimeServerEventResponseOutputItemDone {
+    pub fn builder() -> builder::RealtimeServerEventResponseOutputItemDone {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be `response.output_item.done`."]
 #[derive(
@@ -8622,6 +9174,11 @@ pub struct RealtimeServerEventResponseTextDelta {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventResponseTextDeltaType,
 }
+impl RealtimeServerEventResponseTextDelta {
+    pub fn builder() -> builder::RealtimeServerEventResponseTextDelta {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `response.output_text.delta`."]
 #[derive(
     :: serde :: Deserialize,
@@ -8688,6 +9245,11 @@ pub struct RealtimeServerEventResponseTextDone {
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventResponseTextDoneType,
 }
+impl RealtimeServerEventResponseTextDone {
+    pub fn builder() -> builder::RealtimeServerEventResponseTextDone {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `response.output_text.done`."]
 #[derive(
     :: serde :: Deserialize,
@@ -8745,6 +9307,11 @@ pub struct RealtimeServerEventSessionCreated {
     #[doc = "The event type, must be `session.created`."]
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventSessionCreatedType,
+}
+impl RealtimeServerEventSessionCreated {
+    pub fn builder() -> builder::RealtimeServerEventSessionCreated {
+        Default::default()
+    }
 }
 #[doc = "The session configuration."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -8824,6 +9391,11 @@ pub struct RealtimeServerEventSessionUpdated {
     #[doc = "The event type, must be `session.updated`."]
     #[serde(rename = "type")]
     pub type_: RealtimeServerEventSessionUpdatedType,
+}
+impl RealtimeServerEventSessionUpdated {
+    pub fn builder() -> builder::RealtimeServerEventSessionUpdated {
+        Default::default()
+    }
 }
 #[doc = "The session configuration."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -8941,6 +9513,11 @@ pub struct RealtimeSessionCreateRequest {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub voice: ::std::option::Option<VoiceIdsOrCustomVoice>,
 }
+impl RealtimeSessionCreateRequest {
+    pub fn builder() -> builder::RealtimeSessionCreateRequest {
+        Default::default()
+    }
+}
 #[doc = "Ephemeral key returned by the API."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct RealtimeSessionCreateRequestClientSecret {
@@ -8948,6 +9525,11 @@ pub struct RealtimeSessionCreateRequestClientSecret {
     pub expires_at: i64,
     #[doc = "Ephemeral key usable in client environments to authenticate connections\nto the Realtime API. Use this in client-side environments rather than\na standard API token, which should only be used server-side.\n"]
     pub value: ::std::string::String,
+}
+impl RealtimeSessionCreateRequestClientSecret {
+    pub fn builder() -> builder::RealtimeSessionCreateRequestClientSecret {
+        Default::default()
+    }
 }
 #[doc = "Realtime session object configuration."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -8991,6 +9573,11 @@ pub struct RealtimeSessionCreateRequestGa {
     #[serde(rename = "type")]
     pub type_: RealtimeSessionCreateRequestGaType,
 }
+impl RealtimeSessionCreateRequestGa {
+    pub fn builder() -> builder::RealtimeSessionCreateRequestGa {
+        Default::default()
+    }
+}
 #[doc = "Configuration for input and output audio.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeSessionCreateRequestGaAudio {
@@ -8998,6 +9585,11 @@ pub struct RealtimeSessionCreateRequestGaAudio {
     pub input: ::std::option::Option<RealtimeSessionCreateRequestGaAudioInput>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub output: ::std::option::Option<RealtimeSessionCreateRequestGaAudioOutput>,
+}
+impl RealtimeSessionCreateRequestGaAudio {
+    pub fn builder() -> builder::RealtimeSessionCreateRequestGaAudio {
+        Default::default()
+    }
 }
 #[doc = "`RealtimeSessionCreateRequestGaAudioInput`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
@@ -9014,6 +9606,11 @@ pub struct RealtimeSessionCreateRequestGaAudioInput {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub turn_detection: ::std::option::Option<RealtimeTurnDetection>,
 }
+impl RealtimeSessionCreateRequestGaAudioInput {
+    pub fn builder() -> builder::RealtimeSessionCreateRequestGaAudioInput {
+        Default::default()
+    }
+}
 #[doc = "Configuration for input audio noise reduction. This can be set to `null` to turn off.\nNoise reduction filters audio added to the input audio buffer before it is sent to VAD and the model.\nFiltering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeSessionCreateRequestGaAudioInputNoiseReduction {
@@ -9022,6 +9619,11 @@ pub struct RealtimeSessionCreateRequestGaAudioInputNoiseReduction {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub type_: ::std::option::Option<NoiseReductionType>,
+}
+impl RealtimeSessionCreateRequestGaAudioInputNoiseReduction {
+    pub fn builder() -> builder::RealtimeSessionCreateRequestGaAudioInputNoiseReduction {
+        Default::default()
+    }
 }
 #[doc = "`RealtimeSessionCreateRequestGaAudioOutput`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
@@ -9035,6 +9637,11 @@ pub struct RealtimeSessionCreateRequestGaAudioOutput {
     #[doc = "The voice the model uses to respond. Supported built-in voices are\n`alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, `verse`,\n`marin`, and `cedar`. You may also provide a custom voice object with\nan `id`, for example `{ \"id\": \"voice_1234\" }`. Voice cannot be changed\nduring the session once the model has responded with audio at least once.\nCustom voices must be created from audio samples.\nWe recommend `marin` and `cedar` for best quality.\n"]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub voice: ::std::option::Option<VoiceIdsOrCustomVoice>,
+}
+impl RealtimeSessionCreateRequestGaAudioOutput {
+    pub fn builder() -> builder::RealtimeSessionCreateRequestGaAudioOutput {
+        Default::default()
+    }
 }
 #[doc = "`RealtimeSessionCreateRequestGaIncludeItem`"]
 #[derive(
@@ -9338,6 +9945,11 @@ pub struct RealtimeSessionCreateRequestInputAudioTranscription {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub model: ::std::option::Option<::std::string::String>,
 }
+impl RealtimeSessionCreateRequestInputAudioTranscription {
+    pub fn builder() -> builder::RealtimeSessionCreateRequestInputAudioTranscription {
+        Default::default()
+    }
+}
 #[doc = "Maximum number of output tokens for a single assistant response,\ninclusive of tool calls. Provide an integer between 1 and 4096 to\nlimit output tokens, or `inf` for the maximum available tokens for a\ngiven model. Defaults to `inf`.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 #[serde(untagged)]
@@ -9512,6 +10124,11 @@ pub struct RealtimeSessionCreateRequestToolsItem {
     )]
     pub type_: ::std::option::Option<RealtimeSessionCreateRequestToolsItemType>,
 }
+impl RealtimeSessionCreateRequestToolsItem {
+    pub fn builder() -> builder::RealtimeSessionCreateRequestToolsItem {
+        Default::default()
+    }
+}
 #[doc = "The type of the tool, i.e. `function`."]
 #[derive(
     :: serde :: Deserialize,
@@ -9578,6 +10195,11 @@ pub struct RealtimeSessionCreateRequestTurnDetection {
     )]
     pub type_: ::std::option::Option<::std::string::String>,
 }
+impl RealtimeSessionCreateRequestTurnDetection {
+    pub fn builder() -> builder::RealtimeSessionCreateRequestTurnDetection {
+        Default::default()
+    }
+}
 #[doc = "A Realtime session configuration object.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeSessionCreateResponse {
@@ -9620,6 +10242,11 @@ pub struct RealtimeSessionCreateResponse {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub turn_detection: ::std::option::Option<RealtimeSessionCreateResponseTurnDetection>,
 }
+impl RealtimeSessionCreateResponse {
+    pub fn builder() -> builder::RealtimeSessionCreateResponse {
+        Default::default()
+    }
+}
 #[doc = "Configuration for input and output audio for the session.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeSessionCreateResponseAudio {
@@ -9627,6 +10254,11 @@ pub struct RealtimeSessionCreateResponseAudio {
     pub input: ::std::option::Option<RealtimeSessionCreateResponseAudioInput>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub output: ::std::option::Option<RealtimeSessionCreateResponseAudioOutput>,
+}
+impl RealtimeSessionCreateResponseAudio {
+    pub fn builder() -> builder::RealtimeSessionCreateResponseAudio {
+        Default::default()
+    }
 }
 #[doc = "`RealtimeSessionCreateResponseAudioInput`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
@@ -9644,6 +10276,11 @@ pub struct RealtimeSessionCreateResponseAudioInput {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub turn_detection: ::std::option::Option<RealtimeSessionCreateResponseAudioInputTurnDetection>,
 }
+impl RealtimeSessionCreateResponseAudioInput {
+    pub fn builder() -> builder::RealtimeSessionCreateResponseAudioInput {
+        Default::default()
+    }
+}
 #[doc = "Configuration for input audio noise reduction.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeSessionCreateResponseAudioInputNoiseReduction {
@@ -9652,6 +10289,11 @@ pub struct RealtimeSessionCreateResponseAudioInputNoiseReduction {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub type_: ::std::option::Option<NoiseReductionType>,
+}
+impl RealtimeSessionCreateResponseAudioInputNoiseReduction {
+    pub fn builder() -> builder::RealtimeSessionCreateResponseAudioInputNoiseReduction {
+        Default::default()
+    }
 }
 #[doc = "Configuration for turn detection.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
@@ -9669,6 +10311,11 @@ pub struct RealtimeSessionCreateResponseAudioInputTurnDetection {
     )]
     pub type_: ::std::option::Option<::std::string::String>,
 }
+impl RealtimeSessionCreateResponseAudioInputTurnDetection {
+    pub fn builder() -> builder::RealtimeSessionCreateResponseAudioInputTurnDetection {
+        Default::default()
+    }
+}
 #[doc = "`RealtimeSessionCreateResponseAudioOutput`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeSessionCreateResponseAudioOutput {
@@ -9678,6 +10325,11 @@ pub struct RealtimeSessionCreateResponseAudioOutput {
     pub speed: ::std::option::Option<f64>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub voice: ::std::option::Option<VoiceIdsShared>,
+}
+impl RealtimeSessionCreateResponseAudioOutput {
+    pub fn builder() -> builder::RealtimeSessionCreateResponseAudioOutput {
+        Default::default()
+    }
 }
 #[doc = "A Realtime session configuration object.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -9724,6 +10376,11 @@ pub struct RealtimeSessionCreateResponseGa {
     #[serde(rename = "type")]
     pub type_: RealtimeSessionCreateResponseGaType,
 }
+impl RealtimeSessionCreateResponseGa {
+    pub fn builder() -> builder::RealtimeSessionCreateResponseGa {
+        Default::default()
+    }
+}
 #[doc = "Configuration for input and output audio.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeSessionCreateResponseGaAudio {
@@ -9731,6 +10388,11 @@ pub struct RealtimeSessionCreateResponseGaAudio {
     pub input: ::std::option::Option<RealtimeSessionCreateResponseGaAudioInput>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub output: ::std::option::Option<RealtimeSessionCreateResponseGaAudioOutput>,
+}
+impl RealtimeSessionCreateResponseGaAudio {
+    pub fn builder() -> builder::RealtimeSessionCreateResponseGaAudio {
+        Default::default()
+    }
 }
 #[doc = "`RealtimeSessionCreateResponseGaAudioInput`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
@@ -9748,6 +10410,11 @@ pub struct RealtimeSessionCreateResponseGaAudioInput {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub turn_detection: ::std::option::Option<RealtimeTurnDetection>,
 }
+impl RealtimeSessionCreateResponseGaAudioInput {
+    pub fn builder() -> builder::RealtimeSessionCreateResponseGaAudioInput {
+        Default::default()
+    }
+}
 #[doc = "Configuration for input audio noise reduction. This can be set to `null` to turn off.\nNoise reduction filters audio added to the input audio buffer before it is sent to VAD and the model.\nFiltering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeSessionCreateResponseGaAudioInputNoiseReduction {
@@ -9756,6 +10423,11 @@ pub struct RealtimeSessionCreateResponseGaAudioInputNoiseReduction {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub type_: ::std::option::Option<NoiseReductionType>,
+}
+impl RealtimeSessionCreateResponseGaAudioInputNoiseReduction {
+    pub fn builder() -> builder::RealtimeSessionCreateResponseGaAudioInputNoiseReduction {
+        Default::default()
+    }
 }
 #[doc = "`RealtimeSessionCreateResponseGaAudioOutput`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
@@ -9769,6 +10441,11 @@ pub struct RealtimeSessionCreateResponseGaAudioOutput {
     #[doc = "The voice the model uses to respond. Voice cannot be changed during the\nsession once the model has responded with audio at least once. Current\nvoice options are `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`,\n`shimmer`, `verse`, `marin`, and `cedar`. We recommend `marin` and `cedar` for\nbest quality.\n"]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub voice: ::std::option::Option<VoiceIdsShared>,
+}
+impl RealtimeSessionCreateResponseGaAudioOutput {
+    pub fn builder() -> builder::RealtimeSessionCreateResponseGaAudioOutput {
+        Default::default()
+    }
 }
 #[doc = "`RealtimeSessionCreateResponseGaIncludeItem`"]
 #[derive(
@@ -10339,6 +11016,11 @@ pub struct RealtimeSessionCreateResponseTurnDetection {
     )]
     pub type_: ::std::option::Option<::std::string::String>,
 }
+impl RealtimeSessionCreateResponseTurnDetection {
+    pub fn builder() -> builder::RealtimeSessionCreateResponseTurnDetection {
+        Default::default()
+    }
+}
 #[doc = "Realtime transcription session object configuration."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeTranscriptionSessionCreateRequest {
@@ -10359,6 +11041,11 @@ pub struct RealtimeTranscriptionSessionCreateRequest {
     pub turn_detection:
         ::std::option::Option<RealtimeTranscriptionSessionCreateRequestTurnDetection>,
 }
+impl RealtimeTranscriptionSessionCreateRequest {
+    pub fn builder() -> builder::RealtimeTranscriptionSessionCreateRequest {
+        Default::default()
+    }
+}
 #[doc = "Realtime transcription session object configuration."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct RealtimeTranscriptionSessionCreateRequestGa {
@@ -10371,11 +11058,21 @@ pub struct RealtimeTranscriptionSessionCreateRequestGa {
     #[serde(rename = "type")]
     pub type_: RealtimeTranscriptionSessionCreateRequestGaType,
 }
+impl RealtimeTranscriptionSessionCreateRequestGa {
+    pub fn builder() -> builder::RealtimeTranscriptionSessionCreateRequestGa {
+        Default::default()
+    }
+}
 #[doc = "Configuration for input and output audio.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeTranscriptionSessionCreateRequestGaAudio {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub input: ::std::option::Option<RealtimeTranscriptionSessionCreateRequestGaAudioInput>,
+}
+impl RealtimeTranscriptionSessionCreateRequestGaAudio {
+    pub fn builder() -> builder::RealtimeTranscriptionSessionCreateRequestGaAudio {
+        Default::default()
+    }
 }
 #[doc = "`RealtimeTranscriptionSessionCreateRequestGaAudioInput`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
@@ -10391,6 +11088,11 @@ pub struct RealtimeTranscriptionSessionCreateRequestGaAudioInput {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub turn_detection: ::std::option::Option<RealtimeTurnDetection>,
 }
+impl RealtimeTranscriptionSessionCreateRequestGaAudioInput {
+    pub fn builder() -> builder::RealtimeTranscriptionSessionCreateRequestGaAudioInput {
+        Default::default()
+    }
+}
 #[doc = "Configuration for input audio noise reduction. This can be set to `null` to turn off.\nNoise reduction filters audio added to the input audio buffer before it is sent to VAD and the model.\nFiltering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeTranscriptionSessionCreateRequestGaAudioInputNoiseReduction {
@@ -10399,6 +11101,12 @@ pub struct RealtimeTranscriptionSessionCreateRequestGaAudioInputNoiseReduction {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub type_: ::std::option::Option<NoiseReductionType>,
+}
+impl RealtimeTranscriptionSessionCreateRequestGaAudioInputNoiseReduction {
+    pub fn builder() -> builder::RealtimeTranscriptionSessionCreateRequestGaAudioInputNoiseReduction
+    {
+        Default::default()
+    }
 }
 #[doc = "`RealtimeTranscriptionSessionCreateRequestGaIncludeItem`"]
 #[derive(
@@ -10621,6 +11329,11 @@ pub struct RealtimeTranscriptionSessionCreateRequestInputAudioNoiseReduction {
     )]
     pub type_: ::std::option::Option<NoiseReductionType>,
 }
+impl RealtimeTranscriptionSessionCreateRequestInputAudioNoiseReduction {
+    pub fn builder() -> builder::RealtimeTranscriptionSessionCreateRequestInputAudioNoiseReduction {
+        Default::default()
+    }
+}
 #[doc = "Configuration for turn detection. Can be set to `null` to turn off. Server VAD means that the model will detect the start and end of speech based on audio volume and respond at the end of user speech.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeTranscriptionSessionCreateRequestTurnDetection {
@@ -10639,6 +11352,11 @@ pub struct RealtimeTranscriptionSessionCreateRequestTurnDetection {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub type_: ::std::option::Option<RealtimeTranscriptionSessionCreateRequestTurnDetectionType>,
+}
+impl RealtimeTranscriptionSessionCreateRequestTurnDetection {
+    pub fn builder() -> builder::RealtimeTranscriptionSessionCreateRequestTurnDetection {
+        Default::default()
+    }
 }
 #[doc = "Type of turn detection. Only `server_vad` is currently supported for transcription sessions.\n"]
 #[derive(
@@ -10706,6 +11424,11 @@ pub struct RealtimeTranscriptionSessionCreateResponse {
     pub turn_detection:
         ::std::option::Option<RealtimeTranscriptionSessionCreateResponseTurnDetection>,
 }
+impl RealtimeTranscriptionSessionCreateResponse {
+    pub fn builder() -> builder::RealtimeTranscriptionSessionCreateResponse {
+        Default::default()
+    }
+}
 #[doc = "Ephemeral key returned by the API. Only present when the session is\ncreated on the server via REST API.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct RealtimeTranscriptionSessionCreateResponseClientSecret {
@@ -10713,6 +11436,11 @@ pub struct RealtimeTranscriptionSessionCreateResponseClientSecret {
     pub expires_at: i64,
     #[doc = "Ephemeral key usable in client environments to authenticate connections\nto the Realtime API. Use this in client-side environments rather than\na standard API token, which should only be used server-side.\n"]
     pub value: ::std::string::String,
+}
+impl RealtimeTranscriptionSessionCreateResponseClientSecret {
+    pub fn builder() -> builder::RealtimeTranscriptionSessionCreateResponseClientSecret {
+        Default::default()
+    }
 }
 #[doc = "A Realtime transcription session configuration object.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -10735,11 +11463,21 @@ pub struct RealtimeTranscriptionSessionCreateResponseGa {
     #[serde(rename = "type")]
     pub type_: RealtimeTranscriptionSessionCreateResponseGaType,
 }
+impl RealtimeTranscriptionSessionCreateResponseGa {
+    pub fn builder() -> builder::RealtimeTranscriptionSessionCreateResponseGa {
+        Default::default()
+    }
+}
 #[doc = "Configuration for input audio for the session.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeTranscriptionSessionCreateResponseGaAudio {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub input: ::std::option::Option<RealtimeTranscriptionSessionCreateResponseGaAudioInput>,
+}
+impl RealtimeTranscriptionSessionCreateResponseGaAudio {
+    pub fn builder() -> builder::RealtimeTranscriptionSessionCreateResponseGaAudio {
+        Default::default()
+    }
 }
 #[doc = "`RealtimeTranscriptionSessionCreateResponseGaAudioInput`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
@@ -10758,6 +11496,11 @@ pub struct RealtimeTranscriptionSessionCreateResponseGaAudioInput {
     pub turn_detection:
         ::std::option::Option<RealtimeTranscriptionSessionCreateResponseGaAudioInputTurnDetection>,
 }
+impl RealtimeTranscriptionSessionCreateResponseGaAudioInput {
+    pub fn builder() -> builder::RealtimeTranscriptionSessionCreateResponseGaAudioInput {
+        Default::default()
+    }
+}
 #[doc = "Configuration for input audio noise reduction.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeTranscriptionSessionCreateResponseGaAudioInputNoiseReduction {
@@ -10766,6 +11509,12 @@ pub struct RealtimeTranscriptionSessionCreateResponseGaAudioInputNoiseReduction 
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub type_: ::std::option::Option<NoiseReductionType>,
+}
+impl RealtimeTranscriptionSessionCreateResponseGaAudioInputNoiseReduction {
+    pub fn builder() -> builder::RealtimeTranscriptionSessionCreateResponseGaAudioInputNoiseReduction
+    {
+        Default::default()
+    }
 }
 #[doc = "Configuration for turn detection. Can be set to `null` to turn off. Server\nVAD means that the model will detect the start and end of speech based on\naudio volume and respond at the end of user speech. For `gpt-realtime-whisper`, this must be `null`; VAD is not supported.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
@@ -10785,6 +11534,12 @@ pub struct RealtimeTranscriptionSessionCreateResponseGaAudioInputTurnDetection {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub type_: ::std::option::Option<::std::string::String>,
+}
+impl RealtimeTranscriptionSessionCreateResponseGaAudioInputTurnDetection {
+    pub fn builder() -> builder::RealtimeTranscriptionSessionCreateResponseGaAudioInputTurnDetection
+    {
+        Default::default()
+    }
 }
 #[doc = "`RealtimeTranscriptionSessionCreateResponseGaIncludeItem`"]
 #[derive(
@@ -10960,6 +11715,11 @@ pub struct RealtimeTranscriptionSessionCreateResponseTurnDetection {
     )]
     pub type_: ::std::option::Option<::std::string::String>,
 }
+impl RealtimeTranscriptionSessionCreateResponseTurnDetection {
+    pub fn builder() -> builder::RealtimeTranscriptionSessionCreateResponseTurnDetection {
+        Default::default()
+    }
+}
 #[doc = "A Realtime translation client event.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 #[serde(untagged)]
@@ -11001,6 +11761,11 @@ pub struct RealtimeTranslationClientEventInputAudioBufferAppend {
     #[doc = "The event type, must be `session.input_audio_buffer.append`."]
     #[serde(rename = "type")]
     pub type_: RealtimeTranslationClientEventInputAudioBufferAppendType,
+}
+impl RealtimeTranslationClientEventInputAudioBufferAppend {
+    pub fn builder() -> builder::RealtimeTranslationClientEventInputAudioBufferAppend {
+        Default::default()
+    }
 }
 #[doc = "Optional client-generated ID used to identify this event."]
 #[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
@@ -11117,6 +11882,11 @@ pub struct RealtimeTranslationClientEventSessionClose {
     #[serde(rename = "type")]
     pub type_: RealtimeTranslationClientEventSessionCloseType,
 }
+impl RealtimeTranslationClientEventSessionClose {
+    pub fn builder() -> builder::RealtimeTranslationClientEventSessionClose {
+        Default::default()
+    }
+}
 #[doc = "Optional client-generated ID used to identify this event."]
 #[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
@@ -11232,6 +12002,11 @@ pub struct RealtimeTranslationClientEventSessionUpdate {
     #[serde(rename = "type")]
     pub type_: RealtimeTranslationClientEventSessionUpdateType,
 }
+impl RealtimeTranslationClientEventSessionUpdate {
+    pub fn builder() -> builder::RealtimeTranslationClientEventSessionUpdate {
+        Default::default()
+    }
+}
 #[doc = "Optional client-generated ID used to identify this event."]
 #[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[serde(transparent)]
@@ -11342,6 +12117,11 @@ pub struct RealtimeTranslationClientSecretCreateRequest {
     pub expires_after: ::std::option::Option<ClientSecretExpiration>,
     pub session: RealtimeTranslationSessionCreateRequest,
 }
+impl RealtimeTranslationClientSecretCreateRequest {
+    pub fn builder() -> builder::RealtimeTranslationClientSecretCreateRequest {
+        Default::default()
+    }
+}
 #[doc = "Response from creating a translation session and client secret for the Realtime API.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct RealtimeTranslationClientSecretCreateResponse {
@@ -11350,6 +12130,11 @@ pub struct RealtimeTranslationClientSecretCreateResponse {
     pub session: RealtimeTranslationSession,
     #[doc = "The generated client secret value."]
     pub value: ::std::string::String,
+}
+impl RealtimeTranslationClientSecretCreateResponse {
+    pub fn builder() -> builder::RealtimeTranslationClientSecretCreateResponse {
+        Default::default()
+    }
 }
 #[doc = "A Realtime translation server event.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -11425,6 +12210,11 @@ pub struct RealtimeTranslationServerEventSessionClosed {
     #[serde(rename = "type")]
     pub type_: RealtimeTranslationServerEventSessionClosedType,
 }
+impl RealtimeTranslationServerEventSessionClosed {
+    pub fn builder() -> builder::RealtimeTranslationServerEventSessionClosed {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `session.closed`."]
 #[derive(
     :: serde :: Deserialize,
@@ -11484,6 +12274,11 @@ pub struct RealtimeTranslationServerEventSessionCreated {
     #[doc = "The event type, must be `session.created`."]
     #[serde(rename = "type")]
     pub type_: RealtimeTranslationServerEventSessionCreatedType,
+}
+impl RealtimeTranslationServerEventSessionCreated {
+    pub fn builder() -> builder::RealtimeTranslationServerEventSessionCreated {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be `session.created`."]
 #[derive(
@@ -11546,6 +12341,11 @@ pub struct RealtimeTranslationServerEventSessionInputTranscriptDelta {
     #[doc = "The event type, must be `session.input_transcript.delta`."]
     #[serde(rename = "type")]
     pub type_: RealtimeTranslationServerEventSessionInputTranscriptDeltaType,
+}
+impl RealtimeTranslationServerEventSessionInputTranscriptDelta {
+    pub fn builder() -> builder::RealtimeTranslationServerEventSessionInputTranscriptDelta {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be `session.input_transcript.delta`."]
 #[derive(
@@ -11619,6 +12419,11 @@ pub struct RealtimeTranslationServerEventSessionOutputAudioDelta {
     #[doc = "The event type, must be `session.output_audio.delta`."]
     #[serde(rename = "type")]
     pub type_: RealtimeTranslationServerEventSessionOutputAudioDeltaType,
+}
+impl RealtimeTranslationServerEventSessionOutputAudioDelta {
+    pub fn builder() -> builder::RealtimeTranslationServerEventSessionOutputAudioDelta {
+        Default::default()
+    }
 }
 #[doc = "Audio encoding for `delta`."]
 #[derive(
@@ -11731,6 +12536,11 @@ pub struct RealtimeTranslationServerEventSessionOutputTranscriptDelta {
     #[serde(rename = "type")]
     pub type_: RealtimeTranslationServerEventSessionOutputTranscriptDeltaType,
 }
+impl RealtimeTranslationServerEventSessionOutputTranscriptDelta {
+    pub fn builder() -> builder::RealtimeTranslationServerEventSessionOutputTranscriptDelta {
+        Default::default()
+    }
+}
 #[doc = "The event type, must be `session.output_transcript.delta`."]
 #[derive(
     :: serde :: Deserialize,
@@ -11792,6 +12602,11 @@ pub struct RealtimeTranslationServerEventSessionUpdated {
     #[doc = "The event type, must be `session.updated`."]
     #[serde(rename = "type")]
     pub type_: RealtimeTranslationServerEventSessionUpdatedType,
+}
+impl RealtimeTranslationServerEventSessionUpdated {
+    pub fn builder() -> builder::RealtimeTranslationServerEventSessionUpdated {
+        Default::default()
+    }
 }
 #[doc = "The event type, must be `session.updated`."]
 #[derive(
@@ -11856,6 +12671,11 @@ pub struct RealtimeTranslationSession {
     #[serde(rename = "type")]
     pub type_: RealtimeTranslationSessionType,
 }
+impl RealtimeTranslationSession {
+    pub fn builder() -> builder::RealtimeTranslationSession {
+        Default::default()
+    }
+}
 #[doc = "Configuration for translation input and output audio.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeTranslationSessionAudio {
@@ -11863,6 +12683,11 @@ pub struct RealtimeTranslationSessionAudio {
     pub input: ::std::option::Option<RealtimeTranslationSessionAudioInput>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub output: ::std::option::Option<RealtimeTranslationSessionAudioOutput>,
+}
+impl RealtimeTranslationSessionAudio {
+    pub fn builder() -> builder::RealtimeTranslationSessionAudio {
+        Default::default()
+    }
 }
 #[doc = "`RealtimeTranslationSessionAudioInput`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
@@ -11872,11 +12697,21 @@ pub struct RealtimeTranslationSessionAudioInput {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub transcription: ::std::option::Option<RealtimeTranslationSessionAudioInputTranscription>,
 }
+impl RealtimeTranslationSessionAudioInput {
+    pub fn builder() -> builder::RealtimeTranslationSessionAudioInput {
+        Default::default()
+    }
+}
 #[doc = "Optional input noise reduction.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct RealtimeTranslationSessionAudioInputNoiseReduction {
     #[serde(rename = "type")]
     pub type_: NoiseReductionType,
+}
+impl RealtimeTranslationSessionAudioInputNoiseReduction {
+    pub fn builder() -> builder::RealtimeTranslationSessionAudioInputNoiseReduction {
+        Default::default()
+    }
 }
 #[doc = "Optional source-language transcription. When configured, the server emits\n`session.input_transcript.delta` events. Translation itself still runs from\nthe input audio stream.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -11884,12 +12719,22 @@ pub struct RealtimeTranslationSessionAudioInputTranscription {
     #[doc = "The transcription model used for source transcript deltas."]
     pub model: ::std::string::String,
 }
+impl RealtimeTranslationSessionAudioInputTranscription {
+    pub fn builder() -> builder::RealtimeTranslationSessionAudioInputTranscription {
+        Default::default()
+    }
+}
 #[doc = "`RealtimeTranslationSessionAudioOutput`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeTranslationSessionAudioOutput {
     #[doc = "Target language for translated output audio and transcript deltas.\n"]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub language: ::std::option::Option<::std::string::String>,
+}
+impl RealtimeTranslationSessionAudioOutput {
+    pub fn builder() -> builder::RealtimeTranslationSessionAudioOutput {
+        Default::default()
+    }
 }
 #[doc = "Realtime translation session configuration. Translation sessions stream source\naudio in and translated audio plus transcript deltas out continuously.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -11899,6 +12744,11 @@ pub struct RealtimeTranslationSessionCreateRequest {
     #[doc = "The Realtime translation model used for this session.\n"]
     pub model: ::std::string::String,
 }
+impl RealtimeTranslationSessionCreateRequest {
+    pub fn builder() -> builder::RealtimeTranslationSessionCreateRequest {
+        Default::default()
+    }
+}
 #[doc = "Configuration for translation input and output audio.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeTranslationSessionCreateRequestAudio {
@@ -11906,6 +12756,11 @@ pub struct RealtimeTranslationSessionCreateRequestAudio {
     pub input: ::std::option::Option<RealtimeTranslationSessionCreateRequestAudioInput>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub output: ::std::option::Option<RealtimeTranslationSessionCreateRequestAudioOutput>,
+}
+impl RealtimeTranslationSessionCreateRequestAudio {
+    pub fn builder() -> builder::RealtimeTranslationSessionCreateRequestAudio {
+        Default::default()
+    }
 }
 #[doc = "`RealtimeTranslationSessionCreateRequestAudioInput`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
@@ -11917,11 +12772,21 @@ pub struct RealtimeTranslationSessionCreateRequestAudioInput {
     pub transcription:
         ::std::option::Option<RealtimeTranslationSessionCreateRequestAudioInputTranscription>,
 }
+impl RealtimeTranslationSessionCreateRequestAudioInput {
+    pub fn builder() -> builder::RealtimeTranslationSessionCreateRequestAudioInput {
+        Default::default()
+    }
+}
 #[doc = "Optional input noise reduction. Set to `null` to disable it.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct RealtimeTranslationSessionCreateRequestAudioInputNoiseReduction {
     #[serde(rename = "type")]
     pub type_: NoiseReductionType,
+}
+impl RealtimeTranslationSessionCreateRequestAudioInputNoiseReduction {
+    pub fn builder() -> builder::RealtimeTranslationSessionCreateRequestAudioInputNoiseReduction {
+        Default::default()
+    }
 }
 #[doc = "Optional source-language transcription. When configured, the server emits\n`session.input_transcript.delta` events. Translation itself still runs from\nthe input audio stream.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -11929,12 +12794,22 @@ pub struct RealtimeTranslationSessionCreateRequestAudioInputTranscription {
     #[doc = "The transcription model to use for source transcript deltas."]
     pub model: ::std::string::String,
 }
+impl RealtimeTranslationSessionCreateRequestAudioInputTranscription {
+    pub fn builder() -> builder::RealtimeTranslationSessionCreateRequestAudioInputTranscription {
+        Default::default()
+    }
+}
 #[doc = "`RealtimeTranslationSessionCreateRequestAudioOutput`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeTranslationSessionCreateRequestAudioOutput {
     #[doc = "Target language for translated output audio and transcript deltas.\n"]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub language: ::std::option::Option<::std::string::String>,
+}
+impl RealtimeTranslationSessionCreateRequestAudioOutput {
+    pub fn builder() -> builder::RealtimeTranslationSessionCreateRequestAudioOutput {
+        Default::default()
+    }
 }
 #[doc = "The session type. Always `translation` for Realtime translation sessions.\n"]
 #[derive(
@@ -11989,6 +12864,11 @@ pub struct RealtimeTranslationSessionUpdateRequest {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub audio: ::std::option::Option<RealtimeTranslationSessionUpdateRequestAudio>,
 }
+impl RealtimeTranslationSessionUpdateRequest {
+    pub fn builder() -> builder::RealtimeTranslationSessionUpdateRequest {
+        Default::default()
+    }
+}
 #[doc = "Configuration for translation input and output audio.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeTranslationSessionUpdateRequestAudio {
@@ -11996,6 +12876,11 @@ pub struct RealtimeTranslationSessionUpdateRequestAudio {
     pub input: ::std::option::Option<RealtimeTranslationSessionUpdateRequestAudioInput>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub output: ::std::option::Option<RealtimeTranslationSessionUpdateRequestAudioOutput>,
+}
+impl RealtimeTranslationSessionUpdateRequestAudio {
+    pub fn builder() -> builder::RealtimeTranslationSessionUpdateRequestAudio {
+        Default::default()
+    }
 }
 #[doc = "`RealtimeTranslationSessionUpdateRequestAudioInput`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
@@ -12007,11 +12892,21 @@ pub struct RealtimeTranslationSessionUpdateRequestAudioInput {
     pub transcription:
         ::std::option::Option<RealtimeTranslationSessionUpdateRequestAudioInputTranscription>,
 }
+impl RealtimeTranslationSessionUpdateRequestAudioInput {
+    pub fn builder() -> builder::RealtimeTranslationSessionUpdateRequestAudioInput {
+        Default::default()
+    }
+}
 #[doc = "Optional input noise reduction. Set to `null` to disable it.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct RealtimeTranslationSessionUpdateRequestAudioInputNoiseReduction {
     #[serde(rename = "type")]
     pub type_: NoiseReductionType,
+}
+impl RealtimeTranslationSessionUpdateRequestAudioInputNoiseReduction {
+    pub fn builder() -> builder::RealtimeTranslationSessionUpdateRequestAudioInputNoiseReduction {
+        Default::default()
+    }
 }
 #[doc = "Optional source-language transcription. When configured, the server emits\n`session.input_transcript.delta` events. Translation itself still runs from\nthe input audio stream.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -12019,12 +12914,22 @@ pub struct RealtimeTranslationSessionUpdateRequestAudioInputTranscription {
     #[doc = "The transcription model to use for source transcript deltas."]
     pub model: ::std::string::String,
 }
+impl RealtimeTranslationSessionUpdateRequestAudioInputTranscription {
+    pub fn builder() -> builder::RealtimeTranslationSessionUpdateRequestAudioInputTranscription {
+        Default::default()
+    }
+}
 #[doc = "`RealtimeTranslationSessionUpdateRequestAudioOutput`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct RealtimeTranslationSessionUpdateRequestAudioOutput {
     #[doc = "Target language for translated output audio and transcript deltas.\n"]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub language: ::std::option::Option<::std::string::String>,
+}
+impl RealtimeTranslationSessionUpdateRequestAudioOutput {
+    pub fn builder() -> builder::RealtimeTranslationSessionUpdateRequestAudioOutput {
+        Default::default()
+    }
 }
 #[doc = "When the number of tokens in a conversation exceeds the model's input token limit, the conversation be truncated, meaning messages (starting from the oldest) will not be included in the model's context. A 32k context model with 4,096 max output tokens can only include 28,224 tokens in the context before truncation occurs.\n\nClients can configure truncation behavior to truncate with a lower max token limit, which is an effective way to control token usage and cost.\n\nTruncation will reduce the number of cached tokens on the next turn (busting the cache), since messages are dropped from the beginning of the context. However, clients can also configure truncation to retain messages up to a fraction of the maximum context size, which will reduce the need for future truncations and thus improve the cache rate.\n\nTruncation can be disabled entirely, which means the server will never truncate but would instead return an error if the conversation exceeds the model's input token limit.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -12311,6 +13216,11 @@ pub struct RetentionRatioTruncationTokenLimits {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub post_instructions: ::std::option::Option<u64>,
 }
+impl RetentionRatioTruncationTokenLimits {
+    pub fn builder() -> builder::RetentionRatioTruncationTokenLimits {
+        Default::default()
+    }
+}
 #[doc = "Use retention ratio truncation."]
 #[derive(
     :: serde :: Deserialize,
@@ -12384,6 +13294,11 @@ pub struct ToolChoiceFunction {
     #[serde(rename = "type")]
     pub type_: ToolChoiceFunctionType,
 }
+impl ToolChoiceFunction {
+    pub fn builder() -> builder::ToolChoiceFunction {
+        Default::default()
+    }
+}
 #[doc = "For function calling, the type is always `function`."]
 #[derive(
     :: serde :: Deserialize,
@@ -12441,6 +13356,11 @@ pub struct ToolChoiceMcp {
     #[doc = "For MCP tools, the type is always `mcp`."]
     #[serde(rename = "type")]
     pub type_: ToolChoiceMcpType,
+}
+impl ToolChoiceMcp {
+    pub fn builder() -> builder::ToolChoiceMcp {
+        Default::default()
+    }
 }
 #[doc = "For MCP tools, the type is always `mcp`."]
 #[derive(
@@ -12622,6 +13542,11 @@ pub struct TranscriptTextUsageDuration {
     #[serde(rename = "type")]
     pub type_: TranscriptTextUsageDurationType,
 }
+impl TranscriptTextUsageDuration {
+    pub fn builder() -> builder::TranscriptTextUsageDuration {
+        Default::default()
+    }
+}
 #[doc = "The type of the usage object. Always `duration` for this variant."]
 #[derive(
     :: serde :: Deserialize,
@@ -12684,6 +13609,11 @@ pub struct TranscriptTextUsageTokens {
     #[serde(rename = "type")]
     pub type_: TranscriptTextUsageTokensType,
 }
+impl TranscriptTextUsageTokens {
+    pub fn builder() -> builder::TranscriptTextUsageTokens {
+        Default::default()
+    }
+}
 #[doc = "Details about the input tokens billed for this request."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct TranscriptTextUsageTokensInputTokenDetails {
@@ -12693,6 +13623,11 @@ pub struct TranscriptTextUsageTokensInputTokenDetails {
     #[doc = "Number of text tokens billed for this request."]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub text_tokens: ::std::option::Option<i64>,
+}
+impl TranscriptTextUsageTokensInputTokenDetails {
+    pub fn builder() -> builder::TranscriptTextUsageTokensInputTokenDetails {
+        Default::default()
+    }
 }
 #[doc = "The type of the usage object. Always `tokens` for this variant."]
 #[derive(
@@ -12746,6 +13681,11 @@ impl ::std::convert::TryFrom<::std::string::String> for TranscriptTextUsageToken
 pub struct TranscriptionLanguage {
     #[doc = "The code of a language detected in the audio."]
     pub code: ::std::string::String,
+}
+impl TranscriptionLanguage {
+    pub fn builder() -> builder::TranscriptionLanguage {
+        Default::default()
+    }
 }
 #[doc = "A built-in voice name or a custom voice reference.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -12801,6 +13741,17149 @@ impl ::std::str::FromStr for VoiceIdsShared {
     type Err = ::std::convert::Infallible;
     fn from_str(value: &str) -> ::std::result::Result<Self, Self::Err> {
         Ok(Self(value.to_string()))
+    }
+}
+#[doc = " Types for composing complex structures."]
+pub mod builder {
+    #[derive(Clone, Debug)]
+    pub struct AudioTranscription {
+        delay: ::std::result::Result<
+            ::std::option::Option<super::AudioTranscriptionDelay>,
+            ::std::string::String,
+        >,
+        keywords:
+            ::std::result::Result<::std::vec::Vec<::std::string::String>, ::std::string::String>,
+        language: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        languages:
+            ::std::result::Result<::std::vec::Vec<::std::string::String>, ::std::string::String>,
+        model: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        prompt: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for AudioTranscription {
+        fn default() -> Self {
+            Self {
+                delay: Ok(Default::default()),
+                keywords: Ok(Default::default()),
+                language: Ok(Default::default()),
+                languages: Ok(Default::default()),
+                model: Ok(Default::default()),
+                prompt: Ok(Default::default()),
+            }
+        }
+    }
+    impl AudioTranscription {
+        pub fn delay<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::AudioTranscriptionDelay>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.delay = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for delay: {e}"));
+            self
+        }
+        pub fn keywords<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.keywords = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for keywords: {e}"));
+            self
+        }
+        pub fn language<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.language = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for language: {e}"));
+            self
+        }
+        pub fn languages<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.languages = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for languages: {e}"));
+            self
+        }
+        pub fn model<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.model = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for model: {e}"));
+            self
+        }
+        pub fn prompt<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prompt = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for prompt: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<AudioTranscription> for super::AudioTranscription {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: AudioTranscription,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                delay: value.delay?,
+                keywords: value.keywords?,
+                language: value.language?,
+                languages: value.languages?,
+                model: value.model?,
+                prompt: value.prompt?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::AudioTranscription> for AudioTranscription {
+        fn from(value: super::AudioTranscription) -> Self {
+            Self {
+                delay: Ok(value.delay),
+                keywords: Ok(value.keywords),
+                language: Ok(value.language),
+                languages: Ok(value.languages),
+                model: Ok(value.model),
+                prompt: Ok(value.prompt),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct AudioTranscriptionResponse {
+        language: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        languages:
+            ::std::result::Result<::std::vec::Vec<::std::string::String>, ::std::string::String>,
+        model: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        prompt: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for AudioTranscriptionResponse {
+        fn default() -> Self {
+            Self {
+                language: Ok(Default::default()),
+                languages: Ok(Default::default()),
+                model: Ok(Default::default()),
+                prompt: Ok(Default::default()),
+            }
+        }
+    }
+    impl AudioTranscriptionResponse {
+        pub fn language<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.language = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for language: {e}"));
+            self
+        }
+        pub fn languages<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.languages = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for languages: {e}"));
+            self
+        }
+        pub fn model<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.model = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for model: {e}"));
+            self
+        }
+        pub fn prompt<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prompt = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for prompt: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<AudioTranscriptionResponse> for super::AudioTranscriptionResponse {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: AudioTranscriptionResponse,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                language: value.language?,
+                languages: value.languages?,
+                model: value.model?,
+                prompt: value.prompt?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::AudioTranscriptionResponse> for AudioTranscriptionResponse {
+        fn from(value: super::AudioTranscriptionResponse) -> Self {
+            Self {
+                language: Ok(value.language),
+                languages: Ok(value.languages),
+                model: Ok(value.model),
+                prompt: Ok(value.prompt),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct ClientSecretExpiration {
+        anchor: ::std::result::Result<
+            ::std::option::Option<super::ClientSecretExpirationAnchor>,
+            ::std::string::String,
+        >,
+        seconds: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+    }
+    impl ::std::default::Default for ClientSecretExpiration {
+        fn default() -> Self {
+            Self {
+                anchor: Ok(Default::default()),
+                seconds: Ok(Default::default()),
+            }
+        }
+    }
+    impl ClientSecretExpiration {
+        pub fn anchor<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::ClientSecretExpirationAnchor>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.anchor = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for anchor: {e}"));
+            self
+        }
+        pub fn seconds<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.seconds = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for seconds: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<ClientSecretExpiration> for super::ClientSecretExpiration {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: ClientSecretExpiration,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                anchor: value.anchor?,
+                seconds: value.seconds?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::ClientSecretExpiration> for ClientSecretExpiration {
+        fn from(value: super::ClientSecretExpiration) -> Self {
+            Self {
+                anchor: Ok(value.anchor),
+                seconds: Ok(value.seconds),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct InputFileContent {
+        detail: ::std::result::Result<
+            ::std::option::Option<super::FileInputDetail>,
+            ::std::string::String,
+        >,
+        file_data: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        file_id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        file_url: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        filename: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        prompt_cache_breakpoint: ::std::result::Result<
+            ::std::option::Option<super::PromptCacheBreakpointConfig>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<super::InputFileContentType, ::std::string::String>,
+    }
+    impl ::std::default::Default for InputFileContent {
+        fn default() -> Self {
+            Self {
+                detail: Ok(Default::default()),
+                file_data: Ok(Default::default()),
+                file_id: Ok(Default::default()),
+                file_url: Ok(Default::default()),
+                filename: Ok(Default::default()),
+                prompt_cache_breakpoint: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl InputFileContent {
+        pub fn detail<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::FileInputDetail>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.detail = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for detail: {e}"));
+            self
+        }
+        pub fn file_data<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.file_data = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for file_data: {e}"));
+            self
+        }
+        pub fn file_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.file_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for file_id: {e}"));
+            self
+        }
+        pub fn file_url<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.file_url = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for file_url: {e}"));
+            self
+        }
+        pub fn filename<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.filename = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for filename: {e}"));
+            self
+        }
+        pub fn prompt_cache_breakpoint<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::PromptCacheBreakpointConfig>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prompt_cache_breakpoint = value.try_into().map_err(|e| {
+                format!("error converting supplied value for prompt_cache_breakpoint: {e}")
+            });
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::InputFileContentType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<InputFileContent> for super::InputFileContent {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: InputFileContent,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                detail: value.detail?,
+                file_data: value.file_data?,
+                file_id: value.file_id?,
+                file_url: value.file_url?,
+                filename: value.filename?,
+                prompt_cache_breakpoint: value.prompt_cache_breakpoint?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::InputFileContent> for InputFileContent {
+        fn from(value: super::InputFileContent) -> Self {
+            Self {
+                detail: Ok(value.detail),
+                file_data: Ok(value.file_data),
+                file_id: Ok(value.file_id),
+                file_url: Ok(value.file_url),
+                filename: Ok(value.filename),
+                prompt_cache_breakpoint: Ok(value.prompt_cache_breakpoint),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct InputImageContent {
+        detail: ::std::result::Result<super::ImageDetail, ::std::string::String>,
+        file_id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        image_url: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        prompt_cache_breakpoint: ::std::result::Result<
+            ::std::option::Option<super::PromptCacheBreakpointConfig>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<super::InputImageContentType, ::std::string::String>,
+    }
+    impl ::std::default::Default for InputImageContent {
+        fn default() -> Self {
+            Self {
+                detail: Err("no value supplied for detail".to_string()),
+                file_id: Ok(Default::default()),
+                image_url: Ok(Default::default()),
+                prompt_cache_breakpoint: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl InputImageContent {
+        pub fn detail<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImageDetail>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.detail = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for detail: {e}"));
+            self
+        }
+        pub fn file_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.file_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for file_id: {e}"));
+            self
+        }
+        pub fn image_url<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.image_url = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for image_url: {e}"));
+            self
+        }
+        pub fn prompt_cache_breakpoint<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::PromptCacheBreakpointConfig>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prompt_cache_breakpoint = value.try_into().map_err(|e| {
+                format!("error converting supplied value for prompt_cache_breakpoint: {e}")
+            });
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::InputImageContentType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<InputImageContent> for super::InputImageContent {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: InputImageContent,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                detail: value.detail?,
+                file_id: value.file_id?,
+                image_url: value.image_url?,
+                prompt_cache_breakpoint: value.prompt_cache_breakpoint?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::InputImageContent> for InputImageContent {
+        fn from(value: super::InputImageContent) -> Self {
+            Self {
+                detail: Ok(value.detail),
+                file_id: Ok(value.file_id),
+                image_url: Ok(value.image_url),
+                prompt_cache_breakpoint: Ok(value.prompt_cache_breakpoint),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct InputTextContent {
+        prompt_cache_breakpoint: ::std::result::Result<
+            ::std::option::Option<super::PromptCacheBreakpointConfig>,
+            ::std::string::String,
+        >,
+        text: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<super::InputTextContentType, ::std::string::String>,
+    }
+    impl ::std::default::Default for InputTextContent {
+        fn default() -> Self {
+            Self {
+                prompt_cache_breakpoint: Ok(Default::default()),
+                text: Err("no value supplied for text".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl InputTextContent {
+        pub fn prompt_cache_breakpoint<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::PromptCacheBreakpointConfig>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prompt_cache_breakpoint = value.try_into().map_err(|e| {
+                format!("error converting supplied value for prompt_cache_breakpoint: {e}")
+            });
+            self
+        }
+        pub fn text<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::InputTextContentType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<InputTextContent> for super::InputTextContent {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: InputTextContent,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                prompt_cache_breakpoint: value.prompt_cache_breakpoint?,
+                text: value.text?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::InputTextContent> for InputTextContent {
+        fn from(value: super::InputTextContent) -> Self {
+            Self {
+                prompt_cache_breakpoint: Ok(value.prompt_cache_breakpoint),
+                text: Ok(value.text),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct LogProbProperties {
+        bytes: ::std::result::Result<::std::vec::Vec<i64>, ::std::string::String>,
+        logprob: ::std::result::Result<f64, ::std::string::String>,
+        token: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for LogProbProperties {
+        fn default() -> Self {
+            Self {
+                bytes: Err("no value supplied for bytes".to_string()),
+                logprob: Err("no value supplied for logprob".to_string()),
+                token: Err("no value supplied for token".to_string()),
+            }
+        }
+    }
+    impl LogProbProperties {
+        pub fn bytes<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.bytes = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for bytes: {e}"));
+            self
+        }
+        pub fn logprob<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<f64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.logprob = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for logprob: {e}"));
+            self
+        }
+        pub fn token<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.token = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for token: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<LogProbProperties> for super::LogProbProperties {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: LogProbProperties,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                bytes: value.bytes?,
+                logprob: value.logprob?,
+                token: value.token?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::LogProbProperties> for LogProbProperties {
+        fn from(value: super::LogProbProperties) -> Self {
+            Self {
+                bytes: Ok(value.bytes),
+                logprob: Ok(value.logprob),
+                token: Ok(value.token),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct McpListToolsTool {
+        annotations: ::std::result::Result<
+            ::std::option::Option<::serde_json::Map<::std::string::String, ::serde_json::Value>>,
+            ::std::string::String,
+        >,
+        description: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        input_schema: ::std::result::Result<
+            ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+            ::std::string::String,
+        >,
+        name: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for McpListToolsTool {
+        fn default() -> Self {
+            Self {
+                annotations: Ok(Default::default()),
+                description: Ok(Default::default()),
+                input_schema: Err("no value supplied for input_schema".to_string()),
+                name: Err("no value supplied for name".to_string()),
+            }
+        }
+    }
+    impl McpListToolsTool {
+        pub fn annotations<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.annotations = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for annotations: {e}"));
+            self
+        }
+        pub fn description<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.description = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for description: {e}"));
+            self
+        }
+        pub fn input_schema<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_schema = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for input_schema: {e}"));
+            self
+        }
+        pub fn name<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.name = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for name: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<McpListToolsTool> for super::McpListToolsTool {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: McpListToolsTool,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                annotations: value.annotations?,
+                description: value.description?,
+                input_schema: value.input_schema?,
+                name: value.name?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::McpListToolsTool> for McpListToolsTool {
+        fn from(value: super::McpListToolsTool) -> Self {
+            Self {
+                annotations: Ok(value.annotations),
+                description: Ok(value.description),
+                input_schema: Ok(value.input_schema),
+                name: Ok(value.name),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct McpTool {
+        allowed_callers: ::std::result::Result<
+            ::std::option::Option<::std::vec::Vec<super::CallableToolAllowedCaller>>,
+            ::std::string::String,
+        >,
+        allowed_tools: ::std::result::Result<
+            ::std::option::Option<super::McpToolAllowedTools>,
+            ::std::string::String,
+        >,
+        authorization: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        connector_id: ::std::result::Result<
+            ::std::option::Option<super::McpToolConnectorId>,
+            ::std::string::String,
+        >,
+        defer_loading: ::std::result::Result<::std::option::Option<bool>, ::std::string::String>,
+        headers: ::std::result::Result<
+            ::std::option::Option<
+                ::std::collections::HashMap<::std::string::String, ::std::string::String>,
+            >,
+            ::std::string::String,
+        >,
+        require_approval: ::std::result::Result<
+            ::std::option::Option<super::McpToolRequireApproval>,
+            ::std::string::String,
+        >,
+        server_description: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        server_label: ::std::result::Result<::std::string::String, ::std::string::String>,
+        server_url: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        tunnel_id: ::std::result::Result<
+            ::std::option::Option<super::McpToolTunnelId>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<super::McpToolType, ::std::string::String>,
+    }
+    impl ::std::default::Default for McpTool {
+        fn default() -> Self {
+            Self {
+                allowed_callers: Ok(Default::default()),
+                allowed_tools: Ok(Default::default()),
+                authorization: Ok(Default::default()),
+                connector_id: Ok(Default::default()),
+                defer_loading: Ok(Default::default()),
+                headers: Ok(Default::default()),
+                require_approval: Ok(Default::default()),
+                server_description: Ok(Default::default()),
+                server_label: Err("no value supplied for server_label".to_string()),
+                server_url: Ok(Default::default()),
+                tunnel_id: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl McpTool {
+        pub fn allowed_callers<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<::std::vec::Vec<super::CallableToolAllowedCaller>>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.allowed_callers = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for allowed_callers: {e}"));
+            self
+        }
+        pub fn allowed_tools<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::McpToolAllowedTools>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.allowed_tools = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for allowed_tools: {e}"));
+            self
+        }
+        pub fn authorization<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.authorization = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for authorization: {e}"));
+            self
+        }
+        pub fn connector_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::McpToolConnectorId>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.connector_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for connector_id: {e}"));
+            self
+        }
+        pub fn defer_loading<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<bool>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.defer_loading = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for defer_loading: {e}"));
+            self
+        }
+        pub fn headers<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    ::std::collections::HashMap<::std::string::String, ::std::string::String>,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.headers = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for headers: {e}"));
+            self
+        }
+        pub fn require_approval<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::McpToolRequireApproval>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.require_approval = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for require_approval: {e}"));
+            self
+        }
+        pub fn server_description<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.server_description = value.try_into().map_err(|e| {
+                format!("error converting supplied value for server_description: {e}")
+            });
+            self
+        }
+        pub fn server_label<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.server_label = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for server_label: {e}"));
+            self
+        }
+        pub fn server_url<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.server_url = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for server_url: {e}"));
+            self
+        }
+        pub fn tunnel_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::McpToolTunnelId>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.tunnel_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for tunnel_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::McpToolType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<McpTool> for super::McpTool {
+        type Error = super::error::ConversionError;
+        fn try_from(value: McpTool) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                allowed_callers: value.allowed_callers?,
+                allowed_tools: value.allowed_tools?,
+                authorization: value.authorization?,
+                connector_id: value.connector_id?,
+                defer_loading: value.defer_loading?,
+                headers: value.headers?,
+                require_approval: value.require_approval?,
+                server_description: value.server_description?,
+                server_label: value.server_label?,
+                server_url: value.server_url?,
+                tunnel_id: value.tunnel_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::McpTool> for McpTool {
+        fn from(value: super::McpTool) -> Self {
+            Self {
+                allowed_callers: Ok(value.allowed_callers),
+                allowed_tools: Ok(value.allowed_tools),
+                authorization: Ok(value.authorization),
+                connector_id: Ok(value.connector_id),
+                defer_loading: Ok(value.defer_loading),
+                headers: Ok(value.headers),
+                require_approval: Ok(value.require_approval),
+                server_description: Ok(value.server_description),
+                server_label: Ok(value.server_label),
+                server_url: Ok(value.server_url),
+                tunnel_id: Ok(value.tunnel_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct McpToolFilter {
+        read_only: ::std::result::Result<::std::option::Option<bool>, ::std::string::String>,
+        tool_names:
+            ::std::result::Result<::std::vec::Vec<::std::string::String>, ::std::string::String>,
+    }
+    impl ::std::default::Default for McpToolFilter {
+        fn default() -> Self {
+            Self {
+                read_only: Ok(Default::default()),
+                tool_names: Ok(Default::default()),
+            }
+        }
+    }
+    impl McpToolFilter {
+        pub fn read_only<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<bool>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.read_only = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for read_only: {e}"));
+            self
+        }
+        pub fn tool_names<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.tool_names = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for tool_names: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<McpToolFilter> for super::McpToolFilter {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: McpToolFilter,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                read_only: value.read_only?,
+                tool_names: value.tool_names?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::McpToolFilter> for McpToolFilter {
+        fn from(value: super::McpToolFilter) -> Self {
+            Self {
+                read_only: Ok(value.read_only),
+                tool_names: Ok(value.tool_names),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct PcmAudioFormat {
+        rate: ::std::result::Result<
+            ::std::option::Option<super::PcmAudioFormatRate>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            ::std::option::Option<super::PcmAudioFormatType>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for PcmAudioFormat {
+        fn default() -> Self {
+            Self {
+                rate: Ok(Default::default()),
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl PcmAudioFormat {
+        pub fn rate<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::PcmAudioFormatRate>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.rate = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for rate: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::PcmAudioFormatType>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<PcmAudioFormat> for super::PcmAudioFormat {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: PcmAudioFormat,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                rate: value.rate?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::PcmAudioFormat> for PcmAudioFormat {
+        fn from(value: super::PcmAudioFormat) -> Self {
+            Self {
+                rate: Ok(value.rate),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct PcmaAudioFormat {
+        type_: ::std::result::Result<
+            ::std::option::Option<super::PcmaAudioFormatType>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for PcmaAudioFormat {
+        fn default() -> Self {
+            Self {
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl PcmaAudioFormat {
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::PcmaAudioFormatType>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<PcmaAudioFormat> for super::PcmaAudioFormat {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: PcmaAudioFormat,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::PcmaAudioFormat> for PcmaAudioFormat {
+        fn from(value: super::PcmaAudioFormat) -> Self {
+            Self {
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct PcmuAudioFormat {
+        type_: ::std::result::Result<
+            ::std::option::Option<super::PcmuAudioFormatType>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for PcmuAudioFormat {
+        fn default() -> Self {
+            Self {
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl PcmuAudioFormat {
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::PcmuAudioFormatType>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<PcmuAudioFormat> for super::PcmuAudioFormat {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: PcmuAudioFormat,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::PcmuAudioFormat> for PcmuAudioFormat {
+        fn from(value: super::PcmuAudioFormat) -> Self {
+            Self {
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct PromptCacheBreakpointConfig {
+        mode: ::std::result::Result<super::PromptCacheBreakpointConfigMode, ::std::string::String>,
+    }
+    impl ::std::default::Default for PromptCacheBreakpointConfig {
+        fn default() -> Self {
+            Self {
+                mode: Err("no value supplied for mode".to_string()),
+            }
+        }
+    }
+    impl PromptCacheBreakpointConfig {
+        pub fn mode<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::PromptCacheBreakpointConfigMode>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.mode = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for mode: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<PromptCacheBreakpointConfig> for super::PromptCacheBreakpointConfig {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: PromptCacheBreakpointConfig,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self { mode: value.mode? })
+        }
+    }
+    impl ::std::convert::From<super::PromptCacheBreakpointConfig> for PromptCacheBreakpointConfig {
+        fn from(value: super::PromptCacheBreakpointConfig) -> Self {
+            Self {
+                mode: Ok(value.mode),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct PromptValue {
+        id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        variables: ::std::result::Result<
+            ::std::option::Option<super::ResponsePromptVariables>,
+            ::std::string::String,
+        >,
+        version: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for PromptValue {
+        fn default() -> Self {
+            Self {
+                id: Err("no value supplied for id".to_string()),
+                variables: Ok(Default::default()),
+                version: Ok(Default::default()),
+            }
+        }
+    }
+    impl PromptValue {
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn variables<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::ResponsePromptVariables>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.variables = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for variables: {e}"));
+            self
+        }
+        pub fn version<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.version = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for version: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<PromptValue> for super::PromptValue {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: PromptValue,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                id: value.id?,
+                variables: value.variables?,
+                version: value.version?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::PromptValue> for PromptValue {
+        fn from(value: super::PromptValue) -> Self {
+            Self {
+                id: Ok(value.id),
+                variables: Ok(value.variables),
+                version: Ok(value.version),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeApiSchema {
+        accept_realtime_call_request:
+            ::std::result::Result<super::RealtimeSessionCreateRequestGa, ::std::string::String>,
+        create_realtime_call_request:
+            ::std::result::Result<super::RealtimeCallCreateRequest, ::std::string::String>,
+        create_realtime_client_secret_request:
+            ::std::result::Result<super::RealtimeCreateClientSecretRequest, ::std::string::String>,
+        create_realtime_client_secret_response:
+            ::std::result::Result<super::RealtimeCreateClientSecretResponse, ::std::string::String>,
+        create_realtime_session_request:
+            ::std::result::Result<super::RealtimeSessionCreateRequest, ::std::string::String>,
+        create_realtime_session_response:
+            ::std::result::Result<super::RealtimeSessionCreateResponse, ::std::string::String>,
+        create_realtime_transcription_session_request: ::std::result::Result<
+            super::RealtimeTranscriptionSessionCreateRequest,
+            ::std::string::String,
+        >,
+        create_realtime_transcription_session_response: ::std::result::Result<
+            super::RealtimeTranscriptionSessionCreateResponse,
+            ::std::string::String,
+        >,
+        create_realtime_translation_client_secret_request: ::std::result::Result<
+            super::RealtimeTranslationClientSecretCreateRequest,
+            ::std::string::String,
+        >,
+        create_realtime_translation_client_secret_response: ::std::result::Result<
+            super::RealtimeTranslationClientSecretCreateResponse,
+            ::std::string::String,
+        >,
+        realtime_client_event:
+            ::std::result::Result<super::RealtimeClientEvent, ::std::string::String>,
+        realtime_server_event:
+            ::std::result::Result<super::RealtimeServerEvent, ::std::string::String>,
+        realtime_translation_client_event:
+            ::std::result::Result<super::RealtimeTranslationClientEvent, ::std::string::String>,
+        realtime_translation_server_event:
+            ::std::result::Result<super::RealtimeTranslationServerEvent, ::std::string::String>,
+        refer_realtime_call_request:
+            ::std::result::Result<super::RealtimeCallReferRequest, ::std::string::String>,
+        reject_realtime_call_request:
+            ::std::result::Result<super::RealtimeCallRejectRequest, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeApiSchema {
+        fn default() -> Self {
+            Self {
+                accept_realtime_call_request: Err(
+                    "no value supplied for accept_realtime_call_request".to_string(),
+                ),
+                create_realtime_call_request: Err(
+                    "no value supplied for create_realtime_call_request".to_string(),
+                ),
+                create_realtime_client_secret_request: Err(
+                    "no value supplied for create_realtime_client_secret_request".to_string(),
+                ),
+                create_realtime_client_secret_response: Err(
+                    "no value supplied for create_realtime_client_secret_response".to_string(),
+                ),
+                create_realtime_session_request: Err(
+                    "no value supplied for create_realtime_session_request".to_string(),
+                ),
+                create_realtime_session_response: Err(
+                    "no value supplied for create_realtime_session_response".to_string(),
+                ),
+                create_realtime_transcription_session_request: Err(
+                    "no value supplied for create_realtime_transcription_session_request"
+                        .to_string(),
+                ),
+                create_realtime_transcription_session_response: Err(
+                    "no value supplied for create_realtime_transcription_session_response"
+                        .to_string(),
+                ),
+                create_realtime_translation_client_secret_request: Err(
+                    "no value supplied for create_realtime_translation_client_secret_request"
+                        .to_string(),
+                ),
+                create_realtime_translation_client_secret_response: Err(
+                    "no value supplied for create_realtime_translation_client_secret_response"
+                        .to_string(),
+                ),
+                realtime_client_event: Err(
+                    "no value supplied for realtime_client_event".to_string()
+                ),
+                realtime_server_event: Err(
+                    "no value supplied for realtime_server_event".to_string()
+                ),
+                realtime_translation_client_event: Err(
+                    "no value supplied for realtime_translation_client_event".to_string(),
+                ),
+                realtime_translation_server_event: Err(
+                    "no value supplied for realtime_translation_server_event".to_string(),
+                ),
+                refer_realtime_call_request: Err(
+                    "no value supplied for refer_realtime_call_request".to_string(),
+                ),
+                reject_realtime_call_request: Err(
+                    "no value supplied for reject_realtime_call_request".to_string(),
+                ),
+            }
+        }
+    }
+    impl RealtimeApiSchema {
+        pub fn accept_realtime_call_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeSessionCreateRequestGa>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.accept_realtime_call_request = value.try_into().map_err(|e| {
+                format!("error converting supplied value for accept_realtime_call_request: {e}")
+            });
+            self
+        }
+        pub fn create_realtime_call_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeCallCreateRequest>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_realtime_call_request = value.try_into().map_err(|e| {
+                format!("error converting supplied value for create_realtime_call_request: {e}")
+            });
+            self
+        }
+        pub fn create_realtime_client_secret_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeCreateClientSecretRequest>,
+            T::Error: ::std::fmt::Display,
+        {
+            self . create_realtime_client_secret_request = value . try_into () . map_err (| e | format ! ("error converting supplied value for create_realtime_client_secret_request: {e}")) ;
+            self
+        }
+        pub fn create_realtime_client_secret_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeCreateClientSecretResponse>,
+            T::Error: ::std::fmt::Display,
+        {
+            self . create_realtime_client_secret_response = value . try_into () . map_err (| e | format ! ("error converting supplied value for create_realtime_client_secret_response: {e}")) ;
+            self
+        }
+        pub fn create_realtime_session_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeSessionCreateRequest>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_realtime_session_request = value.try_into().map_err(|e| {
+                format!("error converting supplied value for create_realtime_session_request: {e}")
+            });
+            self
+        }
+        pub fn create_realtime_session_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeSessionCreateResponse>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_realtime_session_response = value.try_into().map_err(|e| {
+                format!("error converting supplied value for create_realtime_session_response: {e}")
+            });
+            self
+        }
+        pub fn create_realtime_transcription_session_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeTranscriptionSessionCreateRequest>,
+            T::Error: ::std::fmt::Display,
+        {
+            self . create_realtime_transcription_session_request = value . try_into () . map_err (| e | format ! ("error converting supplied value for create_realtime_transcription_session_request: {e}")) ;
+            self
+        }
+        pub fn create_realtime_transcription_session_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeTranscriptionSessionCreateResponse>,
+            T::Error: ::std::fmt::Display,
+        {
+            self . create_realtime_transcription_session_response = value . try_into () . map_err (| e | format ! ("error converting supplied value for create_realtime_transcription_session_response: {e}")) ;
+            self
+        }
+        pub fn create_realtime_translation_client_secret_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeTranslationClientSecretCreateRequest>,
+            T::Error: ::std::fmt::Display,
+        {
+            self . create_realtime_translation_client_secret_request = value . try_into () . map_err (| e | format ! ("error converting supplied value for create_realtime_translation_client_secret_request: {e}")) ;
+            self
+        }
+        pub fn create_realtime_translation_client_secret_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeTranslationClientSecretCreateResponse>,
+            T::Error: ::std::fmt::Display,
+        {
+            self . create_realtime_translation_client_secret_response = value . try_into () . map_err (| e | format ! ("error converting supplied value for create_realtime_translation_client_secret_response: {e}")) ;
+            self
+        }
+        pub fn realtime_client_event<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeClientEvent>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.realtime_client_event = value.try_into().map_err(|e| {
+                format!("error converting supplied value for realtime_client_event: {e}")
+            });
+            self
+        }
+        pub fn realtime_server_event<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEvent>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.realtime_server_event = value.try_into().map_err(|e| {
+                format!("error converting supplied value for realtime_server_event: {e}")
+            });
+            self
+        }
+        pub fn realtime_translation_client_event<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeTranslationClientEvent>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.realtime_translation_client_event = value.try_into().map_err(|e| {
+                format!(
+                    "error converting supplied value for realtime_translation_client_event: {e}"
+                )
+            });
+            self
+        }
+        pub fn realtime_translation_server_event<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeTranslationServerEvent>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.realtime_translation_server_event = value.try_into().map_err(|e| {
+                format!(
+                    "error converting supplied value for realtime_translation_server_event: {e}"
+                )
+            });
+            self
+        }
+        pub fn refer_realtime_call_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeCallReferRequest>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.refer_realtime_call_request = value.try_into().map_err(|e| {
+                format!("error converting supplied value for refer_realtime_call_request: {e}")
+            });
+            self
+        }
+        pub fn reject_realtime_call_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeCallRejectRequest>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.reject_realtime_call_request = value.try_into().map_err(|e| {
+                format!("error converting supplied value for reject_realtime_call_request: {e}")
+            });
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeApiSchema> for super::RealtimeApiSchema {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeApiSchema,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                accept_realtime_call_request: value.accept_realtime_call_request?,
+                create_realtime_call_request: value.create_realtime_call_request?,
+                create_realtime_client_secret_request: value
+                    .create_realtime_client_secret_request?,
+                create_realtime_client_secret_response: value
+                    .create_realtime_client_secret_response?,
+                create_realtime_session_request: value.create_realtime_session_request?,
+                create_realtime_session_response: value.create_realtime_session_response?,
+                create_realtime_transcription_session_request: value
+                    .create_realtime_transcription_session_request?,
+                create_realtime_transcription_session_response: value
+                    .create_realtime_transcription_session_response?,
+                create_realtime_translation_client_secret_request: value
+                    .create_realtime_translation_client_secret_request?,
+                create_realtime_translation_client_secret_response: value
+                    .create_realtime_translation_client_secret_response?,
+                realtime_client_event: value.realtime_client_event?,
+                realtime_server_event: value.realtime_server_event?,
+                realtime_translation_client_event: value.realtime_translation_client_event?,
+                realtime_translation_server_event: value.realtime_translation_server_event?,
+                refer_realtime_call_request: value.refer_realtime_call_request?,
+                reject_realtime_call_request: value.reject_realtime_call_request?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeApiSchema> for RealtimeApiSchema {
+        fn from(value: super::RealtimeApiSchema) -> Self {
+            Self {
+                accept_realtime_call_request: Ok(value.accept_realtime_call_request),
+                create_realtime_call_request: Ok(value.create_realtime_call_request),
+                create_realtime_client_secret_request: Ok(
+                    value.create_realtime_client_secret_request
+                ),
+                create_realtime_client_secret_response: Ok(
+                    value.create_realtime_client_secret_response
+                ),
+                create_realtime_session_request: Ok(value.create_realtime_session_request),
+                create_realtime_session_response: Ok(value.create_realtime_session_response),
+                create_realtime_transcription_session_request: Ok(
+                    value.create_realtime_transcription_session_request
+                ),
+                create_realtime_transcription_session_response: Ok(
+                    value.create_realtime_transcription_session_response
+                ),
+                create_realtime_translation_client_secret_request: Ok(
+                    value.create_realtime_translation_client_secret_request
+                ),
+                create_realtime_translation_client_secret_response: Ok(
+                    value.create_realtime_translation_client_secret_response
+                ),
+                realtime_client_event: Ok(value.realtime_client_event),
+                realtime_server_event: Ok(value.realtime_server_event),
+                realtime_translation_client_event: Ok(value.realtime_translation_client_event),
+                realtime_translation_server_event: Ok(value.realtime_translation_server_event),
+                refer_realtime_call_request: Ok(value.refer_realtime_call_request),
+                reject_realtime_call_request: Ok(value.reject_realtime_call_request),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeAudioFormats {
+        subtype_0: ::std::result::Result<
+            ::std::option::Option<super::PcmAudioFormat>,
+            ::std::string::String,
+        >,
+        subtype_1: ::std::result::Result<
+            ::std::option::Option<super::PcmuAudioFormat>,
+            ::std::string::String,
+        >,
+        subtype_2: ::std::result::Result<
+            ::std::option::Option<super::PcmaAudioFormat>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeAudioFormats {
+        fn default() -> Self {
+            Self {
+                subtype_0: Ok(Default::default()),
+                subtype_1: Ok(Default::default()),
+                subtype_2: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeAudioFormats {
+        pub fn subtype_0<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::PcmAudioFormat>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.subtype_0 = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for subtype_0: {e}"));
+            self
+        }
+        pub fn subtype_1<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::PcmuAudioFormat>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.subtype_1 = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for subtype_1: {e}"));
+            self
+        }
+        pub fn subtype_2<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::PcmaAudioFormat>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.subtype_2 = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for subtype_2: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeAudioFormats> for super::RealtimeAudioFormats {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeAudioFormats,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                subtype_0: value.subtype_0?,
+                subtype_1: value.subtype_1?,
+                subtype_2: value.subtype_2?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeAudioFormats> for RealtimeAudioFormats {
+        fn from(value: super::RealtimeAudioFormats) -> Self {
+            Self {
+                subtype_0: Ok(value.subtype_0),
+                subtype_1: Ok(value.subtype_1),
+                subtype_2: Ok(value.subtype_2),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeCallCreateRequest {
+        sdp: ::std::result::Result<::std::string::String, ::std::string::String>,
+        session: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateRequestGa>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeCallCreateRequest {
+        fn default() -> Self {
+            Self {
+                sdp: Err("no value supplied for sdp".to_string()),
+                session: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeCallCreateRequest {
+        pub fn sdp<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.sdp = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for sdp: {e}"));
+            self
+        }
+        pub fn session<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateRequestGa>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.session = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for session: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeCallCreateRequest> for super::RealtimeCallCreateRequest {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeCallCreateRequest,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                sdp: value.sdp?,
+                session: value.session?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeCallCreateRequest> for RealtimeCallCreateRequest {
+        fn from(value: super::RealtimeCallCreateRequest) -> Self {
+            Self {
+                sdp: Ok(value.sdp),
+                session: Ok(value.session),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeCallReferRequest {
+        target_uri: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeCallReferRequest {
+        fn default() -> Self {
+            Self {
+                target_uri: Err("no value supplied for target_uri".to_string()),
+            }
+        }
+    }
+    impl RealtimeCallReferRequest {
+        pub fn target_uri<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.target_uri = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for target_uri: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeCallReferRequest> for super::RealtimeCallReferRequest {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeCallReferRequest,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                target_uri: value.target_uri?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeCallReferRequest> for RealtimeCallReferRequest {
+        fn from(value: super::RealtimeCallReferRequest) -> Self {
+            Self {
+                target_uri: Ok(value.target_uri),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeCallRejectRequest {
+        status_code: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeCallRejectRequest {
+        fn default() -> Self {
+            Self {
+                status_code: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeCallRejectRequest {
+        pub fn status_code<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.status_code = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for status_code: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeCallRejectRequest> for super::RealtimeCallRejectRequest {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeCallRejectRequest,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                status_code: value.status_code?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeCallRejectRequest> for RealtimeCallRejectRequest {
+        fn from(value: super::RealtimeCallRejectRequest) -> Self {
+            Self {
+                status_code: Ok(value.status_code),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeClientEventConversationItemCreate {
+        event_id: ::std::result::Result<
+            ::std::option::Option<super::RealtimeClientEventConversationItemCreateEventId>,
+            ::std::string::String,
+        >,
+        item: ::std::result::Result<super::RealtimeConversationItem, ::std::string::String>,
+        previous_item_id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeClientEventConversationItemCreateType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeClientEventConversationItemCreate {
+        fn default() -> Self {
+            Self {
+                event_id: Ok(Default::default()),
+                item: Err("no value supplied for item".to_string()),
+                previous_item_id: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeClientEventConversationItemCreate {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeClientEventConversationItemCreateEventId>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeConversationItem>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item: {e}"));
+            self
+        }
+        pub fn previous_item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.previous_item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for previous_item_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeClientEventConversationItemCreateType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeClientEventConversationItemCreate>
+        for super::RealtimeClientEventConversationItemCreate
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeClientEventConversationItemCreate,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                item: value.item?,
+                previous_item_id: value.previous_item_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeClientEventConversationItemCreate>
+        for RealtimeClientEventConversationItemCreate
+    {
+        fn from(value: super::RealtimeClientEventConversationItemCreate) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                item: Ok(value.item),
+                previous_item_id: Ok(value.previous_item_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeClientEventConversationItemDelete {
+        event_id: ::std::result::Result<
+            ::std::option::Option<super::RealtimeClientEventConversationItemDeleteEventId>,
+            ::std::string::String,
+        >,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeClientEventConversationItemDeleteType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeClientEventConversationItemDelete {
+        fn default() -> Self {
+            Self {
+                event_id: Ok(Default::default()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeClientEventConversationItemDelete {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeClientEventConversationItemDeleteEventId>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeClientEventConversationItemDeleteType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeClientEventConversationItemDelete>
+        for super::RealtimeClientEventConversationItemDelete
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeClientEventConversationItemDelete,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeClientEventConversationItemDelete>
+        for RealtimeClientEventConversationItemDelete
+    {
+        fn from(value: super::RealtimeClientEventConversationItemDelete) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeClientEventConversationItemRetrieve {
+        event_id: ::std::result::Result<
+            ::std::option::Option<super::RealtimeClientEventConversationItemRetrieveEventId>,
+            ::std::string::String,
+        >,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeClientEventConversationItemRetrieveType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeClientEventConversationItemRetrieve {
+        fn default() -> Self {
+            Self {
+                event_id: Ok(Default::default()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeClientEventConversationItemRetrieve {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeClientEventConversationItemRetrieveEventId>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeClientEventConversationItemRetrieveType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeClientEventConversationItemRetrieve>
+        for super::RealtimeClientEventConversationItemRetrieve
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeClientEventConversationItemRetrieve,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeClientEventConversationItemRetrieve>
+        for RealtimeClientEventConversationItemRetrieve
+    {
+        fn from(value: super::RealtimeClientEventConversationItemRetrieve) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeClientEventConversationItemTruncate {
+        audio_end_ms: ::std::result::Result<i64, ::std::string::String>,
+        content_index: ::std::result::Result<i64, ::std::string::String>,
+        event_id: ::std::result::Result<
+            ::std::option::Option<super::RealtimeClientEventConversationItemTruncateEventId>,
+            ::std::string::String,
+        >,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeClientEventConversationItemTruncateType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeClientEventConversationItemTruncate {
+        fn default() -> Self {
+            Self {
+                audio_end_ms: Err("no value supplied for audio_end_ms".to_string()),
+                content_index: Err("no value supplied for content_index".to_string()),
+                event_id: Ok(Default::default()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeClientEventConversationItemTruncate {
+        pub fn audio_end_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio_end_ms = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio_end_ms: {e}"));
+            self
+        }
+        pub fn content_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.content_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for content_index: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeClientEventConversationItemTruncateEventId>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeClientEventConversationItemTruncateType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeClientEventConversationItemTruncate>
+        for super::RealtimeClientEventConversationItemTruncate
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeClientEventConversationItemTruncate,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio_end_ms: value.audio_end_ms?,
+                content_index: value.content_index?,
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeClientEventConversationItemTruncate>
+        for RealtimeClientEventConversationItemTruncate
+    {
+        fn from(value: super::RealtimeClientEventConversationItemTruncate) -> Self {
+            Self {
+                audio_end_ms: Ok(value.audio_end_ms),
+                content_index: Ok(value.content_index),
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeClientEventInputAudioBufferAppend {
+        audio: ::std::result::Result<::std::string::String, ::std::string::String>,
+        event_id: ::std::result::Result<
+            ::std::option::Option<super::RealtimeClientEventInputAudioBufferAppendEventId>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeClientEventInputAudioBufferAppendType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeClientEventInputAudioBufferAppend {
+        fn default() -> Self {
+            Self {
+                audio: Err("no value supplied for audio".to_string()),
+                event_id: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeClientEventInputAudioBufferAppend {
+        pub fn audio<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeClientEventInputAudioBufferAppendEventId>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeClientEventInputAudioBufferAppendType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeClientEventInputAudioBufferAppend>
+        for super::RealtimeClientEventInputAudioBufferAppend
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeClientEventInputAudioBufferAppend,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio: value.audio?,
+                event_id: value.event_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeClientEventInputAudioBufferAppend>
+        for RealtimeClientEventInputAudioBufferAppend
+    {
+        fn from(value: super::RealtimeClientEventInputAudioBufferAppend) -> Self {
+            Self {
+                audio: Ok(value.audio),
+                event_id: Ok(value.event_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeClientEventInputAudioBufferClear {
+        event_id: ::std::result::Result<
+            ::std::option::Option<super::RealtimeClientEventInputAudioBufferClearEventId>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeClientEventInputAudioBufferClearType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeClientEventInputAudioBufferClear {
+        fn default() -> Self {
+            Self {
+                event_id: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeClientEventInputAudioBufferClear {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeClientEventInputAudioBufferClearEventId>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeClientEventInputAudioBufferClearType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeClientEventInputAudioBufferClear>
+        for super::RealtimeClientEventInputAudioBufferClear
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeClientEventInputAudioBufferClear,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeClientEventInputAudioBufferClear>
+        for RealtimeClientEventInputAudioBufferClear
+    {
+        fn from(value: super::RealtimeClientEventInputAudioBufferClear) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeClientEventInputAudioBufferCommit {
+        event_id: ::std::result::Result<
+            ::std::option::Option<super::RealtimeClientEventInputAudioBufferCommitEventId>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeClientEventInputAudioBufferCommitType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeClientEventInputAudioBufferCommit {
+        fn default() -> Self {
+            Self {
+                event_id: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeClientEventInputAudioBufferCommit {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeClientEventInputAudioBufferCommitEventId>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeClientEventInputAudioBufferCommitType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeClientEventInputAudioBufferCommit>
+        for super::RealtimeClientEventInputAudioBufferCommit
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeClientEventInputAudioBufferCommit,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeClientEventInputAudioBufferCommit>
+        for RealtimeClientEventInputAudioBufferCommit
+    {
+        fn from(value: super::RealtimeClientEventInputAudioBufferCommit) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeClientEventOutputAudioBufferClear {
+        event_id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeClientEventOutputAudioBufferClearType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeClientEventOutputAudioBufferClear {
+        fn default() -> Self {
+            Self {
+                event_id: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeClientEventOutputAudioBufferClear {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeClientEventOutputAudioBufferClearType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeClientEventOutputAudioBufferClear>
+        for super::RealtimeClientEventOutputAudioBufferClear
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeClientEventOutputAudioBufferClear,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeClientEventOutputAudioBufferClear>
+        for RealtimeClientEventOutputAudioBufferClear
+    {
+        fn from(value: super::RealtimeClientEventOutputAudioBufferClear) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeClientEventResponseCancel {
+        event_id: ::std::result::Result<
+            ::std::option::Option<super::RealtimeClientEventResponseCancelEventId>,
+            ::std::string::String,
+        >,
+        response_id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeClientEventResponseCancelType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeClientEventResponseCancel {
+        fn default() -> Self {
+            Self {
+                event_id: Ok(Default::default()),
+                response_id: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeClientEventResponseCancel {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeClientEventResponseCancelEventId>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn response_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeClientEventResponseCancelType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeClientEventResponseCancel>
+        for super::RealtimeClientEventResponseCancel
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeClientEventResponseCancel,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                response_id: value.response_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeClientEventResponseCancel>
+        for RealtimeClientEventResponseCancel
+    {
+        fn from(value: super::RealtimeClientEventResponseCancel) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                response_id: Ok(value.response_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeClientEventResponseCreate {
+        event_id: ::std::result::Result<
+            ::std::option::Option<super::RealtimeClientEventResponseCreateEventId>,
+            ::std::string::String,
+        >,
+        response: ::std::result::Result<
+            ::std::option::Option<super::RealtimeResponseCreateParams>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeClientEventResponseCreateType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeClientEventResponseCreate {
+        fn default() -> Self {
+            Self {
+                event_id: Ok(Default::default()),
+                response: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeClientEventResponseCreate {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeClientEventResponseCreateEventId>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeResponseCreateParams>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeClientEventResponseCreateType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeClientEventResponseCreate>
+        for super::RealtimeClientEventResponseCreate
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeClientEventResponseCreate,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                response: value.response?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeClientEventResponseCreate>
+        for RealtimeClientEventResponseCreate
+    {
+        fn from(value: super::RealtimeClientEventResponseCreate) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                response: Ok(value.response),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeClientEventSessionUpdate {
+        event_id: ::std::result::Result<
+            ::std::option::Option<super::RealtimeClientEventSessionUpdateEventId>,
+            ::std::string::String,
+        >,
+        session: ::std::result::Result<
+            super::RealtimeClientEventSessionUpdateSession,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeClientEventSessionUpdateType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeClientEventSessionUpdate {
+        fn default() -> Self {
+            Self {
+                event_id: Ok(Default::default()),
+                session: Err("no value supplied for session".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeClientEventSessionUpdate {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeClientEventSessionUpdateEventId>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn session<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeClientEventSessionUpdateSession>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.session = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for session: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeClientEventSessionUpdateType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeClientEventSessionUpdate>
+        for super::RealtimeClientEventSessionUpdate
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeClientEventSessionUpdate,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                session: value.session?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeClientEventSessionUpdate>
+        for RealtimeClientEventSessionUpdate
+    {
+        fn from(value: super::RealtimeClientEventSessionUpdate) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                session: Ok(value.session),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeConversationItemFunctionCall {
+        arguments: ::std::result::Result<::std::string::String, ::std::string::String>,
+        call_id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        name: ::std::result::Result<::std::string::String, ::std::string::String>,
+        object: ::std::result::Result<
+            ::std::option::Option<super::RealtimeConversationItemFunctionCallObject>,
+            ::std::string::String,
+        >,
+        status: ::std::result::Result<
+            ::std::option::Option<super::RealtimeConversationItemFunctionCallStatus>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeConversationItemFunctionCallType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeConversationItemFunctionCall {
+        fn default() -> Self {
+            Self {
+                arguments: Err("no value supplied for arguments".to_string()),
+                call_id: Ok(Default::default()),
+                id: Ok(Default::default()),
+                name: Err("no value supplied for name".to_string()),
+                object: Ok(Default::default()),
+                status: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeConversationItemFunctionCall {
+        pub fn arguments<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.arguments = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for arguments: {e}"));
+            self
+        }
+        pub fn call_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.call_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for call_id: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn name<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.name = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for name: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeConversationItemFunctionCallObject>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+        pub fn status<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeConversationItemFunctionCallStatus>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.status = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for status: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeConversationItemFunctionCallType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeConversationItemFunctionCall>
+        for super::RealtimeConversationItemFunctionCall
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeConversationItemFunctionCall,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                arguments: value.arguments?,
+                call_id: value.call_id?,
+                id: value.id?,
+                name: value.name?,
+                object: value.object?,
+                status: value.status?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeConversationItemFunctionCall>
+        for RealtimeConversationItemFunctionCall
+    {
+        fn from(value: super::RealtimeConversationItemFunctionCall) -> Self {
+            Self {
+                arguments: Ok(value.arguments),
+                call_id: Ok(value.call_id),
+                id: Ok(value.id),
+                name: Ok(value.name),
+                object: Ok(value.object),
+                status: Ok(value.status),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeConversationItemFunctionCallOutput {
+        call_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        object: ::std::result::Result<
+            ::std::option::Option<super::RealtimeConversationItemFunctionCallOutputObject>,
+            ::std::string::String,
+        >,
+        output: ::std::result::Result<::std::string::String, ::std::string::String>,
+        status: ::std::result::Result<
+            ::std::option::Option<super::RealtimeConversationItemFunctionCallOutputStatus>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeConversationItemFunctionCallOutputType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeConversationItemFunctionCallOutput {
+        fn default() -> Self {
+            Self {
+                call_id: Err("no value supplied for call_id".to_string()),
+                id: Ok(Default::default()),
+                object: Ok(Default::default()),
+                output: Err("no value supplied for output".to_string()),
+                status: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeConversationItemFunctionCallOutput {
+        pub fn call_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.call_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for call_id: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeConversationItemFunctionCallOutputObject>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+        pub fn output<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output: {e}"));
+            self
+        }
+        pub fn status<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeConversationItemFunctionCallOutputStatus>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.status = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for status: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeConversationItemFunctionCallOutputType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeConversationItemFunctionCallOutput>
+        for super::RealtimeConversationItemFunctionCallOutput
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeConversationItemFunctionCallOutput,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                call_id: value.call_id?,
+                id: value.id?,
+                object: value.object?,
+                output: value.output?,
+                status: value.status?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeConversationItemFunctionCallOutput>
+        for RealtimeConversationItemFunctionCallOutput
+    {
+        fn from(value: super::RealtimeConversationItemFunctionCallOutput) -> Self {
+            Self {
+                call_id: Ok(value.call_id),
+                id: Ok(value.id),
+                object: Ok(value.object),
+                output: Ok(value.output),
+                status: Ok(value.status),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeConversationItemMessageAssistant {
+        content: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeConversationItemMessageAssistantContentItem>,
+            ::std::string::String,
+        >,
+        id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        object: ::std::result::Result<
+            ::std::option::Option<super::RealtimeConversationItemMessageAssistantObject>,
+            ::std::string::String,
+        >,
+        role: ::std::result::Result<
+            super::RealtimeConversationItemMessageAssistantRole,
+            ::std::string::String,
+        >,
+        status: ::std::result::Result<
+            ::std::option::Option<super::RealtimeConversationItemMessageAssistantStatus>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeConversationItemMessageAssistantType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeConversationItemMessageAssistant {
+        fn default() -> Self {
+            Self {
+                content: Err("no value supplied for content".to_string()),
+                id: Ok(Default::default()),
+                object: Ok(Default::default()),
+                role: Err("no value supplied for role".to_string()),
+                status: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeConversationItemMessageAssistant {
+        pub fn content<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::RealtimeConversationItemMessageAssistantContentItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.content = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for content: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeConversationItemMessageAssistantObject>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+        pub fn role<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeConversationItemMessageAssistantRole>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.role = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for role: {e}"));
+            self
+        }
+        pub fn status<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeConversationItemMessageAssistantStatus>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.status = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for status: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeConversationItemMessageAssistantType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeConversationItemMessageAssistant>
+        for super::RealtimeConversationItemMessageAssistant
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeConversationItemMessageAssistant,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                content: value.content?,
+                id: value.id?,
+                object: value.object?,
+                role: value.role?,
+                status: value.status?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeConversationItemMessageAssistant>
+        for RealtimeConversationItemMessageAssistant
+    {
+        fn from(value: super::RealtimeConversationItemMessageAssistant) -> Self {
+            Self {
+                content: Ok(value.content),
+                id: Ok(value.id),
+                object: Ok(value.object),
+                role: Ok(value.role),
+                status: Ok(value.status),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeConversationItemMessageAssistantContentItem {
+        audio: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        text: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        transcript: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            ::std::option::Option<super::RealtimeConversationItemMessageAssistantContentItemType>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeConversationItemMessageAssistantContentItem {
+        fn default() -> Self {
+            Self {
+                audio: Ok(Default::default()),
+                text: Ok(Default::default()),
+                transcript: Ok(Default::default()),
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeConversationItemMessageAssistantContentItem {
+        pub fn audio<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio: {e}"));
+            self
+        }
+        pub fn text<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text: {e}"));
+            self
+        }
+        pub fn transcript<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.transcript = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for transcript: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    super::RealtimeConversationItemMessageAssistantContentItemType,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeConversationItemMessageAssistantContentItem>
+        for super::RealtimeConversationItemMessageAssistantContentItem
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeConversationItemMessageAssistantContentItem,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio: value.audio?,
+                text: value.text?,
+                transcript: value.transcript?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeConversationItemMessageAssistantContentItem>
+        for RealtimeConversationItemMessageAssistantContentItem
+    {
+        fn from(value: super::RealtimeConversationItemMessageAssistantContentItem) -> Self {
+            Self {
+                audio: Ok(value.audio),
+                text: Ok(value.text),
+                transcript: Ok(value.transcript),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeConversationItemMessageSystem {
+        content: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeConversationItemMessageSystemContentItem>,
+            ::std::string::String,
+        >,
+        id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        object: ::std::result::Result<
+            ::std::option::Option<super::RealtimeConversationItemMessageSystemObject>,
+            ::std::string::String,
+        >,
+        role: ::std::result::Result<
+            super::RealtimeConversationItemMessageSystemRole,
+            ::std::string::String,
+        >,
+        status: ::std::result::Result<
+            ::std::option::Option<super::RealtimeConversationItemMessageSystemStatus>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeConversationItemMessageSystemType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeConversationItemMessageSystem {
+        fn default() -> Self {
+            Self {
+                content: Err("no value supplied for content".to_string()),
+                id: Ok(Default::default()),
+                object: Ok(Default::default()),
+                role: Err("no value supplied for role".to_string()),
+                status: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeConversationItemMessageSystem {
+        pub fn content<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::RealtimeConversationItemMessageSystemContentItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.content = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for content: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeConversationItemMessageSystemObject>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+        pub fn role<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeConversationItemMessageSystemRole>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.role = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for role: {e}"));
+            self
+        }
+        pub fn status<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeConversationItemMessageSystemStatus>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.status = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for status: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeConversationItemMessageSystemType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeConversationItemMessageSystem>
+        for super::RealtimeConversationItemMessageSystem
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeConversationItemMessageSystem,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                content: value.content?,
+                id: value.id?,
+                object: value.object?,
+                role: value.role?,
+                status: value.status?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeConversationItemMessageSystem>
+        for RealtimeConversationItemMessageSystem
+    {
+        fn from(value: super::RealtimeConversationItemMessageSystem) -> Self {
+            Self {
+                content: Ok(value.content),
+                id: Ok(value.id),
+                object: Ok(value.object),
+                role: Ok(value.role),
+                status: Ok(value.status),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeConversationItemMessageSystemContentItem {
+        text: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            ::std::option::Option<super::RealtimeConversationItemMessageSystemContentItemType>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeConversationItemMessageSystemContentItem {
+        fn default() -> Self {
+            Self {
+                text: Ok(Default::default()),
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeConversationItemMessageSystemContentItem {
+        pub fn text<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeConversationItemMessageSystemContentItemType>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeConversationItemMessageSystemContentItem>
+        for super::RealtimeConversationItemMessageSystemContentItem
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeConversationItemMessageSystemContentItem,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                text: value.text?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeConversationItemMessageSystemContentItem>
+        for RealtimeConversationItemMessageSystemContentItem
+    {
+        fn from(value: super::RealtimeConversationItemMessageSystemContentItem) -> Self {
+            Self {
+                text: Ok(value.text),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeConversationItemMessageUser {
+        content: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeConversationItemMessageUserContentItem>,
+            ::std::string::String,
+        >,
+        id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        object: ::std::result::Result<
+            ::std::option::Option<super::RealtimeConversationItemMessageUserObject>,
+            ::std::string::String,
+        >,
+        role: ::std::result::Result<
+            super::RealtimeConversationItemMessageUserRole,
+            ::std::string::String,
+        >,
+        status: ::std::result::Result<
+            ::std::option::Option<super::RealtimeConversationItemMessageUserStatus>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeConversationItemMessageUserType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeConversationItemMessageUser {
+        fn default() -> Self {
+            Self {
+                content: Err("no value supplied for content".to_string()),
+                id: Ok(Default::default()),
+                object: Ok(Default::default()),
+                role: Err("no value supplied for role".to_string()),
+                status: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeConversationItemMessageUser {
+        pub fn content<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::RealtimeConversationItemMessageUserContentItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.content = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for content: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeConversationItemMessageUserObject>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+        pub fn role<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeConversationItemMessageUserRole>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.role = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for role: {e}"));
+            self
+        }
+        pub fn status<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeConversationItemMessageUserStatus>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.status = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for status: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeConversationItemMessageUserType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeConversationItemMessageUser>
+        for super::RealtimeConversationItemMessageUser
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeConversationItemMessageUser,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                content: value.content?,
+                id: value.id?,
+                object: value.object?,
+                role: value.role?,
+                status: value.status?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeConversationItemMessageUser>
+        for RealtimeConversationItemMessageUser
+    {
+        fn from(value: super::RealtimeConversationItemMessageUser) -> Self {
+            Self {
+                content: Ok(value.content),
+                id: Ok(value.id),
+                object: Ok(value.object),
+                role: Ok(value.role),
+                status: Ok(value.status),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeConversationItemMessageUserContentItem {
+        audio: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        detail: ::std::result::Result<
+            ::std::option::Option<super::RealtimeConversationItemMessageUserContentItemDetail>,
+            ::std::string::String,
+        >,
+        image_url: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        text: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        transcript: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            ::std::option::Option<super::RealtimeConversationItemMessageUserContentItemType>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeConversationItemMessageUserContentItem {
+        fn default() -> Self {
+            Self {
+                audio: Ok(Default::default()),
+                detail: Ok(Default::default()),
+                image_url: Ok(Default::default()),
+                text: Ok(Default::default()),
+                transcript: Ok(Default::default()),
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeConversationItemMessageUserContentItem {
+        pub fn audio<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio: {e}"));
+            self
+        }
+        pub fn detail<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeConversationItemMessageUserContentItemDetail>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.detail = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for detail: {e}"));
+            self
+        }
+        pub fn image_url<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.image_url = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for image_url: {e}"));
+            self
+        }
+        pub fn text<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text: {e}"));
+            self
+        }
+        pub fn transcript<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.transcript = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for transcript: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeConversationItemMessageUserContentItemType>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeConversationItemMessageUserContentItem>
+        for super::RealtimeConversationItemMessageUserContentItem
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeConversationItemMessageUserContentItem,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio: value.audio?,
+                detail: value.detail?,
+                image_url: value.image_url?,
+                text: value.text?,
+                transcript: value.transcript?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeConversationItemMessageUserContentItem>
+        for RealtimeConversationItemMessageUserContentItem
+    {
+        fn from(value: super::RealtimeConversationItemMessageUserContentItem) -> Self {
+            Self {
+                audio: Ok(value.audio),
+                detail: Ok(value.detail),
+                image_url: Ok(value.image_url),
+                text: Ok(value.text),
+                transcript: Ok(value.transcript),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeCreateClientSecretRequest {
+        expires_after: ::std::result::Result<
+            ::std::option::Option<super::ClientSecretExpiration>,
+            ::std::string::String,
+        >,
+        session: ::std::result::Result<
+            ::std::option::Option<super::SessionConfiguration>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeCreateClientSecretRequest {
+        fn default() -> Self {
+            Self {
+                expires_after: Ok(Default::default()),
+                session: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeCreateClientSecretRequest {
+        pub fn expires_after<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::ClientSecretExpiration>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.expires_after = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for expires_after: {e}"));
+            self
+        }
+        pub fn session<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::SessionConfiguration>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.session = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for session: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeCreateClientSecretRequest>
+        for super::RealtimeCreateClientSecretRequest
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeCreateClientSecretRequest,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                expires_after: value.expires_after?,
+                session: value.session?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeCreateClientSecretRequest>
+        for RealtimeCreateClientSecretRequest
+    {
+        fn from(value: super::RealtimeCreateClientSecretRequest) -> Self {
+            Self {
+                expires_after: Ok(value.expires_after),
+                session: Ok(value.session),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeCreateClientSecretResponse {
+        expires_at: ::std::result::Result<i64, ::std::string::String>,
+        session: ::std::result::Result<super::SessionConfiguration, ::std::string::String>,
+        value: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeCreateClientSecretResponse {
+        fn default() -> Self {
+            Self {
+                expires_at: Err("no value supplied for expires_at".to_string()),
+                session: Err("no value supplied for session".to_string()),
+                value: Err("no value supplied for value".to_string()),
+            }
+        }
+    }
+    impl RealtimeCreateClientSecretResponse {
+        pub fn expires_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.expires_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for expires_at: {e}"));
+            self
+        }
+        pub fn session<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::SessionConfiguration>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.session = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for session: {e}"));
+            self
+        }
+        pub fn value<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.value = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for value: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeCreateClientSecretResponse>
+        for super::RealtimeCreateClientSecretResponse
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeCreateClientSecretResponse,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                expires_at: value.expires_at?,
+                session: value.session?,
+                value: value.value?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeCreateClientSecretResponse>
+        for RealtimeCreateClientSecretResponse
+    {
+        fn from(value: super::RealtimeCreateClientSecretResponse) -> Self {
+            Self {
+                expires_at: Ok(value.expires_at),
+                session: Ok(value.session),
+                value: Ok(value.value),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeFunctionTool {
+        description: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        name: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        parameters: ::std::result::Result<
+            ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            ::std::option::Option<super::RealtimeFunctionToolType>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeFunctionTool {
+        fn default() -> Self {
+            Self {
+                description: Ok(Default::default()),
+                name: Ok(Default::default()),
+                parameters: Ok(Default::default()),
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeFunctionTool {
+        pub fn description<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.description = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for description: {e}"));
+            self
+        }
+        pub fn name<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.name = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for name: {e}"));
+            self
+        }
+        pub fn parameters<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.parameters = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for parameters: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeFunctionToolType>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeFunctionTool> for super::RealtimeFunctionTool {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeFunctionTool,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                description: value.description?,
+                name: value.name?,
+                parameters: value.parameters?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeFunctionTool> for RealtimeFunctionTool {
+        fn from(value: super::RealtimeFunctionTool) -> Self {
+            Self {
+                description: Ok(value.description),
+                name: Ok(value.name),
+                parameters: Ok(value.parameters),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeMcpApprovalRequest {
+        arguments: ::std::result::Result<::std::string::String, ::std::string::String>,
+        id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        name: ::std::result::Result<::std::string::String, ::std::string::String>,
+        server_label: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<super::RealtimeMcpApprovalRequestType, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeMcpApprovalRequest {
+        fn default() -> Self {
+            Self {
+                arguments: Err("no value supplied for arguments".to_string()),
+                id: Err("no value supplied for id".to_string()),
+                name: Err("no value supplied for name".to_string()),
+                server_label: Err("no value supplied for server_label".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeMcpApprovalRequest {
+        pub fn arguments<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.arguments = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for arguments: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn name<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.name = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for name: {e}"));
+            self
+        }
+        pub fn server_label<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.server_label = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for server_label: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeMcpApprovalRequestType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeMcpApprovalRequest> for super::RealtimeMcpApprovalRequest {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeMcpApprovalRequest,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                arguments: value.arguments?,
+                id: value.id?,
+                name: value.name?,
+                server_label: value.server_label?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeMcpApprovalRequest> for RealtimeMcpApprovalRequest {
+        fn from(value: super::RealtimeMcpApprovalRequest) -> Self {
+            Self {
+                arguments: Ok(value.arguments),
+                id: Ok(value.id),
+                name: Ok(value.name),
+                server_label: Ok(value.server_label),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeMcpApprovalResponse {
+        approval_request_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        approve: ::std::result::Result<bool, ::std::string::String>,
+        id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        reason: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<super::RealtimeMcpApprovalResponseType, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeMcpApprovalResponse {
+        fn default() -> Self {
+            Self {
+                approval_request_id: Err("no value supplied for approval_request_id".to_string()),
+                approve: Err("no value supplied for approve".to_string()),
+                id: Err("no value supplied for id".to_string()),
+                reason: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeMcpApprovalResponse {
+        pub fn approval_request_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.approval_request_id = value.try_into().map_err(|e| {
+                format!("error converting supplied value for approval_request_id: {e}")
+            });
+            self
+        }
+        pub fn approve<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<bool>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.approve = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for approve: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn reason<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.reason = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for reason: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeMcpApprovalResponseType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeMcpApprovalResponse> for super::RealtimeMcpApprovalResponse {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeMcpApprovalResponse,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                approval_request_id: value.approval_request_id?,
+                approve: value.approve?,
+                id: value.id?,
+                reason: value.reason?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeMcpApprovalResponse> for RealtimeMcpApprovalResponse {
+        fn from(value: super::RealtimeMcpApprovalResponse) -> Self {
+            Self {
+                approval_request_id: Ok(value.approval_request_id),
+                approve: Ok(value.approve),
+                id: Ok(value.id),
+                reason: Ok(value.reason),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeMcpListTools {
+        id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        server_label: ::std::result::Result<::std::string::String, ::std::string::String>,
+        tools:
+            ::std::result::Result<::std::vec::Vec<super::McpListToolsTool>, ::std::string::String>,
+        type_: ::std::result::Result<super::RealtimeMcpListToolsType, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeMcpListTools {
+        fn default() -> Self {
+            Self {
+                id: Ok(Default::default()),
+                server_label: Err("no value supplied for server_label".to_string()),
+                tools: Err("no value supplied for tools".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeMcpListTools {
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn server_label<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.server_label = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for server_label: {e}"));
+            self
+        }
+        pub fn tools<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<super::McpListToolsTool>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.tools = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for tools: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeMcpListToolsType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeMcpListTools> for super::RealtimeMcpListTools {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeMcpListTools,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                id: value.id?,
+                server_label: value.server_label?,
+                tools: value.tools?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeMcpListTools> for RealtimeMcpListTools {
+        fn from(value: super::RealtimeMcpListTools) -> Self {
+            Self {
+                id: Ok(value.id),
+                server_label: Ok(value.server_label),
+                tools: Ok(value.tools),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeMcpProtocolError {
+        code: ::std::result::Result<i64, ::std::string::String>,
+        message: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<super::RealtimeMcpProtocolErrorType, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeMcpProtocolError {
+        fn default() -> Self {
+            Self {
+                code: Err("no value supplied for code".to_string()),
+                message: Err("no value supplied for message".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeMcpProtocolError {
+        pub fn code<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.code = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for code: {e}"));
+            self
+        }
+        pub fn message<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.message = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for message: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeMcpProtocolErrorType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeMcpProtocolError> for super::RealtimeMcpProtocolError {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeMcpProtocolError,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                code: value.code?,
+                message: value.message?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeMcpProtocolError> for RealtimeMcpProtocolError {
+        fn from(value: super::RealtimeMcpProtocolError) -> Self {
+            Self {
+                code: Ok(value.code),
+                message: Ok(value.message),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeMcpToolCall {
+        approval_request_id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        arguments: ::std::result::Result<::std::string::String, ::std::string::String>,
+        error: ::std::result::Result<
+            ::std::option::Option<super::RealtimeMcpToolCallError>,
+            ::std::string::String,
+        >,
+        id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        name: ::std::result::Result<::std::string::String, ::std::string::String>,
+        output: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        server_label: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<super::RealtimeMcpToolCallType, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeMcpToolCall {
+        fn default() -> Self {
+            Self {
+                approval_request_id: Ok(Default::default()),
+                arguments: Err("no value supplied for arguments".to_string()),
+                error: Ok(Default::default()),
+                id: Err("no value supplied for id".to_string()),
+                name: Err("no value supplied for name".to_string()),
+                output: Ok(Default::default()),
+                server_label: Err("no value supplied for server_label".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeMcpToolCall {
+        pub fn approval_request_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.approval_request_id = value.try_into().map_err(|e| {
+                format!("error converting supplied value for approval_request_id: {e}")
+            });
+            self
+        }
+        pub fn arguments<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.arguments = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for arguments: {e}"));
+            self
+        }
+        pub fn error<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeMcpToolCallError>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.error = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for error: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn name<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.name = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for name: {e}"));
+            self
+        }
+        pub fn output<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output: {e}"));
+            self
+        }
+        pub fn server_label<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.server_label = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for server_label: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeMcpToolCallType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeMcpToolCall> for super::RealtimeMcpToolCall {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeMcpToolCall,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                approval_request_id: value.approval_request_id?,
+                arguments: value.arguments?,
+                error: value.error?,
+                id: value.id?,
+                name: value.name?,
+                output: value.output?,
+                server_label: value.server_label?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeMcpToolCall> for RealtimeMcpToolCall {
+        fn from(value: super::RealtimeMcpToolCall) -> Self {
+            Self {
+                approval_request_id: Ok(value.approval_request_id),
+                arguments: Ok(value.arguments),
+                error: Ok(value.error),
+                id: Ok(value.id),
+                name: Ok(value.name),
+                output: Ok(value.output),
+                server_label: Ok(value.server_label),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeMcpToolExecutionError {
+        message: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_:
+            ::std::result::Result<super::RealtimeMcpToolExecutionErrorType, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeMcpToolExecutionError {
+        fn default() -> Self {
+            Self {
+                message: Err("no value supplied for message".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeMcpToolExecutionError {
+        pub fn message<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.message = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for message: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeMcpToolExecutionErrorType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeMcpToolExecutionError>
+        for super::RealtimeMcpToolExecutionError
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeMcpToolExecutionError,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                message: value.message?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeMcpToolExecutionError> for RealtimeMcpToolExecutionError {
+        fn from(value: super::RealtimeMcpToolExecutionError) -> Self {
+            Self {
+                message: Ok(value.message),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeMcphttpError {
+        code: ::std::result::Result<i64, ::std::string::String>,
+        message: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<super::RealtimeMcphttpErrorType, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeMcphttpError {
+        fn default() -> Self {
+            Self {
+                code: Err("no value supplied for code".to_string()),
+                message: Err("no value supplied for message".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeMcphttpError {
+        pub fn code<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.code = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for code: {e}"));
+            self
+        }
+        pub fn message<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.message = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for message: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeMcphttpErrorType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeMcphttpError> for super::RealtimeMcphttpError {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeMcphttpError,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                code: value.code?,
+                message: value.message?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeMcphttpError> for RealtimeMcphttpError {
+        fn from(value: super::RealtimeMcphttpError) -> Self {
+            Self {
+                code: Ok(value.code),
+                message: Ok(value.message),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeReasoning {
+        effort: ::std::result::Result<
+            ::std::option::Option<super::RealtimeReasoningEffort>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeReasoning {
+        fn default() -> Self {
+            Self {
+                effort: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeReasoning {
+        pub fn effort<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeReasoningEffort>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.effort = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for effort: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeReasoning> for super::RealtimeReasoning {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeReasoning,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                effort: value.effort?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeReasoning> for RealtimeReasoning {
+        fn from(value: super::RealtimeReasoning) -> Self {
+            Self {
+                effort: Ok(value.effort),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeResponse {
+        audio: ::std::result::Result<
+            ::std::option::Option<super::RealtimeResponseAudio>,
+            ::std::string::String,
+        >,
+        conversation_id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        max_output_tokens: ::std::result::Result<
+            ::std::option::Option<super::RealtimeResponseMaxOutputTokens>,
+            ::std::string::String,
+        >,
+        metadata:
+            ::std::result::Result<::std::option::Option<super::Metadata>, ::std::string::String>,
+        object: ::std::result::Result<
+            ::std::option::Option<super::RealtimeResponseObject>,
+            ::std::string::String,
+        >,
+        output: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeConversationItem>,
+            ::std::string::String,
+        >,
+        output_modalities: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeResponseOutputModalitiesItem>,
+            ::std::string::String,
+        >,
+        status: ::std::result::Result<
+            ::std::option::Option<super::RealtimeResponseStatus>,
+            ::std::string::String,
+        >,
+        status_details: ::std::result::Result<
+            ::std::option::Option<super::RealtimeResponseStatusDetails>,
+            ::std::string::String,
+        >,
+        usage: ::std::result::Result<
+            ::std::option::Option<super::RealtimeResponseUsage>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeResponse {
+        fn default() -> Self {
+            Self {
+                audio: Ok(Default::default()),
+                conversation_id: Ok(Default::default()),
+                id: Ok(Default::default()),
+                max_output_tokens: Ok(Default::default()),
+                metadata: Ok(Default::default()),
+                object: Ok(Default::default()),
+                output: Ok(Default::default()),
+                output_modalities: Ok(Default::default()),
+                status: Ok(Default::default()),
+                status_details: Ok(Default::default()),
+                usage: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeResponse {
+        pub fn audio<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeResponseAudio>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio: {e}"));
+            self
+        }
+        pub fn conversation_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.conversation_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for conversation_id: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn max_output_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeResponseMaxOutputTokens>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.max_output_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for max_output_tokens: {e}"));
+            self
+        }
+        pub fn metadata<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::Metadata>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.metadata = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for metadata: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeResponseObject>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+        pub fn output<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<super::RealtimeConversationItem>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output: {e}"));
+            self
+        }
+        pub fn output_modalities<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::RealtimeResponseOutputModalitiesItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_modalities = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_modalities: {e}"));
+            self
+        }
+        pub fn status<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeResponseStatus>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.status = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for status: {e}"));
+            self
+        }
+        pub fn status_details<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeResponseStatusDetails>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.status_details = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for status_details: {e}"));
+            self
+        }
+        pub fn usage<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeResponseUsage>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.usage = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for usage: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeResponse> for super::RealtimeResponse {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeResponse,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio: value.audio?,
+                conversation_id: value.conversation_id?,
+                id: value.id?,
+                max_output_tokens: value.max_output_tokens?,
+                metadata: value.metadata?,
+                object: value.object?,
+                output: value.output?,
+                output_modalities: value.output_modalities?,
+                status: value.status?,
+                status_details: value.status_details?,
+                usage: value.usage?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeResponse> for RealtimeResponse {
+        fn from(value: super::RealtimeResponse) -> Self {
+            Self {
+                audio: Ok(value.audio),
+                conversation_id: Ok(value.conversation_id),
+                id: Ok(value.id),
+                max_output_tokens: Ok(value.max_output_tokens),
+                metadata: Ok(value.metadata),
+                object: Ok(value.object),
+                output: Ok(value.output),
+                output_modalities: Ok(value.output_modalities),
+                status: Ok(value.status),
+                status_details: Ok(value.status_details),
+                usage: Ok(value.usage),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeResponseAudio {
+        output: ::std::result::Result<
+            ::std::option::Option<super::RealtimeResponseAudioOutput>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeResponseAudio {
+        fn default() -> Self {
+            Self {
+                output: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeResponseAudio {
+        pub fn output<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeResponseAudioOutput>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeResponseAudio> for super::RealtimeResponseAudio {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeResponseAudio,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                output: value.output?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeResponseAudio> for RealtimeResponseAudio {
+        fn from(value: super::RealtimeResponseAudio) -> Self {
+            Self {
+                output: Ok(value.output),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeResponseAudioOutput {
+        format: ::std::result::Result<
+            ::std::option::Option<super::RealtimeAudioFormats>,
+            ::std::string::String,
+        >,
+        voice: ::std::result::Result<
+            ::std::option::Option<super::VoiceIdsShared>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeResponseAudioOutput {
+        fn default() -> Self {
+            Self {
+                format: Ok(Default::default()),
+                voice: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeResponseAudioOutput {
+        pub fn format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeAudioFormats>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for format: {e}"));
+            self
+        }
+        pub fn voice<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::VoiceIdsShared>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.voice = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for voice: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeResponseAudioOutput> for super::RealtimeResponseAudioOutput {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeResponseAudioOutput,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                format: value.format?,
+                voice: value.voice?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeResponseAudioOutput> for RealtimeResponseAudioOutput {
+        fn from(value: super::RealtimeResponseAudioOutput) -> Self {
+            Self {
+                format: Ok(value.format),
+                voice: Ok(value.voice),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeResponseCreateParams {
+        audio: ::std::result::Result<
+            ::std::option::Option<super::RealtimeResponseCreateParamsAudio>,
+            ::std::string::String,
+        >,
+        conversation: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        input: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeConversationItem>,
+            ::std::string::String,
+        >,
+        instructions: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        max_output_tokens: ::std::result::Result<
+            ::std::option::Option<super::RealtimeResponseCreateParamsMaxOutputTokens>,
+            ::std::string::String,
+        >,
+        metadata:
+            ::std::result::Result<::std::option::Option<super::Metadata>, ::std::string::String>,
+        output_modalities: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeResponseCreateParamsOutputModalitiesItem>,
+            ::std::string::String,
+        >,
+        parallel_tool_calls:
+            ::std::result::Result<::std::option::Option<bool>, ::std::string::String>,
+        prompt: ::std::result::Result<::std::option::Option<super::Prompt>, ::std::string::String>,
+        reasoning: ::std::result::Result<
+            ::std::option::Option<super::RealtimeReasoning>,
+            ::std::string::String,
+        >,
+        tool_choice: ::std::result::Result<
+            ::std::option::Option<super::RealtimeResponseCreateParamsToolChoice>,
+            ::std::string::String,
+        >,
+        tools: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeResponseCreateParamsToolsItem>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeResponseCreateParams {
+        fn default() -> Self {
+            Self {
+                audio: Ok(Default::default()),
+                conversation: Ok(Default::default()),
+                input: Ok(Default::default()),
+                instructions: Ok(Default::default()),
+                max_output_tokens: Ok(Default::default()),
+                metadata: Ok(Default::default()),
+                output_modalities: Ok(Default::default()),
+                parallel_tool_calls: Ok(Default::default()),
+                prompt: Ok(Default::default()),
+                reasoning: Ok(Default::default()),
+                tool_choice: Ok(Default::default()),
+                tools: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeResponseCreateParams {
+        pub fn audio<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeResponseCreateParamsAudio>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio: {e}"));
+            self
+        }
+        pub fn conversation<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.conversation = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for conversation: {e}"));
+            self
+        }
+        pub fn input<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<super::RealtimeConversationItem>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for input: {e}"));
+            self
+        }
+        pub fn instructions<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.instructions = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for instructions: {e}"));
+            self
+        }
+        pub fn max_output_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeResponseCreateParamsMaxOutputTokens>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.max_output_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for max_output_tokens: {e}"));
+            self
+        }
+        pub fn metadata<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::Metadata>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.metadata = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for metadata: {e}"));
+            self
+        }
+        pub fn output_modalities<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::RealtimeResponseCreateParamsOutputModalitiesItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_modalities = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_modalities: {e}"));
+            self
+        }
+        pub fn parallel_tool_calls<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<bool>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.parallel_tool_calls = value.try_into().map_err(|e| {
+                format!("error converting supplied value for parallel_tool_calls: {e}")
+            });
+            self
+        }
+        pub fn prompt<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::Prompt>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prompt = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for prompt: {e}"));
+            self
+        }
+        pub fn reasoning<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeReasoning>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.reasoning = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for reasoning: {e}"));
+            self
+        }
+        pub fn tool_choice<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeResponseCreateParamsToolChoice>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.tool_choice = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for tool_choice: {e}"));
+            self
+        }
+        pub fn tools<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::RealtimeResponseCreateParamsToolsItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.tools = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for tools: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeResponseCreateParams> for super::RealtimeResponseCreateParams {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeResponseCreateParams,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio: value.audio?,
+                conversation: value.conversation?,
+                input: value.input?,
+                instructions: value.instructions?,
+                max_output_tokens: value.max_output_tokens?,
+                metadata: value.metadata?,
+                output_modalities: value.output_modalities?,
+                parallel_tool_calls: value.parallel_tool_calls?,
+                prompt: value.prompt?,
+                reasoning: value.reasoning?,
+                tool_choice: value.tool_choice?,
+                tools: value.tools?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeResponseCreateParams> for RealtimeResponseCreateParams {
+        fn from(value: super::RealtimeResponseCreateParams) -> Self {
+            Self {
+                audio: Ok(value.audio),
+                conversation: Ok(value.conversation),
+                input: Ok(value.input),
+                instructions: Ok(value.instructions),
+                max_output_tokens: Ok(value.max_output_tokens),
+                metadata: Ok(value.metadata),
+                output_modalities: Ok(value.output_modalities),
+                parallel_tool_calls: Ok(value.parallel_tool_calls),
+                prompt: Ok(value.prompt),
+                reasoning: Ok(value.reasoning),
+                tool_choice: Ok(value.tool_choice),
+                tools: Ok(value.tools),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeResponseCreateParamsAudio {
+        output: ::std::result::Result<
+            ::std::option::Option<super::RealtimeResponseCreateParamsAudioOutput>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeResponseCreateParamsAudio {
+        fn default() -> Self {
+            Self {
+                output: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeResponseCreateParamsAudio {
+        pub fn output<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeResponseCreateParamsAudioOutput>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeResponseCreateParamsAudio>
+        for super::RealtimeResponseCreateParamsAudio
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeResponseCreateParamsAudio,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                output: value.output?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeResponseCreateParamsAudio>
+        for RealtimeResponseCreateParamsAudio
+    {
+        fn from(value: super::RealtimeResponseCreateParamsAudio) -> Self {
+            Self {
+                output: Ok(value.output),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeResponseCreateParamsAudioOutput {
+        format: ::std::result::Result<
+            ::std::option::Option<super::RealtimeAudioFormats>,
+            ::std::string::String,
+        >,
+        voice: ::std::result::Result<
+            ::std::option::Option<super::VoiceIdsOrCustomVoice>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeResponseCreateParamsAudioOutput {
+        fn default() -> Self {
+            Self {
+                format: Ok(Default::default()),
+                voice: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeResponseCreateParamsAudioOutput {
+        pub fn format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeAudioFormats>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for format: {e}"));
+            self
+        }
+        pub fn voice<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::VoiceIdsOrCustomVoice>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.voice = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for voice: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeResponseCreateParamsAudioOutput>
+        for super::RealtimeResponseCreateParamsAudioOutput
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeResponseCreateParamsAudioOutput,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                format: value.format?,
+                voice: value.voice?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeResponseCreateParamsAudioOutput>
+        for RealtimeResponseCreateParamsAudioOutput
+    {
+        fn from(value: super::RealtimeResponseCreateParamsAudioOutput) -> Self {
+            Self {
+                format: Ok(value.format),
+                voice: Ok(value.voice),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeResponseStatusDetails {
+        error: ::std::result::Result<
+            ::std::option::Option<super::RealtimeResponseStatusDetailsError>,
+            ::std::string::String,
+        >,
+        reason: ::std::result::Result<
+            ::std::option::Option<super::RealtimeResponseStatusDetailsReason>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            ::std::option::Option<super::RealtimeResponseStatusDetailsType>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeResponseStatusDetails {
+        fn default() -> Self {
+            Self {
+                error: Ok(Default::default()),
+                reason: Ok(Default::default()),
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeResponseStatusDetails {
+        pub fn error<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeResponseStatusDetailsError>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.error = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for error: {e}"));
+            self
+        }
+        pub fn reason<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeResponseStatusDetailsReason>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.reason = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for reason: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeResponseStatusDetailsType>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeResponseStatusDetails>
+        for super::RealtimeResponseStatusDetails
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeResponseStatusDetails,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                error: value.error?,
+                reason: value.reason?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeResponseStatusDetails> for RealtimeResponseStatusDetails {
+        fn from(value: super::RealtimeResponseStatusDetails) -> Self {
+            Self {
+                error: Ok(value.error),
+                reason: Ok(value.reason),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeResponseStatusDetailsError {
+        code: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeResponseStatusDetailsError {
+        fn default() -> Self {
+            Self {
+                code: Ok(Default::default()),
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeResponseStatusDetailsError {
+        pub fn code<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.code = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for code: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeResponseStatusDetailsError>
+        for super::RealtimeResponseStatusDetailsError
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeResponseStatusDetailsError,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                code: value.code?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeResponseStatusDetailsError>
+        for RealtimeResponseStatusDetailsError
+    {
+        fn from(value: super::RealtimeResponseStatusDetailsError) -> Self {
+            Self {
+                code: Ok(value.code),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeResponseUsage {
+        input_token_details: ::std::result::Result<
+            ::std::option::Option<super::RealtimeResponseUsageInputTokenDetails>,
+            ::std::string::String,
+        >,
+        input_tokens: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        output_token_details: ::std::result::Result<
+            ::std::option::Option<super::RealtimeResponseUsageOutputTokenDetails>,
+            ::std::string::String,
+        >,
+        output_tokens: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        total_tokens: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeResponseUsage {
+        fn default() -> Self {
+            Self {
+                input_token_details: Ok(Default::default()),
+                input_tokens: Ok(Default::default()),
+                output_token_details: Ok(Default::default()),
+                output_tokens: Ok(Default::default()),
+                total_tokens: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeResponseUsage {
+        pub fn input_token_details<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeResponseUsageInputTokenDetails>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_token_details = value.try_into().map_err(|e| {
+                format!("error converting supplied value for input_token_details: {e}")
+            });
+            self
+        }
+        pub fn input_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for input_tokens: {e}"));
+            self
+        }
+        pub fn output_token_details<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeResponseUsageOutputTokenDetails>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_token_details = value.try_into().map_err(|e| {
+                format!("error converting supplied value for output_token_details: {e}")
+            });
+            self
+        }
+        pub fn output_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_tokens: {e}"));
+            self
+        }
+        pub fn total_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.total_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for total_tokens: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeResponseUsage> for super::RealtimeResponseUsage {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeResponseUsage,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                input_token_details: value.input_token_details?,
+                input_tokens: value.input_tokens?,
+                output_token_details: value.output_token_details?,
+                output_tokens: value.output_tokens?,
+                total_tokens: value.total_tokens?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeResponseUsage> for RealtimeResponseUsage {
+        fn from(value: super::RealtimeResponseUsage) -> Self {
+            Self {
+                input_token_details: Ok(value.input_token_details),
+                input_tokens: Ok(value.input_tokens),
+                output_token_details: Ok(value.output_token_details),
+                output_tokens: Ok(value.output_tokens),
+                total_tokens: Ok(value.total_tokens),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeResponseUsageInputTokenDetails {
+        audio_tokens: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        cached_tokens: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        cached_tokens_details: ::std::result::Result<
+            ::std::option::Option<super::RealtimeResponseUsageInputTokenDetailsCachedTokensDetails>,
+            ::std::string::String,
+        >,
+        image_tokens: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        text_tokens: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeResponseUsageInputTokenDetails {
+        fn default() -> Self {
+            Self {
+                audio_tokens: Ok(Default::default()),
+                cached_tokens: Ok(Default::default()),
+                cached_tokens_details: Ok(Default::default()),
+                image_tokens: Ok(Default::default()),
+                text_tokens: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeResponseUsageInputTokenDetails {
+        pub fn audio_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio_tokens: {e}"));
+            self
+        }
+        pub fn cached_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.cached_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for cached_tokens: {e}"));
+            self
+        }
+        pub fn cached_tokens_details<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    super::RealtimeResponseUsageInputTokenDetailsCachedTokensDetails,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.cached_tokens_details = value.try_into().map_err(|e| {
+                format!("error converting supplied value for cached_tokens_details: {e}")
+            });
+            self
+        }
+        pub fn image_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.image_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for image_tokens: {e}"));
+            self
+        }
+        pub fn text_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text_tokens: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeResponseUsageInputTokenDetails>
+        for super::RealtimeResponseUsageInputTokenDetails
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeResponseUsageInputTokenDetails,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio_tokens: value.audio_tokens?,
+                cached_tokens: value.cached_tokens?,
+                cached_tokens_details: value.cached_tokens_details?,
+                image_tokens: value.image_tokens?,
+                text_tokens: value.text_tokens?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeResponseUsageInputTokenDetails>
+        for RealtimeResponseUsageInputTokenDetails
+    {
+        fn from(value: super::RealtimeResponseUsageInputTokenDetails) -> Self {
+            Self {
+                audio_tokens: Ok(value.audio_tokens),
+                cached_tokens: Ok(value.cached_tokens),
+                cached_tokens_details: Ok(value.cached_tokens_details),
+                image_tokens: Ok(value.image_tokens),
+                text_tokens: Ok(value.text_tokens),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeResponseUsageInputTokenDetailsCachedTokensDetails {
+        audio_tokens: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        image_tokens: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        text_tokens: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeResponseUsageInputTokenDetailsCachedTokensDetails {
+        fn default() -> Self {
+            Self {
+                audio_tokens: Ok(Default::default()),
+                image_tokens: Ok(Default::default()),
+                text_tokens: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeResponseUsageInputTokenDetailsCachedTokensDetails {
+        pub fn audio_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio_tokens: {e}"));
+            self
+        }
+        pub fn image_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.image_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for image_tokens: {e}"));
+            self
+        }
+        pub fn text_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text_tokens: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeResponseUsageInputTokenDetailsCachedTokensDetails>
+        for super::RealtimeResponseUsageInputTokenDetailsCachedTokensDetails
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeResponseUsageInputTokenDetailsCachedTokensDetails,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio_tokens: value.audio_tokens?,
+                image_tokens: value.image_tokens?,
+                text_tokens: value.text_tokens?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeResponseUsageInputTokenDetailsCachedTokensDetails>
+        for RealtimeResponseUsageInputTokenDetailsCachedTokensDetails
+    {
+        fn from(value: super::RealtimeResponseUsageInputTokenDetailsCachedTokensDetails) -> Self {
+            Self {
+                audio_tokens: Ok(value.audio_tokens),
+                image_tokens: Ok(value.image_tokens),
+                text_tokens: Ok(value.text_tokens),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeResponseUsageOutputTokenDetails {
+        audio_tokens: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        text_tokens: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeResponseUsageOutputTokenDetails {
+        fn default() -> Self {
+            Self {
+                audio_tokens: Ok(Default::default()),
+                text_tokens: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeResponseUsageOutputTokenDetails {
+        pub fn audio_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio_tokens: {e}"));
+            self
+        }
+        pub fn text_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text_tokens: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeResponseUsageOutputTokenDetails>
+        for super::RealtimeResponseUsageOutputTokenDetails
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeResponseUsageOutputTokenDetails,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio_tokens: value.audio_tokens?,
+                text_tokens: value.text_tokens?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeResponseUsageOutputTokenDetails>
+        for RealtimeResponseUsageOutputTokenDetails
+    {
+        fn from(value: super::RealtimeResponseUsageOutputTokenDetails) -> Self {
+            Self {
+                audio_tokens: Ok(value.audio_tokens),
+                text_tokens: Ok(value.text_tokens),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventConversationCreated {
+        conversation: ::std::result::Result<
+            super::RealtimeServerEventConversationCreatedConversation,
+            ::std::string::String,
+        >,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventConversationCreatedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventConversationCreated {
+        fn default() -> Self {
+            Self {
+                conversation: Err("no value supplied for conversation".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventConversationCreated {
+        pub fn conversation<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventConversationCreatedConversation>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.conversation = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for conversation: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventConversationCreatedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventConversationCreated>
+        for super::RealtimeServerEventConversationCreated
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventConversationCreated,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                conversation: value.conversation?,
+                event_id: value.event_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventConversationCreated>
+        for RealtimeServerEventConversationCreated
+    {
+        fn from(value: super::RealtimeServerEventConversationCreated) -> Self {
+            Self {
+                conversation: Ok(value.conversation),
+                event_id: Ok(value.event_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventConversationCreatedConversation {
+        id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        object: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventConversationCreatedConversation {
+        fn default() -> Self {
+            Self {
+                id: Ok(Default::default()),
+                object: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeServerEventConversationCreatedConversation {
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventConversationCreatedConversation>
+        for super::RealtimeServerEventConversationCreatedConversation
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventConversationCreatedConversation,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                id: value.id?,
+                object: value.object?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventConversationCreatedConversation>
+        for RealtimeServerEventConversationCreatedConversation
+    {
+        fn from(value: super::RealtimeServerEventConversationCreatedConversation) -> Self {
+            Self {
+                id: Ok(value.id),
+                object: Ok(value.object),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventConversationItemAdded {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item: ::std::result::Result<super::RealtimeConversationItem, ::std::string::String>,
+        previous_item_id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventConversationItemAddedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventConversationItemAdded {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                item: Err("no value supplied for item".to_string()),
+                previous_item_id: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventConversationItemAdded {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeConversationItem>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item: {e}"));
+            self
+        }
+        pub fn previous_item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.previous_item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for previous_item_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventConversationItemAddedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventConversationItemAdded>
+        for super::RealtimeServerEventConversationItemAdded
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventConversationItemAdded,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                item: value.item?,
+                previous_item_id: value.previous_item_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventConversationItemAdded>
+        for RealtimeServerEventConversationItemAdded
+    {
+        fn from(value: super::RealtimeServerEventConversationItemAdded) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                item: Ok(value.item),
+                previous_item_id: Ok(value.previous_item_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventConversationItemCreated {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item: ::std::result::Result<super::RealtimeConversationItem, ::std::string::String>,
+        previous_item_id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventConversationItemCreatedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventConversationItemCreated {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                item: Err("no value supplied for item".to_string()),
+                previous_item_id: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventConversationItemCreated {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeConversationItem>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item: {e}"));
+            self
+        }
+        pub fn previous_item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.previous_item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for previous_item_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventConversationItemCreatedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventConversationItemCreated>
+        for super::RealtimeServerEventConversationItemCreated
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventConversationItemCreated,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                item: value.item?,
+                previous_item_id: value.previous_item_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventConversationItemCreated>
+        for RealtimeServerEventConversationItemCreated
+    {
+        fn from(value: super::RealtimeServerEventConversationItemCreated) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                item: Ok(value.item),
+                previous_item_id: Ok(value.previous_item_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventConversationItemDeleted {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventConversationItemDeletedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventConversationItemDeleted {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventConversationItemDeleted {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventConversationItemDeletedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventConversationItemDeleted>
+        for super::RealtimeServerEventConversationItemDeleted
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventConversationItemDeleted,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventConversationItemDeleted>
+        for RealtimeServerEventConversationItemDeleted
+    {
+        fn from(value: super::RealtimeServerEventConversationItemDeleted) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventConversationItemDone {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item: ::std::result::Result<super::RealtimeConversationItem, ::std::string::String>,
+        previous_item_id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventConversationItemDoneType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventConversationItemDone {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                item: Err("no value supplied for item".to_string()),
+                previous_item_id: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventConversationItemDone {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeConversationItem>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item: {e}"));
+            self
+        }
+        pub fn previous_item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.previous_item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for previous_item_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventConversationItemDoneType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventConversationItemDone>
+        for super::RealtimeServerEventConversationItemDone
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventConversationItemDone,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                item: value.item?,
+                previous_item_id: value.previous_item_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventConversationItemDone>
+        for RealtimeServerEventConversationItemDone
+    {
+        fn from(value: super::RealtimeServerEventConversationItemDone) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                item: Ok(value.item),
+                previous_item_id: Ok(value.previous_item_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventConversationItemInputAudioTranscriptionCompleted {
+        content_index: ::std::result::Result<i64, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        languages: ::std::result::Result<
+            ::std::vec::Vec<super::TranscriptionLanguage>,
+            ::std::string::String,
+        >,
+        logprobs: ::std::result::Result<
+            ::std::option::Option<::std::vec::Vec<super::LogProbProperties>>,
+            ::std::string::String,
+        >,
+        transcript: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventConversationItemInputAudioTranscriptionCompletedType,
+            ::std::string::String,
+        >,
+        usage: ::std::result::Result<
+            super::RealtimeServerEventConversationItemInputAudioTranscriptionCompletedUsage,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default
+        for RealtimeServerEventConversationItemInputAudioTranscriptionCompleted
+    {
+        fn default() -> Self {
+            Self {
+                content_index: Err("no value supplied for content_index".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                languages: Ok(Default::default()),
+                logprobs: Ok(Default::default()),
+                transcript: Err("no value supplied for transcript".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+                usage: Err("no value supplied for usage".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventConversationItemInputAudioTranscriptionCompleted {
+        pub fn content_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.content_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for content_index: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn languages<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<super::TranscriptionLanguage>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.languages = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for languages: {e}"));
+            self
+        }
+        pub fn logprobs<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<::std::vec::Vec<super::LogProbProperties>>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.logprobs = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for logprobs: {e}"));
+            self
+        }
+        pub fn transcript<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.transcript = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for transcript: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                super::RealtimeServerEventConversationItemInputAudioTranscriptionCompletedType,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+        pub fn usage<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                super::RealtimeServerEventConversationItemInputAudioTranscriptionCompletedUsage,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.usage = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for usage: {e}"));
+            self
+        }
+    }
+    impl
+        ::std::convert::TryFrom<RealtimeServerEventConversationItemInputAudioTranscriptionCompleted>
+        for super::RealtimeServerEventConversationItemInputAudioTranscriptionCompleted
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventConversationItemInputAudioTranscriptionCompleted,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                content_index: value.content_index?,
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                languages: value.languages?,
+                logprobs: value.logprobs?,
+                transcript: value.transcript?,
+                type_: value.type_?,
+                usage: value.usage?,
+            })
+        }
+    }
+    impl
+        ::std::convert::From<
+            super::RealtimeServerEventConversationItemInputAudioTranscriptionCompleted,
+        > for RealtimeServerEventConversationItemInputAudioTranscriptionCompleted
+    {
+        fn from(
+            value: super::RealtimeServerEventConversationItemInputAudioTranscriptionCompleted,
+        ) -> Self {
+            Self {
+                content_index: Ok(value.content_index),
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                languages: Ok(value.languages),
+                logprobs: Ok(value.logprobs),
+                transcript: Ok(value.transcript),
+                type_: Ok(value.type_),
+                usage: Ok(value.usage),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventConversationItemInputAudioTranscriptionDelta {
+        content_index: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        delta: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        logprobs: ::std::result::Result<
+            ::std::option::Option<::std::vec::Vec<super::LogProbProperties>>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventConversationItemInputAudioTranscriptionDeltaType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventConversationItemInputAudioTranscriptionDelta {
+        fn default() -> Self {
+            Self {
+                content_index: Ok(Default::default()),
+                delta: Ok(Default::default()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                logprobs: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventConversationItemInputAudioTranscriptionDelta {
+        pub fn content_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.content_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for content_index: {e}"));
+            self
+        }
+        pub fn delta<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.delta = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for delta: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn logprobs<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<::std::vec::Vec<super::LogProbProperties>>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.logprobs = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for logprobs: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                super::RealtimeServerEventConversationItemInputAudioTranscriptionDeltaType,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventConversationItemInputAudioTranscriptionDelta>
+        for super::RealtimeServerEventConversationItemInputAudioTranscriptionDelta
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventConversationItemInputAudioTranscriptionDelta,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                content_index: value.content_index?,
+                delta: value.delta?,
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                logprobs: value.logprobs?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl
+        ::std::convert::From<super::RealtimeServerEventConversationItemInputAudioTranscriptionDelta>
+        for RealtimeServerEventConversationItemInputAudioTranscriptionDelta
+    {
+        fn from(
+            value: super::RealtimeServerEventConversationItemInputAudioTranscriptionDelta,
+        ) -> Self {
+            Self {
+                content_index: Ok(value.content_index),
+                delta: Ok(value.delta),
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                logprobs: Ok(value.logprobs),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
+        content_index: ::std::result::Result<i64, ::std::string::String>,
+        error: ::std::result::Result<
+            super::RealtimeServerEventConversationItemInputAudioTranscriptionFailedError,
+            ::std::string::String,
+        >,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventConversationItemInputAudioTranscriptionFailedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
+        fn default() -> Self {
+            Self {
+                content_index: Err("no value supplied for content_index".to_string()),
+                error: Err("no value supplied for error".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventConversationItemInputAudioTranscriptionFailed {
+        pub fn content_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.content_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for content_index: {e}"));
+            self
+        }
+        pub fn error<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                super::RealtimeServerEventConversationItemInputAudioTranscriptionFailedError,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.error = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for error: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                super::RealtimeServerEventConversationItemInputAudioTranscriptionFailedType,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventConversationItemInputAudioTranscriptionFailed>
+        for super::RealtimeServerEventConversationItemInputAudioTranscriptionFailed
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventConversationItemInputAudioTranscriptionFailed,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                content_index: value.content_index?,
+                error: value.error?,
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl
+        ::std::convert::From<
+            super::RealtimeServerEventConversationItemInputAudioTranscriptionFailed,
+        > for RealtimeServerEventConversationItemInputAudioTranscriptionFailed
+    {
+        fn from(
+            value: super::RealtimeServerEventConversationItemInputAudioTranscriptionFailed,
+        ) -> Self {
+            Self {
+                content_index: Ok(value.content_index),
+                error: Ok(value.error),
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventConversationItemInputAudioTranscriptionFailedError {
+        code: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        message: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        param: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default
+        for RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
+    {
+        fn default() -> Self {
+            Self {
+                code: Ok(Default::default()),
+                message: Ok(Default::default()),
+                param: Ok(Default::default()),
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeServerEventConversationItemInputAudioTranscriptionFailedError {
+        pub fn code<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.code = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for code: {e}"));
+            self
+        }
+        pub fn message<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.message = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for message: {e}"));
+            self
+        }
+        pub fn param<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.param = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for param: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl
+        ::std::convert::TryFrom<
+            RealtimeServerEventConversationItemInputAudioTranscriptionFailedError,
+        > for super::RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventConversationItemInputAudioTranscriptionFailedError,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                code: value.code?,
+                message: value.message?,
+                param: value.param?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl
+        ::std::convert::From<
+            super::RealtimeServerEventConversationItemInputAudioTranscriptionFailedError,
+        > for RealtimeServerEventConversationItemInputAudioTranscriptionFailedError
+    {
+        fn from(
+            value: super::RealtimeServerEventConversationItemInputAudioTranscriptionFailedError,
+        ) -> Self {
+            Self {
+                code: Ok(value.code),
+                message: Ok(value.message),
+                param: Ok(value.param),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventConversationItemInputAudioTranscriptionSegment {
+        content_index: ::std::result::Result<i64, ::std::string::String>,
+        end: ::std::result::Result<f64, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        speaker: ::std::result::Result<::std::string::String, ::std::string::String>,
+        start: ::std::result::Result<f64, ::std::string::String>,
+        text: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventConversationItemInputAudioTranscriptionSegmentType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventConversationItemInputAudioTranscriptionSegment {
+        fn default() -> Self {
+            Self {
+                content_index: Err("no value supplied for content_index".to_string()),
+                end: Err("no value supplied for end".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                id: Err("no value supplied for id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                speaker: Err("no value supplied for speaker".to_string()),
+                start: Err("no value supplied for start".to_string()),
+                text: Err("no value supplied for text".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventConversationItemInputAudioTranscriptionSegment {
+        pub fn content_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.content_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for content_index: {e}"));
+            self
+        }
+        pub fn end<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<f64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.end = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for end: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn speaker<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.speaker = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for speaker: {e}"));
+            self
+        }
+        pub fn start<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<f64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.start = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for start: {e}"));
+            self
+        }
+        pub fn text<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                super::RealtimeServerEventConversationItemInputAudioTranscriptionSegmentType,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventConversationItemInputAudioTranscriptionSegment>
+        for super::RealtimeServerEventConversationItemInputAudioTranscriptionSegment
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventConversationItemInputAudioTranscriptionSegment,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                content_index: value.content_index?,
+                end: value.end?,
+                event_id: value.event_id?,
+                id: value.id?,
+                item_id: value.item_id?,
+                speaker: value.speaker?,
+                start: value.start?,
+                text: value.text?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl
+        ::std::convert::From<
+            super::RealtimeServerEventConversationItemInputAudioTranscriptionSegment,
+        > for RealtimeServerEventConversationItemInputAudioTranscriptionSegment
+    {
+        fn from(
+            value: super::RealtimeServerEventConversationItemInputAudioTranscriptionSegment,
+        ) -> Self {
+            Self {
+                content_index: Ok(value.content_index),
+                end: Ok(value.end),
+                event_id: Ok(value.event_id),
+                id: Ok(value.id),
+                item_id: Ok(value.item_id),
+                speaker: Ok(value.speaker),
+                start: Ok(value.start),
+                text: Ok(value.text),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventConversationItemRetrieved {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item: ::std::result::Result<super::RealtimeConversationItem, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventConversationItemRetrievedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventConversationItemRetrieved {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                item: Err("no value supplied for item".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventConversationItemRetrieved {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeConversationItem>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventConversationItemRetrievedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventConversationItemRetrieved>
+        for super::RealtimeServerEventConversationItemRetrieved
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventConversationItemRetrieved,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                item: value.item?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventConversationItemRetrieved>
+        for RealtimeServerEventConversationItemRetrieved
+    {
+        fn from(value: super::RealtimeServerEventConversationItemRetrieved) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                item: Ok(value.item),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventConversationItemTruncated {
+        audio_end_ms: ::std::result::Result<i64, ::std::string::String>,
+        content_index: ::std::result::Result<i64, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventConversationItemTruncatedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventConversationItemTruncated {
+        fn default() -> Self {
+            Self {
+                audio_end_ms: Err("no value supplied for audio_end_ms".to_string()),
+                content_index: Err("no value supplied for content_index".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventConversationItemTruncated {
+        pub fn audio_end_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio_end_ms = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio_end_ms: {e}"));
+            self
+        }
+        pub fn content_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.content_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for content_index: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventConversationItemTruncatedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventConversationItemTruncated>
+        for super::RealtimeServerEventConversationItemTruncated
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventConversationItemTruncated,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio_end_ms: value.audio_end_ms?,
+                content_index: value.content_index?,
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventConversationItemTruncated>
+        for RealtimeServerEventConversationItemTruncated
+    {
+        fn from(value: super::RealtimeServerEventConversationItemTruncated) -> Self {
+            Self {
+                audio_end_ms: Ok(value.audio_end_ms),
+                content_index: Ok(value.content_index),
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventError {
+        error: ::std::result::Result<super::RealtimeServerEventErrorError, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<super::RealtimeServerEventErrorType, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeServerEventError {
+        fn default() -> Self {
+            Self {
+                error: Err("no value supplied for error".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventError {
+        pub fn error<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventErrorError>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.error = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for error: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventErrorType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventError> for super::RealtimeServerEventError {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventError,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                error: value.error?,
+                event_id: value.event_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventError> for RealtimeServerEventError {
+        fn from(value: super::RealtimeServerEventError) -> Self {
+            Self {
+                error: Ok(value.error),
+                event_id: Ok(value.event_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventErrorError {
+        code: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        event_id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        message: ::std::result::Result<::std::string::String, ::std::string::String>,
+        param: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeServerEventErrorError {
+        fn default() -> Self {
+            Self {
+                code: Ok(Default::default()),
+                event_id: Ok(Default::default()),
+                message: Err("no value supplied for message".to_string()),
+                param: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventErrorError {
+        pub fn code<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.code = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for code: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn message<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.message = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for message: {e}"));
+            self
+        }
+        pub fn param<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.param = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for param: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventErrorError>
+        for super::RealtimeServerEventErrorError
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventErrorError,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                code: value.code?,
+                event_id: value.event_id?,
+                message: value.message?,
+                param: value.param?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventErrorError> for RealtimeServerEventErrorError {
+        fn from(value: super::RealtimeServerEventErrorError) -> Self {
+            Self {
+                code: Ok(value.code),
+                event_id: Ok(value.event_id),
+                message: Ok(value.message),
+                param: Ok(value.param),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventInputAudioBufferCleared {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventInputAudioBufferClearedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventInputAudioBufferCleared {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventInputAudioBufferCleared {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventInputAudioBufferClearedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventInputAudioBufferCleared>
+        for super::RealtimeServerEventInputAudioBufferCleared
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventInputAudioBufferCleared,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventInputAudioBufferCleared>
+        for RealtimeServerEventInputAudioBufferCleared
+    {
+        fn from(value: super::RealtimeServerEventInputAudioBufferCleared) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventInputAudioBufferCommitted {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        previous_item_id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventInputAudioBufferCommittedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventInputAudioBufferCommitted {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                previous_item_id: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventInputAudioBufferCommitted {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn previous_item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.previous_item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for previous_item_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventInputAudioBufferCommittedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventInputAudioBufferCommitted>
+        for super::RealtimeServerEventInputAudioBufferCommitted
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventInputAudioBufferCommitted,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                previous_item_id: value.previous_item_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventInputAudioBufferCommitted>
+        for RealtimeServerEventInputAudioBufferCommitted
+    {
+        fn from(value: super::RealtimeServerEventInputAudioBufferCommitted) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                previous_item_id: Ok(value.previous_item_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventInputAudioBufferDtmfEventReceived {
+        event: ::std::result::Result<::std::string::String, ::std::string::String>,
+        received_at: ::std::result::Result<i64, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventInputAudioBufferDtmfEventReceivedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventInputAudioBufferDtmfEventReceived {
+        fn default() -> Self {
+            Self {
+                event: Err("no value supplied for event".to_string()),
+                received_at: Err("no value supplied for received_at".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventInputAudioBufferDtmfEventReceived {
+        pub fn event<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event: {e}"));
+            self
+        }
+        pub fn received_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.received_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for received_at: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                super::RealtimeServerEventInputAudioBufferDtmfEventReceivedType,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventInputAudioBufferDtmfEventReceived>
+        for super::RealtimeServerEventInputAudioBufferDtmfEventReceived
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventInputAudioBufferDtmfEventReceived,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event: value.event?,
+                received_at: value.received_at?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventInputAudioBufferDtmfEventReceived>
+        for RealtimeServerEventInputAudioBufferDtmfEventReceived
+    {
+        fn from(value: super::RealtimeServerEventInputAudioBufferDtmfEventReceived) -> Self {
+            Self {
+                event: Ok(value.event),
+                received_at: Ok(value.received_at),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventInputAudioBufferSpeechStarted {
+        audio_start_ms: ::std::result::Result<i64, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventInputAudioBufferSpeechStartedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventInputAudioBufferSpeechStarted {
+        fn default() -> Self {
+            Self {
+                audio_start_ms: Err("no value supplied for audio_start_ms".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventInputAudioBufferSpeechStarted {
+        pub fn audio_start_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio_start_ms = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio_start_ms: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventInputAudioBufferSpeechStartedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventInputAudioBufferSpeechStarted>
+        for super::RealtimeServerEventInputAudioBufferSpeechStarted
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventInputAudioBufferSpeechStarted,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio_start_ms: value.audio_start_ms?,
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventInputAudioBufferSpeechStarted>
+        for RealtimeServerEventInputAudioBufferSpeechStarted
+    {
+        fn from(value: super::RealtimeServerEventInputAudioBufferSpeechStarted) -> Self {
+            Self {
+                audio_start_ms: Ok(value.audio_start_ms),
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventInputAudioBufferSpeechStopped {
+        audio_end_ms: ::std::result::Result<i64, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventInputAudioBufferSpeechStoppedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventInputAudioBufferSpeechStopped {
+        fn default() -> Self {
+            Self {
+                audio_end_ms: Err("no value supplied for audio_end_ms".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventInputAudioBufferSpeechStopped {
+        pub fn audio_end_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio_end_ms = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio_end_ms: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventInputAudioBufferSpeechStoppedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventInputAudioBufferSpeechStopped>
+        for super::RealtimeServerEventInputAudioBufferSpeechStopped
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventInputAudioBufferSpeechStopped,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio_end_ms: value.audio_end_ms?,
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventInputAudioBufferSpeechStopped>
+        for RealtimeServerEventInputAudioBufferSpeechStopped
+    {
+        fn from(value: super::RealtimeServerEventInputAudioBufferSpeechStopped) -> Self {
+            Self {
+                audio_end_ms: Ok(value.audio_end_ms),
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventInputAudioBufferTimeoutTriggered {
+        audio_end_ms: ::std::result::Result<i64, ::std::string::String>,
+        audio_start_ms: ::std::result::Result<i64, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventInputAudioBufferTimeoutTriggeredType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventInputAudioBufferTimeoutTriggered {
+        fn default() -> Self {
+            Self {
+                audio_end_ms: Err("no value supplied for audio_end_ms".to_string()),
+                audio_start_ms: Err("no value supplied for audio_start_ms".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventInputAudioBufferTimeoutTriggered {
+        pub fn audio_end_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio_end_ms = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio_end_ms: {e}"));
+            self
+        }
+        pub fn audio_start_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio_start_ms = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio_start_ms: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                super::RealtimeServerEventInputAudioBufferTimeoutTriggeredType,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventInputAudioBufferTimeoutTriggered>
+        for super::RealtimeServerEventInputAudioBufferTimeoutTriggered
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventInputAudioBufferTimeoutTriggered,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio_end_ms: value.audio_end_ms?,
+                audio_start_ms: value.audio_start_ms?,
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventInputAudioBufferTimeoutTriggered>
+        for RealtimeServerEventInputAudioBufferTimeoutTriggered
+    {
+        fn from(value: super::RealtimeServerEventInputAudioBufferTimeoutTriggered) -> Self {
+            Self {
+                audio_end_ms: Ok(value.audio_end_ms),
+                audio_start_ms: Ok(value.audio_start_ms),
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventMcpListToolsCompleted {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventMcpListToolsCompletedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventMcpListToolsCompleted {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventMcpListToolsCompleted {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventMcpListToolsCompletedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventMcpListToolsCompleted>
+        for super::RealtimeServerEventMcpListToolsCompleted
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventMcpListToolsCompleted,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventMcpListToolsCompleted>
+        for RealtimeServerEventMcpListToolsCompleted
+    {
+        fn from(value: super::RealtimeServerEventMcpListToolsCompleted) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventMcpListToolsFailed {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventMcpListToolsFailedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventMcpListToolsFailed {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventMcpListToolsFailed {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventMcpListToolsFailedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventMcpListToolsFailed>
+        for super::RealtimeServerEventMcpListToolsFailed
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventMcpListToolsFailed,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventMcpListToolsFailed>
+        for RealtimeServerEventMcpListToolsFailed
+    {
+        fn from(value: super::RealtimeServerEventMcpListToolsFailed) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventMcpListToolsInProgress {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventMcpListToolsInProgressType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventMcpListToolsInProgress {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventMcpListToolsInProgress {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventMcpListToolsInProgressType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventMcpListToolsInProgress>
+        for super::RealtimeServerEventMcpListToolsInProgress
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventMcpListToolsInProgress,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventMcpListToolsInProgress>
+        for RealtimeServerEventMcpListToolsInProgress
+    {
+        fn from(value: super::RealtimeServerEventMcpListToolsInProgress) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventOutputAudioBufferCleared {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        response_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventOutputAudioBufferClearedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventOutputAudioBufferCleared {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                response_id: Err("no value supplied for response_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventOutputAudioBufferCleared {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn response_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventOutputAudioBufferClearedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventOutputAudioBufferCleared>
+        for super::RealtimeServerEventOutputAudioBufferCleared
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventOutputAudioBufferCleared,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                response_id: value.response_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventOutputAudioBufferCleared>
+        for RealtimeServerEventOutputAudioBufferCleared
+    {
+        fn from(value: super::RealtimeServerEventOutputAudioBufferCleared) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                response_id: Ok(value.response_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventOutputAudioBufferStarted {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        response_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventOutputAudioBufferStartedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventOutputAudioBufferStarted {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                response_id: Err("no value supplied for response_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventOutputAudioBufferStarted {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn response_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventOutputAudioBufferStartedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventOutputAudioBufferStarted>
+        for super::RealtimeServerEventOutputAudioBufferStarted
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventOutputAudioBufferStarted,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                response_id: value.response_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventOutputAudioBufferStarted>
+        for RealtimeServerEventOutputAudioBufferStarted
+    {
+        fn from(value: super::RealtimeServerEventOutputAudioBufferStarted) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                response_id: Ok(value.response_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventOutputAudioBufferStopped {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        response_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventOutputAudioBufferStoppedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventOutputAudioBufferStopped {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                response_id: Err("no value supplied for response_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventOutputAudioBufferStopped {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn response_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventOutputAudioBufferStoppedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventOutputAudioBufferStopped>
+        for super::RealtimeServerEventOutputAudioBufferStopped
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventOutputAudioBufferStopped,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                response_id: value.response_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventOutputAudioBufferStopped>
+        for RealtimeServerEventOutputAudioBufferStopped
+    {
+        fn from(value: super::RealtimeServerEventOutputAudioBufferStopped) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                response_id: Ok(value.response_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventRateLimitsUpdated {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        rate_limits: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeServerEventRateLimitsUpdatedRateLimitsItem>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventRateLimitsUpdatedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventRateLimitsUpdated {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                rate_limits: Err("no value supplied for rate_limits".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventRateLimitsUpdated {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn rate_limits<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::RealtimeServerEventRateLimitsUpdatedRateLimitsItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.rate_limits = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for rate_limits: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventRateLimitsUpdatedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventRateLimitsUpdated>
+        for super::RealtimeServerEventRateLimitsUpdated
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventRateLimitsUpdated,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                rate_limits: value.rate_limits?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventRateLimitsUpdated>
+        for RealtimeServerEventRateLimitsUpdated
+    {
+        fn from(value: super::RealtimeServerEventRateLimitsUpdated) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                rate_limits: Ok(value.rate_limits),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventRateLimitsUpdatedRateLimitsItem {
+        limit: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        name: ::std::result::Result<
+            ::std::option::Option<super::RealtimeServerEventRateLimitsUpdatedRateLimitsItemName>,
+            ::std::string::String,
+        >,
+        remaining: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        reset_seconds: ::std::result::Result<::std::option::Option<f64>, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeServerEventRateLimitsUpdatedRateLimitsItem {
+        fn default() -> Self {
+            Self {
+                limit: Ok(Default::default()),
+                name: Ok(Default::default()),
+                remaining: Ok(Default::default()),
+                reset_seconds: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeServerEventRateLimitsUpdatedRateLimitsItem {
+        pub fn limit<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.limit = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for limit: {e}"));
+            self
+        }
+        pub fn name<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    super::RealtimeServerEventRateLimitsUpdatedRateLimitsItemName,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.name = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for name: {e}"));
+            self
+        }
+        pub fn remaining<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.remaining = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for remaining: {e}"));
+            self
+        }
+        pub fn reset_seconds<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<f64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.reset_seconds = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for reset_seconds: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventRateLimitsUpdatedRateLimitsItem>
+        for super::RealtimeServerEventRateLimitsUpdatedRateLimitsItem
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventRateLimitsUpdatedRateLimitsItem,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                limit: value.limit?,
+                name: value.name?,
+                remaining: value.remaining?,
+                reset_seconds: value.reset_seconds?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventRateLimitsUpdatedRateLimitsItem>
+        for RealtimeServerEventRateLimitsUpdatedRateLimitsItem
+    {
+        fn from(value: super::RealtimeServerEventRateLimitsUpdatedRateLimitsItem) -> Self {
+            Self {
+                limit: Ok(value.limit),
+                name: Ok(value.name),
+                remaining: Ok(value.remaining),
+                reset_seconds: Ok(value.reset_seconds),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseAudioDelta {
+        content_index: ::std::result::Result<i64, ::std::string::String>,
+        delta: ::std::result::Result<::std::string::String, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        output_index: ::std::result::Result<i64, ::std::string::String>,
+        response_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventResponseAudioDeltaType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseAudioDelta {
+        fn default() -> Self {
+            Self {
+                content_index: Err("no value supplied for content_index".to_string()),
+                delta: Err("no value supplied for delta".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                output_index: Err("no value supplied for output_index".to_string()),
+                response_id: Err("no value supplied for response_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseAudioDelta {
+        pub fn content_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.content_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for content_index: {e}"));
+            self
+        }
+        pub fn delta<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.delta = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for delta: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn output_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_index: {e}"));
+            self
+        }
+        pub fn response_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventResponseAudioDeltaType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseAudioDelta>
+        for super::RealtimeServerEventResponseAudioDelta
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseAudioDelta,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                content_index: value.content_index?,
+                delta: value.delta?,
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                output_index: value.output_index?,
+                response_id: value.response_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseAudioDelta>
+        for RealtimeServerEventResponseAudioDelta
+    {
+        fn from(value: super::RealtimeServerEventResponseAudioDelta) -> Self {
+            Self {
+                content_index: Ok(value.content_index),
+                delta: Ok(value.delta),
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                output_index: Ok(value.output_index),
+                response_id: Ok(value.response_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseAudioDone {
+        content_index: ::std::result::Result<i64, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        output_index: ::std::result::Result<i64, ::std::string::String>,
+        response_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventResponseAudioDoneType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseAudioDone {
+        fn default() -> Self {
+            Self {
+                content_index: Err("no value supplied for content_index".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                output_index: Err("no value supplied for output_index".to_string()),
+                response_id: Err("no value supplied for response_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseAudioDone {
+        pub fn content_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.content_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for content_index: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn output_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_index: {e}"));
+            self
+        }
+        pub fn response_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventResponseAudioDoneType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseAudioDone>
+        for super::RealtimeServerEventResponseAudioDone
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseAudioDone,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                content_index: value.content_index?,
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                output_index: value.output_index?,
+                response_id: value.response_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseAudioDone>
+        for RealtimeServerEventResponseAudioDone
+    {
+        fn from(value: super::RealtimeServerEventResponseAudioDone) -> Self {
+            Self {
+                content_index: Ok(value.content_index),
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                output_index: Ok(value.output_index),
+                response_id: Ok(value.response_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseAudioTranscriptDelta {
+        content_index: ::std::result::Result<i64, ::std::string::String>,
+        delta: ::std::result::Result<::std::string::String, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        output_index: ::std::result::Result<i64, ::std::string::String>,
+        response_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventResponseAudioTranscriptDeltaType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseAudioTranscriptDelta {
+        fn default() -> Self {
+            Self {
+                content_index: Err("no value supplied for content_index".to_string()),
+                delta: Err("no value supplied for delta".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                output_index: Err("no value supplied for output_index".to_string()),
+                response_id: Err("no value supplied for response_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseAudioTranscriptDelta {
+        pub fn content_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.content_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for content_index: {e}"));
+            self
+        }
+        pub fn delta<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.delta = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for delta: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn output_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_index: {e}"));
+            self
+        }
+        pub fn response_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventResponseAudioTranscriptDeltaType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseAudioTranscriptDelta>
+        for super::RealtimeServerEventResponseAudioTranscriptDelta
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseAudioTranscriptDelta,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                content_index: value.content_index?,
+                delta: value.delta?,
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                output_index: value.output_index?,
+                response_id: value.response_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseAudioTranscriptDelta>
+        for RealtimeServerEventResponseAudioTranscriptDelta
+    {
+        fn from(value: super::RealtimeServerEventResponseAudioTranscriptDelta) -> Self {
+            Self {
+                content_index: Ok(value.content_index),
+                delta: Ok(value.delta),
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                output_index: Ok(value.output_index),
+                response_id: Ok(value.response_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseAudioTranscriptDone {
+        content_index: ::std::result::Result<i64, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        output_index: ::std::result::Result<i64, ::std::string::String>,
+        response_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        transcript: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventResponseAudioTranscriptDoneType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseAudioTranscriptDone {
+        fn default() -> Self {
+            Self {
+                content_index: Err("no value supplied for content_index".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                output_index: Err("no value supplied for output_index".to_string()),
+                response_id: Err("no value supplied for response_id".to_string()),
+                transcript: Err("no value supplied for transcript".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseAudioTranscriptDone {
+        pub fn content_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.content_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for content_index: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn output_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_index: {e}"));
+            self
+        }
+        pub fn response_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_id: {e}"));
+            self
+        }
+        pub fn transcript<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.transcript = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for transcript: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventResponseAudioTranscriptDoneType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseAudioTranscriptDone>
+        for super::RealtimeServerEventResponseAudioTranscriptDone
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseAudioTranscriptDone,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                content_index: value.content_index?,
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                output_index: value.output_index?,
+                response_id: value.response_id?,
+                transcript: value.transcript?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseAudioTranscriptDone>
+        for RealtimeServerEventResponseAudioTranscriptDone
+    {
+        fn from(value: super::RealtimeServerEventResponseAudioTranscriptDone) -> Self {
+            Self {
+                content_index: Ok(value.content_index),
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                output_index: Ok(value.output_index),
+                response_id: Ok(value.response_id),
+                transcript: Ok(value.transcript),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseContentPartAdded {
+        content_index: ::std::result::Result<i64, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        output_index: ::std::result::Result<i64, ::std::string::String>,
+        part: ::std::result::Result<
+            super::RealtimeServerEventResponseContentPartAddedPart,
+            ::std::string::String,
+        >,
+        response_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventResponseContentPartAddedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseContentPartAdded {
+        fn default() -> Self {
+            Self {
+                content_index: Err("no value supplied for content_index".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                output_index: Err("no value supplied for output_index".to_string()),
+                part: Err("no value supplied for part".to_string()),
+                response_id: Err("no value supplied for response_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseContentPartAdded {
+        pub fn content_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.content_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for content_index: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn output_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_index: {e}"));
+            self
+        }
+        pub fn part<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventResponseContentPartAddedPart>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.part = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for part: {e}"));
+            self
+        }
+        pub fn response_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventResponseContentPartAddedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseContentPartAdded>
+        for super::RealtimeServerEventResponseContentPartAdded
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseContentPartAdded,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                content_index: value.content_index?,
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                output_index: value.output_index?,
+                part: value.part?,
+                response_id: value.response_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseContentPartAdded>
+        for RealtimeServerEventResponseContentPartAdded
+    {
+        fn from(value: super::RealtimeServerEventResponseContentPartAdded) -> Self {
+            Self {
+                content_index: Ok(value.content_index),
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                output_index: Ok(value.output_index),
+                part: Ok(value.part),
+                response_id: Ok(value.response_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseContentPartAddedPart {
+        audio: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        text: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        transcript: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            ::std::option::Option<super::RealtimeServerEventResponseContentPartAddedPartType>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseContentPartAddedPart {
+        fn default() -> Self {
+            Self {
+                audio: Ok(Default::default()),
+                text: Ok(Default::default()),
+                transcript: Ok(Default::default()),
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseContentPartAddedPart {
+        pub fn audio<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio: {e}"));
+            self
+        }
+        pub fn text<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text: {e}"));
+            self
+        }
+        pub fn transcript<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.transcript = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for transcript: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeServerEventResponseContentPartAddedPartType>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseContentPartAddedPart>
+        for super::RealtimeServerEventResponseContentPartAddedPart
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseContentPartAddedPart,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio: value.audio?,
+                text: value.text?,
+                transcript: value.transcript?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseContentPartAddedPart>
+        for RealtimeServerEventResponseContentPartAddedPart
+    {
+        fn from(value: super::RealtimeServerEventResponseContentPartAddedPart) -> Self {
+            Self {
+                audio: Ok(value.audio),
+                text: Ok(value.text),
+                transcript: Ok(value.transcript),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseContentPartDone {
+        content_index: ::std::result::Result<i64, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        output_index: ::std::result::Result<i64, ::std::string::String>,
+        part: ::std::result::Result<
+            super::RealtimeServerEventResponseContentPartDonePart,
+            ::std::string::String,
+        >,
+        response_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventResponseContentPartDoneType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseContentPartDone {
+        fn default() -> Self {
+            Self {
+                content_index: Err("no value supplied for content_index".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                output_index: Err("no value supplied for output_index".to_string()),
+                part: Err("no value supplied for part".to_string()),
+                response_id: Err("no value supplied for response_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseContentPartDone {
+        pub fn content_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.content_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for content_index: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn output_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_index: {e}"));
+            self
+        }
+        pub fn part<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventResponseContentPartDonePart>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.part = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for part: {e}"));
+            self
+        }
+        pub fn response_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventResponseContentPartDoneType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseContentPartDone>
+        for super::RealtimeServerEventResponseContentPartDone
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseContentPartDone,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                content_index: value.content_index?,
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                output_index: value.output_index?,
+                part: value.part?,
+                response_id: value.response_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseContentPartDone>
+        for RealtimeServerEventResponseContentPartDone
+    {
+        fn from(value: super::RealtimeServerEventResponseContentPartDone) -> Self {
+            Self {
+                content_index: Ok(value.content_index),
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                output_index: Ok(value.output_index),
+                part: Ok(value.part),
+                response_id: Ok(value.response_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseContentPartDonePart {
+        audio: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        text: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        transcript: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            ::std::option::Option<super::RealtimeServerEventResponseContentPartDonePartType>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseContentPartDonePart {
+        fn default() -> Self {
+            Self {
+                audio: Ok(Default::default()),
+                text: Ok(Default::default()),
+                transcript: Ok(Default::default()),
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseContentPartDonePart {
+        pub fn audio<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio: {e}"));
+            self
+        }
+        pub fn text<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text: {e}"));
+            self
+        }
+        pub fn transcript<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.transcript = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for transcript: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeServerEventResponseContentPartDonePartType>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseContentPartDonePart>
+        for super::RealtimeServerEventResponseContentPartDonePart
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseContentPartDonePart,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio: value.audio?,
+                text: value.text?,
+                transcript: value.transcript?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseContentPartDonePart>
+        for RealtimeServerEventResponseContentPartDonePart
+    {
+        fn from(value: super::RealtimeServerEventResponseContentPartDonePart) -> Self {
+            Self {
+                audio: Ok(value.audio),
+                text: Ok(value.text),
+                transcript: Ok(value.transcript),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseCreated {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        response: ::std::result::Result<super::RealtimeResponse, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventResponseCreatedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseCreated {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                response: Err("no value supplied for response".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseCreated {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeResponse>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventResponseCreatedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseCreated>
+        for super::RealtimeServerEventResponseCreated
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseCreated,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                response: value.response?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseCreated>
+        for RealtimeServerEventResponseCreated
+    {
+        fn from(value: super::RealtimeServerEventResponseCreated) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                response: Ok(value.response),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseDone {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        response: ::std::result::Result<super::RealtimeResponse, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventResponseDoneType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseDone {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                response: Err("no value supplied for response".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseDone {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeResponse>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventResponseDoneType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseDone>
+        for super::RealtimeServerEventResponseDone
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseDone,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                response: value.response?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseDone>
+        for RealtimeServerEventResponseDone
+    {
+        fn from(value: super::RealtimeServerEventResponseDone) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                response: Ok(value.response),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseFunctionCallArgumentsDelta {
+        call_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        delta: ::std::result::Result<::std::string::String, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        output_index: ::std::result::Result<i64, ::std::string::String>,
+        response_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventResponseFunctionCallArgumentsDeltaType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseFunctionCallArgumentsDelta {
+        fn default() -> Self {
+            Self {
+                call_id: Err("no value supplied for call_id".to_string()),
+                delta: Err("no value supplied for delta".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                output_index: Err("no value supplied for output_index".to_string()),
+                response_id: Err("no value supplied for response_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseFunctionCallArgumentsDelta {
+        pub fn call_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.call_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for call_id: {e}"));
+            self
+        }
+        pub fn delta<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.delta = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for delta: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn output_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_index: {e}"));
+            self
+        }
+        pub fn response_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                super::RealtimeServerEventResponseFunctionCallArgumentsDeltaType,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseFunctionCallArgumentsDelta>
+        for super::RealtimeServerEventResponseFunctionCallArgumentsDelta
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseFunctionCallArgumentsDelta,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                call_id: value.call_id?,
+                delta: value.delta?,
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                output_index: value.output_index?,
+                response_id: value.response_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseFunctionCallArgumentsDelta>
+        for RealtimeServerEventResponseFunctionCallArgumentsDelta
+    {
+        fn from(value: super::RealtimeServerEventResponseFunctionCallArgumentsDelta) -> Self {
+            Self {
+                call_id: Ok(value.call_id),
+                delta: Ok(value.delta),
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                output_index: Ok(value.output_index),
+                response_id: Ok(value.response_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseFunctionCallArgumentsDone {
+        arguments: ::std::result::Result<::std::string::String, ::std::string::String>,
+        call_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        name: ::std::result::Result<::std::string::String, ::std::string::String>,
+        output_index: ::std::result::Result<i64, ::std::string::String>,
+        response_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventResponseFunctionCallArgumentsDoneType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseFunctionCallArgumentsDone {
+        fn default() -> Self {
+            Self {
+                arguments: Err("no value supplied for arguments".to_string()),
+                call_id: Err("no value supplied for call_id".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                name: Err("no value supplied for name".to_string()),
+                output_index: Err("no value supplied for output_index".to_string()),
+                response_id: Err("no value supplied for response_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseFunctionCallArgumentsDone {
+        pub fn arguments<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.arguments = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for arguments: {e}"));
+            self
+        }
+        pub fn call_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.call_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for call_id: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn name<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.name = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for name: {e}"));
+            self
+        }
+        pub fn output_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_index: {e}"));
+            self
+        }
+        pub fn response_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                super::RealtimeServerEventResponseFunctionCallArgumentsDoneType,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseFunctionCallArgumentsDone>
+        for super::RealtimeServerEventResponseFunctionCallArgumentsDone
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseFunctionCallArgumentsDone,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                arguments: value.arguments?,
+                call_id: value.call_id?,
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                name: value.name?,
+                output_index: value.output_index?,
+                response_id: value.response_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseFunctionCallArgumentsDone>
+        for RealtimeServerEventResponseFunctionCallArgumentsDone
+    {
+        fn from(value: super::RealtimeServerEventResponseFunctionCallArgumentsDone) -> Self {
+            Self {
+                arguments: Ok(value.arguments),
+                call_id: Ok(value.call_id),
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                name: Ok(value.name),
+                output_index: Ok(value.output_index),
+                response_id: Ok(value.response_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseMcpCallArgumentsDelta {
+        delta: ::std::result::Result<::std::string::String, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        obfuscation: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        output_index: ::std::result::Result<i64, ::std::string::String>,
+        response_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventResponseMcpCallArgumentsDeltaType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseMcpCallArgumentsDelta {
+        fn default() -> Self {
+            Self {
+                delta: Err("no value supplied for delta".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                obfuscation: Ok(Default::default()),
+                output_index: Err("no value supplied for output_index".to_string()),
+                response_id: Err("no value supplied for response_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseMcpCallArgumentsDelta {
+        pub fn delta<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.delta = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for delta: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn obfuscation<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.obfuscation = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for obfuscation: {e}"));
+            self
+        }
+        pub fn output_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_index: {e}"));
+            self
+        }
+        pub fn response_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventResponseMcpCallArgumentsDeltaType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseMcpCallArgumentsDelta>
+        for super::RealtimeServerEventResponseMcpCallArgumentsDelta
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseMcpCallArgumentsDelta,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                delta: value.delta?,
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                obfuscation: value.obfuscation?,
+                output_index: value.output_index?,
+                response_id: value.response_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseMcpCallArgumentsDelta>
+        for RealtimeServerEventResponseMcpCallArgumentsDelta
+    {
+        fn from(value: super::RealtimeServerEventResponseMcpCallArgumentsDelta) -> Self {
+            Self {
+                delta: Ok(value.delta),
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                obfuscation: Ok(value.obfuscation),
+                output_index: Ok(value.output_index),
+                response_id: Ok(value.response_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseMcpCallArgumentsDone {
+        arguments: ::std::result::Result<::std::string::String, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        output_index: ::std::result::Result<i64, ::std::string::String>,
+        response_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventResponseMcpCallArgumentsDoneType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseMcpCallArgumentsDone {
+        fn default() -> Self {
+            Self {
+                arguments: Err("no value supplied for arguments".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                output_index: Err("no value supplied for output_index".to_string()),
+                response_id: Err("no value supplied for response_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseMcpCallArgumentsDone {
+        pub fn arguments<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.arguments = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for arguments: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn output_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_index: {e}"));
+            self
+        }
+        pub fn response_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventResponseMcpCallArgumentsDoneType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseMcpCallArgumentsDone>
+        for super::RealtimeServerEventResponseMcpCallArgumentsDone
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseMcpCallArgumentsDone,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                arguments: value.arguments?,
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                output_index: value.output_index?,
+                response_id: value.response_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseMcpCallArgumentsDone>
+        for RealtimeServerEventResponseMcpCallArgumentsDone
+    {
+        fn from(value: super::RealtimeServerEventResponseMcpCallArgumentsDone) -> Self {
+            Self {
+                arguments: Ok(value.arguments),
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                output_index: Ok(value.output_index),
+                response_id: Ok(value.response_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseMcpCallCompleted {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        output_index: ::std::result::Result<i64, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventResponseMcpCallCompletedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseMcpCallCompleted {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                output_index: Err("no value supplied for output_index".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseMcpCallCompleted {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn output_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_index: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventResponseMcpCallCompletedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseMcpCallCompleted>
+        for super::RealtimeServerEventResponseMcpCallCompleted
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseMcpCallCompleted,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                output_index: value.output_index?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseMcpCallCompleted>
+        for RealtimeServerEventResponseMcpCallCompleted
+    {
+        fn from(value: super::RealtimeServerEventResponseMcpCallCompleted) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                output_index: Ok(value.output_index),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseMcpCallFailed {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        output_index: ::std::result::Result<i64, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventResponseMcpCallFailedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseMcpCallFailed {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                output_index: Err("no value supplied for output_index".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseMcpCallFailed {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn output_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_index: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventResponseMcpCallFailedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseMcpCallFailed>
+        for super::RealtimeServerEventResponseMcpCallFailed
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseMcpCallFailed,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                output_index: value.output_index?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseMcpCallFailed>
+        for RealtimeServerEventResponseMcpCallFailed
+    {
+        fn from(value: super::RealtimeServerEventResponseMcpCallFailed) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                output_index: Ok(value.output_index),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseMcpCallInProgress {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        output_index: ::std::result::Result<i64, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventResponseMcpCallInProgressType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseMcpCallInProgress {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                output_index: Err("no value supplied for output_index".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseMcpCallInProgress {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn output_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_index: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventResponseMcpCallInProgressType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseMcpCallInProgress>
+        for super::RealtimeServerEventResponseMcpCallInProgress
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseMcpCallInProgress,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                output_index: value.output_index?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseMcpCallInProgress>
+        for RealtimeServerEventResponseMcpCallInProgress
+    {
+        fn from(value: super::RealtimeServerEventResponseMcpCallInProgress) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                output_index: Ok(value.output_index),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseOutputItemAdded {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item: ::std::result::Result<super::RealtimeConversationItem, ::std::string::String>,
+        output_index: ::std::result::Result<i64, ::std::string::String>,
+        response_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventResponseOutputItemAddedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseOutputItemAdded {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                item: Err("no value supplied for item".to_string()),
+                output_index: Err("no value supplied for output_index".to_string()),
+                response_id: Err("no value supplied for response_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseOutputItemAdded {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeConversationItem>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item: {e}"));
+            self
+        }
+        pub fn output_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_index: {e}"));
+            self
+        }
+        pub fn response_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventResponseOutputItemAddedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseOutputItemAdded>
+        for super::RealtimeServerEventResponseOutputItemAdded
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseOutputItemAdded,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                item: value.item?,
+                output_index: value.output_index?,
+                response_id: value.response_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseOutputItemAdded>
+        for RealtimeServerEventResponseOutputItemAdded
+    {
+        fn from(value: super::RealtimeServerEventResponseOutputItemAdded) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                item: Ok(value.item),
+                output_index: Ok(value.output_index),
+                response_id: Ok(value.response_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseOutputItemDone {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item: ::std::result::Result<super::RealtimeConversationItem, ::std::string::String>,
+        output_index: ::std::result::Result<i64, ::std::string::String>,
+        response_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventResponseOutputItemDoneType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseOutputItemDone {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                item: Err("no value supplied for item".to_string()),
+                output_index: Err("no value supplied for output_index".to_string()),
+                response_id: Err("no value supplied for response_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseOutputItemDone {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeConversationItem>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item: {e}"));
+            self
+        }
+        pub fn output_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_index: {e}"));
+            self
+        }
+        pub fn response_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventResponseOutputItemDoneType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseOutputItemDone>
+        for super::RealtimeServerEventResponseOutputItemDone
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseOutputItemDone,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                item: value.item?,
+                output_index: value.output_index?,
+                response_id: value.response_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseOutputItemDone>
+        for RealtimeServerEventResponseOutputItemDone
+    {
+        fn from(value: super::RealtimeServerEventResponseOutputItemDone) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                item: Ok(value.item),
+                output_index: Ok(value.output_index),
+                response_id: Ok(value.response_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseTextDelta {
+        content_index: ::std::result::Result<i64, ::std::string::String>,
+        delta: ::std::result::Result<::std::string::String, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        output_index: ::std::result::Result<i64, ::std::string::String>,
+        response_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventResponseTextDeltaType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseTextDelta {
+        fn default() -> Self {
+            Self {
+                content_index: Err("no value supplied for content_index".to_string()),
+                delta: Err("no value supplied for delta".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                output_index: Err("no value supplied for output_index".to_string()),
+                response_id: Err("no value supplied for response_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseTextDelta {
+        pub fn content_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.content_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for content_index: {e}"));
+            self
+        }
+        pub fn delta<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.delta = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for delta: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn output_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_index: {e}"));
+            self
+        }
+        pub fn response_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventResponseTextDeltaType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseTextDelta>
+        for super::RealtimeServerEventResponseTextDelta
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseTextDelta,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                content_index: value.content_index?,
+                delta: value.delta?,
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                output_index: value.output_index?,
+                response_id: value.response_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseTextDelta>
+        for RealtimeServerEventResponseTextDelta
+    {
+        fn from(value: super::RealtimeServerEventResponseTextDelta) -> Self {
+            Self {
+                content_index: Ok(value.content_index),
+                delta: Ok(value.delta),
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                output_index: Ok(value.output_index),
+                response_id: Ok(value.response_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventResponseTextDone {
+        content_index: ::std::result::Result<i64, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        item_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        output_index: ::std::result::Result<i64, ::std::string::String>,
+        response_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        text: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventResponseTextDoneType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventResponseTextDone {
+        fn default() -> Self {
+            Self {
+                content_index: Err("no value supplied for content_index".to_string()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                item_id: Err("no value supplied for item_id".to_string()),
+                output_index: Err("no value supplied for output_index".to_string()),
+                response_id: Err("no value supplied for response_id".to_string()),
+                text: Err("no value supplied for text".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventResponseTextDone {
+        pub fn content_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.content_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for content_index: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn item_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.item_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for item_id: {e}"));
+            self
+        }
+        pub fn output_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_index = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_index: {e}"));
+            self
+        }
+        pub fn response_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_id: {e}"));
+            self
+        }
+        pub fn text<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventResponseTextDoneType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventResponseTextDone>
+        for super::RealtimeServerEventResponseTextDone
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventResponseTextDone,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                content_index: value.content_index?,
+                event_id: value.event_id?,
+                item_id: value.item_id?,
+                output_index: value.output_index?,
+                response_id: value.response_id?,
+                text: value.text?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventResponseTextDone>
+        for RealtimeServerEventResponseTextDone
+    {
+        fn from(value: super::RealtimeServerEventResponseTextDone) -> Self {
+            Self {
+                content_index: Ok(value.content_index),
+                event_id: Ok(value.event_id),
+                item_id: Ok(value.item_id),
+                output_index: Ok(value.output_index),
+                response_id: Ok(value.response_id),
+                text: Ok(value.text),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventSessionCreated {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        session: ::std::result::Result<
+            super::RealtimeServerEventSessionCreatedSession,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventSessionCreatedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventSessionCreated {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                session: Err("no value supplied for session".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventSessionCreated {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn session<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventSessionCreatedSession>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.session = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for session: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventSessionCreatedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventSessionCreated>
+        for super::RealtimeServerEventSessionCreated
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventSessionCreated,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                session: value.session?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventSessionCreated>
+        for RealtimeServerEventSessionCreated
+    {
+        fn from(value: super::RealtimeServerEventSessionCreated) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                session: Ok(value.session),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeServerEventSessionUpdated {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        session: ::std::result::Result<
+            super::RealtimeServerEventSessionUpdatedSession,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeServerEventSessionUpdatedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeServerEventSessionUpdated {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                session: Err("no value supplied for session".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeServerEventSessionUpdated {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn session<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventSessionUpdatedSession>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.session = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for session: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeServerEventSessionUpdatedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeServerEventSessionUpdated>
+        for super::RealtimeServerEventSessionUpdated
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeServerEventSessionUpdated,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                session: value.session?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeServerEventSessionUpdated>
+        for RealtimeServerEventSessionUpdated
+    {
+        fn from(value: super::RealtimeServerEventSessionUpdated) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                session: Ok(value.session),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateRequest {
+        client_secret: ::std::result::Result<
+            super::RealtimeSessionCreateRequestClientSecret,
+            ::std::string::String,
+        >,
+        input_audio_format: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        input_audio_transcription: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateRequestInputAudioTranscription>,
+            ::std::string::String,
+        >,
+        instructions: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        max_response_output_tokens: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateRequestMaxResponseOutputTokens>,
+            ::std::string::String,
+        >,
+        modalities: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeSessionCreateRequestModalitiesItem>,
+            ::std::string::String,
+        >,
+        output_audio_format: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        prompt: ::std::result::Result<::std::option::Option<super::Prompt>, ::std::string::String>,
+        speed: ::std::result::Result<::std::option::Option<f64>, ::std::string::String>,
+        temperature: ::std::result::Result<::std::option::Option<f64>, ::std::string::String>,
+        tool_choice: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        tools: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeSessionCreateRequestToolsItem>,
+            ::std::string::String,
+        >,
+        tracing: ::std::result::Result<
+            ::std::option::Option<super::TracingConfiguration>,
+            ::std::string::String,
+        >,
+        truncation: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTruncation>,
+            ::std::string::String,
+        >,
+        turn_detection: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateRequestTurnDetection>,
+            ::std::string::String,
+        >,
+        voice: ::std::result::Result<
+            ::std::option::Option<super::VoiceIdsOrCustomVoice>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateRequest {
+        fn default() -> Self {
+            Self {
+                client_secret: Err("no value supplied for client_secret".to_string()),
+                input_audio_format: Ok(Default::default()),
+                input_audio_transcription: Ok(Default::default()),
+                instructions: Ok(Default::default()),
+                max_response_output_tokens: Ok(Default::default()),
+                modalities: Ok(Default::default()),
+                output_audio_format: Ok(Default::default()),
+                prompt: Ok(Default::default()),
+                speed: Ok(Default::default()),
+                temperature: Ok(Default::default()),
+                tool_choice: Ok(Default::default()),
+                tools: Ok(Default::default()),
+                tracing: Ok(Default::default()),
+                truncation: Ok(Default::default()),
+                turn_detection: Ok(Default::default()),
+                voice: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateRequest {
+        pub fn client_secret<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeSessionCreateRequestClientSecret>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.client_secret = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for client_secret: {e}"));
+            self
+        }
+        pub fn input_audio_format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_audio_format = value.try_into().map_err(|e| {
+                format!("error converting supplied value for input_audio_format: {e}")
+            });
+            self
+        }
+        pub fn input_audio_transcription<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateRequestInputAudioTranscription>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_audio_transcription = value.try_into().map_err(|e| {
+                format!("error converting supplied value for input_audio_transcription: {e}")
+            });
+            self
+        }
+        pub fn instructions<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.instructions = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for instructions: {e}"));
+            self
+        }
+        pub fn max_response_output_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateRequestMaxResponseOutputTokens>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.max_response_output_tokens = value.try_into().map_err(|e| {
+                format!("error converting supplied value for max_response_output_tokens: {e}")
+            });
+            self
+        }
+        pub fn modalities<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::RealtimeSessionCreateRequestModalitiesItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.modalities = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for modalities: {e}"));
+            self
+        }
+        pub fn output_audio_format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_audio_format = value.try_into().map_err(|e| {
+                format!("error converting supplied value for output_audio_format: {e}")
+            });
+            self
+        }
+        pub fn prompt<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::Prompt>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prompt = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for prompt: {e}"));
+            self
+        }
+        pub fn speed<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<f64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.speed = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for speed: {e}"));
+            self
+        }
+        pub fn temperature<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<f64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.temperature = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for temperature: {e}"));
+            self
+        }
+        pub fn tool_choice<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.tool_choice = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for tool_choice: {e}"));
+            self
+        }
+        pub fn tools<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::RealtimeSessionCreateRequestToolsItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.tools = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for tools: {e}"));
+            self
+        }
+        pub fn tracing<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::TracingConfiguration>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.tracing = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for tracing: {e}"));
+            self
+        }
+        pub fn truncation<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeTruncation>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.truncation = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for truncation: {e}"));
+            self
+        }
+        pub fn turn_detection<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateRequestTurnDetection>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.turn_detection = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for turn_detection: {e}"));
+            self
+        }
+        pub fn voice<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::VoiceIdsOrCustomVoice>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.voice = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for voice: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateRequest> for super::RealtimeSessionCreateRequest {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateRequest,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                client_secret: value.client_secret?,
+                input_audio_format: value.input_audio_format?,
+                input_audio_transcription: value.input_audio_transcription?,
+                instructions: value.instructions?,
+                max_response_output_tokens: value.max_response_output_tokens?,
+                modalities: value.modalities?,
+                output_audio_format: value.output_audio_format?,
+                prompt: value.prompt?,
+                speed: value.speed?,
+                temperature: value.temperature?,
+                tool_choice: value.tool_choice?,
+                tools: value.tools?,
+                tracing: value.tracing?,
+                truncation: value.truncation?,
+                turn_detection: value.turn_detection?,
+                voice: value.voice?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateRequest> for RealtimeSessionCreateRequest {
+        fn from(value: super::RealtimeSessionCreateRequest) -> Self {
+            Self {
+                client_secret: Ok(value.client_secret),
+                input_audio_format: Ok(value.input_audio_format),
+                input_audio_transcription: Ok(value.input_audio_transcription),
+                instructions: Ok(value.instructions),
+                max_response_output_tokens: Ok(value.max_response_output_tokens),
+                modalities: Ok(value.modalities),
+                output_audio_format: Ok(value.output_audio_format),
+                prompt: Ok(value.prompt),
+                speed: Ok(value.speed),
+                temperature: Ok(value.temperature),
+                tool_choice: Ok(value.tool_choice),
+                tools: Ok(value.tools),
+                tracing: Ok(value.tracing),
+                truncation: Ok(value.truncation),
+                turn_detection: Ok(value.turn_detection),
+                voice: Ok(value.voice),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateRequestClientSecret {
+        expires_at: ::std::result::Result<i64, ::std::string::String>,
+        value: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateRequestClientSecret {
+        fn default() -> Self {
+            Self {
+                expires_at: Err("no value supplied for expires_at".to_string()),
+                value: Err("no value supplied for value".to_string()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateRequestClientSecret {
+        pub fn expires_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.expires_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for expires_at: {e}"));
+            self
+        }
+        pub fn value<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.value = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for value: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateRequestClientSecret>
+        for super::RealtimeSessionCreateRequestClientSecret
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateRequestClientSecret,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                expires_at: value.expires_at?,
+                value: value.value?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateRequestClientSecret>
+        for RealtimeSessionCreateRequestClientSecret
+    {
+        fn from(value: super::RealtimeSessionCreateRequestClientSecret) -> Self {
+            Self {
+                expires_at: Ok(value.expires_at),
+                value: Ok(value.value),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateRequestGa {
+        audio: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateRequestGaAudio>,
+            ::std::string::String,
+        >,
+        include: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeSessionCreateRequestGaIncludeItem>,
+            ::std::string::String,
+        >,
+        instructions: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        max_output_tokens: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateRequestGaMaxOutputTokens>,
+            ::std::string::String,
+        >,
+        model: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        output_modalities: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeSessionCreateRequestGaOutputModalitiesItem>,
+            ::std::string::String,
+        >,
+        parallel_tool_calls:
+            ::std::result::Result<::std::option::Option<bool>, ::std::string::String>,
+        prompt: ::std::result::Result<::std::option::Option<super::Prompt>, ::std::string::String>,
+        reasoning: ::std::result::Result<
+            ::std::option::Option<super::RealtimeReasoning>,
+            ::std::string::String,
+        >,
+        tool_choice: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateRequestGaToolChoice>,
+            ::std::string::String,
+        >,
+        tools: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeSessionCreateRequestGaToolsItem>,
+            ::std::string::String,
+        >,
+        tracing: ::std::result::Result<
+            ::std::option::Option<super::TracingConfiguration>,
+            ::std::string::String,
+        >,
+        truncation: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTruncation>,
+            ::std::string::String,
+        >,
+        type_:
+            ::std::result::Result<super::RealtimeSessionCreateRequestGaType, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateRequestGa {
+        fn default() -> Self {
+            Self {
+                audio: Ok(Default::default()),
+                include: Ok(Default::default()),
+                instructions: Ok(Default::default()),
+                max_output_tokens: Ok(Default::default()),
+                model: Ok(Default::default()),
+                output_modalities: Ok(Default::default()),
+                parallel_tool_calls: Ok(Default::default()),
+                prompt: Ok(Default::default()),
+                reasoning: Ok(Default::default()),
+                tool_choice: Ok(Default::default()),
+                tools: Ok(Default::default()),
+                tracing: Ok(Default::default()),
+                truncation: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateRequestGa {
+        pub fn audio<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateRequestGaAudio>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio: {e}"));
+            self
+        }
+        pub fn include<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::RealtimeSessionCreateRequestGaIncludeItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.include = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for include: {e}"));
+            self
+        }
+        pub fn instructions<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.instructions = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for instructions: {e}"));
+            self
+        }
+        pub fn max_output_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateRequestGaMaxOutputTokens>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.max_output_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for max_output_tokens: {e}"));
+            self
+        }
+        pub fn model<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.model = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for model: {e}"));
+            self
+        }
+        pub fn output_modalities<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::RealtimeSessionCreateRequestGaOutputModalitiesItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_modalities = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_modalities: {e}"));
+            self
+        }
+        pub fn parallel_tool_calls<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<bool>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.parallel_tool_calls = value.try_into().map_err(|e| {
+                format!("error converting supplied value for parallel_tool_calls: {e}")
+            });
+            self
+        }
+        pub fn prompt<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::Prompt>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prompt = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for prompt: {e}"));
+            self
+        }
+        pub fn reasoning<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeReasoning>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.reasoning = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for reasoning: {e}"));
+            self
+        }
+        pub fn tool_choice<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateRequestGaToolChoice>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.tool_choice = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for tool_choice: {e}"));
+            self
+        }
+        pub fn tools<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::RealtimeSessionCreateRequestGaToolsItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.tools = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for tools: {e}"));
+            self
+        }
+        pub fn tracing<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::TracingConfiguration>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.tracing = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for tracing: {e}"));
+            self
+        }
+        pub fn truncation<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeTruncation>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.truncation = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for truncation: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeSessionCreateRequestGaType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateRequestGa>
+        for super::RealtimeSessionCreateRequestGa
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateRequestGa,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio: value.audio?,
+                include: value.include?,
+                instructions: value.instructions?,
+                max_output_tokens: value.max_output_tokens?,
+                model: value.model?,
+                output_modalities: value.output_modalities?,
+                parallel_tool_calls: value.parallel_tool_calls?,
+                prompt: value.prompt?,
+                reasoning: value.reasoning?,
+                tool_choice: value.tool_choice?,
+                tools: value.tools?,
+                tracing: value.tracing?,
+                truncation: value.truncation?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateRequestGa>
+        for RealtimeSessionCreateRequestGa
+    {
+        fn from(value: super::RealtimeSessionCreateRequestGa) -> Self {
+            Self {
+                audio: Ok(value.audio),
+                include: Ok(value.include),
+                instructions: Ok(value.instructions),
+                max_output_tokens: Ok(value.max_output_tokens),
+                model: Ok(value.model),
+                output_modalities: Ok(value.output_modalities),
+                parallel_tool_calls: Ok(value.parallel_tool_calls),
+                prompt: Ok(value.prompt),
+                reasoning: Ok(value.reasoning),
+                tool_choice: Ok(value.tool_choice),
+                tools: Ok(value.tools),
+                tracing: Ok(value.tracing),
+                truncation: Ok(value.truncation),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateRequestGaAudio {
+        input: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateRequestGaAudioInput>,
+            ::std::string::String,
+        >,
+        output: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateRequestGaAudioOutput>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateRequestGaAudio {
+        fn default() -> Self {
+            Self {
+                input: Ok(Default::default()),
+                output: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateRequestGaAudio {
+        pub fn input<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateRequestGaAudioInput>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for input: {e}"));
+            self
+        }
+        pub fn output<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateRequestGaAudioOutput>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateRequestGaAudio>
+        for super::RealtimeSessionCreateRequestGaAudio
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateRequestGaAudio,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                input: value.input?,
+                output: value.output?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateRequestGaAudio>
+        for RealtimeSessionCreateRequestGaAudio
+    {
+        fn from(value: super::RealtimeSessionCreateRequestGaAudio) -> Self {
+            Self {
+                input: Ok(value.input),
+                output: Ok(value.output),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateRequestGaAudioInput {
+        format: ::std::result::Result<
+            ::std::option::Option<super::RealtimeAudioFormats>,
+            ::std::string::String,
+        >,
+        noise_reduction: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateRequestGaAudioInputNoiseReduction>,
+            ::std::string::String,
+        >,
+        transcription: ::std::result::Result<
+            ::std::option::Option<super::AudioTranscription>,
+            ::std::string::String,
+        >,
+        turn_detection: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTurnDetection>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateRequestGaAudioInput {
+        fn default() -> Self {
+            Self {
+                format: Ok(Default::default()),
+                noise_reduction: Ok(Default::default()),
+                transcription: Ok(Default::default()),
+                turn_detection: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateRequestGaAudioInput {
+        pub fn format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeAudioFormats>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for format: {e}"));
+            self
+        }
+        pub fn noise_reduction<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    super::RealtimeSessionCreateRequestGaAudioInputNoiseReduction,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.noise_reduction = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for noise_reduction: {e}"));
+            self
+        }
+        pub fn transcription<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::AudioTranscription>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.transcription = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for transcription: {e}"));
+            self
+        }
+        pub fn turn_detection<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeTurnDetection>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.turn_detection = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for turn_detection: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateRequestGaAudioInput>
+        for super::RealtimeSessionCreateRequestGaAudioInput
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateRequestGaAudioInput,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                format: value.format?,
+                noise_reduction: value.noise_reduction?,
+                transcription: value.transcription?,
+                turn_detection: value.turn_detection?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateRequestGaAudioInput>
+        for RealtimeSessionCreateRequestGaAudioInput
+    {
+        fn from(value: super::RealtimeSessionCreateRequestGaAudioInput) -> Self {
+            Self {
+                format: Ok(value.format),
+                noise_reduction: Ok(value.noise_reduction),
+                transcription: Ok(value.transcription),
+                turn_detection: Ok(value.turn_detection),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateRequestGaAudioInputNoiseReduction {
+        type_: ::std::result::Result<
+            ::std::option::Option<super::NoiseReductionType>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateRequestGaAudioInputNoiseReduction {
+        fn default() -> Self {
+            Self {
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateRequestGaAudioInputNoiseReduction {
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::NoiseReductionType>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateRequestGaAudioInputNoiseReduction>
+        for super::RealtimeSessionCreateRequestGaAudioInputNoiseReduction
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateRequestGaAudioInputNoiseReduction,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateRequestGaAudioInputNoiseReduction>
+        for RealtimeSessionCreateRequestGaAudioInputNoiseReduction
+    {
+        fn from(value: super::RealtimeSessionCreateRequestGaAudioInputNoiseReduction) -> Self {
+            Self {
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateRequestGaAudioOutput {
+        format: ::std::result::Result<
+            ::std::option::Option<super::RealtimeAudioFormats>,
+            ::std::string::String,
+        >,
+        speed: ::std::result::Result<::std::option::Option<f64>, ::std::string::String>,
+        voice: ::std::result::Result<
+            ::std::option::Option<super::VoiceIdsOrCustomVoice>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateRequestGaAudioOutput {
+        fn default() -> Self {
+            Self {
+                format: Ok(Default::default()),
+                speed: Ok(Default::default()),
+                voice: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateRequestGaAudioOutput {
+        pub fn format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeAudioFormats>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for format: {e}"));
+            self
+        }
+        pub fn speed<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<f64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.speed = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for speed: {e}"));
+            self
+        }
+        pub fn voice<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::VoiceIdsOrCustomVoice>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.voice = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for voice: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateRequestGaAudioOutput>
+        for super::RealtimeSessionCreateRequestGaAudioOutput
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateRequestGaAudioOutput,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                format: value.format?,
+                speed: value.speed?,
+                voice: value.voice?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateRequestGaAudioOutput>
+        for RealtimeSessionCreateRequestGaAudioOutput
+    {
+        fn from(value: super::RealtimeSessionCreateRequestGaAudioOutput) -> Self {
+            Self {
+                format: Ok(value.format),
+                speed: Ok(value.speed),
+                voice: Ok(value.voice),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateRequestInputAudioTranscription {
+        model: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateRequestInputAudioTranscription {
+        fn default() -> Self {
+            Self {
+                model: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateRequestInputAudioTranscription {
+        pub fn model<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.model = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for model: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateRequestInputAudioTranscription>
+        for super::RealtimeSessionCreateRequestInputAudioTranscription
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateRequestInputAudioTranscription,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                model: value.model?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateRequestInputAudioTranscription>
+        for RealtimeSessionCreateRequestInputAudioTranscription
+    {
+        fn from(value: super::RealtimeSessionCreateRequestInputAudioTranscription) -> Self {
+            Self {
+                model: Ok(value.model),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateRequestToolsItem {
+        description: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        name: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        parameters: ::std::result::Result<
+            ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateRequestToolsItemType>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateRequestToolsItem {
+        fn default() -> Self {
+            Self {
+                description: Ok(Default::default()),
+                name: Ok(Default::default()),
+                parameters: Ok(Default::default()),
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateRequestToolsItem {
+        pub fn description<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.description = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for description: {e}"));
+            self
+        }
+        pub fn name<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.name = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for name: {e}"));
+            self
+        }
+        pub fn parameters<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::serde_json::Map<::std::string::String, ::serde_json::Value>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.parameters = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for parameters: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateRequestToolsItemType>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateRequestToolsItem>
+        for super::RealtimeSessionCreateRequestToolsItem
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateRequestToolsItem,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                description: value.description?,
+                name: value.name?,
+                parameters: value.parameters?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateRequestToolsItem>
+        for RealtimeSessionCreateRequestToolsItem
+    {
+        fn from(value: super::RealtimeSessionCreateRequestToolsItem) -> Self {
+            Self {
+                description: Ok(value.description),
+                name: Ok(value.name),
+                parameters: Ok(value.parameters),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateRequestTurnDetection {
+        prefix_padding_ms: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        silence_duration_ms:
+            ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        threshold: ::std::result::Result<::std::option::Option<f64>, ::std::string::String>,
+        type_: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateRequestTurnDetection {
+        fn default() -> Self {
+            Self {
+                prefix_padding_ms: Ok(Default::default()),
+                silence_duration_ms: Ok(Default::default()),
+                threshold: Ok(Default::default()),
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateRequestTurnDetection {
+        pub fn prefix_padding_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prefix_padding_ms = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for prefix_padding_ms: {e}"));
+            self
+        }
+        pub fn silence_duration_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.silence_duration_ms = value.try_into().map_err(|e| {
+                format!("error converting supplied value for silence_duration_ms: {e}")
+            });
+            self
+        }
+        pub fn threshold<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<f64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.threshold = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for threshold: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateRequestTurnDetection>
+        for super::RealtimeSessionCreateRequestTurnDetection
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateRequestTurnDetection,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                prefix_padding_ms: value.prefix_padding_ms?,
+                silence_duration_ms: value.silence_duration_ms?,
+                threshold: value.threshold?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateRequestTurnDetection>
+        for RealtimeSessionCreateRequestTurnDetection
+    {
+        fn from(value: super::RealtimeSessionCreateRequestTurnDetection) -> Self {
+            Self {
+                prefix_padding_ms: Ok(value.prefix_padding_ms),
+                silence_duration_ms: Ok(value.silence_duration_ms),
+                threshold: Ok(value.threshold),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateResponse {
+        audio: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateResponseAudio>,
+            ::std::string::String,
+        >,
+        expires_at: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        include: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeSessionCreateResponseIncludeItem>,
+            ::std::string::String,
+        >,
+        instructions: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        max_output_tokens: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateResponseMaxOutputTokens>,
+            ::std::string::String,
+        >,
+        model: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        object: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        output_modalities: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeSessionCreateResponseOutputModalitiesItem>,
+            ::std::string::String,
+        >,
+        tool_choice: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        tools: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeFunctionTool>,
+            ::std::string::String,
+        >,
+        tracing: ::std::result::Result<
+            ::std::option::Option<super::TracingConfiguration>,
+            ::std::string::String,
+        >,
+        turn_detection: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateResponseTurnDetection>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateResponse {
+        fn default() -> Self {
+            Self {
+                audio: Ok(Default::default()),
+                expires_at: Ok(Default::default()),
+                id: Ok(Default::default()),
+                include: Ok(Default::default()),
+                instructions: Ok(Default::default()),
+                max_output_tokens: Ok(Default::default()),
+                model: Ok(Default::default()),
+                object: Ok(Default::default()),
+                output_modalities: Ok(Default::default()),
+                tool_choice: Ok(Default::default()),
+                tools: Ok(Default::default()),
+                tracing: Ok(Default::default()),
+                turn_detection: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateResponse {
+        pub fn audio<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateResponseAudio>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio: {e}"));
+            self
+        }
+        pub fn expires_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.expires_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for expires_at: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn include<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::RealtimeSessionCreateResponseIncludeItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.include = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for include: {e}"));
+            self
+        }
+        pub fn instructions<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.instructions = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for instructions: {e}"));
+            self
+        }
+        pub fn max_output_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateResponseMaxOutputTokens>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.max_output_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for max_output_tokens: {e}"));
+            self
+        }
+        pub fn model<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.model = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for model: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+        pub fn output_modalities<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::RealtimeSessionCreateResponseOutputModalitiesItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_modalities = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_modalities: {e}"));
+            self
+        }
+        pub fn tool_choice<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.tool_choice = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for tool_choice: {e}"));
+            self
+        }
+        pub fn tools<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<super::RealtimeFunctionTool>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.tools = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for tools: {e}"));
+            self
+        }
+        pub fn tracing<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::TracingConfiguration>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.tracing = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for tracing: {e}"));
+            self
+        }
+        pub fn turn_detection<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateResponseTurnDetection>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.turn_detection = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for turn_detection: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateResponse>
+        for super::RealtimeSessionCreateResponse
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateResponse,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio: value.audio?,
+                expires_at: value.expires_at?,
+                id: value.id?,
+                include: value.include?,
+                instructions: value.instructions?,
+                max_output_tokens: value.max_output_tokens?,
+                model: value.model?,
+                object: value.object?,
+                output_modalities: value.output_modalities?,
+                tool_choice: value.tool_choice?,
+                tools: value.tools?,
+                tracing: value.tracing?,
+                turn_detection: value.turn_detection?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateResponse> for RealtimeSessionCreateResponse {
+        fn from(value: super::RealtimeSessionCreateResponse) -> Self {
+            Self {
+                audio: Ok(value.audio),
+                expires_at: Ok(value.expires_at),
+                id: Ok(value.id),
+                include: Ok(value.include),
+                instructions: Ok(value.instructions),
+                max_output_tokens: Ok(value.max_output_tokens),
+                model: Ok(value.model),
+                object: Ok(value.object),
+                output_modalities: Ok(value.output_modalities),
+                tool_choice: Ok(value.tool_choice),
+                tools: Ok(value.tools),
+                tracing: Ok(value.tracing),
+                turn_detection: Ok(value.turn_detection),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateResponseAudio {
+        input: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateResponseAudioInput>,
+            ::std::string::String,
+        >,
+        output: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateResponseAudioOutput>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateResponseAudio {
+        fn default() -> Self {
+            Self {
+                input: Ok(Default::default()),
+                output: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateResponseAudio {
+        pub fn input<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateResponseAudioInput>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for input: {e}"));
+            self
+        }
+        pub fn output<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateResponseAudioOutput>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateResponseAudio>
+        for super::RealtimeSessionCreateResponseAudio
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateResponseAudio,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                input: value.input?,
+                output: value.output?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateResponseAudio>
+        for RealtimeSessionCreateResponseAudio
+    {
+        fn from(value: super::RealtimeSessionCreateResponseAudio) -> Self {
+            Self {
+                input: Ok(value.input),
+                output: Ok(value.output),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateResponseAudioInput {
+        format: ::std::result::Result<
+            ::std::option::Option<super::RealtimeAudioFormats>,
+            ::std::string::String,
+        >,
+        noise_reduction: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateResponseAudioInputNoiseReduction>,
+            ::std::string::String,
+        >,
+        transcription: ::std::result::Result<
+            ::std::option::Option<super::AudioTranscriptionResponse>,
+            ::std::string::String,
+        >,
+        turn_detection: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateResponseAudioInputTurnDetection>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateResponseAudioInput {
+        fn default() -> Self {
+            Self {
+                format: Ok(Default::default()),
+                noise_reduction: Ok(Default::default()),
+                transcription: Ok(Default::default()),
+                turn_detection: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateResponseAudioInput {
+        pub fn format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeAudioFormats>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for format: {e}"));
+            self
+        }
+        pub fn noise_reduction<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateResponseAudioInputNoiseReduction>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.noise_reduction = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for noise_reduction: {e}"));
+            self
+        }
+        pub fn transcription<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::AudioTranscriptionResponse>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.transcription = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for transcription: {e}"));
+            self
+        }
+        pub fn turn_detection<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateResponseAudioInputTurnDetection>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.turn_detection = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for turn_detection: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateResponseAudioInput>
+        for super::RealtimeSessionCreateResponseAudioInput
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateResponseAudioInput,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                format: value.format?,
+                noise_reduction: value.noise_reduction?,
+                transcription: value.transcription?,
+                turn_detection: value.turn_detection?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateResponseAudioInput>
+        for RealtimeSessionCreateResponseAudioInput
+    {
+        fn from(value: super::RealtimeSessionCreateResponseAudioInput) -> Self {
+            Self {
+                format: Ok(value.format),
+                noise_reduction: Ok(value.noise_reduction),
+                transcription: Ok(value.transcription),
+                turn_detection: Ok(value.turn_detection),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateResponseAudioInputNoiseReduction {
+        type_: ::std::result::Result<
+            ::std::option::Option<super::NoiseReductionType>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateResponseAudioInputNoiseReduction {
+        fn default() -> Self {
+            Self {
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateResponseAudioInputNoiseReduction {
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::NoiseReductionType>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateResponseAudioInputNoiseReduction>
+        for super::RealtimeSessionCreateResponseAudioInputNoiseReduction
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateResponseAudioInputNoiseReduction,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateResponseAudioInputNoiseReduction>
+        for RealtimeSessionCreateResponseAudioInputNoiseReduction
+    {
+        fn from(value: super::RealtimeSessionCreateResponseAudioInputNoiseReduction) -> Self {
+            Self {
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateResponseAudioInputTurnDetection {
+        prefix_padding_ms: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        silence_duration_ms:
+            ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        threshold: ::std::result::Result<::std::option::Option<f64>, ::std::string::String>,
+        type_: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateResponseAudioInputTurnDetection {
+        fn default() -> Self {
+            Self {
+                prefix_padding_ms: Ok(Default::default()),
+                silence_duration_ms: Ok(Default::default()),
+                threshold: Ok(Default::default()),
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateResponseAudioInputTurnDetection {
+        pub fn prefix_padding_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prefix_padding_ms = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for prefix_padding_ms: {e}"));
+            self
+        }
+        pub fn silence_duration_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.silence_duration_ms = value.try_into().map_err(|e| {
+                format!("error converting supplied value for silence_duration_ms: {e}")
+            });
+            self
+        }
+        pub fn threshold<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<f64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.threshold = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for threshold: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateResponseAudioInputTurnDetection>
+        for super::RealtimeSessionCreateResponseAudioInputTurnDetection
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateResponseAudioInputTurnDetection,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                prefix_padding_ms: value.prefix_padding_ms?,
+                silence_duration_ms: value.silence_duration_ms?,
+                threshold: value.threshold?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateResponseAudioInputTurnDetection>
+        for RealtimeSessionCreateResponseAudioInputTurnDetection
+    {
+        fn from(value: super::RealtimeSessionCreateResponseAudioInputTurnDetection) -> Self {
+            Self {
+                prefix_padding_ms: Ok(value.prefix_padding_ms),
+                silence_duration_ms: Ok(value.silence_duration_ms),
+                threshold: Ok(value.threshold),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateResponseAudioOutput {
+        format: ::std::result::Result<
+            ::std::option::Option<super::RealtimeAudioFormats>,
+            ::std::string::String,
+        >,
+        speed: ::std::result::Result<::std::option::Option<f64>, ::std::string::String>,
+        voice: ::std::result::Result<
+            ::std::option::Option<super::VoiceIdsShared>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateResponseAudioOutput {
+        fn default() -> Self {
+            Self {
+                format: Ok(Default::default()),
+                speed: Ok(Default::default()),
+                voice: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateResponseAudioOutput {
+        pub fn format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeAudioFormats>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for format: {e}"));
+            self
+        }
+        pub fn speed<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<f64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.speed = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for speed: {e}"));
+            self
+        }
+        pub fn voice<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::VoiceIdsShared>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.voice = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for voice: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateResponseAudioOutput>
+        for super::RealtimeSessionCreateResponseAudioOutput
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateResponseAudioOutput,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                format: value.format?,
+                speed: value.speed?,
+                voice: value.voice?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateResponseAudioOutput>
+        for RealtimeSessionCreateResponseAudioOutput
+    {
+        fn from(value: super::RealtimeSessionCreateResponseAudioOutput) -> Self {
+            Self {
+                format: Ok(value.format),
+                speed: Ok(value.speed),
+                voice: Ok(value.voice),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateResponseGa {
+        audio: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateResponseGaAudio>,
+            ::std::string::String,
+        >,
+        expires_at: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        include: ::std::result::Result<
+            ::std::option::Option<
+                ::std::vec::Vec<super::RealtimeSessionCreateResponseGaIncludeItem>,
+            >,
+            ::std::string::String,
+        >,
+        instructions: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        max_output_tokens: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateResponseGaMaxOutputTokens>,
+            ::std::string::String,
+        >,
+        model: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        object: ::std::result::Result<
+            super::RealtimeSessionCreateResponseGaObject,
+            ::std::string::String,
+        >,
+        output_modalities: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeSessionCreateResponseGaOutputModalitiesItem>,
+            ::std::string::String,
+        >,
+        prompt: ::std::result::Result<::std::option::Option<super::Prompt>, ::std::string::String>,
+        reasoning: ::std::result::Result<
+            ::std::option::Option<super::RealtimeReasoning>,
+            ::std::string::String,
+        >,
+        tool_choice: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateResponseGaToolChoice>,
+            ::std::string::String,
+        >,
+        tools: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeSessionCreateResponseGaToolsItem>,
+            ::std::string::String,
+        >,
+        tracing: ::std::result::Result<
+            ::std::option::Option<super::TracingConfiguration>,
+            ::std::string::String,
+        >,
+        truncation: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTruncation>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeSessionCreateResponseGaType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateResponseGa {
+        fn default() -> Self {
+            Self {
+                audio: Ok(Default::default()),
+                expires_at: Ok(Default::default()),
+                id: Err("no value supplied for id".to_string()),
+                include: Ok(Default::default()),
+                instructions: Ok(Default::default()),
+                max_output_tokens: Ok(Default::default()),
+                model: Ok(Default::default()),
+                object: Err("no value supplied for object".to_string()),
+                output_modalities: Ok(Default::default()),
+                prompt: Ok(Default::default()),
+                reasoning: Ok(Default::default()),
+                tool_choice: Ok(Default::default()),
+                tools: Ok(Default::default()),
+                tracing: Ok(Default::default()),
+                truncation: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateResponseGa {
+        pub fn audio<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateResponseGaAudio>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio: {e}"));
+            self
+        }
+        pub fn expires_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.expires_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for expires_at: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn include<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    ::std::vec::Vec<super::RealtimeSessionCreateResponseGaIncludeItem>,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.include = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for include: {e}"));
+            self
+        }
+        pub fn instructions<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.instructions = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for instructions: {e}"));
+            self
+        }
+        pub fn max_output_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateResponseGaMaxOutputTokens>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.max_output_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for max_output_tokens: {e}"));
+            self
+        }
+        pub fn model<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.model = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for model: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeSessionCreateResponseGaObject>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+        pub fn output_modalities<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::RealtimeSessionCreateResponseGaOutputModalitiesItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_modalities = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_modalities: {e}"));
+            self
+        }
+        pub fn prompt<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::Prompt>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prompt = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for prompt: {e}"));
+            self
+        }
+        pub fn reasoning<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeReasoning>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.reasoning = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for reasoning: {e}"));
+            self
+        }
+        pub fn tool_choice<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateResponseGaToolChoice>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.tool_choice = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for tool_choice: {e}"));
+            self
+        }
+        pub fn tools<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::RealtimeSessionCreateResponseGaToolsItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.tools = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for tools: {e}"));
+            self
+        }
+        pub fn tracing<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::TracingConfiguration>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.tracing = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for tracing: {e}"));
+            self
+        }
+        pub fn truncation<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeTruncation>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.truncation = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for truncation: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeSessionCreateResponseGaType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateResponseGa>
+        for super::RealtimeSessionCreateResponseGa
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateResponseGa,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio: value.audio?,
+                expires_at: value.expires_at?,
+                id: value.id?,
+                include: value.include?,
+                instructions: value.instructions?,
+                max_output_tokens: value.max_output_tokens?,
+                model: value.model?,
+                object: value.object?,
+                output_modalities: value.output_modalities?,
+                prompt: value.prompt?,
+                reasoning: value.reasoning?,
+                tool_choice: value.tool_choice?,
+                tools: value.tools?,
+                tracing: value.tracing?,
+                truncation: value.truncation?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateResponseGa>
+        for RealtimeSessionCreateResponseGa
+    {
+        fn from(value: super::RealtimeSessionCreateResponseGa) -> Self {
+            Self {
+                audio: Ok(value.audio),
+                expires_at: Ok(value.expires_at),
+                id: Ok(value.id),
+                include: Ok(value.include),
+                instructions: Ok(value.instructions),
+                max_output_tokens: Ok(value.max_output_tokens),
+                model: Ok(value.model),
+                object: Ok(value.object),
+                output_modalities: Ok(value.output_modalities),
+                prompt: Ok(value.prompt),
+                reasoning: Ok(value.reasoning),
+                tool_choice: Ok(value.tool_choice),
+                tools: Ok(value.tools),
+                tracing: Ok(value.tracing),
+                truncation: Ok(value.truncation),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateResponseGaAudio {
+        input: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateResponseGaAudioInput>,
+            ::std::string::String,
+        >,
+        output: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateResponseGaAudioOutput>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateResponseGaAudio {
+        fn default() -> Self {
+            Self {
+                input: Ok(Default::default()),
+                output: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateResponseGaAudio {
+        pub fn input<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateResponseGaAudioInput>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for input: {e}"));
+            self
+        }
+        pub fn output<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeSessionCreateResponseGaAudioOutput>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateResponseGaAudio>
+        for super::RealtimeSessionCreateResponseGaAudio
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateResponseGaAudio,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                input: value.input?,
+                output: value.output?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateResponseGaAudio>
+        for RealtimeSessionCreateResponseGaAudio
+    {
+        fn from(value: super::RealtimeSessionCreateResponseGaAudio) -> Self {
+            Self {
+                input: Ok(value.input),
+                output: Ok(value.output),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateResponseGaAudioInput {
+        format: ::std::result::Result<
+            ::std::option::Option<super::RealtimeAudioFormats>,
+            ::std::string::String,
+        >,
+        noise_reduction: ::std::result::Result<
+            ::std::option::Option<super::RealtimeSessionCreateResponseGaAudioInputNoiseReduction>,
+            ::std::string::String,
+        >,
+        transcription: ::std::result::Result<
+            ::std::option::Option<super::AudioTranscriptionResponse>,
+            ::std::string::String,
+        >,
+        turn_detection: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTurnDetection>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateResponseGaAudioInput {
+        fn default() -> Self {
+            Self {
+                format: Ok(Default::default()),
+                noise_reduction: Ok(Default::default()),
+                transcription: Ok(Default::default()),
+                turn_detection: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateResponseGaAudioInput {
+        pub fn format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeAudioFormats>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for format: {e}"));
+            self
+        }
+        pub fn noise_reduction<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    super::RealtimeSessionCreateResponseGaAudioInputNoiseReduction,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.noise_reduction = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for noise_reduction: {e}"));
+            self
+        }
+        pub fn transcription<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::AudioTranscriptionResponse>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.transcription = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for transcription: {e}"));
+            self
+        }
+        pub fn turn_detection<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeTurnDetection>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.turn_detection = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for turn_detection: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateResponseGaAudioInput>
+        for super::RealtimeSessionCreateResponseGaAudioInput
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateResponseGaAudioInput,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                format: value.format?,
+                noise_reduction: value.noise_reduction?,
+                transcription: value.transcription?,
+                turn_detection: value.turn_detection?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateResponseGaAudioInput>
+        for RealtimeSessionCreateResponseGaAudioInput
+    {
+        fn from(value: super::RealtimeSessionCreateResponseGaAudioInput) -> Self {
+            Self {
+                format: Ok(value.format),
+                noise_reduction: Ok(value.noise_reduction),
+                transcription: Ok(value.transcription),
+                turn_detection: Ok(value.turn_detection),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateResponseGaAudioInputNoiseReduction {
+        type_: ::std::result::Result<
+            ::std::option::Option<super::NoiseReductionType>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateResponseGaAudioInputNoiseReduction {
+        fn default() -> Self {
+            Self {
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateResponseGaAudioInputNoiseReduction {
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::NoiseReductionType>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateResponseGaAudioInputNoiseReduction>
+        for super::RealtimeSessionCreateResponseGaAudioInputNoiseReduction
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateResponseGaAudioInputNoiseReduction,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateResponseGaAudioInputNoiseReduction>
+        for RealtimeSessionCreateResponseGaAudioInputNoiseReduction
+    {
+        fn from(value: super::RealtimeSessionCreateResponseGaAudioInputNoiseReduction) -> Self {
+            Self {
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateResponseGaAudioOutput {
+        format: ::std::result::Result<
+            ::std::option::Option<super::RealtimeAudioFormats>,
+            ::std::string::String,
+        >,
+        speed: ::std::result::Result<::std::option::Option<f64>, ::std::string::String>,
+        voice: ::std::result::Result<
+            ::std::option::Option<super::VoiceIdsShared>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateResponseGaAudioOutput {
+        fn default() -> Self {
+            Self {
+                format: Ok(Default::default()),
+                speed: Ok(Default::default()),
+                voice: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateResponseGaAudioOutput {
+        pub fn format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeAudioFormats>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for format: {e}"));
+            self
+        }
+        pub fn speed<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<f64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.speed = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for speed: {e}"));
+            self
+        }
+        pub fn voice<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::VoiceIdsShared>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.voice = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for voice: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateResponseGaAudioOutput>
+        for super::RealtimeSessionCreateResponseGaAudioOutput
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateResponseGaAudioOutput,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                format: value.format?,
+                speed: value.speed?,
+                voice: value.voice?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateResponseGaAudioOutput>
+        for RealtimeSessionCreateResponseGaAudioOutput
+    {
+        fn from(value: super::RealtimeSessionCreateResponseGaAudioOutput) -> Self {
+            Self {
+                format: Ok(value.format),
+                speed: Ok(value.speed),
+                voice: Ok(value.voice),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeSessionCreateResponseTurnDetection {
+        prefix_padding_ms: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        silence_duration_ms:
+            ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        threshold: ::std::result::Result<::std::option::Option<f64>, ::std::string::String>,
+        type_: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeSessionCreateResponseTurnDetection {
+        fn default() -> Self {
+            Self {
+                prefix_padding_ms: Ok(Default::default()),
+                silence_duration_ms: Ok(Default::default()),
+                threshold: Ok(Default::default()),
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeSessionCreateResponseTurnDetection {
+        pub fn prefix_padding_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prefix_padding_ms = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for prefix_padding_ms: {e}"));
+            self
+        }
+        pub fn silence_duration_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.silence_duration_ms = value.try_into().map_err(|e| {
+                format!("error converting supplied value for silence_duration_ms: {e}")
+            });
+            self
+        }
+        pub fn threshold<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<f64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.threshold = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for threshold: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeSessionCreateResponseTurnDetection>
+        for super::RealtimeSessionCreateResponseTurnDetection
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeSessionCreateResponseTurnDetection,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                prefix_padding_ms: value.prefix_padding_ms?,
+                silence_duration_ms: value.silence_duration_ms?,
+                threshold: value.threshold?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeSessionCreateResponseTurnDetection>
+        for RealtimeSessionCreateResponseTurnDetection
+    {
+        fn from(value: super::RealtimeSessionCreateResponseTurnDetection) -> Self {
+            Self {
+                prefix_padding_ms: Ok(value.prefix_padding_ms),
+                silence_duration_ms: Ok(value.silence_duration_ms),
+                threshold: Ok(value.threshold),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranscriptionSessionCreateRequest {
+        include: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeTranscriptionSessionCreateRequestIncludeItem>,
+            ::std::string::String,
+        >,
+        input_audio_format: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTranscriptionSessionCreateRequestInputAudioFormat>,
+            ::std::string::String,
+        >,
+        input_audio_noise_reduction: ::std::result::Result<
+            ::std::option::Option<
+                super::RealtimeTranscriptionSessionCreateRequestInputAudioNoiseReduction,
+            >,
+            ::std::string::String,
+        >,
+        input_audio_transcription: ::std::result::Result<
+            ::std::option::Option<super::AudioTranscription>,
+            ::std::string::String,
+        >,
+        turn_detection: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTranscriptionSessionCreateRequestTurnDetection>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranscriptionSessionCreateRequest {
+        fn default() -> Self {
+            Self {
+                include: Ok(Default::default()),
+                input_audio_format: Ok(Default::default()),
+                input_audio_noise_reduction: Ok(Default::default()),
+                input_audio_transcription: Ok(Default::default()),
+                turn_detection: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranscriptionSessionCreateRequest {
+        pub fn include<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::RealtimeTranscriptionSessionCreateRequestIncludeItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.include = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for include: {e}"));
+            self
+        }
+        pub fn input_audio_format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    super::RealtimeTranscriptionSessionCreateRequestInputAudioFormat,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_audio_format = value.try_into().map_err(|e| {
+                format!("error converting supplied value for input_audio_format: {e}")
+            });
+            self
+        }
+        pub fn input_audio_noise_reduction<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    super::RealtimeTranscriptionSessionCreateRequestInputAudioNoiseReduction,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_audio_noise_reduction = value.try_into().map_err(|e| {
+                format!("error converting supplied value for input_audio_noise_reduction: {e}")
+            });
+            self
+        }
+        pub fn input_audio_transcription<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::AudioTranscription>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_audio_transcription = value.try_into().map_err(|e| {
+                format!("error converting supplied value for input_audio_transcription: {e}")
+            });
+            self
+        }
+        pub fn turn_detection<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    super::RealtimeTranscriptionSessionCreateRequestTurnDetection,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.turn_detection = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for turn_detection: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranscriptionSessionCreateRequest>
+        for super::RealtimeTranscriptionSessionCreateRequest
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranscriptionSessionCreateRequest,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                include: value.include?,
+                input_audio_format: value.input_audio_format?,
+                input_audio_noise_reduction: value.input_audio_noise_reduction?,
+                input_audio_transcription: value.input_audio_transcription?,
+                turn_detection: value.turn_detection?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranscriptionSessionCreateRequest>
+        for RealtimeTranscriptionSessionCreateRequest
+    {
+        fn from(value: super::RealtimeTranscriptionSessionCreateRequest) -> Self {
+            Self {
+                include: Ok(value.include),
+                input_audio_format: Ok(value.input_audio_format),
+                input_audio_noise_reduction: Ok(value.input_audio_noise_reduction),
+                input_audio_transcription: Ok(value.input_audio_transcription),
+                turn_detection: Ok(value.turn_detection),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranscriptionSessionCreateRequestGa {
+        audio: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTranscriptionSessionCreateRequestGaAudio>,
+            ::std::string::String,
+        >,
+        include: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeTranscriptionSessionCreateRequestGaIncludeItem>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeTranscriptionSessionCreateRequestGaType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranscriptionSessionCreateRequestGa {
+        fn default() -> Self {
+            Self {
+                audio: Ok(Default::default()),
+                include: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranscriptionSessionCreateRequestGa {
+        pub fn audio<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeTranscriptionSessionCreateRequestGaAudio>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio: {e}"));
+            self
+        }
+        pub fn include<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::RealtimeTranscriptionSessionCreateRequestGaIncludeItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.include = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for include: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeTranscriptionSessionCreateRequestGaType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranscriptionSessionCreateRequestGa>
+        for super::RealtimeTranscriptionSessionCreateRequestGa
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranscriptionSessionCreateRequestGa,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio: value.audio?,
+                include: value.include?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranscriptionSessionCreateRequestGa>
+        for RealtimeTranscriptionSessionCreateRequestGa
+    {
+        fn from(value: super::RealtimeTranscriptionSessionCreateRequestGa) -> Self {
+            Self {
+                audio: Ok(value.audio),
+                include: Ok(value.include),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranscriptionSessionCreateRequestGaAudio {
+        input: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTranscriptionSessionCreateRequestGaAudioInput>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranscriptionSessionCreateRequestGaAudio {
+        fn default() -> Self {
+            Self {
+                input: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranscriptionSessionCreateRequestGaAudio {
+        pub fn input<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeTranscriptionSessionCreateRequestGaAudioInput>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for input: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranscriptionSessionCreateRequestGaAudio>
+        for super::RealtimeTranscriptionSessionCreateRequestGaAudio
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranscriptionSessionCreateRequestGaAudio,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                input: value.input?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranscriptionSessionCreateRequestGaAudio>
+        for RealtimeTranscriptionSessionCreateRequestGaAudio
+    {
+        fn from(value: super::RealtimeTranscriptionSessionCreateRequestGaAudio) -> Self {
+            Self {
+                input: Ok(value.input),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranscriptionSessionCreateRequestGaAudioInput {
+        format: ::std::result::Result<
+            ::std::option::Option<super::RealtimeAudioFormats>,
+            ::std::string::String,
+        >,
+        noise_reduction: ::std::result::Result<
+            ::std::option::Option<
+                super::RealtimeTranscriptionSessionCreateRequestGaAudioInputNoiseReduction,
+            >,
+            ::std::string::String,
+        >,
+        transcription: ::std::result::Result<
+            ::std::option::Option<super::AudioTranscription>,
+            ::std::string::String,
+        >,
+        turn_detection: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTurnDetection>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranscriptionSessionCreateRequestGaAudioInput {
+        fn default() -> Self {
+            Self {
+                format: Ok(Default::default()),
+                noise_reduction: Ok(Default::default()),
+                transcription: Ok(Default::default()),
+                turn_detection: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranscriptionSessionCreateRequestGaAudioInput {
+        pub fn format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeAudioFormats>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for format: {e}"));
+            self
+        }
+        pub fn noise_reduction<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    super::RealtimeTranscriptionSessionCreateRequestGaAudioInputNoiseReduction,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.noise_reduction = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for noise_reduction: {e}"));
+            self
+        }
+        pub fn transcription<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::AudioTranscription>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.transcription = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for transcription: {e}"));
+            self
+        }
+        pub fn turn_detection<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeTurnDetection>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.turn_detection = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for turn_detection: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranscriptionSessionCreateRequestGaAudioInput>
+        for super::RealtimeTranscriptionSessionCreateRequestGaAudioInput
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranscriptionSessionCreateRequestGaAudioInput,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                format: value.format?,
+                noise_reduction: value.noise_reduction?,
+                transcription: value.transcription?,
+                turn_detection: value.turn_detection?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranscriptionSessionCreateRequestGaAudioInput>
+        for RealtimeTranscriptionSessionCreateRequestGaAudioInput
+    {
+        fn from(value: super::RealtimeTranscriptionSessionCreateRequestGaAudioInput) -> Self {
+            Self {
+                format: Ok(value.format),
+                noise_reduction: Ok(value.noise_reduction),
+                transcription: Ok(value.transcription),
+                turn_detection: Ok(value.turn_detection),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranscriptionSessionCreateRequestGaAudioInputNoiseReduction {
+        type_: ::std::result::Result<
+            ::std::option::Option<super::NoiseReductionType>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default
+        for RealtimeTranscriptionSessionCreateRequestGaAudioInputNoiseReduction
+    {
+        fn default() -> Self {
+            Self {
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranscriptionSessionCreateRequestGaAudioInputNoiseReduction {
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::NoiseReductionType>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl
+        ::std::convert::TryFrom<RealtimeTranscriptionSessionCreateRequestGaAudioInputNoiseReduction>
+        for super::RealtimeTranscriptionSessionCreateRequestGaAudioInputNoiseReduction
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranscriptionSessionCreateRequestGaAudioInputNoiseReduction,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                type_: value.type_?,
+            })
+        }
+    }
+    impl
+        ::std::convert::From<
+            super::RealtimeTranscriptionSessionCreateRequestGaAudioInputNoiseReduction,
+        > for RealtimeTranscriptionSessionCreateRequestGaAudioInputNoiseReduction
+    {
+        fn from(
+            value: super::RealtimeTranscriptionSessionCreateRequestGaAudioInputNoiseReduction,
+        ) -> Self {
+            Self {
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranscriptionSessionCreateRequestInputAudioNoiseReduction {
+        type_: ::std::result::Result<
+            ::std::option::Option<super::NoiseReductionType>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranscriptionSessionCreateRequestInputAudioNoiseReduction {
+        fn default() -> Self {
+            Self {
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranscriptionSessionCreateRequestInputAudioNoiseReduction {
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::NoiseReductionType>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranscriptionSessionCreateRequestInputAudioNoiseReduction>
+        for super::RealtimeTranscriptionSessionCreateRequestInputAudioNoiseReduction
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranscriptionSessionCreateRequestInputAudioNoiseReduction,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                type_: value.type_?,
+            })
+        }
+    }
+    impl
+        ::std::convert::From<
+            super::RealtimeTranscriptionSessionCreateRequestInputAudioNoiseReduction,
+        > for RealtimeTranscriptionSessionCreateRequestInputAudioNoiseReduction
+    {
+        fn from(
+            value: super::RealtimeTranscriptionSessionCreateRequestInputAudioNoiseReduction,
+        ) -> Self {
+            Self {
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranscriptionSessionCreateRequestTurnDetection {
+        prefix_padding_ms: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        silence_duration_ms:
+            ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        threshold: ::std::result::Result<::std::option::Option<f64>, ::std::string::String>,
+        type_: ::std::result::Result<
+            ::std::option::Option<
+                super::RealtimeTranscriptionSessionCreateRequestTurnDetectionType,
+            >,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranscriptionSessionCreateRequestTurnDetection {
+        fn default() -> Self {
+            Self {
+                prefix_padding_ms: Ok(Default::default()),
+                silence_duration_ms: Ok(Default::default()),
+                threshold: Ok(Default::default()),
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranscriptionSessionCreateRequestTurnDetection {
+        pub fn prefix_padding_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prefix_padding_ms = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for prefix_padding_ms: {e}"));
+            self
+        }
+        pub fn silence_duration_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.silence_duration_ms = value.try_into().map_err(|e| {
+                format!("error converting supplied value for silence_duration_ms: {e}")
+            });
+            self
+        }
+        pub fn threshold<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<f64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.threshold = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for threshold: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    super::RealtimeTranscriptionSessionCreateRequestTurnDetectionType,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranscriptionSessionCreateRequestTurnDetection>
+        for super::RealtimeTranscriptionSessionCreateRequestTurnDetection
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranscriptionSessionCreateRequestTurnDetection,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                prefix_padding_ms: value.prefix_padding_ms?,
+                silence_duration_ms: value.silence_duration_ms?,
+                threshold: value.threshold?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranscriptionSessionCreateRequestTurnDetection>
+        for RealtimeTranscriptionSessionCreateRequestTurnDetection
+    {
+        fn from(value: super::RealtimeTranscriptionSessionCreateRequestTurnDetection) -> Self {
+            Self {
+                prefix_padding_ms: Ok(value.prefix_padding_ms),
+                silence_duration_ms: Ok(value.silence_duration_ms),
+                threshold: Ok(value.threshold),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranscriptionSessionCreateResponse {
+        client_secret: ::std::result::Result<
+            super::RealtimeTranscriptionSessionCreateResponseClientSecret,
+            ::std::string::String,
+        >,
+        input_audio_format: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        input_audio_transcription: ::std::result::Result<
+            ::std::option::Option<super::AudioTranscriptionResponse>,
+            ::std::string::String,
+        >,
+        modalities: ::std::result::Result<
+            ::std::vec::Vec<super::RealtimeTranscriptionSessionCreateResponseModalitiesItem>,
+            ::std::string::String,
+        >,
+        turn_detection: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTranscriptionSessionCreateResponseTurnDetection>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranscriptionSessionCreateResponse {
+        fn default() -> Self {
+            Self {
+                client_secret: Err("no value supplied for client_secret".to_string()),
+                input_audio_format: Ok(Default::default()),
+                input_audio_transcription: Ok(Default::default()),
+                modalities: Ok(Default::default()),
+                turn_detection: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranscriptionSessionCreateResponse {
+        pub fn client_secret<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                super::RealtimeTranscriptionSessionCreateResponseClientSecret,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.client_secret = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for client_secret: {e}"));
+            self
+        }
+        pub fn input_audio_format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_audio_format = value.try_into().map_err(|e| {
+                format!("error converting supplied value for input_audio_format: {e}")
+            });
+            self
+        }
+        pub fn input_audio_transcription<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::AudioTranscriptionResponse>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_audio_transcription = value.try_into().map_err(|e| {
+                format!("error converting supplied value for input_audio_transcription: {e}")
+            });
+            self
+        }
+        pub fn modalities<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::RealtimeTranscriptionSessionCreateResponseModalitiesItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.modalities = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for modalities: {e}"));
+            self
+        }
+        pub fn turn_detection<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    super::RealtimeTranscriptionSessionCreateResponseTurnDetection,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.turn_detection = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for turn_detection: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranscriptionSessionCreateResponse>
+        for super::RealtimeTranscriptionSessionCreateResponse
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranscriptionSessionCreateResponse,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                client_secret: value.client_secret?,
+                input_audio_format: value.input_audio_format?,
+                input_audio_transcription: value.input_audio_transcription?,
+                modalities: value.modalities?,
+                turn_detection: value.turn_detection?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranscriptionSessionCreateResponse>
+        for RealtimeTranscriptionSessionCreateResponse
+    {
+        fn from(value: super::RealtimeTranscriptionSessionCreateResponse) -> Self {
+            Self {
+                client_secret: Ok(value.client_secret),
+                input_audio_format: Ok(value.input_audio_format),
+                input_audio_transcription: Ok(value.input_audio_transcription),
+                modalities: Ok(value.modalities),
+                turn_detection: Ok(value.turn_detection),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranscriptionSessionCreateResponseClientSecret {
+        expires_at: ::std::result::Result<i64, ::std::string::String>,
+        value: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeTranscriptionSessionCreateResponseClientSecret {
+        fn default() -> Self {
+            Self {
+                expires_at: Err("no value supplied for expires_at".to_string()),
+                value: Err("no value supplied for value".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranscriptionSessionCreateResponseClientSecret {
+        pub fn expires_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.expires_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for expires_at: {e}"));
+            self
+        }
+        pub fn value<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.value = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for value: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranscriptionSessionCreateResponseClientSecret>
+        for super::RealtimeTranscriptionSessionCreateResponseClientSecret
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranscriptionSessionCreateResponseClientSecret,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                expires_at: value.expires_at?,
+                value: value.value?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranscriptionSessionCreateResponseClientSecret>
+        for RealtimeTranscriptionSessionCreateResponseClientSecret
+    {
+        fn from(value: super::RealtimeTranscriptionSessionCreateResponseClientSecret) -> Self {
+            Self {
+                expires_at: Ok(value.expires_at),
+                value: Ok(value.value),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranscriptionSessionCreateResponseGa {
+        audio: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTranscriptionSessionCreateResponseGaAudio>,
+            ::std::string::String,
+        >,
+        expires_at: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        include: ::std::result::Result<
+            ::std::option::Option<
+                ::std::vec::Vec<super::RealtimeTranscriptionSessionCreateResponseGaIncludeItem>,
+            >,
+            ::std::string::String,
+        >,
+        object: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeTranscriptionSessionCreateResponseGaType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranscriptionSessionCreateResponseGa {
+        fn default() -> Self {
+            Self {
+                audio: Ok(Default::default()),
+                expires_at: Ok(Default::default()),
+                id: Err("no value supplied for id".to_string()),
+                include: Ok(Default::default()),
+                object: Err("no value supplied for object".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranscriptionSessionCreateResponseGa {
+        pub fn audio<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeTranscriptionSessionCreateResponseGaAudio>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio: {e}"));
+            self
+        }
+        pub fn expires_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.expires_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for expires_at: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn include<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    ::std::vec::Vec<super::RealtimeTranscriptionSessionCreateResponseGaIncludeItem>,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.include = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for include: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeTranscriptionSessionCreateResponseGaType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranscriptionSessionCreateResponseGa>
+        for super::RealtimeTranscriptionSessionCreateResponseGa
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranscriptionSessionCreateResponseGa,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio: value.audio?,
+                expires_at: value.expires_at?,
+                id: value.id?,
+                include: value.include?,
+                object: value.object?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranscriptionSessionCreateResponseGa>
+        for RealtimeTranscriptionSessionCreateResponseGa
+    {
+        fn from(value: super::RealtimeTranscriptionSessionCreateResponseGa) -> Self {
+            Self {
+                audio: Ok(value.audio),
+                expires_at: Ok(value.expires_at),
+                id: Ok(value.id),
+                include: Ok(value.include),
+                object: Ok(value.object),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranscriptionSessionCreateResponseGaAudio {
+        input: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTranscriptionSessionCreateResponseGaAudioInput>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranscriptionSessionCreateResponseGaAudio {
+        fn default() -> Self {
+            Self {
+                input: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranscriptionSessionCreateResponseGaAudio {
+        pub fn input<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    super::RealtimeTranscriptionSessionCreateResponseGaAudioInput,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for input: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranscriptionSessionCreateResponseGaAudio>
+        for super::RealtimeTranscriptionSessionCreateResponseGaAudio
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranscriptionSessionCreateResponseGaAudio,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                input: value.input?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranscriptionSessionCreateResponseGaAudio>
+        for RealtimeTranscriptionSessionCreateResponseGaAudio
+    {
+        fn from(value: super::RealtimeTranscriptionSessionCreateResponseGaAudio) -> Self {
+            Self {
+                input: Ok(value.input),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranscriptionSessionCreateResponseGaAudioInput {
+        format: ::std::result::Result<
+            ::std::option::Option<super::RealtimeAudioFormats>,
+            ::std::string::String,
+        >,
+        noise_reduction: ::std::result::Result<
+            ::std::option::Option<
+                super::RealtimeTranscriptionSessionCreateResponseGaAudioInputNoiseReduction,
+            >,
+            ::std::string::String,
+        >,
+        transcription: ::std::result::Result<
+            ::std::option::Option<super::AudioTranscriptionResponse>,
+            ::std::string::String,
+        >,
+        turn_detection: ::std::result::Result<
+            ::std::option::Option<
+                super::RealtimeTranscriptionSessionCreateResponseGaAudioInputTurnDetection,
+            >,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranscriptionSessionCreateResponseGaAudioInput {
+        fn default() -> Self {
+            Self {
+                format: Ok(Default::default()),
+                noise_reduction: Ok(Default::default()),
+                transcription: Ok(Default::default()),
+                turn_detection: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranscriptionSessionCreateResponseGaAudioInput {
+        pub fn format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::RealtimeAudioFormats>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for format: {e}"));
+            self
+        }
+        pub fn noise_reduction<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    super::RealtimeTranscriptionSessionCreateResponseGaAudioInputNoiseReduction,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.noise_reduction = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for noise_reduction: {e}"));
+            self
+        }
+        pub fn transcription<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::AudioTranscriptionResponse>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.transcription = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for transcription: {e}"));
+            self
+        }
+        pub fn turn_detection<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    super::RealtimeTranscriptionSessionCreateResponseGaAudioInputTurnDetection,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.turn_detection = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for turn_detection: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranscriptionSessionCreateResponseGaAudioInput>
+        for super::RealtimeTranscriptionSessionCreateResponseGaAudioInput
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranscriptionSessionCreateResponseGaAudioInput,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                format: value.format?,
+                noise_reduction: value.noise_reduction?,
+                transcription: value.transcription?,
+                turn_detection: value.turn_detection?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranscriptionSessionCreateResponseGaAudioInput>
+        for RealtimeTranscriptionSessionCreateResponseGaAudioInput
+    {
+        fn from(value: super::RealtimeTranscriptionSessionCreateResponseGaAudioInput) -> Self {
+            Self {
+                format: Ok(value.format),
+                noise_reduction: Ok(value.noise_reduction),
+                transcription: Ok(value.transcription),
+                turn_detection: Ok(value.turn_detection),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranscriptionSessionCreateResponseGaAudioInputNoiseReduction {
+        type_: ::std::result::Result<
+            ::std::option::Option<super::NoiseReductionType>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default
+        for RealtimeTranscriptionSessionCreateResponseGaAudioInputNoiseReduction
+    {
+        fn default() -> Self {
+            Self {
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranscriptionSessionCreateResponseGaAudioInputNoiseReduction {
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::NoiseReductionType>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl
+        ::std::convert::TryFrom<
+            RealtimeTranscriptionSessionCreateResponseGaAudioInputNoiseReduction,
+        > for super::RealtimeTranscriptionSessionCreateResponseGaAudioInputNoiseReduction
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranscriptionSessionCreateResponseGaAudioInputNoiseReduction,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                type_: value.type_?,
+            })
+        }
+    }
+    impl
+        ::std::convert::From<
+            super::RealtimeTranscriptionSessionCreateResponseGaAudioInputNoiseReduction,
+        > for RealtimeTranscriptionSessionCreateResponseGaAudioInputNoiseReduction
+    {
+        fn from(
+            value: super::RealtimeTranscriptionSessionCreateResponseGaAudioInputNoiseReduction,
+        ) -> Self {
+            Self {
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranscriptionSessionCreateResponseGaAudioInputTurnDetection {
+        prefix_padding_ms: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        silence_duration_ms:
+            ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        threshold: ::std::result::Result<::std::option::Option<f64>, ::std::string::String>,
+        type_: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default
+        for RealtimeTranscriptionSessionCreateResponseGaAudioInputTurnDetection
+    {
+        fn default() -> Self {
+            Self {
+                prefix_padding_ms: Ok(Default::default()),
+                silence_duration_ms: Ok(Default::default()),
+                threshold: Ok(Default::default()),
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranscriptionSessionCreateResponseGaAudioInputTurnDetection {
+        pub fn prefix_padding_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prefix_padding_ms = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for prefix_padding_ms: {e}"));
+            self
+        }
+        pub fn silence_duration_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.silence_duration_ms = value.try_into().map_err(|e| {
+                format!("error converting supplied value for silence_duration_ms: {e}")
+            });
+            self
+        }
+        pub fn threshold<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<f64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.threshold = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for threshold: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl
+        ::std::convert::TryFrom<RealtimeTranscriptionSessionCreateResponseGaAudioInputTurnDetection>
+        for super::RealtimeTranscriptionSessionCreateResponseGaAudioInputTurnDetection
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranscriptionSessionCreateResponseGaAudioInputTurnDetection,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                prefix_padding_ms: value.prefix_padding_ms?,
+                silence_duration_ms: value.silence_duration_ms?,
+                threshold: value.threshold?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl
+        ::std::convert::From<
+            super::RealtimeTranscriptionSessionCreateResponseGaAudioInputTurnDetection,
+        > for RealtimeTranscriptionSessionCreateResponseGaAudioInputTurnDetection
+    {
+        fn from(
+            value: super::RealtimeTranscriptionSessionCreateResponseGaAudioInputTurnDetection,
+        ) -> Self {
+            Self {
+                prefix_padding_ms: Ok(value.prefix_padding_ms),
+                silence_duration_ms: Ok(value.silence_duration_ms),
+                threshold: Ok(value.threshold),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranscriptionSessionCreateResponseTurnDetection {
+        prefix_padding_ms: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        silence_duration_ms:
+            ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        threshold: ::std::result::Result<::std::option::Option<f64>, ::std::string::String>,
+        type_: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranscriptionSessionCreateResponseTurnDetection {
+        fn default() -> Self {
+            Self {
+                prefix_padding_ms: Ok(Default::default()),
+                silence_duration_ms: Ok(Default::default()),
+                threshold: Ok(Default::default()),
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranscriptionSessionCreateResponseTurnDetection {
+        pub fn prefix_padding_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prefix_padding_ms = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for prefix_padding_ms: {e}"));
+            self
+        }
+        pub fn silence_duration_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.silence_duration_ms = value.try_into().map_err(|e| {
+                format!("error converting supplied value for silence_duration_ms: {e}")
+            });
+            self
+        }
+        pub fn threshold<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<f64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.threshold = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for threshold: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranscriptionSessionCreateResponseTurnDetection>
+        for super::RealtimeTranscriptionSessionCreateResponseTurnDetection
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranscriptionSessionCreateResponseTurnDetection,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                prefix_padding_ms: value.prefix_padding_ms?,
+                silence_duration_ms: value.silence_duration_ms?,
+                threshold: value.threshold?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranscriptionSessionCreateResponseTurnDetection>
+        for RealtimeTranscriptionSessionCreateResponseTurnDetection
+    {
+        fn from(value: super::RealtimeTranscriptionSessionCreateResponseTurnDetection) -> Self {
+            Self {
+                prefix_padding_ms: Ok(value.prefix_padding_ms),
+                silence_duration_ms: Ok(value.silence_duration_ms),
+                threshold: Ok(value.threshold),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationClientEventInputAudioBufferAppend {
+        audio: ::std::result::Result<::std::string::String, ::std::string::String>,
+        event_id: ::std::result::Result<
+            ::std::option::Option<
+                super::RealtimeTranslationClientEventInputAudioBufferAppendEventId,
+            >,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeTranslationClientEventInputAudioBufferAppendType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranslationClientEventInputAudioBufferAppend {
+        fn default() -> Self {
+            Self {
+                audio: Err("no value supplied for audio".to_string()),
+                event_id: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranslationClientEventInputAudioBufferAppend {
+        pub fn audio<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    super::RealtimeTranslationClientEventInputAudioBufferAppendEventId,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                super::RealtimeTranslationClientEventInputAudioBufferAppendType,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationClientEventInputAudioBufferAppend>
+        for super::RealtimeTranslationClientEventInputAudioBufferAppend
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationClientEventInputAudioBufferAppend,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio: value.audio?,
+                event_id: value.event_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationClientEventInputAudioBufferAppend>
+        for RealtimeTranslationClientEventInputAudioBufferAppend
+    {
+        fn from(value: super::RealtimeTranslationClientEventInputAudioBufferAppend) -> Self {
+            Self {
+                audio: Ok(value.audio),
+                event_id: Ok(value.event_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationClientEventSessionClose {
+        event_id: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTranslationClientEventSessionCloseEventId>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeTranslationClientEventSessionCloseType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranslationClientEventSessionClose {
+        fn default() -> Self {
+            Self {
+                event_id: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranslationClientEventSessionClose {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeTranslationClientEventSessionCloseEventId>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeTranslationClientEventSessionCloseType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationClientEventSessionClose>
+        for super::RealtimeTranslationClientEventSessionClose
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationClientEventSessionClose,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationClientEventSessionClose>
+        for RealtimeTranslationClientEventSessionClose
+    {
+        fn from(value: super::RealtimeTranslationClientEventSessionClose) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationClientEventSessionUpdate {
+        event_id: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTranslationClientEventSessionUpdateEventId>,
+            ::std::string::String,
+        >,
+        session: ::std::result::Result<
+            super::RealtimeTranslationSessionUpdateRequest,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<
+            super::RealtimeTranslationClientEventSessionUpdateType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranslationClientEventSessionUpdate {
+        fn default() -> Self {
+            Self {
+                event_id: Ok(Default::default()),
+                session: Err("no value supplied for session".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranslationClientEventSessionUpdate {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeTranslationClientEventSessionUpdateEventId>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn session<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeTranslationSessionUpdateRequest>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.session = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for session: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeTranslationClientEventSessionUpdateType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationClientEventSessionUpdate>
+        for super::RealtimeTranslationClientEventSessionUpdate
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationClientEventSessionUpdate,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                session: value.session?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationClientEventSessionUpdate>
+        for RealtimeTranslationClientEventSessionUpdate
+    {
+        fn from(value: super::RealtimeTranslationClientEventSessionUpdate) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                session: Ok(value.session),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationClientSecretCreateRequest {
+        expires_after: ::std::result::Result<
+            ::std::option::Option<super::ClientSecretExpiration>,
+            ::std::string::String,
+        >,
+        session: ::std::result::Result<
+            super::RealtimeTranslationSessionCreateRequest,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranslationClientSecretCreateRequest {
+        fn default() -> Self {
+            Self {
+                expires_after: Ok(Default::default()),
+                session: Err("no value supplied for session".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranslationClientSecretCreateRequest {
+        pub fn expires_after<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::ClientSecretExpiration>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.expires_after = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for expires_after: {e}"));
+            self
+        }
+        pub fn session<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeTranslationSessionCreateRequest>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.session = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for session: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationClientSecretCreateRequest>
+        for super::RealtimeTranslationClientSecretCreateRequest
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationClientSecretCreateRequest,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                expires_after: value.expires_after?,
+                session: value.session?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationClientSecretCreateRequest>
+        for RealtimeTranslationClientSecretCreateRequest
+    {
+        fn from(value: super::RealtimeTranslationClientSecretCreateRequest) -> Self {
+            Self {
+                expires_after: Ok(value.expires_after),
+                session: Ok(value.session),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationClientSecretCreateResponse {
+        expires_at: ::std::result::Result<i64, ::std::string::String>,
+        session: ::std::result::Result<super::RealtimeTranslationSession, ::std::string::String>,
+        value: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeTranslationClientSecretCreateResponse {
+        fn default() -> Self {
+            Self {
+                expires_at: Err("no value supplied for expires_at".to_string()),
+                session: Err("no value supplied for session".to_string()),
+                value: Err("no value supplied for value".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranslationClientSecretCreateResponse {
+        pub fn expires_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.expires_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for expires_at: {e}"));
+            self
+        }
+        pub fn session<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeTranslationSession>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.session = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for session: {e}"));
+            self
+        }
+        pub fn value<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.value = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for value: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationClientSecretCreateResponse>
+        for super::RealtimeTranslationClientSecretCreateResponse
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationClientSecretCreateResponse,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                expires_at: value.expires_at?,
+                session: value.session?,
+                value: value.value?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationClientSecretCreateResponse>
+        for RealtimeTranslationClientSecretCreateResponse
+    {
+        fn from(value: super::RealtimeTranslationClientSecretCreateResponse) -> Self {
+            Self {
+                expires_at: Ok(value.expires_at),
+                session: Ok(value.session),
+                value: Ok(value.value),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationServerEventSessionClosed {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeTranslationServerEventSessionClosedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranslationServerEventSessionClosed {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranslationServerEventSessionClosed {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeTranslationServerEventSessionClosedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationServerEventSessionClosed>
+        for super::RealtimeTranslationServerEventSessionClosed
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationServerEventSessionClosed,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationServerEventSessionClosed>
+        for RealtimeTranslationServerEventSessionClosed
+    {
+        fn from(value: super::RealtimeTranslationServerEventSessionClosed) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationServerEventSessionCreated {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        session: ::std::result::Result<super::RealtimeTranslationSession, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeTranslationServerEventSessionCreatedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranslationServerEventSessionCreated {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                session: Err("no value supplied for session".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranslationServerEventSessionCreated {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn session<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeTranslationSession>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.session = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for session: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeTranslationServerEventSessionCreatedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationServerEventSessionCreated>
+        for super::RealtimeTranslationServerEventSessionCreated
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationServerEventSessionCreated,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                session: value.session?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationServerEventSessionCreated>
+        for RealtimeTranslationServerEventSessionCreated
+    {
+        fn from(value: super::RealtimeTranslationServerEventSessionCreated) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                session: Ok(value.session),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationServerEventSessionInputTranscriptDelta {
+        delta: ::std::result::Result<::std::string::String, ::std::string::String>,
+        elapsed_ms: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeTranslationServerEventSessionInputTranscriptDeltaType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranslationServerEventSessionInputTranscriptDelta {
+        fn default() -> Self {
+            Self {
+                delta: Err("no value supplied for delta".to_string()),
+                elapsed_ms: Ok(Default::default()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranslationServerEventSessionInputTranscriptDelta {
+        pub fn delta<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.delta = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for delta: {e}"));
+            self
+        }
+        pub fn elapsed_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.elapsed_ms = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for elapsed_ms: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                super::RealtimeTranslationServerEventSessionInputTranscriptDeltaType,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationServerEventSessionInputTranscriptDelta>
+        for super::RealtimeTranslationServerEventSessionInputTranscriptDelta
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationServerEventSessionInputTranscriptDelta,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                delta: value.delta?,
+                elapsed_ms: value.elapsed_ms?,
+                event_id: value.event_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationServerEventSessionInputTranscriptDelta>
+        for RealtimeTranslationServerEventSessionInputTranscriptDelta
+    {
+        fn from(value: super::RealtimeTranslationServerEventSessionInputTranscriptDelta) -> Self {
+            Self {
+                delta: Ok(value.delta),
+                elapsed_ms: Ok(value.elapsed_ms),
+                event_id: Ok(value.event_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationServerEventSessionOutputAudioDelta {
+        channels: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        delta: ::std::result::Result<::std::string::String, ::std::string::String>,
+        elapsed_ms: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        format: ::std::result::Result<
+            ::std::option::Option<
+                super::RealtimeTranslationServerEventSessionOutputAudioDeltaFormat,
+            >,
+            ::std::string::String,
+        >,
+        sample_rate: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeTranslationServerEventSessionOutputAudioDeltaType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranslationServerEventSessionOutputAudioDelta {
+        fn default() -> Self {
+            Self {
+                channels: Ok(Default::default()),
+                delta: Err("no value supplied for delta".to_string()),
+                elapsed_ms: Ok(Default::default()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                format: Ok(Default::default()),
+                sample_rate: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranslationServerEventSessionOutputAudioDelta {
+        pub fn channels<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.channels = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for channels: {e}"));
+            self
+        }
+        pub fn delta<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.delta = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for delta: {e}"));
+            self
+        }
+        pub fn elapsed_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.elapsed_ms = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for elapsed_ms: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    super::RealtimeTranslationServerEventSessionOutputAudioDeltaFormat,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for format: {e}"));
+            self
+        }
+        pub fn sample_rate<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.sample_rate = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for sample_rate: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                super::RealtimeTranslationServerEventSessionOutputAudioDeltaType,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationServerEventSessionOutputAudioDelta>
+        for super::RealtimeTranslationServerEventSessionOutputAudioDelta
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationServerEventSessionOutputAudioDelta,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                channels: value.channels?,
+                delta: value.delta?,
+                elapsed_ms: value.elapsed_ms?,
+                event_id: value.event_id?,
+                format: value.format?,
+                sample_rate: value.sample_rate?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationServerEventSessionOutputAudioDelta>
+        for RealtimeTranslationServerEventSessionOutputAudioDelta
+    {
+        fn from(value: super::RealtimeTranslationServerEventSessionOutputAudioDelta) -> Self {
+            Self {
+                channels: Ok(value.channels),
+                delta: Ok(value.delta),
+                elapsed_ms: Ok(value.elapsed_ms),
+                event_id: Ok(value.event_id),
+                format: Ok(value.format),
+                sample_rate: Ok(value.sample_rate),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationServerEventSessionOutputTranscriptDelta {
+        delta: ::std::result::Result<::std::string::String, ::std::string::String>,
+        elapsed_ms: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeTranslationServerEventSessionOutputTranscriptDeltaType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranslationServerEventSessionOutputTranscriptDelta {
+        fn default() -> Self {
+            Self {
+                delta: Err("no value supplied for delta".to_string()),
+                elapsed_ms: Ok(Default::default()),
+                event_id: Err("no value supplied for event_id".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranslationServerEventSessionOutputTranscriptDelta {
+        pub fn delta<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.delta = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for delta: {e}"));
+            self
+        }
+        pub fn elapsed_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.elapsed_ms = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for elapsed_ms: {e}"));
+            self
+        }
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                super::RealtimeTranslationServerEventSessionOutputTranscriptDeltaType,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationServerEventSessionOutputTranscriptDelta>
+        for super::RealtimeTranslationServerEventSessionOutputTranscriptDelta
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationServerEventSessionOutputTranscriptDelta,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                delta: value.delta?,
+                elapsed_ms: value.elapsed_ms?,
+                event_id: value.event_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationServerEventSessionOutputTranscriptDelta>
+        for RealtimeTranslationServerEventSessionOutputTranscriptDelta
+    {
+        fn from(value: super::RealtimeTranslationServerEventSessionOutputTranscriptDelta) -> Self {
+            Self {
+                delta: Ok(value.delta),
+                elapsed_ms: Ok(value.elapsed_ms),
+                event_id: Ok(value.event_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationServerEventSessionUpdated {
+        event_id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        session: ::std::result::Result<super::RealtimeTranslationSession, ::std::string::String>,
+        type_: ::std::result::Result<
+            super::RealtimeTranslationServerEventSessionUpdatedType,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranslationServerEventSessionUpdated {
+        fn default() -> Self {
+            Self {
+                event_id: Err("no value supplied for event_id".to_string()),
+                session: Err("no value supplied for session".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranslationServerEventSessionUpdated {
+        pub fn event_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.event_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for event_id: {e}"));
+            self
+        }
+        pub fn session<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeTranslationSession>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.session = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for session: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeTranslationServerEventSessionUpdatedType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationServerEventSessionUpdated>
+        for super::RealtimeTranslationServerEventSessionUpdated
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationServerEventSessionUpdated,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                event_id: value.event_id?,
+                session: value.session?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationServerEventSessionUpdated>
+        for RealtimeTranslationServerEventSessionUpdated
+    {
+        fn from(value: super::RealtimeTranslationServerEventSessionUpdated) -> Self {
+            Self {
+                event_id: Ok(value.event_id),
+                session: Ok(value.session),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationSession {
+        audio: ::std::result::Result<super::RealtimeTranslationSessionAudio, ::std::string::String>,
+        expires_at: ::std::result::Result<i64, ::std::string::String>,
+        id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        model: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<super::RealtimeTranslationSessionType, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeTranslationSession {
+        fn default() -> Self {
+            Self {
+                audio: Err("no value supplied for audio".to_string()),
+                expires_at: Err("no value supplied for expires_at".to_string()),
+                id: Err("no value supplied for id".to_string()),
+                model: Err("no value supplied for model".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranslationSession {
+        pub fn audio<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeTranslationSessionAudio>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio: {e}"));
+            self
+        }
+        pub fn expires_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.expires_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for expires_at: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn model<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.model = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for model: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::RealtimeTranslationSessionType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationSession> for super::RealtimeTranslationSession {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationSession,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio: value.audio?,
+                expires_at: value.expires_at?,
+                id: value.id?,
+                model: value.model?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationSession> for RealtimeTranslationSession {
+        fn from(value: super::RealtimeTranslationSession) -> Self {
+            Self {
+                audio: Ok(value.audio),
+                expires_at: Ok(value.expires_at),
+                id: Ok(value.id),
+                model: Ok(value.model),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationSessionAudio {
+        input: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTranslationSessionAudioInput>,
+            ::std::string::String,
+        >,
+        output: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTranslationSessionAudioOutput>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranslationSessionAudio {
+        fn default() -> Self {
+            Self {
+                input: Ok(Default::default()),
+                output: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranslationSessionAudio {
+        pub fn input<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeTranslationSessionAudioInput>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for input: {e}"));
+            self
+        }
+        pub fn output<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeTranslationSessionAudioOutput>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationSessionAudio>
+        for super::RealtimeTranslationSessionAudio
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationSessionAudio,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                input: value.input?,
+                output: value.output?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationSessionAudio>
+        for RealtimeTranslationSessionAudio
+    {
+        fn from(value: super::RealtimeTranslationSessionAudio) -> Self {
+            Self {
+                input: Ok(value.input),
+                output: Ok(value.output),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationSessionAudioInput {
+        noise_reduction: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTranslationSessionAudioInputNoiseReduction>,
+            ::std::string::String,
+        >,
+        transcription: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTranslationSessionAudioInputTranscription>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranslationSessionAudioInput {
+        fn default() -> Self {
+            Self {
+                noise_reduction: Ok(Default::default()),
+                transcription: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranslationSessionAudioInput {
+        pub fn noise_reduction<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeTranslationSessionAudioInputNoiseReduction>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.noise_reduction = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for noise_reduction: {e}"));
+            self
+        }
+        pub fn transcription<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeTranslationSessionAudioInputTranscription>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.transcription = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for transcription: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationSessionAudioInput>
+        for super::RealtimeTranslationSessionAudioInput
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationSessionAudioInput,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                noise_reduction: value.noise_reduction?,
+                transcription: value.transcription?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationSessionAudioInput>
+        for RealtimeTranslationSessionAudioInput
+    {
+        fn from(value: super::RealtimeTranslationSessionAudioInput) -> Self {
+            Self {
+                noise_reduction: Ok(value.noise_reduction),
+                transcription: Ok(value.transcription),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationSessionAudioInputNoiseReduction {
+        type_: ::std::result::Result<super::NoiseReductionType, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeTranslationSessionAudioInputNoiseReduction {
+        fn default() -> Self {
+            Self {
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranslationSessionAudioInputNoiseReduction {
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::NoiseReductionType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationSessionAudioInputNoiseReduction>
+        for super::RealtimeTranslationSessionAudioInputNoiseReduction
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationSessionAudioInputNoiseReduction,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationSessionAudioInputNoiseReduction>
+        for RealtimeTranslationSessionAudioInputNoiseReduction
+    {
+        fn from(value: super::RealtimeTranslationSessionAudioInputNoiseReduction) -> Self {
+            Self {
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationSessionAudioInputTranscription {
+        model: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeTranslationSessionAudioInputTranscription {
+        fn default() -> Self {
+            Self {
+                model: Err("no value supplied for model".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranslationSessionAudioInputTranscription {
+        pub fn model<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.model = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for model: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationSessionAudioInputTranscription>
+        for super::RealtimeTranslationSessionAudioInputTranscription
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationSessionAudioInputTranscription,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                model: value.model?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationSessionAudioInputTranscription>
+        for RealtimeTranslationSessionAudioInputTranscription
+    {
+        fn from(value: super::RealtimeTranslationSessionAudioInputTranscription) -> Self {
+            Self {
+                model: Ok(value.model),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationSessionAudioOutput {
+        language: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranslationSessionAudioOutput {
+        fn default() -> Self {
+            Self {
+                language: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranslationSessionAudioOutput {
+        pub fn language<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.language = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for language: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationSessionAudioOutput>
+        for super::RealtimeTranslationSessionAudioOutput
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationSessionAudioOutput,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                language: value.language?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationSessionAudioOutput>
+        for RealtimeTranslationSessionAudioOutput
+    {
+        fn from(value: super::RealtimeTranslationSessionAudioOutput) -> Self {
+            Self {
+                language: Ok(value.language),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationSessionCreateRequest {
+        audio: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTranslationSessionCreateRequestAudio>,
+            ::std::string::String,
+        >,
+        model: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeTranslationSessionCreateRequest {
+        fn default() -> Self {
+            Self {
+                audio: Ok(Default::default()),
+                model: Err("no value supplied for model".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranslationSessionCreateRequest {
+        pub fn audio<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeTranslationSessionCreateRequestAudio>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio: {e}"));
+            self
+        }
+        pub fn model<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.model = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for model: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationSessionCreateRequest>
+        for super::RealtimeTranslationSessionCreateRequest
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationSessionCreateRequest,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio: value.audio?,
+                model: value.model?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationSessionCreateRequest>
+        for RealtimeTranslationSessionCreateRequest
+    {
+        fn from(value: super::RealtimeTranslationSessionCreateRequest) -> Self {
+            Self {
+                audio: Ok(value.audio),
+                model: Ok(value.model),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationSessionCreateRequestAudio {
+        input: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTranslationSessionCreateRequestAudioInput>,
+            ::std::string::String,
+        >,
+        output: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTranslationSessionCreateRequestAudioOutput>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranslationSessionCreateRequestAudio {
+        fn default() -> Self {
+            Self {
+                input: Ok(Default::default()),
+                output: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranslationSessionCreateRequestAudio {
+        pub fn input<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeTranslationSessionCreateRequestAudioInput>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for input: {e}"));
+            self
+        }
+        pub fn output<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeTranslationSessionCreateRequestAudioOutput>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationSessionCreateRequestAudio>
+        for super::RealtimeTranslationSessionCreateRequestAudio
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationSessionCreateRequestAudio,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                input: value.input?,
+                output: value.output?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationSessionCreateRequestAudio>
+        for RealtimeTranslationSessionCreateRequestAudio
+    {
+        fn from(value: super::RealtimeTranslationSessionCreateRequestAudio) -> Self {
+            Self {
+                input: Ok(value.input),
+                output: Ok(value.output),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationSessionCreateRequestAudioInput {
+        noise_reduction: ::std::result::Result<
+            ::std::option::Option<
+                super::RealtimeTranslationSessionCreateRequestAudioInputNoiseReduction,
+            >,
+            ::std::string::String,
+        >,
+        transcription: ::std::result::Result<
+            ::std::option::Option<
+                super::RealtimeTranslationSessionCreateRequestAudioInputTranscription,
+            >,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranslationSessionCreateRequestAudioInput {
+        fn default() -> Self {
+            Self {
+                noise_reduction: Ok(Default::default()),
+                transcription: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranslationSessionCreateRequestAudioInput {
+        pub fn noise_reduction<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    super::RealtimeTranslationSessionCreateRequestAudioInputNoiseReduction,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.noise_reduction = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for noise_reduction: {e}"));
+            self
+        }
+        pub fn transcription<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    super::RealtimeTranslationSessionCreateRequestAudioInputTranscription,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.transcription = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for transcription: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationSessionCreateRequestAudioInput>
+        for super::RealtimeTranslationSessionCreateRequestAudioInput
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationSessionCreateRequestAudioInput,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                noise_reduction: value.noise_reduction?,
+                transcription: value.transcription?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationSessionCreateRequestAudioInput>
+        for RealtimeTranslationSessionCreateRequestAudioInput
+    {
+        fn from(value: super::RealtimeTranslationSessionCreateRequestAudioInput) -> Self {
+            Self {
+                noise_reduction: Ok(value.noise_reduction),
+                transcription: Ok(value.transcription),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationSessionCreateRequestAudioInputNoiseReduction {
+        type_: ::std::result::Result<super::NoiseReductionType, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeTranslationSessionCreateRequestAudioInputNoiseReduction {
+        fn default() -> Self {
+            Self {
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranslationSessionCreateRequestAudioInputNoiseReduction {
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::NoiseReductionType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationSessionCreateRequestAudioInputNoiseReduction>
+        for super::RealtimeTranslationSessionCreateRequestAudioInputNoiseReduction
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationSessionCreateRequestAudioInputNoiseReduction,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                type_: value.type_?,
+            })
+        }
+    }
+    impl
+        ::std::convert::From<super::RealtimeTranslationSessionCreateRequestAudioInputNoiseReduction>
+        for RealtimeTranslationSessionCreateRequestAudioInputNoiseReduction
+    {
+        fn from(
+            value: super::RealtimeTranslationSessionCreateRequestAudioInputNoiseReduction,
+        ) -> Self {
+            Self {
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationSessionCreateRequestAudioInputTranscription {
+        model: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeTranslationSessionCreateRequestAudioInputTranscription {
+        fn default() -> Self {
+            Self {
+                model: Err("no value supplied for model".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranslationSessionCreateRequestAudioInputTranscription {
+        pub fn model<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.model = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for model: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationSessionCreateRequestAudioInputTranscription>
+        for super::RealtimeTranslationSessionCreateRequestAudioInputTranscription
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationSessionCreateRequestAudioInputTranscription,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                model: value.model?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationSessionCreateRequestAudioInputTranscription>
+        for RealtimeTranslationSessionCreateRequestAudioInputTranscription
+    {
+        fn from(
+            value: super::RealtimeTranslationSessionCreateRequestAudioInputTranscription,
+        ) -> Self {
+            Self {
+                model: Ok(value.model),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationSessionCreateRequestAudioOutput {
+        language: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranslationSessionCreateRequestAudioOutput {
+        fn default() -> Self {
+            Self {
+                language: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranslationSessionCreateRequestAudioOutput {
+        pub fn language<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.language = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for language: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationSessionCreateRequestAudioOutput>
+        for super::RealtimeTranslationSessionCreateRequestAudioOutput
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationSessionCreateRequestAudioOutput,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                language: value.language?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationSessionCreateRequestAudioOutput>
+        for RealtimeTranslationSessionCreateRequestAudioOutput
+    {
+        fn from(value: super::RealtimeTranslationSessionCreateRequestAudioOutput) -> Self {
+            Self {
+                language: Ok(value.language),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationSessionUpdateRequest {
+        audio: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTranslationSessionUpdateRequestAudio>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranslationSessionUpdateRequest {
+        fn default() -> Self {
+            Self {
+                audio: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranslationSessionUpdateRequest {
+        pub fn audio<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeTranslationSessionUpdateRequestAudio>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationSessionUpdateRequest>
+        for super::RealtimeTranslationSessionUpdateRequest
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationSessionUpdateRequest,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio: value.audio?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationSessionUpdateRequest>
+        for RealtimeTranslationSessionUpdateRequest
+    {
+        fn from(value: super::RealtimeTranslationSessionUpdateRequest) -> Self {
+            Self {
+                audio: Ok(value.audio),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationSessionUpdateRequestAudio {
+        input: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTranslationSessionUpdateRequestAudioInput>,
+            ::std::string::String,
+        >,
+        output: ::std::result::Result<
+            ::std::option::Option<super::RealtimeTranslationSessionUpdateRequestAudioOutput>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranslationSessionUpdateRequestAudio {
+        fn default() -> Self {
+            Self {
+                input: Ok(Default::default()),
+                output: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranslationSessionUpdateRequestAudio {
+        pub fn input<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeTranslationSessionUpdateRequestAudioInput>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for input: {e}"));
+            self
+        }
+        pub fn output<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::RealtimeTranslationSessionUpdateRequestAudioOutput>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationSessionUpdateRequestAudio>
+        for super::RealtimeTranslationSessionUpdateRequestAudio
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationSessionUpdateRequestAudio,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                input: value.input?,
+                output: value.output?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationSessionUpdateRequestAudio>
+        for RealtimeTranslationSessionUpdateRequestAudio
+    {
+        fn from(value: super::RealtimeTranslationSessionUpdateRequestAudio) -> Self {
+            Self {
+                input: Ok(value.input),
+                output: Ok(value.output),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationSessionUpdateRequestAudioInput {
+        noise_reduction: ::std::result::Result<
+            ::std::option::Option<
+                super::RealtimeTranslationSessionUpdateRequestAudioInputNoiseReduction,
+            >,
+            ::std::string::String,
+        >,
+        transcription: ::std::result::Result<
+            ::std::option::Option<
+                super::RealtimeTranslationSessionUpdateRequestAudioInputTranscription,
+            >,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranslationSessionUpdateRequestAudioInput {
+        fn default() -> Self {
+            Self {
+                noise_reduction: Ok(Default::default()),
+                transcription: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranslationSessionUpdateRequestAudioInput {
+        pub fn noise_reduction<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    super::RealtimeTranslationSessionUpdateRequestAudioInputNoiseReduction,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.noise_reduction = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for noise_reduction: {e}"));
+            self
+        }
+        pub fn transcription<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<
+                    super::RealtimeTranslationSessionUpdateRequestAudioInputTranscription,
+                >,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.transcription = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for transcription: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationSessionUpdateRequestAudioInput>
+        for super::RealtimeTranslationSessionUpdateRequestAudioInput
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationSessionUpdateRequestAudioInput,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                noise_reduction: value.noise_reduction?,
+                transcription: value.transcription?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationSessionUpdateRequestAudioInput>
+        for RealtimeTranslationSessionUpdateRequestAudioInput
+    {
+        fn from(value: super::RealtimeTranslationSessionUpdateRequestAudioInput) -> Self {
+            Self {
+                noise_reduction: Ok(value.noise_reduction),
+                transcription: Ok(value.transcription),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationSessionUpdateRequestAudioInputNoiseReduction {
+        type_: ::std::result::Result<super::NoiseReductionType, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeTranslationSessionUpdateRequestAudioInputNoiseReduction {
+        fn default() -> Self {
+            Self {
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranslationSessionUpdateRequestAudioInputNoiseReduction {
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::NoiseReductionType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationSessionUpdateRequestAudioInputNoiseReduction>
+        for super::RealtimeTranslationSessionUpdateRequestAudioInputNoiseReduction
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationSessionUpdateRequestAudioInputNoiseReduction,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                type_: value.type_?,
+            })
+        }
+    }
+    impl
+        ::std::convert::From<super::RealtimeTranslationSessionUpdateRequestAudioInputNoiseReduction>
+        for RealtimeTranslationSessionUpdateRequestAudioInputNoiseReduction
+    {
+        fn from(
+            value: super::RealtimeTranslationSessionUpdateRequestAudioInputNoiseReduction,
+        ) -> Self {
+            Self {
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationSessionUpdateRequestAudioInputTranscription {
+        model: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for RealtimeTranslationSessionUpdateRequestAudioInputTranscription {
+        fn default() -> Self {
+            Self {
+                model: Err("no value supplied for model".to_string()),
+            }
+        }
+    }
+    impl RealtimeTranslationSessionUpdateRequestAudioInputTranscription {
+        pub fn model<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.model = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for model: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationSessionUpdateRequestAudioInputTranscription>
+        for super::RealtimeTranslationSessionUpdateRequestAudioInputTranscription
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationSessionUpdateRequestAudioInputTranscription,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                model: value.model?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationSessionUpdateRequestAudioInputTranscription>
+        for RealtimeTranslationSessionUpdateRequestAudioInputTranscription
+    {
+        fn from(
+            value: super::RealtimeTranslationSessionUpdateRequestAudioInputTranscription,
+        ) -> Self {
+            Self {
+                model: Ok(value.model),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RealtimeTranslationSessionUpdateRequestAudioOutput {
+        language: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for RealtimeTranslationSessionUpdateRequestAudioOutput {
+        fn default() -> Self {
+            Self {
+                language: Ok(Default::default()),
+            }
+        }
+    }
+    impl RealtimeTranslationSessionUpdateRequestAudioOutput {
+        pub fn language<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.language = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for language: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RealtimeTranslationSessionUpdateRequestAudioOutput>
+        for super::RealtimeTranslationSessionUpdateRequestAudioOutput
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RealtimeTranslationSessionUpdateRequestAudioOutput,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                language: value.language?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RealtimeTranslationSessionUpdateRequestAudioOutput>
+        for RealtimeTranslationSessionUpdateRequestAudioOutput
+    {
+        fn from(value: super::RealtimeTranslationSessionUpdateRequestAudioOutput) -> Self {
+            Self {
+                language: Ok(value.language),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct RetentionRatioTruncationTokenLimits {
+        post_instructions: ::std::result::Result<::std::option::Option<u64>, ::std::string::String>,
+    }
+    impl ::std::default::Default for RetentionRatioTruncationTokenLimits {
+        fn default() -> Self {
+            Self {
+                post_instructions: Ok(Default::default()),
+            }
+        }
+    }
+    impl RetentionRatioTruncationTokenLimits {
+        pub fn post_instructions<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<u64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.post_instructions = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for post_instructions: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<RetentionRatioTruncationTokenLimits>
+        for super::RetentionRatioTruncationTokenLimits
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: RetentionRatioTruncationTokenLimits,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                post_instructions: value.post_instructions?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::RetentionRatioTruncationTokenLimits>
+        for RetentionRatioTruncationTokenLimits
+    {
+        fn from(value: super::RetentionRatioTruncationTokenLimits) -> Self {
+            Self {
+                post_instructions: Ok(value.post_instructions),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct ToolChoiceFunction {
+        name: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<super::ToolChoiceFunctionType, ::std::string::String>,
+    }
+    impl ::std::default::Default for ToolChoiceFunction {
+        fn default() -> Self {
+            Self {
+                name: Err("no value supplied for name".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl ToolChoiceFunction {
+        pub fn name<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.name = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for name: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ToolChoiceFunctionType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<ToolChoiceFunction> for super::ToolChoiceFunction {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: ToolChoiceFunction,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                name: value.name?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::ToolChoiceFunction> for ToolChoiceFunction {
+        fn from(value: super::ToolChoiceFunction) -> Self {
+            Self {
+                name: Ok(value.name),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct ToolChoiceMcp {
+        name: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        server_label: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<super::ToolChoiceMcpType, ::std::string::String>,
+    }
+    impl ::std::default::Default for ToolChoiceMcp {
+        fn default() -> Self {
+            Self {
+                name: Ok(Default::default()),
+                server_label: Err("no value supplied for server_label".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl ToolChoiceMcp {
+        pub fn name<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.name = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for name: {e}"));
+            self
+        }
+        pub fn server_label<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.server_label = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for server_label: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ToolChoiceMcpType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<ToolChoiceMcp> for super::ToolChoiceMcp {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: ToolChoiceMcp,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                name: value.name?,
+                server_label: value.server_label?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::ToolChoiceMcp> for ToolChoiceMcp {
+        fn from(value: super::ToolChoiceMcp) -> Self {
+            Self {
+                name: Ok(value.name),
+                server_label: Ok(value.server_label),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct TranscriptTextUsageDuration {
+        seconds: ::std::result::Result<f64, ::std::string::String>,
+        type_: ::std::result::Result<super::TranscriptTextUsageDurationType, ::std::string::String>,
+    }
+    impl ::std::default::Default for TranscriptTextUsageDuration {
+        fn default() -> Self {
+            Self {
+                seconds: Err("no value supplied for seconds".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl TranscriptTextUsageDuration {
+        pub fn seconds<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<f64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.seconds = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for seconds: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::TranscriptTextUsageDurationType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<TranscriptTextUsageDuration> for super::TranscriptTextUsageDuration {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: TranscriptTextUsageDuration,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                seconds: value.seconds?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::TranscriptTextUsageDuration> for TranscriptTextUsageDuration {
+        fn from(value: super::TranscriptTextUsageDuration) -> Self {
+            Self {
+                seconds: Ok(value.seconds),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct TranscriptTextUsageTokens {
+        input_token_details: ::std::result::Result<
+            ::std::option::Option<super::TranscriptTextUsageTokensInputTokenDetails>,
+            ::std::string::String,
+        >,
+        input_tokens: ::std::result::Result<i64, ::std::string::String>,
+        output_tokens: ::std::result::Result<i64, ::std::string::String>,
+        total_tokens: ::std::result::Result<i64, ::std::string::String>,
+        type_: ::std::result::Result<super::TranscriptTextUsageTokensType, ::std::string::String>,
+    }
+    impl ::std::default::Default for TranscriptTextUsageTokens {
+        fn default() -> Self {
+            Self {
+                input_token_details: Ok(Default::default()),
+                input_tokens: Err("no value supplied for input_tokens".to_string()),
+                output_tokens: Err("no value supplied for output_tokens".to_string()),
+                total_tokens: Err("no value supplied for total_tokens".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl TranscriptTextUsageTokens {
+        pub fn input_token_details<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::TranscriptTextUsageTokensInputTokenDetails>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_token_details = value.try_into().map_err(|e| {
+                format!("error converting supplied value for input_token_details: {e}")
+            });
+            self
+        }
+        pub fn input_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for input_tokens: {e}"));
+            self
+        }
+        pub fn output_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_tokens: {e}"));
+            self
+        }
+        pub fn total_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.total_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for total_tokens: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::TranscriptTextUsageTokensType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<TranscriptTextUsageTokens> for super::TranscriptTextUsageTokens {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: TranscriptTextUsageTokens,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                input_token_details: value.input_token_details?,
+                input_tokens: value.input_tokens?,
+                output_tokens: value.output_tokens?,
+                total_tokens: value.total_tokens?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::TranscriptTextUsageTokens> for TranscriptTextUsageTokens {
+        fn from(value: super::TranscriptTextUsageTokens) -> Self {
+            Self {
+                input_token_details: Ok(value.input_token_details),
+                input_tokens: Ok(value.input_tokens),
+                output_tokens: Ok(value.output_tokens),
+                total_tokens: Ok(value.total_tokens),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct TranscriptTextUsageTokensInputTokenDetails {
+        audio_tokens: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        text_tokens: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+    }
+    impl ::std::default::Default for TranscriptTextUsageTokensInputTokenDetails {
+        fn default() -> Self {
+            Self {
+                audio_tokens: Ok(Default::default()),
+                text_tokens: Ok(Default::default()),
+            }
+        }
+    }
+    impl TranscriptTextUsageTokensInputTokenDetails {
+        pub fn audio_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio_tokens: {e}"));
+            self
+        }
+        pub fn text_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text_tokens: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<TranscriptTextUsageTokensInputTokenDetails>
+        for super::TranscriptTextUsageTokensInputTokenDetails
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: TranscriptTextUsageTokensInputTokenDetails,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio_tokens: value.audio_tokens?,
+                text_tokens: value.text_tokens?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::TranscriptTextUsageTokensInputTokenDetails>
+        for TranscriptTextUsageTokensInputTokenDetails
+    {
+        fn from(value: super::TranscriptTextUsageTokensInputTokenDetails) -> Self {
+            Self {
+                audio_tokens: Ok(value.audio_tokens),
+                text_tokens: Ok(value.text_tokens),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct TranscriptionLanguage {
+        code: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for TranscriptionLanguage {
+        fn default() -> Self {
+            Self {
+                code: Err("no value supplied for code".to_string()),
+            }
+        }
+    }
+    impl TranscriptionLanguage {
+        pub fn code<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.code = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for code: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<TranscriptionLanguage> for super::TranscriptionLanguage {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: TranscriptionLanguage,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self { code: value.code? })
+        }
+    }
+    impl ::std::convert::From<super::TranscriptionLanguage> for TranscriptionLanguage {
+        fn from(value: super::TranscriptionLanguage) -> Self {
+            Self {
+                code: Ok(value.code),
+            }
+        }
     }
 }
 #[doc = " Error types."]

@@ -18,7 +18,7 @@ esac
 
 TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT HUP INT TERM
-cargo typify --no-builder --additional-derive PartialEq \
+cargo typify --additional-derive PartialEq \
     --output "$TMP/responses.rs" "$ROOT/spec/responses.schema.json"
 python3 - "$TMP/responses.rs" <<'PY'
 import sys
@@ -50,4 +50,5 @@ else
     python3 "$ROOT/scripts/generate_api_types.py" check
     python3 "$ROOT/scripts/check_client_coverage.py"
 fi
+python3 "$ROOT/scripts/check_generated_builders.py"
 echo "generated Rust protocol types are up to date"

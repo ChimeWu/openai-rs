@@ -20,7 +20,7 @@
 - 固定生成所用的规范版本；生成 Rust 类型并提交到仓库，消费者构建不需要联网下载规范或运行生成器。
 - 提供可复现的生成与更新脚本，并在 CI 中检查生成代码与固定规范的一致性。
 - 生成类型提供 JSON 扩展字段入口；未知流事件保留原始类型和 payload，尽量兼容服务端新增字段。
-- 代码生成只负责协议类型；客户端、认证、SSE 解码和易用的构建接口由手写代码维护。
+- 代码生成负责协议类型及所有协议对象结构体的 Builder；客户端、认证和 SSE 解码由手写代码维护。Builder 与类型一同从固定 schema 可复现生成，不为响应、流事件或嵌套对象另设不同规则。
 
 ### 客户端与流处理
 
@@ -51,7 +51,7 @@
 ## 实施状态
 
 - 已完成首版 Responses SDK：提供 Tokio 异步 JSON 请求、流式 SSE、API key、可配置 API 根地址、client-wide 默认及单次请求 headers、HTTP 错误上下文、原始响应 JSON 和未知事件保留。SDK 管理认证、内容类型和 Accept headers。项目没有 Codex 内部 crate 依赖。
-- 协议来源固定为 `openai/openai-openapi` 提交 `77618e641a840768f1e58197ca53ddedffea6df9` 的 `spec/openai-openapi.json`。`spec/VERSION.json` 记录上游 SHA-256；`scripts/extract_responses_schema.py` 提取 Responses 操作及传递引用，`scripts/generate-types.sh` 固定使用 `cargo-typify 0.8.0`。
+- 协议来源固定为 `openai/openai-openapi` 提交 `77618e641a840768f1e58197ca53ddedffea6df9` 的 `spec/openai-openapi.json`。`spec/VERSION.json` 记录上游 SHA-256；`scripts/extract_responses_schema.py` 提取 Responses 操作及传递引用，`scripts/generate-types.sh` 固定使用 `cargo-typify 0.8.0`，为所有生成的协议对象结构体输出 Builder。枚举使用其变体构造，标量 newtype 使用生成的转换接口。
 - 官方规范的模型 ID 是有限清单；提取脚本将 `ModelIdsResponses` 规范化为字符串，以兼容新增模型及 OpenAI-compatible 服务商模型。按 DeepSeek 实际响应，将响应 `access_programs` 和 `usage.input_tokens_details.cache_write_tokens` 处理为可缺省字段；其余请求、响应和事件结构仍从官方 schema 生成。未识别响应字段通过原始 JSON 保留。
 - 对照阅读 Codex 的 `codex-client/src/sse.rs` 与 `codex-api/src/sse/responses.rs`，借鉴增量 SSE 解码、传输错误和正常终止语义；SDK 运行时代码独立实现，没有复制 Codex 源码或引入其许可证/内部 crate。
 - 离线检查：`cargo check --locked`、`cargo check --all-targets --all-features --locked`、`cargo test --locked`（13 项单测）、`cargo fmt --all -- --check` 和 `scripts/generate-types.sh --check` 均通过，依赖树未发现 Codex 内部依赖。`.github/workflows/ci.yml` 在 push、pull request 和手动触发时安装固定生成器并执行这些检查。生成 crate 的上游字段文档包含非 Rust fenced example，因此关闭了生成库 doctest。

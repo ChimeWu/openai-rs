@@ -36,6 +36,11 @@ pub struct AudioApiSchema {
     #[serde(rename = "UpdateVoiceConsentResponse")]
     pub update_voice_consent_response: VoiceConsentResource,
 }
+impl AudioApiSchema {
+    pub fn builder() -> builder::AudioApiSchema {
+        Default::default()
+    }
+}
 #[doc = "The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, `vtt`, or `diarized_json`. For `gpt-4o-transcribe` and `gpt-4o-mini-transcribe`, the only supported format is `json`. For `gpt-4o-transcribe-diarize`, the supported formats are `json`, `text`, and `diarized_json`, with `diarized_json` required to receive speaker annotations.\n"]
 #[derive(
     :: serde :: Deserialize,
@@ -125,6 +130,11 @@ pub struct CreateSpeechRequest {
     pub stream_format: ::std::option::Option<CreateSpeechRequestStreamFormat>,
     #[doc = "The voice to use when generating the audio. Supported built-in voices are `alloy`, `ash`, `ballad`, `coral`, `echo`, `fable`, `onyx`, `nova`, `sage`, `shimmer`, `verse`, `marin`, and `cedar`. You may also provide a custom voice object with an `id`, for example `{ \"id\": \"voice_1234\" }`. Previews of the voices are available in the [Text to speech guide](https://developers.openai.com/api/docs/guides/text-to-speech#voice-options). Custom voices must be created from audio samples."]
     pub voice: Voice,
+}
+impl CreateSpeechRequest {
+    pub fn builder() -> builder::CreateSpeechRequest {
+        Default::default()
+    }
 }
 #[doc = "The text to generate audio for. The maximum length is 4096 characters."]
 #[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
@@ -404,6 +414,11 @@ pub struct CreateTranscriptionRequest {
     pub timestamp_granularities:
         ::std::vec::Vec<CreateTranscriptionRequestTimestampGranularitiesItem>,
 }
+impl CreateTranscriptionRequest {
+    pub fn builder() -> builder::CreateTranscriptionRequest {
+        Default::default()
+    }
+}
 #[doc = "`CreateTranscriptionRequestTimestampGranularitiesItem`"]
 #[derive(
     :: serde :: Deserialize,
@@ -495,6 +510,11 @@ pub struct CreateTranscriptionResponseDiarizedJson {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub usage: ::std::option::Option<CreateTranscriptionResponseDiarizedJsonUsage>,
 }
+impl CreateTranscriptionResponseDiarizedJson {
+    pub fn builder() -> builder::CreateTranscriptionResponseDiarizedJson {
+        Default::default()
+    }
+}
 #[doc = "The type of task that was run. Always `transcribe`."]
 #[derive(
     :: serde :: Deserialize,
@@ -580,6 +600,11 @@ pub struct CreateTranscriptionResponseJson {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub usage: ::std::option::Option<CreateTranscriptionResponseJsonUsage>,
 }
+impl CreateTranscriptionResponseJson {
+    pub fn builder() -> builder::CreateTranscriptionResponseJson {
+        Default::default()
+    }
+}
 #[doc = "`CreateTranscriptionResponseJsonLogprobsItem`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct CreateTranscriptionResponseJsonLogprobsItem {
@@ -592,6 +617,11 @@ pub struct CreateTranscriptionResponseJsonLogprobsItem {
     #[doc = "The token in the transcription."]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub token: ::std::option::Option<::std::string::String>,
+}
+impl CreateTranscriptionResponseJsonLogprobsItem {
+    pub fn builder() -> builder::CreateTranscriptionResponseJsonLogprobsItem {
+        Default::default()
+    }
 }
 #[doc = "Token usage statistics for the request."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -651,6 +681,11 @@ pub struct CreateTranscriptionResponseVerboseJson {
     #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
     pub words: ::std::vec::Vec<TranscriptionWord>,
 }
+impl CreateTranscriptionResponseVerboseJson {
+    pub fn builder() -> builder::CreateTranscriptionResponseVerboseJson {
+        Default::default()
+    }
+}
 #[doc = "`CreateTranslationRequest`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 #[serde(deny_unknown_fields)]
@@ -668,6 +703,11 @@ pub struct CreateTranslationRequest {
     #[doc = "The sampling temperature, between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. If set to 0, the model will use [log probability](https://en.wikipedia.org/wiki/Log_probability) to automatically increase the temperature until certain thresholds are hit.\n"]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub temperature: ::std::option::Option<f64>,
+}
+impl CreateTranslationRequest {
+    pub fn builder() -> builder::CreateTranslationRequest {
+        Default::default()
+    }
 }
 #[doc = "The format of the output, in one of these options: `json`, `text`, `srt`, `verbose_json`, or `vtt`.\n"]
 #[derive(
@@ -754,6 +794,11 @@ impl ::std::convert::From<CreateTranslationResponseVerboseJson> for CreateTransl
 pub struct CreateTranslationResponseJson {
     pub text: ::std::string::String,
 }
+impl CreateTranslationResponseJson {
+    pub fn builder() -> builder::CreateTranslationResponseJson {
+        Default::default()
+    }
+}
 #[doc = "`CreateTranslationResponseVerboseJson`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct CreateTranslationResponseVerboseJson {
@@ -767,6 +812,11 @@ pub struct CreateTranslationResponseVerboseJson {
     #[doc = "The translated text."]
     pub text: ::std::string::String,
 }
+impl CreateTranslationResponseVerboseJson {
+    pub fn builder() -> builder::CreateTranslationResponseVerboseJson {
+        Default::default()
+    }
+}
 #[doc = "`CreateVoiceConsentRequest`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 #[serde(deny_unknown_fields)]
@@ -777,6 +827,11 @@ pub struct CreateVoiceConsentRequest {
     pub name: ::std::string::String,
     #[doc = "The consent audio recording file. Maximum size is 10 MiB.\n\nSupported MIME types:\n`audio/mpeg`, `audio/wav`, `audio/x-wav`, `audio/ogg`, `audio/aac`, `audio/flac`, `audio/webm`, `audio/mp4`.\n"]
     pub recording: ::std::string::String,
+}
+impl CreateVoiceConsentRequest {
+    pub fn builder() -> builder::CreateVoiceConsentRequest {
+        Default::default()
+    }
 }
 #[doc = "Creates a voice from a consent recording and an audio sample. Requires multipart/form-data."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -794,6 +849,11 @@ pub struct CreateVoiceFromConsentRequest {
         skip_serializing_if = "::std::option::Option::is_none"
     )]
     pub type_: ::std::option::Option<CreateVoiceFromConsentRequestType>,
+}
+impl CreateVoiceFromConsentRequest {
+    pub fn builder() -> builder::CreateVoiceFromConsentRequest {
+        Default::default()
+    }
 }
 #[doc = "The name of the new voice."]
 #[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
@@ -923,6 +983,11 @@ pub struct ListVoiceConsentsParams {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub limit: ::std::option::Option<i64>,
 }
+impl ListVoiceConsentsParams {
+    pub fn builder() -> builder::ListVoiceConsentsParams {
+        Default::default()
+    }
+}
 #[doc = "Emitted for each chunk of audio data generated during speech synthesis."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct SpeechAudioDeltaEvent {
@@ -931,6 +996,11 @@ pub struct SpeechAudioDeltaEvent {
     #[doc = "The type of the event. Always `speech.audio.delta`.\n"]
     #[serde(rename = "type")]
     pub type_: SpeechAudioDeltaEventType,
+}
+impl SpeechAudioDeltaEvent {
+    pub fn builder() -> builder::SpeechAudioDeltaEvent {
+        Default::default()
+    }
 }
 #[doc = "The type of the event. Always `speech.audio.delta`.\n"]
 #[derive(
@@ -986,6 +1056,11 @@ pub struct SpeechAudioDoneEvent {
     #[serde(rename = "type")]
     pub type_: SpeechAudioDoneEventType,
     pub usage: SpeechAudioDoneEventUsage,
+}
+impl SpeechAudioDoneEvent {
+    pub fn builder() -> builder::SpeechAudioDoneEvent {
+        Default::default()
+    }
 }
 #[doc = "The type of the event. Always `speech.audio.done`.\n"]
 #[derive(
@@ -1044,6 +1119,11 @@ pub struct SpeechAudioDoneEventUsage {
     #[doc = "Total number of tokens used (input + output)."]
     pub total_tokens: i64,
 }
+impl SpeechAudioDoneEventUsage {
+    pub fn builder() -> builder::SpeechAudioDoneEventUsage {
+        Default::default()
+    }
+}
 #[doc = "Emitted when there is an additional text delta. This is also the first event emitted when the transcription starts. Only emitted when you [create a transcription](https://developers.openai.com/api/reference/resources/audio/subresources/transcriptions/methods/create) with the `Stream` parameter set to `true`."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct TranscriptTextDeltaEvent {
@@ -1059,6 +1139,11 @@ pub struct TranscriptTextDeltaEvent {
     #[serde(rename = "type")]
     pub type_: TranscriptTextDeltaEventType,
 }
+impl TranscriptTextDeltaEvent {
+    pub fn builder() -> builder::TranscriptTextDeltaEvent {
+        Default::default()
+    }
+}
 #[doc = "`TranscriptTextDeltaEventLogprobsItem`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct TranscriptTextDeltaEventLogprobsItem {
@@ -1071,6 +1156,11 @@ pub struct TranscriptTextDeltaEventLogprobsItem {
     #[doc = "The token that was used to generate the log probability.\n"]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub token: ::std::option::Option<::std::string::String>,
+}
+impl TranscriptTextDeltaEventLogprobsItem {
+    pub fn builder() -> builder::TranscriptTextDeltaEventLogprobsItem {
+        Default::default()
+    }
 }
 #[doc = "The type of the event. Always `transcript.text.delta`.\n"]
 #[derive(
@@ -1136,6 +1226,11 @@ pub struct TranscriptTextDoneEvent {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub usage: ::std::option::Option<TranscriptTextUsageTokens>,
 }
+impl TranscriptTextDoneEvent {
+    pub fn builder() -> builder::TranscriptTextDoneEvent {
+        Default::default()
+    }
+}
 #[doc = "`TranscriptTextDoneEventLogprobsItem`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct TranscriptTextDoneEventLogprobsItem {
@@ -1148,6 +1243,11 @@ pub struct TranscriptTextDoneEventLogprobsItem {
     #[doc = "The token that was used to generate the log probability.\n"]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub token: ::std::option::Option<::std::string::String>,
+}
+impl TranscriptTextDoneEventLogprobsItem {
+    pub fn builder() -> builder::TranscriptTextDoneEventLogprobsItem {
+        Default::default()
+    }
 }
 #[doc = "The type of the event. Always `transcript.text.done`.\n"]
 #[derive(
@@ -1213,6 +1313,11 @@ pub struct TranscriptTextSegmentEvent {
     #[serde(rename = "type")]
     pub type_: TranscriptTextSegmentEventType,
 }
+impl TranscriptTextSegmentEvent {
+    pub fn builder() -> builder::TranscriptTextSegmentEvent {
+        Default::default()
+    }
+}
 #[doc = "The type of the event. Always `transcript.text.segment`."]
 #[derive(
     :: serde :: Deserialize,
@@ -1268,6 +1373,11 @@ pub struct TranscriptTextUsageDuration {
     #[doc = "The type of the usage object. Always `duration` for this variant."]
     #[serde(rename = "type")]
     pub type_: TranscriptTextUsageDurationType,
+}
+impl TranscriptTextUsageDuration {
+    pub fn builder() -> builder::TranscriptTextUsageDuration {
+        Default::default()
+    }
 }
 #[doc = "The type of the usage object. Always `duration` for this variant."]
 #[derive(
@@ -1331,6 +1441,11 @@ pub struct TranscriptTextUsageTokens {
     #[serde(rename = "type")]
     pub type_: TranscriptTextUsageTokensType,
 }
+impl TranscriptTextUsageTokens {
+    pub fn builder() -> builder::TranscriptTextUsageTokens {
+        Default::default()
+    }
+}
 #[doc = "Details about the input tokens billed for this request."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 pub struct TranscriptTextUsageTokensInputTokenDetails {
@@ -1340,6 +1455,11 @@ pub struct TranscriptTextUsageTokensInputTokenDetails {
     #[doc = "Number of text tokens billed for this request."]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub text_tokens: ::std::option::Option<i64>,
+}
+impl TranscriptTextUsageTokensInputTokenDetails {
+    pub fn builder() -> builder::TranscriptTextUsageTokensInputTokenDetails {
+        Default::default()
+    }
 }
 #[doc = "The type of the usage object. Always `tokens` for this variant."]
 #[derive(
@@ -1404,6 +1524,11 @@ pub struct TranscriptionDiarizedSegment {
     #[doc = "The type of the segment. Always `transcript.text.segment`.\n"]
     #[serde(rename = "type")]
     pub type_: TranscriptionDiarizedSegmentType,
+}
+impl TranscriptionDiarizedSegment {
+    pub fn builder() -> builder::TranscriptionDiarizedSegment {
+        Default::default()
+    }
 }
 #[doc = "The type of the segment. Always `transcript.text.segment`.\n"]
 #[derive(
@@ -1505,6 +1630,11 @@ pub struct TranscriptionLanguage {
     #[doc = "The code of a language detected in the audio."]
     pub code: ::std::string::String,
 }
+impl TranscriptionLanguage {
+    pub fn builder() -> builder::TranscriptionLanguage {
+        Default::default()
+    }
+}
 #[doc = "`TranscriptionSegment`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct TranscriptionSegment {
@@ -1529,6 +1659,11 @@ pub struct TranscriptionSegment {
     #[doc = "Array of token IDs for the text content."]
     pub tokens: ::std::vec::Vec<i64>,
 }
+impl TranscriptionSegment {
+    pub fn builder() -> builder::TranscriptionSegment {
+        Default::default()
+    }
+}
 #[doc = "`TranscriptionWord`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct TranscriptionWord {
@@ -1539,12 +1674,22 @@ pub struct TranscriptionWord {
     #[doc = "The text content of the word."]
     pub word: ::std::string::String,
 }
+impl TranscriptionWord {
+    pub fn builder() -> builder::TranscriptionWord {
+        Default::default()
+    }
+}
 #[doc = "`UpdateVoiceConsentRequest`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 #[serde(deny_unknown_fields)]
 pub struct UpdateVoiceConsentRequest {
     #[doc = "The updated label for this consent recording."]
     pub name: ::std::string::String,
+}
+impl UpdateVoiceConsentRequest {
+    pub fn builder() -> builder::UpdateVoiceConsentRequest {
+        Default::default()
+    }
 }
 #[doc = "`VadConfig`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -1562,6 +1707,11 @@ pub struct VadConfig {
     #[doc = "Must be set to `server_vad` to enable manual chunking using server side VAD."]
     #[serde(rename = "type")]
     pub type_: VadConfigType,
+}
+impl VadConfig {
+    pub fn builder() -> builder::VadConfig {
+        Default::default()
+    }
 }
 #[doc = "Must be set to `server_vad` to enable manual chunking using server side VAD."]
 #[derive(
@@ -1634,6 +1784,11 @@ pub struct VoiceConsentDeletedResource {
     pub id: ::std::string::String,
     pub object: VoiceConsentDeletedResourceObject,
 }
+impl VoiceConsentDeletedResource {
+    pub fn builder() -> builder::VoiceConsentDeletedResource {
+        Default::default()
+    }
+}
 #[doc = "`VoiceConsentDeletedResourceObject`"]
 #[derive(
     :: serde :: Deserialize,
@@ -1692,6 +1847,11 @@ pub struct VoiceConsentListResource {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub last_id: ::std::option::Option<::std::string::String>,
     pub object: VoiceConsentListResourceObject,
+}
+impl VoiceConsentListResource {
+    pub fn builder() -> builder::VoiceConsentListResource {
+        Default::default()
+    }
 }
 #[doc = "`VoiceConsentListResourceObject`"]
 #[derive(
@@ -1754,6 +1914,11 @@ pub struct VoiceConsentResource {
     pub name: ::std::string::String,
     #[doc = "The object type, which is always `audio.voice_consent`."]
     pub object: VoiceConsentResourceObject,
+}
+impl VoiceConsentResource {
+    pub fn builder() -> builder::VoiceConsentResource {
+        Default::default()
+    }
 }
 #[doc = "The object type, which is always `audio.voice_consent`."]
 #[derive(
@@ -1859,6 +2024,11 @@ pub struct VoiceResource {
     #[serde(rename = "type")]
     pub type_: VoiceResourceType,
 }
+impl VoiceResource {
+    pub fn builder() -> builder::VoiceResource {
+        Default::default()
+    }
+}
 #[doc = "The object type, which is always `audio.voice`."]
 #[derive(
     :: serde :: Deserialize,
@@ -1951,6 +2121,3276 @@ impl ::std::convert::TryFrom<::std::string::String> for VoiceResourceType {
         value: ::std::string::String,
     ) -> ::std::result::Result<Self, self::error::ConversionError> {
         value.parse()
+    }
+}
+#[doc = " Types for composing complex structures."]
+pub mod builder {
+    #[derive(Clone, Debug)]
+    pub struct AudioApiSchema {
+        create_speech_request:
+            ::std::result::Result<super::CreateSpeechRequest, ::std::string::String>,
+        create_speech_stream_response:
+            ::std::result::Result<super::CreateSpeechResponseStreamEvent, ::std::string::String>,
+        create_transcription_request:
+            ::std::result::Result<super::CreateTranscriptionRequest, ::std::string::String>,
+        create_transcription_response:
+            ::std::result::Result<super::CreateTranscriptionResponse, ::std::string::String>,
+        create_transcription_stream_response: ::std::result::Result<
+            super::CreateTranscriptionResponseStreamEvent,
+            ::std::string::String,
+        >,
+        create_translation_request:
+            ::std::result::Result<super::CreateTranslationRequest, ::std::string::String>,
+        create_translation_response:
+            ::std::result::Result<super::CreateTranslationResponse, ::std::string::String>,
+        create_voice_consent_request:
+            ::std::result::Result<super::CreateVoiceConsentRequest, ::std::string::String>,
+        create_voice_consent_response:
+            ::std::result::Result<super::VoiceConsentResource, ::std::string::String>,
+        create_voice_request:
+            ::std::result::Result<super::CreateVoiceRequest, ::std::string::String>,
+        create_voice_response: ::std::result::Result<super::VoiceResource, ::std::string::String>,
+        delete_voice_consent_response:
+            ::std::result::Result<super::VoiceConsentDeletedResource, ::std::string::String>,
+        get_voice_consent_response:
+            ::std::result::Result<super::VoiceConsentResource, ::std::string::String>,
+        list_voice_consents_params:
+            ::std::result::Result<super::ListVoiceConsentsParams, ::std::string::String>,
+        list_voice_consents_response:
+            ::std::result::Result<super::VoiceConsentListResource, ::std::string::String>,
+        update_voice_consent_request:
+            ::std::result::Result<super::UpdateVoiceConsentRequest, ::std::string::String>,
+        update_voice_consent_response:
+            ::std::result::Result<super::VoiceConsentResource, ::std::string::String>,
+    }
+    impl ::std::default::Default for AudioApiSchema {
+        fn default() -> Self {
+            Self {
+                create_speech_request: Err(
+                    "no value supplied for create_speech_request".to_string()
+                ),
+                create_speech_stream_response: Err(
+                    "no value supplied for create_speech_stream_response".to_string(),
+                ),
+                create_transcription_request: Err(
+                    "no value supplied for create_transcription_request".to_string(),
+                ),
+                create_transcription_response: Err(
+                    "no value supplied for create_transcription_response".to_string(),
+                ),
+                create_transcription_stream_response: Err(
+                    "no value supplied for create_transcription_stream_response".to_string(),
+                ),
+                create_translation_request: Err(
+                    "no value supplied for create_translation_request".to_string()
+                ),
+                create_translation_response: Err(
+                    "no value supplied for create_translation_response".to_string(),
+                ),
+                create_voice_consent_request: Err(
+                    "no value supplied for create_voice_consent_request".to_string(),
+                ),
+                create_voice_consent_response: Err(
+                    "no value supplied for create_voice_consent_response".to_string(),
+                ),
+                create_voice_request: Err("no value supplied for create_voice_request".to_string()),
+                create_voice_response: Err(
+                    "no value supplied for create_voice_response".to_string()
+                ),
+                delete_voice_consent_response: Err(
+                    "no value supplied for delete_voice_consent_response".to_string(),
+                ),
+                get_voice_consent_response: Err(
+                    "no value supplied for get_voice_consent_response".to_string()
+                ),
+                list_voice_consents_params: Err(
+                    "no value supplied for list_voice_consents_params".to_string()
+                ),
+                list_voice_consents_response: Err(
+                    "no value supplied for list_voice_consents_response".to_string(),
+                ),
+                update_voice_consent_request: Err(
+                    "no value supplied for update_voice_consent_request".to_string(),
+                ),
+                update_voice_consent_response: Err(
+                    "no value supplied for update_voice_consent_response".to_string(),
+                ),
+            }
+        }
+    }
+    impl AudioApiSchema {
+        pub fn create_speech_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::CreateSpeechRequest>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_speech_request = value.try_into().map_err(|e| {
+                format!("error converting supplied value for create_speech_request: {e}")
+            });
+            self
+        }
+        pub fn create_speech_stream_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::CreateSpeechResponseStreamEvent>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_speech_stream_response = value.try_into().map_err(|e| {
+                format!("error converting supplied value for create_speech_stream_response: {e}")
+            });
+            self
+        }
+        pub fn create_transcription_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::CreateTranscriptionRequest>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_transcription_request = value.try_into().map_err(|e| {
+                format!("error converting supplied value for create_transcription_request: {e}")
+            });
+            self
+        }
+        pub fn create_transcription_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::CreateTranscriptionResponse>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_transcription_response = value.try_into().map_err(|e| {
+                format!("error converting supplied value for create_transcription_response: {e}")
+            });
+            self
+        }
+        pub fn create_transcription_stream_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::CreateTranscriptionResponseStreamEvent>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_transcription_stream_response = value.try_into().map_err(|e| {
+                format!(
+                    "error converting supplied value for create_transcription_stream_response: {e}"
+                )
+            });
+            self
+        }
+        pub fn create_translation_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::CreateTranslationRequest>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_translation_request = value.try_into().map_err(|e| {
+                format!("error converting supplied value for create_translation_request: {e}")
+            });
+            self
+        }
+        pub fn create_translation_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::CreateTranslationResponse>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_translation_response = value.try_into().map_err(|e| {
+                format!("error converting supplied value for create_translation_response: {e}")
+            });
+            self
+        }
+        pub fn create_voice_consent_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::CreateVoiceConsentRequest>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_voice_consent_request = value.try_into().map_err(|e| {
+                format!("error converting supplied value for create_voice_consent_request: {e}")
+            });
+            self
+        }
+        pub fn create_voice_consent_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::VoiceConsentResource>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_voice_consent_response = value.try_into().map_err(|e| {
+                format!("error converting supplied value for create_voice_consent_response: {e}")
+            });
+            self
+        }
+        pub fn create_voice_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::CreateVoiceRequest>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_voice_request = value.try_into().map_err(|e| {
+                format!("error converting supplied value for create_voice_request: {e}")
+            });
+            self
+        }
+        pub fn create_voice_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::VoiceResource>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_voice_response = value.try_into().map_err(|e| {
+                format!("error converting supplied value for create_voice_response: {e}")
+            });
+            self
+        }
+        pub fn delete_voice_consent_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::VoiceConsentDeletedResource>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.delete_voice_consent_response = value.try_into().map_err(|e| {
+                format!("error converting supplied value for delete_voice_consent_response: {e}")
+            });
+            self
+        }
+        pub fn get_voice_consent_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::VoiceConsentResource>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.get_voice_consent_response = value.try_into().map_err(|e| {
+                format!("error converting supplied value for get_voice_consent_response: {e}")
+            });
+            self
+        }
+        pub fn list_voice_consents_params<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ListVoiceConsentsParams>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.list_voice_consents_params = value.try_into().map_err(|e| {
+                format!("error converting supplied value for list_voice_consents_params: {e}")
+            });
+            self
+        }
+        pub fn list_voice_consents_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::VoiceConsentListResource>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.list_voice_consents_response = value.try_into().map_err(|e| {
+                format!("error converting supplied value for list_voice_consents_response: {e}")
+            });
+            self
+        }
+        pub fn update_voice_consent_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::UpdateVoiceConsentRequest>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.update_voice_consent_request = value.try_into().map_err(|e| {
+                format!("error converting supplied value for update_voice_consent_request: {e}")
+            });
+            self
+        }
+        pub fn update_voice_consent_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::VoiceConsentResource>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.update_voice_consent_response = value.try_into().map_err(|e| {
+                format!("error converting supplied value for update_voice_consent_response: {e}")
+            });
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<AudioApiSchema> for super::AudioApiSchema {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: AudioApiSchema,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                create_speech_request: value.create_speech_request?,
+                create_speech_stream_response: value.create_speech_stream_response?,
+                create_transcription_request: value.create_transcription_request?,
+                create_transcription_response: value.create_transcription_response?,
+                create_transcription_stream_response: value.create_transcription_stream_response?,
+                create_translation_request: value.create_translation_request?,
+                create_translation_response: value.create_translation_response?,
+                create_voice_consent_request: value.create_voice_consent_request?,
+                create_voice_consent_response: value.create_voice_consent_response?,
+                create_voice_request: value.create_voice_request?,
+                create_voice_response: value.create_voice_response?,
+                delete_voice_consent_response: value.delete_voice_consent_response?,
+                get_voice_consent_response: value.get_voice_consent_response?,
+                list_voice_consents_params: value.list_voice_consents_params?,
+                list_voice_consents_response: value.list_voice_consents_response?,
+                update_voice_consent_request: value.update_voice_consent_request?,
+                update_voice_consent_response: value.update_voice_consent_response?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::AudioApiSchema> for AudioApiSchema {
+        fn from(value: super::AudioApiSchema) -> Self {
+            Self {
+                create_speech_request: Ok(value.create_speech_request),
+                create_speech_stream_response: Ok(value.create_speech_stream_response),
+                create_transcription_request: Ok(value.create_transcription_request),
+                create_transcription_response: Ok(value.create_transcription_response),
+                create_transcription_stream_response: Ok(value.create_transcription_stream_response),
+                create_translation_request: Ok(value.create_translation_request),
+                create_translation_response: Ok(value.create_translation_response),
+                create_voice_consent_request: Ok(value.create_voice_consent_request),
+                create_voice_consent_response: Ok(value.create_voice_consent_response),
+                create_voice_request: Ok(value.create_voice_request),
+                create_voice_response: Ok(value.create_voice_response),
+                delete_voice_consent_response: Ok(value.delete_voice_consent_response),
+                get_voice_consent_response: Ok(value.get_voice_consent_response),
+                list_voice_consents_params: Ok(value.list_voice_consents_params),
+                list_voice_consents_response: Ok(value.list_voice_consents_response),
+                update_voice_consent_request: Ok(value.update_voice_consent_request),
+                update_voice_consent_response: Ok(value.update_voice_consent_response),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct CreateSpeechRequest {
+        input: ::std::result::Result<super::CreateSpeechRequestInput, ::std::string::String>,
+        instructions: ::std::result::Result<
+            ::std::option::Option<super::CreateSpeechRequestInstructions>,
+            ::std::string::String,
+        >,
+        model: ::std::result::Result<::std::string::String, ::std::string::String>,
+        response_format: ::std::result::Result<
+            ::std::option::Option<super::CreateSpeechRequestResponseFormat>,
+            ::std::string::String,
+        >,
+        speed: ::std::result::Result<::std::option::Option<f64>, ::std::string::String>,
+        stream_format: ::std::result::Result<
+            ::std::option::Option<super::CreateSpeechRequestStreamFormat>,
+            ::std::string::String,
+        >,
+        voice: ::std::result::Result<super::Voice, ::std::string::String>,
+    }
+    impl ::std::default::Default for CreateSpeechRequest {
+        fn default() -> Self {
+            Self {
+                input: Err("no value supplied for input".to_string()),
+                instructions: Ok(Default::default()),
+                model: Err("no value supplied for model".to_string()),
+                response_format: Ok(Default::default()),
+                speed: Ok(Default::default()),
+                stream_format: Ok(Default::default()),
+                voice: Err("no value supplied for voice".to_string()),
+            }
+        }
+    }
+    impl CreateSpeechRequest {
+        pub fn input<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::CreateSpeechRequestInput>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for input: {e}"));
+            self
+        }
+        pub fn instructions<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::CreateSpeechRequestInstructions>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.instructions = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for instructions: {e}"));
+            self
+        }
+        pub fn model<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.model = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for model: {e}"));
+            self
+        }
+        pub fn response_format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::CreateSpeechRequestResponseFormat>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_format: {e}"));
+            self
+        }
+        pub fn speed<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<f64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.speed = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for speed: {e}"));
+            self
+        }
+        pub fn stream_format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::CreateSpeechRequestStreamFormat>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.stream_format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for stream_format: {e}"));
+            self
+        }
+        pub fn voice<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::Voice>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.voice = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for voice: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<CreateSpeechRequest> for super::CreateSpeechRequest {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: CreateSpeechRequest,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                input: value.input?,
+                instructions: value.instructions?,
+                model: value.model?,
+                response_format: value.response_format?,
+                speed: value.speed?,
+                stream_format: value.stream_format?,
+                voice: value.voice?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::CreateSpeechRequest> for CreateSpeechRequest {
+        fn from(value: super::CreateSpeechRequest) -> Self {
+            Self {
+                input: Ok(value.input),
+                instructions: Ok(value.instructions),
+                model: Ok(value.model),
+                response_format: Ok(value.response_format),
+                speed: Ok(value.speed),
+                stream_format: Ok(value.stream_format),
+                voice: Ok(value.voice),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct CreateTranscriptionRequest {
+        chunking_strategy:
+            ::std::result::Result<::std::option::Option<super::VadConfig>, ::std::string::String>,
+        file: ::std::result::Result<::std::string::String, ::std::string::String>,
+        include: ::std::result::Result<
+            ::std::vec::Vec<super::TranscriptionInclude>,
+            ::std::string::String,
+        >,
+        keywords:
+            ::std::result::Result<::std::vec::Vec<::std::string::String>, ::std::string::String>,
+        known_speaker_names:
+            ::std::result::Result<::std::vec::Vec<::std::string::String>, ::std::string::String>,
+        known_speaker_references:
+            ::std::result::Result<::std::vec::Vec<::std::string::String>, ::std::string::String>,
+        language: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        languages:
+            ::std::result::Result<::std::vec::Vec<::std::string::String>, ::std::string::String>,
+        model: ::std::result::Result<::std::string::String, ::std::string::String>,
+        prompt: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        response_format: ::std::result::Result<
+            ::std::option::Option<super::AudioResponseFormat>,
+            ::std::string::String,
+        >,
+        stream: ::std::result::Result<::std::option::Option<bool>, ::std::string::String>,
+        temperature: ::std::result::Result<::std::option::Option<f64>, ::std::string::String>,
+        timestamp_granularities: ::std::result::Result<
+            ::std::vec::Vec<super::CreateTranscriptionRequestTimestampGranularitiesItem>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for CreateTranscriptionRequest {
+        fn default() -> Self {
+            Self {
+                chunking_strategy: Ok(Default::default()),
+                file: Err("no value supplied for file".to_string()),
+                include: Ok(Default::default()),
+                keywords: Ok(Default::default()),
+                known_speaker_names: Ok(Default::default()),
+                known_speaker_references: Ok(Default::default()),
+                language: Ok(Default::default()),
+                languages: Ok(Default::default()),
+                model: Err("no value supplied for model".to_string()),
+                prompt: Ok(Default::default()),
+                response_format: Ok(Default::default()),
+                stream: Ok(Default::default()),
+                temperature: Ok(Default::default()),
+                timestamp_granularities: Ok(Default::default()),
+            }
+        }
+    }
+    impl CreateTranscriptionRequest {
+        pub fn chunking_strategy<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::VadConfig>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.chunking_strategy = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for chunking_strategy: {e}"));
+            self
+        }
+        pub fn file<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.file = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for file: {e}"));
+            self
+        }
+        pub fn include<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<super::TranscriptionInclude>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.include = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for include: {e}"));
+            self
+        }
+        pub fn keywords<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.keywords = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for keywords: {e}"));
+            self
+        }
+        pub fn known_speaker_names<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.known_speaker_names = value.try_into().map_err(|e| {
+                format!("error converting supplied value for known_speaker_names: {e}")
+            });
+            self
+        }
+        pub fn known_speaker_references<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.known_speaker_references = value.try_into().map_err(|e| {
+                format!("error converting supplied value for known_speaker_references: {e}")
+            });
+            self
+        }
+        pub fn language<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.language = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for language: {e}"));
+            self
+        }
+        pub fn languages<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.languages = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for languages: {e}"));
+            self
+        }
+        pub fn model<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.model = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for model: {e}"));
+            self
+        }
+        pub fn prompt<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prompt = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for prompt: {e}"));
+            self
+        }
+        pub fn response_format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::AudioResponseFormat>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_format: {e}"));
+            self
+        }
+        pub fn stream<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<bool>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.stream = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for stream: {e}"));
+            self
+        }
+        pub fn temperature<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<f64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.temperature = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for temperature: {e}"));
+            self
+        }
+        pub fn timestamp_granularities<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::CreateTranscriptionRequestTimestampGranularitiesItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.timestamp_granularities = value.try_into().map_err(|e| {
+                format!("error converting supplied value for timestamp_granularities: {e}")
+            });
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<CreateTranscriptionRequest> for super::CreateTranscriptionRequest {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: CreateTranscriptionRequest,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                chunking_strategy: value.chunking_strategy?,
+                file: value.file?,
+                include: value.include?,
+                keywords: value.keywords?,
+                known_speaker_names: value.known_speaker_names?,
+                known_speaker_references: value.known_speaker_references?,
+                language: value.language?,
+                languages: value.languages?,
+                model: value.model?,
+                prompt: value.prompt?,
+                response_format: value.response_format?,
+                stream: value.stream?,
+                temperature: value.temperature?,
+                timestamp_granularities: value.timestamp_granularities?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::CreateTranscriptionRequest> for CreateTranscriptionRequest {
+        fn from(value: super::CreateTranscriptionRequest) -> Self {
+            Self {
+                chunking_strategy: Ok(value.chunking_strategy),
+                file: Ok(value.file),
+                include: Ok(value.include),
+                keywords: Ok(value.keywords),
+                known_speaker_names: Ok(value.known_speaker_names),
+                known_speaker_references: Ok(value.known_speaker_references),
+                language: Ok(value.language),
+                languages: Ok(value.languages),
+                model: Ok(value.model),
+                prompt: Ok(value.prompt),
+                response_format: Ok(value.response_format),
+                stream: Ok(value.stream),
+                temperature: Ok(value.temperature),
+                timestamp_granularities: Ok(value.timestamp_granularities),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct CreateTranscriptionResponseDiarizedJson {
+        duration: ::std::result::Result<f64, ::std::string::String>,
+        segments: ::std::result::Result<
+            ::std::vec::Vec<super::TranscriptionDiarizedSegment>,
+            ::std::string::String,
+        >,
+        task: ::std::result::Result<
+            super::CreateTranscriptionResponseDiarizedJsonTask,
+            ::std::string::String,
+        >,
+        text: ::std::result::Result<::std::string::String, ::std::string::String>,
+        usage: ::std::result::Result<
+            ::std::option::Option<super::CreateTranscriptionResponseDiarizedJsonUsage>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for CreateTranscriptionResponseDiarizedJson {
+        fn default() -> Self {
+            Self {
+                duration: Err("no value supplied for duration".to_string()),
+                segments: Err("no value supplied for segments".to_string()),
+                task: Err("no value supplied for task".to_string()),
+                text: Err("no value supplied for text".to_string()),
+                usage: Ok(Default::default()),
+            }
+        }
+    }
+    impl CreateTranscriptionResponseDiarizedJson {
+        pub fn duration<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<f64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.duration = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for duration: {e}"));
+            self
+        }
+        pub fn segments<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<super::TranscriptionDiarizedSegment>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.segments = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for segments: {e}"));
+            self
+        }
+        pub fn task<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::CreateTranscriptionResponseDiarizedJsonTask>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.task = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for task: {e}"));
+            self
+        }
+        pub fn text<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text: {e}"));
+            self
+        }
+        pub fn usage<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::CreateTranscriptionResponseDiarizedJsonUsage>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.usage = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for usage: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<CreateTranscriptionResponseDiarizedJson>
+        for super::CreateTranscriptionResponseDiarizedJson
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: CreateTranscriptionResponseDiarizedJson,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                duration: value.duration?,
+                segments: value.segments?,
+                task: value.task?,
+                text: value.text?,
+                usage: value.usage?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::CreateTranscriptionResponseDiarizedJson>
+        for CreateTranscriptionResponseDiarizedJson
+    {
+        fn from(value: super::CreateTranscriptionResponseDiarizedJson) -> Self {
+            Self {
+                duration: Ok(value.duration),
+                segments: Ok(value.segments),
+                task: Ok(value.task),
+                text: Ok(value.text),
+                usage: Ok(value.usage),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct CreateTranscriptionResponseJson {
+        languages: ::std::result::Result<
+            ::std::vec::Vec<super::TranscriptionLanguage>,
+            ::std::string::String,
+        >,
+        logprobs: ::std::result::Result<
+            ::std::vec::Vec<super::CreateTranscriptionResponseJsonLogprobsItem>,
+            ::std::string::String,
+        >,
+        text: ::std::result::Result<::std::string::String, ::std::string::String>,
+        usage: ::std::result::Result<
+            ::std::option::Option<super::CreateTranscriptionResponseJsonUsage>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for CreateTranscriptionResponseJson {
+        fn default() -> Self {
+            Self {
+                languages: Ok(Default::default()),
+                logprobs: Ok(Default::default()),
+                text: Err("no value supplied for text".to_string()),
+                usage: Ok(Default::default()),
+            }
+        }
+    }
+    impl CreateTranscriptionResponseJson {
+        pub fn languages<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<super::TranscriptionLanguage>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.languages = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for languages: {e}"));
+            self
+        }
+        pub fn logprobs<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::CreateTranscriptionResponseJsonLogprobsItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.logprobs = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for logprobs: {e}"));
+            self
+        }
+        pub fn text<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text: {e}"));
+            self
+        }
+        pub fn usage<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::CreateTranscriptionResponseJsonUsage>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.usage = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for usage: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<CreateTranscriptionResponseJson>
+        for super::CreateTranscriptionResponseJson
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: CreateTranscriptionResponseJson,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                languages: value.languages?,
+                logprobs: value.logprobs?,
+                text: value.text?,
+                usage: value.usage?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::CreateTranscriptionResponseJson>
+        for CreateTranscriptionResponseJson
+    {
+        fn from(value: super::CreateTranscriptionResponseJson) -> Self {
+            Self {
+                languages: Ok(value.languages),
+                logprobs: Ok(value.logprobs),
+                text: Ok(value.text),
+                usage: Ok(value.usage),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct CreateTranscriptionResponseJsonLogprobsItem {
+        bytes: ::std::result::Result<::std::vec::Vec<f64>, ::std::string::String>,
+        logprob: ::std::result::Result<::std::option::Option<f64>, ::std::string::String>,
+        token: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for CreateTranscriptionResponseJsonLogprobsItem {
+        fn default() -> Self {
+            Self {
+                bytes: Ok(Default::default()),
+                logprob: Ok(Default::default()),
+                token: Ok(Default::default()),
+            }
+        }
+    }
+    impl CreateTranscriptionResponseJsonLogprobsItem {
+        pub fn bytes<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<f64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.bytes = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for bytes: {e}"));
+            self
+        }
+        pub fn logprob<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<f64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.logprob = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for logprob: {e}"));
+            self
+        }
+        pub fn token<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.token = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for token: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<CreateTranscriptionResponseJsonLogprobsItem>
+        for super::CreateTranscriptionResponseJsonLogprobsItem
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: CreateTranscriptionResponseJsonLogprobsItem,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                bytes: value.bytes?,
+                logprob: value.logprob?,
+                token: value.token?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::CreateTranscriptionResponseJsonLogprobsItem>
+        for CreateTranscriptionResponseJsonLogprobsItem
+    {
+        fn from(value: super::CreateTranscriptionResponseJsonLogprobsItem) -> Self {
+            Self {
+                bytes: Ok(value.bytes),
+                logprob: Ok(value.logprob),
+                token: Ok(value.token),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct CreateTranscriptionResponseVerboseJson {
+        duration: ::std::result::Result<f64, ::std::string::String>,
+        language: ::std::result::Result<::std::string::String, ::std::string::String>,
+        segments: ::std::result::Result<
+            ::std::vec::Vec<super::TranscriptionSegment>,
+            ::std::string::String,
+        >,
+        text: ::std::result::Result<::std::string::String, ::std::string::String>,
+        usage: ::std::result::Result<
+            ::std::option::Option<super::TranscriptTextUsageDuration>,
+            ::std::string::String,
+        >,
+        words:
+            ::std::result::Result<::std::vec::Vec<super::TranscriptionWord>, ::std::string::String>,
+    }
+    impl ::std::default::Default for CreateTranscriptionResponseVerboseJson {
+        fn default() -> Self {
+            Self {
+                duration: Err("no value supplied for duration".to_string()),
+                language: Err("no value supplied for language".to_string()),
+                segments: Ok(Default::default()),
+                text: Err("no value supplied for text".to_string()),
+                usage: Ok(Default::default()),
+                words: Ok(Default::default()),
+            }
+        }
+    }
+    impl CreateTranscriptionResponseVerboseJson {
+        pub fn duration<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<f64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.duration = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for duration: {e}"));
+            self
+        }
+        pub fn language<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.language = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for language: {e}"));
+            self
+        }
+        pub fn segments<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<super::TranscriptionSegment>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.segments = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for segments: {e}"));
+            self
+        }
+        pub fn text<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text: {e}"));
+            self
+        }
+        pub fn usage<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::TranscriptTextUsageDuration>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.usage = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for usage: {e}"));
+            self
+        }
+        pub fn words<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<super::TranscriptionWord>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.words = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for words: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<CreateTranscriptionResponseVerboseJson>
+        for super::CreateTranscriptionResponseVerboseJson
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: CreateTranscriptionResponseVerboseJson,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                duration: value.duration?,
+                language: value.language?,
+                segments: value.segments?,
+                text: value.text?,
+                usage: value.usage?,
+                words: value.words?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::CreateTranscriptionResponseVerboseJson>
+        for CreateTranscriptionResponseVerboseJson
+    {
+        fn from(value: super::CreateTranscriptionResponseVerboseJson) -> Self {
+            Self {
+                duration: Ok(value.duration),
+                language: Ok(value.language),
+                segments: Ok(value.segments),
+                text: Ok(value.text),
+                usage: Ok(value.usage),
+                words: Ok(value.words),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct CreateTranslationRequest {
+        file: ::std::result::Result<::std::string::String, ::std::string::String>,
+        model: ::std::result::Result<::std::string::String, ::std::string::String>,
+        prompt: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        response_format: ::std::result::Result<
+            ::std::option::Option<super::CreateTranslationRequestResponseFormat>,
+            ::std::string::String,
+        >,
+        temperature: ::std::result::Result<::std::option::Option<f64>, ::std::string::String>,
+    }
+    impl ::std::default::Default for CreateTranslationRequest {
+        fn default() -> Self {
+            Self {
+                file: Err("no value supplied for file".to_string()),
+                model: Err("no value supplied for model".to_string()),
+                prompt: Ok(Default::default()),
+                response_format: Ok(Default::default()),
+                temperature: Ok(Default::default()),
+            }
+        }
+    }
+    impl CreateTranslationRequest {
+        pub fn file<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.file = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for file: {e}"));
+            self
+        }
+        pub fn model<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.model = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for model: {e}"));
+            self
+        }
+        pub fn prompt<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prompt = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for prompt: {e}"));
+            self
+        }
+        pub fn response_format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::CreateTranslationRequestResponseFormat>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_format: {e}"));
+            self
+        }
+        pub fn temperature<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<f64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.temperature = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for temperature: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<CreateTranslationRequest> for super::CreateTranslationRequest {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: CreateTranslationRequest,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                file: value.file?,
+                model: value.model?,
+                prompt: value.prompt?,
+                response_format: value.response_format?,
+                temperature: value.temperature?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::CreateTranslationRequest> for CreateTranslationRequest {
+        fn from(value: super::CreateTranslationRequest) -> Self {
+            Self {
+                file: Ok(value.file),
+                model: Ok(value.model),
+                prompt: Ok(value.prompt),
+                response_format: Ok(value.response_format),
+                temperature: Ok(value.temperature),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct CreateTranslationResponseJson {
+        text: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for CreateTranslationResponseJson {
+        fn default() -> Self {
+            Self {
+                text: Err("no value supplied for text".to_string()),
+            }
+        }
+    }
+    impl CreateTranslationResponseJson {
+        pub fn text<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<CreateTranslationResponseJson>
+        for super::CreateTranslationResponseJson
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: CreateTranslationResponseJson,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self { text: value.text? })
+        }
+    }
+    impl ::std::convert::From<super::CreateTranslationResponseJson> for CreateTranslationResponseJson {
+        fn from(value: super::CreateTranslationResponseJson) -> Self {
+            Self {
+                text: Ok(value.text),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct CreateTranslationResponseVerboseJson {
+        duration: ::std::result::Result<f64, ::std::string::String>,
+        language: ::std::result::Result<::std::string::String, ::std::string::String>,
+        segments: ::std::result::Result<
+            ::std::vec::Vec<super::TranscriptionSegment>,
+            ::std::string::String,
+        >,
+        text: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for CreateTranslationResponseVerboseJson {
+        fn default() -> Self {
+            Self {
+                duration: Err("no value supplied for duration".to_string()),
+                language: Err("no value supplied for language".to_string()),
+                segments: Ok(Default::default()),
+                text: Err("no value supplied for text".to_string()),
+            }
+        }
+    }
+    impl CreateTranslationResponseVerboseJson {
+        pub fn duration<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<f64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.duration = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for duration: {e}"));
+            self
+        }
+        pub fn language<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.language = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for language: {e}"));
+            self
+        }
+        pub fn segments<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<super::TranscriptionSegment>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.segments = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for segments: {e}"));
+            self
+        }
+        pub fn text<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<CreateTranslationResponseVerboseJson>
+        for super::CreateTranslationResponseVerboseJson
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: CreateTranslationResponseVerboseJson,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                duration: value.duration?,
+                language: value.language?,
+                segments: value.segments?,
+                text: value.text?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::CreateTranslationResponseVerboseJson>
+        for CreateTranslationResponseVerboseJson
+    {
+        fn from(value: super::CreateTranslationResponseVerboseJson) -> Self {
+            Self {
+                duration: Ok(value.duration),
+                language: Ok(value.language),
+                segments: Ok(value.segments),
+                text: Ok(value.text),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct CreateVoiceConsentRequest {
+        language: ::std::result::Result<::std::string::String, ::std::string::String>,
+        name: ::std::result::Result<::std::string::String, ::std::string::String>,
+        recording: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for CreateVoiceConsentRequest {
+        fn default() -> Self {
+            Self {
+                language: Err("no value supplied for language".to_string()),
+                name: Err("no value supplied for name".to_string()),
+                recording: Err("no value supplied for recording".to_string()),
+            }
+        }
+    }
+    impl CreateVoiceConsentRequest {
+        pub fn language<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.language = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for language: {e}"));
+            self
+        }
+        pub fn name<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.name = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for name: {e}"));
+            self
+        }
+        pub fn recording<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.recording = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for recording: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<CreateVoiceConsentRequest> for super::CreateVoiceConsentRequest {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: CreateVoiceConsentRequest,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                language: value.language?,
+                name: value.name?,
+                recording: value.recording?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::CreateVoiceConsentRequest> for CreateVoiceConsentRequest {
+        fn from(value: super::CreateVoiceConsentRequest) -> Self {
+            Self {
+                language: Ok(value.language),
+                name: Ok(value.name),
+                recording: Ok(value.recording),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct CreateVoiceFromConsentRequest {
+        audio_sample: ::std::result::Result<::std::string::String, ::std::string::String>,
+        consent: ::std::result::Result<::std::string::String, ::std::string::String>,
+        name:
+            ::std::result::Result<super::CreateVoiceFromConsentRequestName, ::std::string::String>,
+        type_: ::std::result::Result<
+            ::std::option::Option<super::CreateVoiceFromConsentRequestType>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for CreateVoiceFromConsentRequest {
+        fn default() -> Self {
+            Self {
+                audio_sample: Err("no value supplied for audio_sample".to_string()),
+                consent: Err("no value supplied for consent".to_string()),
+                name: Err("no value supplied for name".to_string()),
+                type_: Ok(Default::default()),
+            }
+        }
+    }
+    impl CreateVoiceFromConsentRequest {
+        pub fn audio_sample<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio_sample = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio_sample: {e}"));
+            self
+        }
+        pub fn consent<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.consent = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for consent: {e}"));
+            self
+        }
+        pub fn name<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::CreateVoiceFromConsentRequestName>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.name = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for name: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::CreateVoiceFromConsentRequestType>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<CreateVoiceFromConsentRequest>
+        for super::CreateVoiceFromConsentRequest
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: CreateVoiceFromConsentRequest,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio_sample: value.audio_sample?,
+                consent: value.consent?,
+                name: value.name?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::CreateVoiceFromConsentRequest> for CreateVoiceFromConsentRequest {
+        fn from(value: super::CreateVoiceFromConsentRequest) -> Self {
+            Self {
+                audio_sample: Ok(value.audio_sample),
+                consent: Ok(value.consent),
+                name: Ok(value.name),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct ListVoiceConsentsParams {
+        after: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        limit: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+    }
+    impl ::std::default::Default for ListVoiceConsentsParams {
+        fn default() -> Self {
+            Self {
+                after: Ok(Default::default()),
+                limit: Ok(Default::default()),
+            }
+        }
+    }
+    impl ListVoiceConsentsParams {
+        pub fn after<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.after = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for after: {e}"));
+            self
+        }
+        pub fn limit<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.limit = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for limit: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<ListVoiceConsentsParams> for super::ListVoiceConsentsParams {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: ListVoiceConsentsParams,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                after: value.after?,
+                limit: value.limit?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::ListVoiceConsentsParams> for ListVoiceConsentsParams {
+        fn from(value: super::ListVoiceConsentsParams) -> Self {
+            Self {
+                after: Ok(value.after),
+                limit: Ok(value.limit),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct SpeechAudioDeltaEvent {
+        audio: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<super::SpeechAudioDeltaEventType, ::std::string::String>,
+    }
+    impl ::std::default::Default for SpeechAudioDeltaEvent {
+        fn default() -> Self {
+            Self {
+                audio: Err("no value supplied for audio".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl SpeechAudioDeltaEvent {
+        pub fn audio<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::SpeechAudioDeltaEventType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<SpeechAudioDeltaEvent> for super::SpeechAudioDeltaEvent {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: SpeechAudioDeltaEvent,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio: value.audio?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::SpeechAudioDeltaEvent> for SpeechAudioDeltaEvent {
+        fn from(value: super::SpeechAudioDeltaEvent) -> Self {
+            Self {
+                audio: Ok(value.audio),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct SpeechAudioDoneEvent {
+        type_: ::std::result::Result<super::SpeechAudioDoneEventType, ::std::string::String>,
+        usage: ::std::result::Result<super::SpeechAudioDoneEventUsage, ::std::string::String>,
+    }
+    impl ::std::default::Default for SpeechAudioDoneEvent {
+        fn default() -> Self {
+            Self {
+                type_: Err("no value supplied for type_".to_string()),
+                usage: Err("no value supplied for usage".to_string()),
+            }
+        }
+    }
+    impl SpeechAudioDoneEvent {
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::SpeechAudioDoneEventType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+        pub fn usage<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::SpeechAudioDoneEventUsage>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.usage = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for usage: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<SpeechAudioDoneEvent> for super::SpeechAudioDoneEvent {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: SpeechAudioDoneEvent,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                type_: value.type_?,
+                usage: value.usage?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::SpeechAudioDoneEvent> for SpeechAudioDoneEvent {
+        fn from(value: super::SpeechAudioDoneEvent) -> Self {
+            Self {
+                type_: Ok(value.type_),
+                usage: Ok(value.usage),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct SpeechAudioDoneEventUsage {
+        input_tokens: ::std::result::Result<i64, ::std::string::String>,
+        output_tokens: ::std::result::Result<i64, ::std::string::String>,
+        total_tokens: ::std::result::Result<i64, ::std::string::String>,
+    }
+    impl ::std::default::Default for SpeechAudioDoneEventUsage {
+        fn default() -> Self {
+            Self {
+                input_tokens: Err("no value supplied for input_tokens".to_string()),
+                output_tokens: Err("no value supplied for output_tokens".to_string()),
+                total_tokens: Err("no value supplied for total_tokens".to_string()),
+            }
+        }
+    }
+    impl SpeechAudioDoneEventUsage {
+        pub fn input_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for input_tokens: {e}"));
+            self
+        }
+        pub fn output_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_tokens: {e}"));
+            self
+        }
+        pub fn total_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.total_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for total_tokens: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<SpeechAudioDoneEventUsage> for super::SpeechAudioDoneEventUsage {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: SpeechAudioDoneEventUsage,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                input_tokens: value.input_tokens?,
+                output_tokens: value.output_tokens?,
+                total_tokens: value.total_tokens?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::SpeechAudioDoneEventUsage> for SpeechAudioDoneEventUsage {
+        fn from(value: super::SpeechAudioDoneEventUsage) -> Self {
+            Self {
+                input_tokens: Ok(value.input_tokens),
+                output_tokens: Ok(value.output_tokens),
+                total_tokens: Ok(value.total_tokens),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct TranscriptTextDeltaEvent {
+        delta: ::std::result::Result<::std::string::String, ::std::string::String>,
+        logprobs: ::std::result::Result<
+            ::std::vec::Vec<super::TranscriptTextDeltaEventLogprobsItem>,
+            ::std::string::String,
+        >,
+        segment_id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        type_: ::std::result::Result<super::TranscriptTextDeltaEventType, ::std::string::String>,
+    }
+    impl ::std::default::Default for TranscriptTextDeltaEvent {
+        fn default() -> Self {
+            Self {
+                delta: Err("no value supplied for delta".to_string()),
+                logprobs: Ok(Default::default()),
+                segment_id: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl TranscriptTextDeltaEvent {
+        pub fn delta<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.delta = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for delta: {e}"));
+            self
+        }
+        pub fn logprobs<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::vec::Vec<super::TranscriptTextDeltaEventLogprobsItem>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.logprobs = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for logprobs: {e}"));
+            self
+        }
+        pub fn segment_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.segment_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for segment_id: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::TranscriptTextDeltaEventType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<TranscriptTextDeltaEvent> for super::TranscriptTextDeltaEvent {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: TranscriptTextDeltaEvent,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                delta: value.delta?,
+                logprobs: value.logprobs?,
+                segment_id: value.segment_id?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::TranscriptTextDeltaEvent> for TranscriptTextDeltaEvent {
+        fn from(value: super::TranscriptTextDeltaEvent) -> Self {
+            Self {
+                delta: Ok(value.delta),
+                logprobs: Ok(value.logprobs),
+                segment_id: Ok(value.segment_id),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct TranscriptTextDeltaEventLogprobsItem {
+        bytes: ::std::result::Result<::std::vec::Vec<i64>, ::std::string::String>,
+        logprob: ::std::result::Result<::std::option::Option<f64>, ::std::string::String>,
+        token: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for TranscriptTextDeltaEventLogprobsItem {
+        fn default() -> Self {
+            Self {
+                bytes: Ok(Default::default()),
+                logprob: Ok(Default::default()),
+                token: Ok(Default::default()),
+            }
+        }
+    }
+    impl TranscriptTextDeltaEventLogprobsItem {
+        pub fn bytes<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.bytes = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for bytes: {e}"));
+            self
+        }
+        pub fn logprob<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<f64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.logprob = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for logprob: {e}"));
+            self
+        }
+        pub fn token<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.token = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for token: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<TranscriptTextDeltaEventLogprobsItem>
+        for super::TranscriptTextDeltaEventLogprobsItem
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: TranscriptTextDeltaEventLogprobsItem,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                bytes: value.bytes?,
+                logprob: value.logprob?,
+                token: value.token?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::TranscriptTextDeltaEventLogprobsItem>
+        for TranscriptTextDeltaEventLogprobsItem
+    {
+        fn from(value: super::TranscriptTextDeltaEventLogprobsItem) -> Self {
+            Self {
+                bytes: Ok(value.bytes),
+                logprob: Ok(value.logprob),
+                token: Ok(value.token),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct TranscriptTextDoneEvent {
+        languages: ::std::result::Result<
+            ::std::vec::Vec<super::TranscriptionLanguage>,
+            ::std::string::String,
+        >,
+        logprobs: ::std::result::Result<
+            ::std::vec::Vec<super::TranscriptTextDoneEventLogprobsItem>,
+            ::std::string::String,
+        >,
+        text: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<super::TranscriptTextDoneEventType, ::std::string::String>,
+        usage: ::std::result::Result<
+            ::std::option::Option<super::TranscriptTextUsageTokens>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for TranscriptTextDoneEvent {
+        fn default() -> Self {
+            Self {
+                languages: Ok(Default::default()),
+                logprobs: Ok(Default::default()),
+                text: Err("no value supplied for text".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+                usage: Ok(Default::default()),
+            }
+        }
+    }
+    impl TranscriptTextDoneEvent {
+        pub fn languages<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<super::TranscriptionLanguage>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.languages = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for languages: {e}"));
+            self
+        }
+        pub fn logprobs<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<super::TranscriptTextDoneEventLogprobsItem>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.logprobs = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for logprobs: {e}"));
+            self
+        }
+        pub fn text<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::TranscriptTextDoneEventType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+        pub fn usage<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::TranscriptTextUsageTokens>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.usage = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for usage: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<TranscriptTextDoneEvent> for super::TranscriptTextDoneEvent {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: TranscriptTextDoneEvent,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                languages: value.languages?,
+                logprobs: value.logprobs?,
+                text: value.text?,
+                type_: value.type_?,
+                usage: value.usage?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::TranscriptTextDoneEvent> for TranscriptTextDoneEvent {
+        fn from(value: super::TranscriptTextDoneEvent) -> Self {
+            Self {
+                languages: Ok(value.languages),
+                logprobs: Ok(value.logprobs),
+                text: Ok(value.text),
+                type_: Ok(value.type_),
+                usage: Ok(value.usage),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct TranscriptTextDoneEventLogprobsItem {
+        bytes: ::std::result::Result<::std::vec::Vec<i64>, ::std::string::String>,
+        logprob: ::std::result::Result<::std::option::Option<f64>, ::std::string::String>,
+        token: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for TranscriptTextDoneEventLogprobsItem {
+        fn default() -> Self {
+            Self {
+                bytes: Ok(Default::default()),
+                logprob: Ok(Default::default()),
+                token: Ok(Default::default()),
+            }
+        }
+    }
+    impl TranscriptTextDoneEventLogprobsItem {
+        pub fn bytes<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.bytes = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for bytes: {e}"));
+            self
+        }
+        pub fn logprob<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<f64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.logprob = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for logprob: {e}"));
+            self
+        }
+        pub fn token<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.token = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for token: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<TranscriptTextDoneEventLogprobsItem>
+        for super::TranscriptTextDoneEventLogprobsItem
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: TranscriptTextDoneEventLogprobsItem,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                bytes: value.bytes?,
+                logprob: value.logprob?,
+                token: value.token?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::TranscriptTextDoneEventLogprobsItem>
+        for TranscriptTextDoneEventLogprobsItem
+    {
+        fn from(value: super::TranscriptTextDoneEventLogprobsItem) -> Self {
+            Self {
+                bytes: Ok(value.bytes),
+                logprob: Ok(value.logprob),
+                token: Ok(value.token),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct TranscriptTextSegmentEvent {
+        end: ::std::result::Result<f64, ::std::string::String>,
+        id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        speaker: ::std::result::Result<::std::string::String, ::std::string::String>,
+        start: ::std::result::Result<f64, ::std::string::String>,
+        text: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<super::TranscriptTextSegmentEventType, ::std::string::String>,
+    }
+    impl ::std::default::Default for TranscriptTextSegmentEvent {
+        fn default() -> Self {
+            Self {
+                end: Err("no value supplied for end".to_string()),
+                id: Err("no value supplied for id".to_string()),
+                speaker: Err("no value supplied for speaker".to_string()),
+                start: Err("no value supplied for start".to_string()),
+                text: Err("no value supplied for text".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl TranscriptTextSegmentEvent {
+        pub fn end<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<f64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.end = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for end: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn speaker<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.speaker = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for speaker: {e}"));
+            self
+        }
+        pub fn start<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<f64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.start = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for start: {e}"));
+            self
+        }
+        pub fn text<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::TranscriptTextSegmentEventType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<TranscriptTextSegmentEvent> for super::TranscriptTextSegmentEvent {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: TranscriptTextSegmentEvent,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                end: value.end?,
+                id: value.id?,
+                speaker: value.speaker?,
+                start: value.start?,
+                text: value.text?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::TranscriptTextSegmentEvent> for TranscriptTextSegmentEvent {
+        fn from(value: super::TranscriptTextSegmentEvent) -> Self {
+            Self {
+                end: Ok(value.end),
+                id: Ok(value.id),
+                speaker: Ok(value.speaker),
+                start: Ok(value.start),
+                text: Ok(value.text),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct TranscriptTextUsageDuration {
+        seconds: ::std::result::Result<f64, ::std::string::String>,
+        type_: ::std::result::Result<super::TranscriptTextUsageDurationType, ::std::string::String>,
+    }
+    impl ::std::default::Default for TranscriptTextUsageDuration {
+        fn default() -> Self {
+            Self {
+                seconds: Err("no value supplied for seconds".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl TranscriptTextUsageDuration {
+        pub fn seconds<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<f64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.seconds = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for seconds: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::TranscriptTextUsageDurationType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<TranscriptTextUsageDuration> for super::TranscriptTextUsageDuration {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: TranscriptTextUsageDuration,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                seconds: value.seconds?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::TranscriptTextUsageDuration> for TranscriptTextUsageDuration {
+        fn from(value: super::TranscriptTextUsageDuration) -> Self {
+            Self {
+                seconds: Ok(value.seconds),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct TranscriptTextUsageTokens {
+        input_token_details: ::std::result::Result<
+            ::std::option::Option<super::TranscriptTextUsageTokensInputTokenDetails>,
+            ::std::string::String,
+        >,
+        input_tokens: ::std::result::Result<i64, ::std::string::String>,
+        output_tokens: ::std::result::Result<i64, ::std::string::String>,
+        total_tokens: ::std::result::Result<i64, ::std::string::String>,
+        type_: ::std::result::Result<super::TranscriptTextUsageTokensType, ::std::string::String>,
+    }
+    impl ::std::default::Default for TranscriptTextUsageTokens {
+        fn default() -> Self {
+            Self {
+                input_token_details: Ok(Default::default()),
+                input_tokens: Err("no value supplied for input_tokens".to_string()),
+                output_tokens: Err("no value supplied for output_tokens".to_string()),
+                total_tokens: Err("no value supplied for total_tokens".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl TranscriptTextUsageTokens {
+        pub fn input_token_details<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::TranscriptTextUsageTokensInputTokenDetails>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_token_details = value.try_into().map_err(|e| {
+                format!("error converting supplied value for input_token_details: {e}")
+            });
+            self
+        }
+        pub fn input_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for input_tokens: {e}"));
+            self
+        }
+        pub fn output_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_tokens: {e}"));
+            self
+        }
+        pub fn total_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.total_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for total_tokens: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::TranscriptTextUsageTokensType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<TranscriptTextUsageTokens> for super::TranscriptTextUsageTokens {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: TranscriptTextUsageTokens,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                input_token_details: value.input_token_details?,
+                input_tokens: value.input_tokens?,
+                output_tokens: value.output_tokens?,
+                total_tokens: value.total_tokens?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::TranscriptTextUsageTokens> for TranscriptTextUsageTokens {
+        fn from(value: super::TranscriptTextUsageTokens) -> Self {
+            Self {
+                input_token_details: Ok(value.input_token_details),
+                input_tokens: Ok(value.input_tokens),
+                output_tokens: Ok(value.output_tokens),
+                total_tokens: Ok(value.total_tokens),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct TranscriptTextUsageTokensInputTokenDetails {
+        audio_tokens: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        text_tokens: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+    }
+    impl ::std::default::Default for TranscriptTextUsageTokensInputTokenDetails {
+        fn default() -> Self {
+            Self {
+                audio_tokens: Ok(Default::default()),
+                text_tokens: Ok(Default::default()),
+            }
+        }
+    }
+    impl TranscriptTextUsageTokensInputTokenDetails {
+        pub fn audio_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.audio_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for audio_tokens: {e}"));
+            self
+        }
+        pub fn text_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text_tokens: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<TranscriptTextUsageTokensInputTokenDetails>
+        for super::TranscriptTextUsageTokensInputTokenDetails
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: TranscriptTextUsageTokensInputTokenDetails,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                audio_tokens: value.audio_tokens?,
+                text_tokens: value.text_tokens?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::TranscriptTextUsageTokensInputTokenDetails>
+        for TranscriptTextUsageTokensInputTokenDetails
+    {
+        fn from(value: super::TranscriptTextUsageTokensInputTokenDetails) -> Self {
+            Self {
+                audio_tokens: Ok(value.audio_tokens),
+                text_tokens: Ok(value.text_tokens),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct TranscriptionDiarizedSegment {
+        end: ::std::result::Result<f64, ::std::string::String>,
+        id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        speaker: ::std::result::Result<::std::string::String, ::std::string::String>,
+        start: ::std::result::Result<f64, ::std::string::String>,
+        text: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_:
+            ::std::result::Result<super::TranscriptionDiarizedSegmentType, ::std::string::String>,
+    }
+    impl ::std::default::Default for TranscriptionDiarizedSegment {
+        fn default() -> Self {
+            Self {
+                end: Err("no value supplied for end".to_string()),
+                id: Err("no value supplied for id".to_string()),
+                speaker: Err("no value supplied for speaker".to_string()),
+                start: Err("no value supplied for start".to_string()),
+                text: Err("no value supplied for text".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl TranscriptionDiarizedSegment {
+        pub fn end<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<f64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.end = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for end: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn speaker<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.speaker = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for speaker: {e}"));
+            self
+        }
+        pub fn start<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<f64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.start = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for start: {e}"));
+            self
+        }
+        pub fn text<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::TranscriptionDiarizedSegmentType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<TranscriptionDiarizedSegment> for super::TranscriptionDiarizedSegment {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: TranscriptionDiarizedSegment,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                end: value.end?,
+                id: value.id?,
+                speaker: value.speaker?,
+                start: value.start?,
+                text: value.text?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::TranscriptionDiarizedSegment> for TranscriptionDiarizedSegment {
+        fn from(value: super::TranscriptionDiarizedSegment) -> Self {
+            Self {
+                end: Ok(value.end),
+                id: Ok(value.id),
+                speaker: Ok(value.speaker),
+                start: Ok(value.start),
+                text: Ok(value.text),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct TranscriptionLanguage {
+        code: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for TranscriptionLanguage {
+        fn default() -> Self {
+            Self {
+                code: Err("no value supplied for code".to_string()),
+            }
+        }
+    }
+    impl TranscriptionLanguage {
+        pub fn code<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.code = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for code: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<TranscriptionLanguage> for super::TranscriptionLanguage {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: TranscriptionLanguage,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self { code: value.code? })
+        }
+    }
+    impl ::std::convert::From<super::TranscriptionLanguage> for TranscriptionLanguage {
+        fn from(value: super::TranscriptionLanguage) -> Self {
+            Self {
+                code: Ok(value.code),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct TranscriptionSegment {
+        avg_logprob: ::std::result::Result<f32, ::std::string::String>,
+        compression_ratio: ::std::result::Result<f32, ::std::string::String>,
+        end: ::std::result::Result<f64, ::std::string::String>,
+        id: ::std::result::Result<i64, ::std::string::String>,
+        no_speech_prob: ::std::result::Result<f32, ::std::string::String>,
+        seek: ::std::result::Result<i64, ::std::string::String>,
+        start: ::std::result::Result<f64, ::std::string::String>,
+        temperature: ::std::result::Result<f32, ::std::string::String>,
+        text: ::std::result::Result<::std::string::String, ::std::string::String>,
+        tokens: ::std::result::Result<::std::vec::Vec<i64>, ::std::string::String>,
+    }
+    impl ::std::default::Default for TranscriptionSegment {
+        fn default() -> Self {
+            Self {
+                avg_logprob: Err("no value supplied for avg_logprob".to_string()),
+                compression_ratio: Err("no value supplied for compression_ratio".to_string()),
+                end: Err("no value supplied for end".to_string()),
+                id: Err("no value supplied for id".to_string()),
+                no_speech_prob: Err("no value supplied for no_speech_prob".to_string()),
+                seek: Err("no value supplied for seek".to_string()),
+                start: Err("no value supplied for start".to_string()),
+                temperature: Err("no value supplied for temperature".to_string()),
+                text: Err("no value supplied for text".to_string()),
+                tokens: Err("no value supplied for tokens".to_string()),
+            }
+        }
+    }
+    impl TranscriptionSegment {
+        pub fn avg_logprob<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<f32>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.avg_logprob = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for avg_logprob: {e}"));
+            self
+        }
+        pub fn compression_ratio<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<f32>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.compression_ratio = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for compression_ratio: {e}"));
+            self
+        }
+        pub fn end<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<f64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.end = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for end: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn no_speech_prob<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<f32>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.no_speech_prob = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for no_speech_prob: {e}"));
+            self
+        }
+        pub fn seek<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.seek = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for seek: {e}"));
+            self
+        }
+        pub fn start<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<f64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.start = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for start: {e}"));
+            self
+        }
+        pub fn temperature<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<f32>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.temperature = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for temperature: {e}"));
+            self
+        }
+        pub fn text<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text: {e}"));
+            self
+        }
+        pub fn tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for tokens: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<TranscriptionSegment> for super::TranscriptionSegment {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: TranscriptionSegment,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                avg_logprob: value.avg_logprob?,
+                compression_ratio: value.compression_ratio?,
+                end: value.end?,
+                id: value.id?,
+                no_speech_prob: value.no_speech_prob?,
+                seek: value.seek?,
+                start: value.start?,
+                temperature: value.temperature?,
+                text: value.text?,
+                tokens: value.tokens?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::TranscriptionSegment> for TranscriptionSegment {
+        fn from(value: super::TranscriptionSegment) -> Self {
+            Self {
+                avg_logprob: Ok(value.avg_logprob),
+                compression_ratio: Ok(value.compression_ratio),
+                end: Ok(value.end),
+                id: Ok(value.id),
+                no_speech_prob: Ok(value.no_speech_prob),
+                seek: Ok(value.seek),
+                start: Ok(value.start),
+                temperature: Ok(value.temperature),
+                text: Ok(value.text),
+                tokens: Ok(value.tokens),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct TranscriptionWord {
+        end: ::std::result::Result<f64, ::std::string::String>,
+        start: ::std::result::Result<f64, ::std::string::String>,
+        word: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for TranscriptionWord {
+        fn default() -> Self {
+            Self {
+                end: Err("no value supplied for end".to_string()),
+                start: Err("no value supplied for start".to_string()),
+                word: Err("no value supplied for word".to_string()),
+            }
+        }
+    }
+    impl TranscriptionWord {
+        pub fn end<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<f64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.end = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for end: {e}"));
+            self
+        }
+        pub fn start<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<f64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.start = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for start: {e}"));
+            self
+        }
+        pub fn word<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.word = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for word: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<TranscriptionWord> for super::TranscriptionWord {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: TranscriptionWord,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                end: value.end?,
+                start: value.start?,
+                word: value.word?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::TranscriptionWord> for TranscriptionWord {
+        fn from(value: super::TranscriptionWord) -> Self {
+            Self {
+                end: Ok(value.end),
+                start: Ok(value.start),
+                word: Ok(value.word),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct UpdateVoiceConsentRequest {
+        name: ::std::result::Result<::std::string::String, ::std::string::String>,
+    }
+    impl ::std::default::Default for UpdateVoiceConsentRequest {
+        fn default() -> Self {
+            Self {
+                name: Err("no value supplied for name".to_string()),
+            }
+        }
+    }
+    impl UpdateVoiceConsentRequest {
+        pub fn name<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.name = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for name: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<UpdateVoiceConsentRequest> for super::UpdateVoiceConsentRequest {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: UpdateVoiceConsentRequest,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self { name: value.name? })
+        }
+    }
+    impl ::std::convert::From<super::UpdateVoiceConsentRequest> for UpdateVoiceConsentRequest {
+        fn from(value: super::UpdateVoiceConsentRequest) -> Self {
+            Self {
+                name: Ok(value.name),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct VadConfig {
+        prefix_padding_ms: ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        silence_duration_ms:
+            ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        threshold: ::std::result::Result<::std::option::Option<f64>, ::std::string::String>,
+        type_: ::std::result::Result<super::VadConfigType, ::std::string::String>,
+    }
+    impl ::std::default::Default for VadConfig {
+        fn default() -> Self {
+            Self {
+                prefix_padding_ms: Ok(Default::default()),
+                silence_duration_ms: Ok(Default::default()),
+                threshold: Ok(Default::default()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl VadConfig {
+        pub fn prefix_padding_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prefix_padding_ms = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for prefix_padding_ms: {e}"));
+            self
+        }
+        pub fn silence_duration_ms<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.silence_duration_ms = value.try_into().map_err(|e| {
+                format!("error converting supplied value for silence_duration_ms: {e}")
+            });
+            self
+        }
+        pub fn threshold<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<f64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.threshold = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for threshold: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::VadConfigType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<VadConfig> for super::VadConfig {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: VadConfig,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                prefix_padding_ms: value.prefix_padding_ms?,
+                silence_duration_ms: value.silence_duration_ms?,
+                threshold: value.threshold?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::VadConfig> for VadConfig {
+        fn from(value: super::VadConfig) -> Self {
+            Self {
+                prefix_padding_ms: Ok(value.prefix_padding_ms),
+                silence_duration_ms: Ok(value.silence_duration_ms),
+                threshold: Ok(value.threshold),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct VoiceConsentDeletedResource {
+        deleted: ::std::result::Result<bool, ::std::string::String>,
+        id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        object:
+            ::std::result::Result<super::VoiceConsentDeletedResourceObject, ::std::string::String>,
+    }
+    impl ::std::default::Default for VoiceConsentDeletedResource {
+        fn default() -> Self {
+            Self {
+                deleted: Err("no value supplied for deleted".to_string()),
+                id: Err("no value supplied for id".to_string()),
+                object: Err("no value supplied for object".to_string()),
+            }
+        }
+    }
+    impl VoiceConsentDeletedResource {
+        pub fn deleted<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<bool>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.deleted = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for deleted: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::VoiceConsentDeletedResourceObject>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<VoiceConsentDeletedResource> for super::VoiceConsentDeletedResource {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: VoiceConsentDeletedResource,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                deleted: value.deleted?,
+                id: value.id?,
+                object: value.object?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::VoiceConsentDeletedResource> for VoiceConsentDeletedResource {
+        fn from(value: super::VoiceConsentDeletedResource) -> Self {
+            Self {
+                deleted: Ok(value.deleted),
+                id: Ok(value.id),
+                object: Ok(value.object),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct VoiceConsentListResource {
+        data: ::std::result::Result<
+            ::std::vec::Vec<super::VoiceConsentResource>,
+            ::std::string::String,
+        >,
+        first_id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        has_more: ::std::result::Result<bool, ::std::string::String>,
+        last_id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        object: ::std::result::Result<super::VoiceConsentListResourceObject, ::std::string::String>,
+    }
+    impl ::std::default::Default for VoiceConsentListResource {
+        fn default() -> Self {
+            Self {
+                data: Err("no value supplied for data".to_string()),
+                first_id: Ok(Default::default()),
+                has_more: Err("no value supplied for has_more".to_string()),
+                last_id: Ok(Default::default()),
+                object: Err("no value supplied for object".to_string()),
+            }
+        }
+    }
+    impl VoiceConsentListResource {
+        pub fn data<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<super::VoiceConsentResource>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.data = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for data: {e}"));
+            self
+        }
+        pub fn first_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.first_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for first_id: {e}"));
+            self
+        }
+        pub fn has_more<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<bool>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.has_more = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for has_more: {e}"));
+            self
+        }
+        pub fn last_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.last_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for last_id: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::VoiceConsentListResourceObject>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<VoiceConsentListResource> for super::VoiceConsentListResource {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: VoiceConsentListResource,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                data: value.data?,
+                first_id: value.first_id?,
+                has_more: value.has_more?,
+                last_id: value.last_id?,
+                object: value.object?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::VoiceConsentListResource> for VoiceConsentListResource {
+        fn from(value: super::VoiceConsentListResource) -> Self {
+            Self {
+                data: Ok(value.data),
+                first_id: Ok(value.first_id),
+                has_more: Ok(value.has_more),
+                last_id: Ok(value.last_id),
+                object: Ok(value.object),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct VoiceConsentResource {
+        created_at: ::std::result::Result<i64, ::std::string::String>,
+        id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        language: ::std::result::Result<::std::string::String, ::std::string::String>,
+        name: ::std::result::Result<::std::string::String, ::std::string::String>,
+        object: ::std::result::Result<super::VoiceConsentResourceObject, ::std::string::String>,
+    }
+    impl ::std::default::Default for VoiceConsentResource {
+        fn default() -> Self {
+            Self {
+                created_at: Err("no value supplied for created_at".to_string()),
+                id: Err("no value supplied for id".to_string()),
+                language: Err("no value supplied for language".to_string()),
+                name: Err("no value supplied for name".to_string()),
+                object: Err("no value supplied for object".to_string()),
+            }
+        }
+    }
+    impl VoiceConsentResource {
+        pub fn created_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.created_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for created_at: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn language<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.language = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for language: {e}"));
+            self
+        }
+        pub fn name<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.name = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for name: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::VoiceConsentResourceObject>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<VoiceConsentResource> for super::VoiceConsentResource {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: VoiceConsentResource,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                created_at: value.created_at?,
+                id: value.id?,
+                language: value.language?,
+                name: value.name?,
+                object: value.object?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::VoiceConsentResource> for VoiceConsentResource {
+        fn from(value: super::VoiceConsentResource) -> Self {
+            Self {
+                created_at: Ok(value.created_at),
+                id: Ok(value.id),
+                language: Ok(value.language),
+                name: Ok(value.name),
+                object: Ok(value.object),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct VoiceResource {
+        created_at: ::std::result::Result<i64, ::std::string::String>,
+        id: ::std::result::Result<::std::string::String, ::std::string::String>,
+        name: ::std::result::Result<::std::string::String, ::std::string::String>,
+        object: ::std::result::Result<super::VoiceResourceObject, ::std::string::String>,
+        type_: ::std::result::Result<super::VoiceResourceType, ::std::string::String>,
+    }
+    impl ::std::default::Default for VoiceResource {
+        fn default() -> Self {
+            Self {
+                created_at: Err("no value supplied for created_at".to_string()),
+                id: Err("no value supplied for id".to_string()),
+                name: Err("no value supplied for name".to_string()),
+                object: Err("no value supplied for object".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl VoiceResource {
+        pub fn created_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.created_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for created_at: {e}"));
+            self
+        }
+        pub fn id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for id: {e}"));
+            self
+        }
+        pub fn name<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.name = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for name: {e}"));
+            self
+        }
+        pub fn object<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::VoiceResourceObject>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.object = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for object: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::VoiceResourceType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<VoiceResource> for super::VoiceResource {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: VoiceResource,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                created_at: value.created_at?,
+                id: value.id?,
+                name: value.name?,
+                object: value.object?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::VoiceResource> for VoiceResource {
+        fn from(value: super::VoiceResource) -> Self {
+            Self {
+                created_at: Ok(value.created_at),
+                id: Ok(value.id),
+                name: Ok(value.name),
+                object: Ok(value.object),
+                type_: Ok(value.type_),
+            }
+        }
     }
 }
 #[doc = " Error types."]

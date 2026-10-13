@@ -42,6 +42,11 @@ pub struct CreateImageEditRequest {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub user: ::std::option::Option<::std::string::String>,
 }
+impl CreateImageEditRequest {
+    pub fn builder() -> builder::CreateImageEditRequest {
+        Default::default()
+    }
+}
 #[doc = "`CreateImageEditRequestBackground`"]
 #[derive(
     :: serde :: Deserialize,
@@ -296,6 +301,11 @@ pub struct CreateImageEditRequestSize {
     #[serde(flatten, skip_serializing_if = "::std::option::Option::is_none")]
     pub subtype_2: ::std::option::Option<()>,
 }
+impl CreateImageEditRequestSize {
+    pub fn builder() -> builder::CreateImageEditRequestSize {
+        Default::default()
+    }
+}
 #[doc = "`CreateImageEditRequestSizeSubtype1`"]
 #[derive(
     :: serde :: Deserialize,
@@ -405,6 +415,11 @@ pub struct CreateImageRequest {
     #[doc = "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](https://developers.openai.com/api/docs/guides/safety-best-practices#implement-safety-identifiers).\n"]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub user: ::std::option::Option<::std::string::String>,
+}
+impl CreateImageRequest {
+    pub fn builder() -> builder::CreateImageRequest {
+        Default::default()
+    }
 }
 #[doc = "`CreateImageRequestBackground`"]
 #[derive(
@@ -703,6 +718,11 @@ pub struct CreateImageRequestSize {
     #[serde(flatten, skip_serializing_if = "::std::option::Option::is_none")]
     pub subtype_2: ::std::option::Option<()>,
 }
+impl CreateImageRequestSize {
+    pub fn builder() -> builder::CreateImageRequestSize {
+        Default::default()
+    }
+}
 #[doc = "`CreateImageRequestSizeSubtype1`"]
 #[derive(
     :: serde :: Deserialize,
@@ -874,6 +894,11 @@ pub struct EditImageBodyJsonParam {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub user: ::std::option::Option<::std::string::String>,
 }
+impl EditImageBodyJsonParam {
+    pub fn builder() -> builder::EditImageBodyJsonParam {
+        Default::default()
+    }
+}
 #[doc = "`EditImageBodyJsonParamBackground`"]
 #[derive(
     :: serde :: Deserialize,
@@ -989,6 +1014,11 @@ pub struct EditImageBodyJsonParamModel {
     pub subtype_1: ::std::option::Option<EditImageBodyJsonParamModelSubtype1>,
     #[serde(flatten, skip_serializing_if = "::std::option::Option::is_none")]
     pub subtype_2: ::std::option::Option<()>,
+}
+impl EditImageBodyJsonParamModel {
+    pub fn builder() -> builder::EditImageBodyJsonParamModel {
+        Default::default()
+    }
 }
 #[doc = "`EditImageBodyJsonParamModelSubtype1`"]
 #[derive(
@@ -1309,6 +1339,11 @@ pub struct EditImageBodyJsonParamSize {
     #[serde(flatten, skip_serializing_if = "::std::option::Option::is_none")]
     pub subtype_2: ::std::option::Option<()>,
 }
+impl EditImageBodyJsonParamSize {
+    pub fn builder() -> builder::EditImageBodyJsonParamSize {
+        Default::default()
+    }
+}
 #[doc = "`EditImageBodyJsonParamSizeSubtype1`"]
 #[derive(
     :: serde :: Deserialize,
@@ -1381,6 +1416,11 @@ pub struct Image {
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub url: ::std::option::Option<::std::string::String>,
 }
+impl Image {
+    pub fn builder() -> builder::Image {
+        Default::default()
+    }
+}
 #[doc = "Emitted when image editing has completed and the final image is available.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct ImageEditCompletedEvent {
@@ -1400,6 +1440,11 @@ pub struct ImageEditCompletedEvent {
     #[serde(rename = "type")]
     pub type_: ImageEditCompletedEventType,
     pub usage: ImagesUsage,
+}
+impl ImageEditCompletedEvent {
+    pub fn builder() -> builder::ImageEditCompletedEvent {
+        Default::default()
+    }
 }
 #[doc = "The background setting for the edited image.\n"]
 #[derive(
@@ -1645,6 +1690,11 @@ pub struct ImageEditPartialImageEvent {
     #[doc = "The type of the event. Always `image_edit.partial_image`.\n"]
     #[serde(rename = "type")]
     pub type_: ImageEditPartialImageEventType,
+}
+impl ImageEditPartialImageEvent {
+    pub fn builder() -> builder::ImageEditPartialImageEvent {
+        Default::default()
+    }
 }
 #[doc = "The background setting for the requested edited image.\n"]
 #[derive(
@@ -1907,6 +1957,11 @@ pub struct ImageGenCompletedEvent {
     pub type_: ImageGenCompletedEventType,
     pub usage: ImagesUsage,
 }
+impl ImageGenCompletedEvent {
+    pub fn builder() -> builder::ImageGenCompletedEvent {
+        Default::default()
+    }
+}
 #[doc = "The background setting for the generated image.\n"]
 #[derive(
     :: serde :: Deserialize,
@@ -2139,6 +2194,11 @@ pub struct ImageGenInputUsageDetails {
     #[doc = "The number of text tokens in the input prompt."]
     pub text_tokens: i64,
 }
+impl ImageGenInputUsageDetails {
+    pub fn builder() -> builder::ImageGenInputUsageDetails {
+        Default::default()
+    }
+}
 #[doc = "The output token details for the image generation."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct ImageGenOutputTokensDetails {
@@ -2146,6 +2206,11 @@ pub struct ImageGenOutputTokensDetails {
     pub image_tokens: i64,
     #[doc = "The number of text output tokens generated by the model."]
     pub text_tokens: i64,
+}
+impl ImageGenOutputTokensDetails {
+    pub fn builder() -> builder::ImageGenOutputTokensDetails {
+        Default::default()
+    }
 }
 #[doc = "Emitted when a partial image is available during image generation streaming.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -2167,6 +2232,11 @@ pub struct ImageGenPartialImageEvent {
     #[doc = "The type of the event. Always `image_generation.partial_image`.\n"]
     #[serde(rename = "type")]
     pub type_: ImageGenPartialImageEventType,
+}
+impl ImageGenPartialImageEvent {
+    pub fn builder() -> builder::ImageGenPartialImageEvent {
+        Default::default()
+    }
 }
 #[doc = "The background setting for the requested image.\n"]
 #[derive(
@@ -2422,6 +2492,11 @@ pub struct ImageGenUsage {
     #[doc = "The total number of tokens (images and text) used for the image generation."]
     pub total_tokens: i64,
 }
+impl ImageGenUsage {
+    pub fn builder() -> builder::ImageGenUsage {
+        Default::default()
+    }
+}
 #[doc = "Reference an input image by either URL or uploaded file ID.\nProvide exactly one of `image_url` or `file_id`.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
 #[serde(deny_unknown_fields)]
@@ -2432,6 +2507,11 @@ pub struct ImageRefParam {
     #[doc = "A fully qualified URL or base64-encoded data URL."]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub image_url: ::std::option::Option<ImageRefParamImageUrl>,
+}
+impl ImageRefParam {
+    pub fn builder() -> builder::ImageRefParam {
+        Default::default()
+    }
 }
 #[doc = "A fully qualified URL or base64-encoded data URL."]
 #[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
@@ -2501,6 +2581,11 @@ pub struct ImagesApiSchema {
     #[serde(rename = "CreateImageStreamResponse")]
     pub create_image_stream_response: ImageGenStreamEvent,
 }
+impl ImagesApiSchema {
+    pub fn builder() -> builder::ImagesApiSchema {
+        Default::default()
+    }
+}
 #[doc = "The response from the image generation endpoint."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct ImagesResponse {
@@ -2523,6 +2608,11 @@ pub struct ImagesResponse {
     pub size: ::std::option::Option<::std::string::String>,
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub usage: ::std::option::Option<ImageGenUsage>,
+}
+impl ImagesResponse {
+    pub fn builder() -> builder::ImagesResponse {
+        Default::default()
+    }
 }
 #[doc = "The background parameter used for the image generation. Either `transparent` or `opaque`."]
 #[derive(
@@ -2704,6 +2794,11 @@ pub struct ImagesUsage {
     #[doc = "The total number of tokens (images and text) used for the image generation.\n"]
     pub total_tokens: i64,
 }
+impl ImagesUsage {
+    pub fn builder() -> builder::ImagesUsage {
+        Default::default()
+    }
+}
 #[doc = "The input tokens detailed information for the image generation."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct ImagesUsageInputTokensDetails {
@@ -2711,6 +2806,11 @@ pub struct ImagesUsageInputTokensDetails {
     pub image_tokens: i64,
     #[doc = "The number of text tokens in the input prompt."]
     pub text_tokens: i64,
+}
+impl ImagesUsageInputTokensDetails {
+    pub fn builder() -> builder::ImagesUsageInputTokensDetails {
+        Default::default()
+    }
 }
 #[doc = "Control how much effort the model will exert to match the style and features, especially facial features, of input images. Supports `high` and `low` on `gpt-image-1` and `gpt-image-1.5`; `gpt-image-1-mini` supports only `low`. For `gpt-image-2`, omit this parameter. Defaults to `low` on supported models."]
 #[derive(
@@ -2824,6 +2924,2461 @@ impl ::std::convert::TryFrom<String> for PartialImagesValue {
     type Error = <i64 as ::std::str::FromStr>::Err;
     fn try_from(value: String) -> ::std::result::Result<Self, Self::Error> {
         value.parse()
+    }
+}
+#[doc = " Types for composing complex structures."]
+pub mod builder {
+    #[derive(Clone, Debug)]
+    pub struct CreateImageEditRequest {
+        background: ::std::result::Result<
+            ::std::option::Option<super::CreateImageEditRequestBackground>,
+            ::std::string::String,
+        >,
+        image: ::std::result::Result<super::CreateImageEditRequestImage, ::std::string::String>,
+        input_fidelity: ::std::result::Result<
+            ::std::option::Option<super::InputFidelity>,
+            ::std::string::String,
+        >,
+        mask: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        model: ::std::result::Result<::std::string::String, ::std::string::String>,
+        n: ::std::result::Result<
+            ::std::option::Option<::std::num::NonZeroU64>,
+            ::std::string::String,
+        >,
+        output_compression:
+            ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        output_format: ::std::result::Result<
+            ::std::option::Option<super::CreateImageEditRequestOutputFormat>,
+            ::std::string::String,
+        >,
+        partial_images: ::std::result::Result<
+            ::std::option::Option<super::PartialImages>,
+            ::std::string::String,
+        >,
+        prompt: ::std::result::Result<::std::string::String, ::std::string::String>,
+        quality: ::std::result::Result<
+            ::std::option::Option<super::CreateImageEditRequestQuality>,
+            ::std::string::String,
+        >,
+        response_format: ::std::result::Result<
+            ::std::option::Option<super::CreateImageEditRequestResponseFormat>,
+            ::std::string::String,
+        >,
+        size: ::std::result::Result<
+            ::std::option::Option<super::CreateImageEditRequestSize>,
+            ::std::string::String,
+        >,
+        stream: ::std::result::Result<::std::option::Option<bool>, ::std::string::String>,
+        user: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for CreateImageEditRequest {
+        fn default() -> Self {
+            Self {
+                background: Ok(Default::default()),
+                image: Err("no value supplied for image".to_string()),
+                input_fidelity: Ok(Default::default()),
+                mask: Ok(Default::default()),
+                model: Err("no value supplied for model".to_string()),
+                n: Ok(Default::default()),
+                output_compression: Ok(Default::default()),
+                output_format: Ok(Default::default()),
+                partial_images: Ok(Default::default()),
+                prompt: Err("no value supplied for prompt".to_string()),
+                quality: Ok(Default::default()),
+                response_format: Ok(Default::default()),
+                size: Ok(Default::default()),
+                stream: Ok(Default::default()),
+                user: Ok(Default::default()),
+            }
+        }
+    }
+    impl CreateImageEditRequest {
+        pub fn background<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::CreateImageEditRequestBackground>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.background = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for background: {e}"));
+            self
+        }
+        pub fn image<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::CreateImageEditRequestImage>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.image = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for image: {e}"));
+            self
+        }
+        pub fn input_fidelity<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::InputFidelity>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_fidelity = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for input_fidelity: {e}"));
+            self
+        }
+        pub fn mask<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.mask = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for mask: {e}"));
+            self
+        }
+        pub fn model<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.model = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for model: {e}"));
+            self
+        }
+        pub fn n<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::num::NonZeroU64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.n = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for n: {e}"));
+            self
+        }
+        pub fn output_compression<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_compression = value.try_into().map_err(|e| {
+                format!("error converting supplied value for output_compression: {e}")
+            });
+            self
+        }
+        pub fn output_format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::CreateImageEditRequestOutputFormat>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_format: {e}"));
+            self
+        }
+        pub fn partial_images<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::PartialImages>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.partial_images = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for partial_images: {e}"));
+            self
+        }
+        pub fn prompt<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prompt = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for prompt: {e}"));
+            self
+        }
+        pub fn quality<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::CreateImageEditRequestQuality>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.quality = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for quality: {e}"));
+            self
+        }
+        pub fn response_format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::CreateImageEditRequestResponseFormat>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_format: {e}"));
+            self
+        }
+        pub fn size<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::CreateImageEditRequestSize>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.size = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for size: {e}"));
+            self
+        }
+        pub fn stream<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<bool>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.stream = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for stream: {e}"));
+            self
+        }
+        pub fn user<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.user = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for user: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<CreateImageEditRequest> for super::CreateImageEditRequest {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: CreateImageEditRequest,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                background: value.background?,
+                image: value.image?,
+                input_fidelity: value.input_fidelity?,
+                mask: value.mask?,
+                model: value.model?,
+                n: value.n?,
+                output_compression: value.output_compression?,
+                output_format: value.output_format?,
+                partial_images: value.partial_images?,
+                prompt: value.prompt?,
+                quality: value.quality?,
+                response_format: value.response_format?,
+                size: value.size?,
+                stream: value.stream?,
+                user: value.user?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::CreateImageEditRequest> for CreateImageEditRequest {
+        fn from(value: super::CreateImageEditRequest) -> Self {
+            Self {
+                background: Ok(value.background),
+                image: Ok(value.image),
+                input_fidelity: Ok(value.input_fidelity),
+                mask: Ok(value.mask),
+                model: Ok(value.model),
+                n: Ok(value.n),
+                output_compression: Ok(value.output_compression),
+                output_format: Ok(value.output_format),
+                partial_images: Ok(value.partial_images),
+                prompt: Ok(value.prompt),
+                quality: Ok(value.quality),
+                response_format: Ok(value.response_format),
+                size: Ok(value.size),
+                stream: Ok(value.stream),
+                user: Ok(value.user),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct CreateImageEditRequestSize {
+        subtype_0: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        subtype_1: ::std::result::Result<
+            ::std::option::Option<super::CreateImageEditRequestSizeSubtype1>,
+            ::std::string::String,
+        >,
+        subtype_2: ::std::result::Result<::std::option::Option<()>, ::std::string::String>,
+    }
+    impl ::std::default::Default for CreateImageEditRequestSize {
+        fn default() -> Self {
+            Self {
+                subtype_0: Ok(Default::default()),
+                subtype_1: Ok(Default::default()),
+                subtype_2: Ok(Default::default()),
+            }
+        }
+    }
+    impl CreateImageEditRequestSize {
+        pub fn subtype_0<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.subtype_0 = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for subtype_0: {e}"));
+            self
+        }
+        pub fn subtype_1<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::CreateImageEditRequestSizeSubtype1>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.subtype_1 = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for subtype_1: {e}"));
+            self
+        }
+        pub fn subtype_2<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<()>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.subtype_2 = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for subtype_2: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<CreateImageEditRequestSize> for super::CreateImageEditRequestSize {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: CreateImageEditRequestSize,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                subtype_0: value.subtype_0?,
+                subtype_1: value.subtype_1?,
+                subtype_2: value.subtype_2?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::CreateImageEditRequestSize> for CreateImageEditRequestSize {
+        fn from(value: super::CreateImageEditRequestSize) -> Self {
+            Self {
+                subtype_0: Ok(value.subtype_0),
+                subtype_1: Ok(value.subtype_1),
+                subtype_2: Ok(value.subtype_2),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct CreateImageRequest {
+        background: ::std::result::Result<
+            ::std::option::Option<super::CreateImageRequestBackground>,
+            ::std::string::String,
+        >,
+        model: ::std::result::Result<::std::string::String, ::std::string::String>,
+        moderation: ::std::result::Result<
+            ::std::option::Option<super::CreateImageRequestModeration>,
+            ::std::string::String,
+        >,
+        n: ::std::result::Result<
+            ::std::option::Option<::std::num::NonZeroU64>,
+            ::std::string::String,
+        >,
+        output_compression:
+            ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        output_format: ::std::result::Result<
+            ::std::option::Option<super::CreateImageRequestOutputFormat>,
+            ::std::string::String,
+        >,
+        partial_images: ::std::result::Result<
+            ::std::option::Option<super::PartialImages>,
+            ::std::string::String,
+        >,
+        prompt: ::std::result::Result<::std::string::String, ::std::string::String>,
+        quality: ::std::result::Result<
+            ::std::option::Option<super::CreateImageRequestQuality>,
+            ::std::string::String,
+        >,
+        response_format: ::std::result::Result<
+            ::std::option::Option<super::CreateImageRequestResponseFormat>,
+            ::std::string::String,
+        >,
+        size: ::std::result::Result<
+            ::std::option::Option<super::CreateImageRequestSize>,
+            ::std::string::String,
+        >,
+        stream: ::std::result::Result<::std::option::Option<bool>, ::std::string::String>,
+        style: ::std::result::Result<
+            ::std::option::Option<super::CreateImageRequestStyle>,
+            ::std::string::String,
+        >,
+        user: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for CreateImageRequest {
+        fn default() -> Self {
+            Self {
+                background: Ok(Default::default()),
+                model: Err("no value supplied for model".to_string()),
+                moderation: Ok(Default::default()),
+                n: Ok(Default::default()),
+                output_compression: Ok(Default::default()),
+                output_format: Ok(Default::default()),
+                partial_images: Ok(Default::default()),
+                prompt: Err("no value supplied for prompt".to_string()),
+                quality: Ok(Default::default()),
+                response_format: Ok(Default::default()),
+                size: Ok(Default::default()),
+                stream: Ok(Default::default()),
+                style: Ok(Default::default()),
+                user: Ok(Default::default()),
+            }
+        }
+    }
+    impl CreateImageRequest {
+        pub fn background<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::CreateImageRequestBackground>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.background = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for background: {e}"));
+            self
+        }
+        pub fn model<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.model = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for model: {e}"));
+            self
+        }
+        pub fn moderation<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::CreateImageRequestModeration>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.moderation = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for moderation: {e}"));
+            self
+        }
+        pub fn n<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::num::NonZeroU64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.n = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for n: {e}"));
+            self
+        }
+        pub fn output_compression<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_compression = value.try_into().map_err(|e| {
+                format!("error converting supplied value for output_compression: {e}")
+            });
+            self
+        }
+        pub fn output_format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::CreateImageRequestOutputFormat>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_format: {e}"));
+            self
+        }
+        pub fn partial_images<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::PartialImages>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.partial_images = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for partial_images: {e}"));
+            self
+        }
+        pub fn prompt<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prompt = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for prompt: {e}"));
+            self
+        }
+        pub fn quality<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::CreateImageRequestQuality>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.quality = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for quality: {e}"));
+            self
+        }
+        pub fn response_format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::CreateImageRequestResponseFormat>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.response_format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for response_format: {e}"));
+            self
+        }
+        pub fn size<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::CreateImageRequestSize>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.size = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for size: {e}"));
+            self
+        }
+        pub fn stream<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<bool>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.stream = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for stream: {e}"));
+            self
+        }
+        pub fn style<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::CreateImageRequestStyle>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.style = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for style: {e}"));
+            self
+        }
+        pub fn user<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.user = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for user: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<CreateImageRequest> for super::CreateImageRequest {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: CreateImageRequest,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                background: value.background?,
+                model: value.model?,
+                moderation: value.moderation?,
+                n: value.n?,
+                output_compression: value.output_compression?,
+                output_format: value.output_format?,
+                partial_images: value.partial_images?,
+                prompt: value.prompt?,
+                quality: value.quality?,
+                response_format: value.response_format?,
+                size: value.size?,
+                stream: value.stream?,
+                style: value.style?,
+                user: value.user?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::CreateImageRequest> for CreateImageRequest {
+        fn from(value: super::CreateImageRequest) -> Self {
+            Self {
+                background: Ok(value.background),
+                model: Ok(value.model),
+                moderation: Ok(value.moderation),
+                n: Ok(value.n),
+                output_compression: Ok(value.output_compression),
+                output_format: Ok(value.output_format),
+                partial_images: Ok(value.partial_images),
+                prompt: Ok(value.prompt),
+                quality: Ok(value.quality),
+                response_format: Ok(value.response_format),
+                size: Ok(value.size),
+                stream: Ok(value.stream),
+                style: Ok(value.style),
+                user: Ok(value.user),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct CreateImageRequestSize {
+        subtype_0: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        subtype_1: ::std::result::Result<
+            ::std::option::Option<super::CreateImageRequestSizeSubtype1>,
+            ::std::string::String,
+        >,
+        subtype_2: ::std::result::Result<::std::option::Option<()>, ::std::string::String>,
+    }
+    impl ::std::default::Default for CreateImageRequestSize {
+        fn default() -> Self {
+            Self {
+                subtype_0: Ok(Default::default()),
+                subtype_1: Ok(Default::default()),
+                subtype_2: Ok(Default::default()),
+            }
+        }
+    }
+    impl CreateImageRequestSize {
+        pub fn subtype_0<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.subtype_0 = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for subtype_0: {e}"));
+            self
+        }
+        pub fn subtype_1<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::CreateImageRequestSizeSubtype1>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.subtype_1 = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for subtype_1: {e}"));
+            self
+        }
+        pub fn subtype_2<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<()>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.subtype_2 = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for subtype_2: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<CreateImageRequestSize> for super::CreateImageRequestSize {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: CreateImageRequestSize,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                subtype_0: value.subtype_0?,
+                subtype_1: value.subtype_1?,
+                subtype_2: value.subtype_2?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::CreateImageRequestSize> for CreateImageRequestSize {
+        fn from(value: super::CreateImageRequestSize) -> Self {
+            Self {
+                subtype_0: Ok(value.subtype_0),
+                subtype_1: Ok(value.subtype_1),
+                subtype_2: Ok(value.subtype_2),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct EditImageBodyJsonParam {
+        background: ::std::result::Result<
+            ::std::option::Option<super::EditImageBodyJsonParamBackground>,
+            ::std::string::String,
+        >,
+        images: ::std::result::Result<::std::vec::Vec<super::ImageRefParam>, ::std::string::String>,
+        input_fidelity: ::std::result::Result<
+            ::std::option::Option<super::EditImageBodyJsonParamInputFidelity>,
+            ::std::string::String,
+        >,
+        mask: ::std::result::Result<
+            ::std::option::Option<super::ImageRefParam>,
+            ::std::string::String,
+        >,
+        model: ::std::result::Result<
+            ::std::option::Option<super::EditImageBodyJsonParamModel>,
+            ::std::string::String,
+        >,
+        moderation: ::std::result::Result<
+            ::std::option::Option<super::EditImageBodyJsonParamModeration>,
+            ::std::string::String,
+        >,
+        n: ::std::result::Result<
+            ::std::option::Option<::std::num::NonZeroU64>,
+            ::std::string::String,
+        >,
+        output_compression:
+            ::std::result::Result<::std::option::Option<i64>, ::std::string::String>,
+        output_format: ::std::result::Result<
+            ::std::option::Option<super::EditImageBodyJsonParamOutputFormat>,
+            ::std::string::String,
+        >,
+        partial_images: ::std::result::Result<
+            ::std::option::Option<super::PartialImages>,
+            ::std::string::String,
+        >,
+        prompt: ::std::result::Result<super::EditImageBodyJsonParamPrompt, ::std::string::String>,
+        quality: ::std::result::Result<
+            ::std::option::Option<super::EditImageBodyJsonParamQuality>,
+            ::std::string::String,
+        >,
+        size: ::std::result::Result<
+            ::std::option::Option<super::EditImageBodyJsonParamSize>,
+            ::std::string::String,
+        >,
+        stream: ::std::result::Result<::std::option::Option<bool>, ::std::string::String>,
+        user: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for EditImageBodyJsonParam {
+        fn default() -> Self {
+            Self {
+                background: Ok(Default::default()),
+                images: Err("no value supplied for images".to_string()),
+                input_fidelity: Ok(Default::default()),
+                mask: Ok(Default::default()),
+                model: Ok(Default::default()),
+                moderation: Ok(Default::default()),
+                n: Ok(Default::default()),
+                output_compression: Ok(Default::default()),
+                output_format: Ok(Default::default()),
+                partial_images: Ok(Default::default()),
+                prompt: Err("no value supplied for prompt".to_string()),
+                quality: Ok(Default::default()),
+                size: Ok(Default::default()),
+                stream: Ok(Default::default()),
+                user: Ok(Default::default()),
+            }
+        }
+    }
+    impl EditImageBodyJsonParam {
+        pub fn background<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::EditImageBodyJsonParamBackground>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.background = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for background: {e}"));
+            self
+        }
+        pub fn images<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<super::ImageRefParam>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.images = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for images: {e}"));
+            self
+        }
+        pub fn input_fidelity<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::EditImageBodyJsonParamInputFidelity>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_fidelity = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for input_fidelity: {e}"));
+            self
+        }
+        pub fn mask<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::ImageRefParam>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.mask = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for mask: {e}"));
+            self
+        }
+        pub fn model<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::EditImageBodyJsonParamModel>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.model = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for model: {e}"));
+            self
+        }
+        pub fn moderation<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::EditImageBodyJsonParamModeration>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.moderation = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for moderation: {e}"));
+            self
+        }
+        pub fn n<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::num::NonZeroU64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.n = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for n: {e}"));
+            self
+        }
+        pub fn output_compression<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<i64>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_compression = value.try_into().map_err(|e| {
+                format!("error converting supplied value for output_compression: {e}")
+            });
+            self
+        }
+        pub fn output_format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::EditImageBodyJsonParamOutputFormat>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_format: {e}"));
+            self
+        }
+        pub fn partial_images<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::PartialImages>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.partial_images = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for partial_images: {e}"));
+            self
+        }
+        pub fn prompt<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::EditImageBodyJsonParamPrompt>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.prompt = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for prompt: {e}"));
+            self
+        }
+        pub fn quality<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::EditImageBodyJsonParamQuality>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.quality = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for quality: {e}"));
+            self
+        }
+        pub fn size<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::EditImageBodyJsonParamSize>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.size = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for size: {e}"));
+            self
+        }
+        pub fn stream<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<bool>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.stream = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for stream: {e}"));
+            self
+        }
+        pub fn user<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.user = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for user: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<EditImageBodyJsonParam> for super::EditImageBodyJsonParam {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: EditImageBodyJsonParam,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                background: value.background?,
+                images: value.images?,
+                input_fidelity: value.input_fidelity?,
+                mask: value.mask?,
+                model: value.model?,
+                moderation: value.moderation?,
+                n: value.n?,
+                output_compression: value.output_compression?,
+                output_format: value.output_format?,
+                partial_images: value.partial_images?,
+                prompt: value.prompt?,
+                quality: value.quality?,
+                size: value.size?,
+                stream: value.stream?,
+                user: value.user?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::EditImageBodyJsonParam> for EditImageBodyJsonParam {
+        fn from(value: super::EditImageBodyJsonParam) -> Self {
+            Self {
+                background: Ok(value.background),
+                images: Ok(value.images),
+                input_fidelity: Ok(value.input_fidelity),
+                mask: Ok(value.mask),
+                model: Ok(value.model),
+                moderation: Ok(value.moderation),
+                n: Ok(value.n),
+                output_compression: Ok(value.output_compression),
+                output_format: Ok(value.output_format),
+                partial_images: Ok(value.partial_images),
+                prompt: Ok(value.prompt),
+                quality: Ok(value.quality),
+                size: Ok(value.size),
+                stream: Ok(value.stream),
+                user: Ok(value.user),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct EditImageBodyJsonParamModel {
+        subtype_0: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        subtype_1: ::std::result::Result<
+            ::std::option::Option<super::EditImageBodyJsonParamModelSubtype1>,
+            ::std::string::String,
+        >,
+        subtype_2: ::std::result::Result<::std::option::Option<()>, ::std::string::String>,
+    }
+    impl ::std::default::Default for EditImageBodyJsonParamModel {
+        fn default() -> Self {
+            Self {
+                subtype_0: Ok(Default::default()),
+                subtype_1: Ok(Default::default()),
+                subtype_2: Ok(Default::default()),
+            }
+        }
+    }
+    impl EditImageBodyJsonParamModel {
+        pub fn subtype_0<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.subtype_0 = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for subtype_0: {e}"));
+            self
+        }
+        pub fn subtype_1<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::EditImageBodyJsonParamModelSubtype1>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.subtype_1 = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for subtype_1: {e}"));
+            self
+        }
+        pub fn subtype_2<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<()>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.subtype_2 = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for subtype_2: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<EditImageBodyJsonParamModel> for super::EditImageBodyJsonParamModel {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: EditImageBodyJsonParamModel,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                subtype_0: value.subtype_0?,
+                subtype_1: value.subtype_1?,
+                subtype_2: value.subtype_2?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::EditImageBodyJsonParamModel> for EditImageBodyJsonParamModel {
+        fn from(value: super::EditImageBodyJsonParamModel) -> Self {
+            Self {
+                subtype_0: Ok(value.subtype_0),
+                subtype_1: Ok(value.subtype_1),
+                subtype_2: Ok(value.subtype_2),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct EditImageBodyJsonParamSize {
+        subtype_0: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        subtype_1: ::std::result::Result<
+            ::std::option::Option<super::EditImageBodyJsonParamSizeSubtype1>,
+            ::std::string::String,
+        >,
+        subtype_2: ::std::result::Result<::std::option::Option<()>, ::std::string::String>,
+    }
+    impl ::std::default::Default for EditImageBodyJsonParamSize {
+        fn default() -> Self {
+            Self {
+                subtype_0: Ok(Default::default()),
+                subtype_1: Ok(Default::default()),
+                subtype_2: Ok(Default::default()),
+            }
+        }
+    }
+    impl EditImageBodyJsonParamSize {
+        pub fn subtype_0<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.subtype_0 = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for subtype_0: {e}"));
+            self
+        }
+        pub fn subtype_1<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<
+                ::std::option::Option<super::EditImageBodyJsonParamSizeSubtype1>,
+            >,
+            T::Error: ::std::fmt::Display,
+        {
+            self.subtype_1 = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for subtype_1: {e}"));
+            self
+        }
+        pub fn subtype_2<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<()>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.subtype_2 = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for subtype_2: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<EditImageBodyJsonParamSize> for super::EditImageBodyJsonParamSize {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: EditImageBodyJsonParamSize,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                subtype_0: value.subtype_0?,
+                subtype_1: value.subtype_1?,
+                subtype_2: value.subtype_2?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::EditImageBodyJsonParamSize> for EditImageBodyJsonParamSize {
+        fn from(value: super::EditImageBodyJsonParamSize) -> Self {
+            Self {
+                subtype_0: Ok(value.subtype_0),
+                subtype_1: Ok(value.subtype_1),
+                subtype_2: Ok(value.subtype_2),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct Image {
+        b64_json: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        revised_prompt: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        url: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for Image {
+        fn default() -> Self {
+            Self {
+                b64_json: Ok(Default::default()),
+                revised_prompt: Ok(Default::default()),
+                url: Ok(Default::default()),
+            }
+        }
+    }
+    impl Image {
+        pub fn b64_json<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.b64_json = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for b64_json: {e}"));
+            self
+        }
+        pub fn revised_prompt<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.revised_prompt = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for revised_prompt: {e}"));
+            self
+        }
+        pub fn url<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.url = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for url: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<Image> for super::Image {
+        type Error = super::error::ConversionError;
+        fn try_from(value: Image) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                b64_json: value.b64_json?,
+                revised_prompt: value.revised_prompt?,
+                url: value.url?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::Image> for Image {
+        fn from(value: super::Image) -> Self {
+            Self {
+                b64_json: Ok(value.b64_json),
+                revised_prompt: Ok(value.revised_prompt),
+                url: Ok(value.url),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct ImageEditCompletedEvent {
+        b64_json: ::std::result::Result<::std::string::String, ::std::string::String>,
+        background:
+            ::std::result::Result<super::ImageEditCompletedEventBackground, ::std::string::String>,
+        created_at: ::std::result::Result<i64, ::std::string::String>,
+        output_format: ::std::result::Result<
+            super::ImageEditCompletedEventOutputFormat,
+            ::std::string::String,
+        >,
+        quality:
+            ::std::result::Result<super::ImageEditCompletedEventQuality, ::std::string::String>,
+        size: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<super::ImageEditCompletedEventType, ::std::string::String>,
+        usage: ::std::result::Result<super::ImagesUsage, ::std::string::String>,
+    }
+    impl ::std::default::Default for ImageEditCompletedEvent {
+        fn default() -> Self {
+            Self {
+                b64_json: Err("no value supplied for b64_json".to_string()),
+                background: Err("no value supplied for background".to_string()),
+                created_at: Err("no value supplied for created_at".to_string()),
+                output_format: Err("no value supplied for output_format".to_string()),
+                quality: Err("no value supplied for quality".to_string()),
+                size: Err("no value supplied for size".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+                usage: Err("no value supplied for usage".to_string()),
+            }
+        }
+    }
+    impl ImageEditCompletedEvent {
+        pub fn b64_json<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.b64_json = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for b64_json: {e}"));
+            self
+        }
+        pub fn background<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImageEditCompletedEventBackground>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.background = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for background: {e}"));
+            self
+        }
+        pub fn created_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.created_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for created_at: {e}"));
+            self
+        }
+        pub fn output_format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImageEditCompletedEventOutputFormat>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_format: {e}"));
+            self
+        }
+        pub fn quality<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImageEditCompletedEventQuality>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.quality = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for quality: {e}"));
+            self
+        }
+        pub fn size<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.size = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for size: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImageEditCompletedEventType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+        pub fn usage<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImagesUsage>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.usage = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for usage: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<ImageEditCompletedEvent> for super::ImageEditCompletedEvent {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: ImageEditCompletedEvent,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                b64_json: value.b64_json?,
+                background: value.background?,
+                created_at: value.created_at?,
+                output_format: value.output_format?,
+                quality: value.quality?,
+                size: value.size?,
+                type_: value.type_?,
+                usage: value.usage?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::ImageEditCompletedEvent> for ImageEditCompletedEvent {
+        fn from(value: super::ImageEditCompletedEvent) -> Self {
+            Self {
+                b64_json: Ok(value.b64_json),
+                background: Ok(value.background),
+                created_at: Ok(value.created_at),
+                output_format: Ok(value.output_format),
+                quality: Ok(value.quality),
+                size: Ok(value.size),
+                type_: Ok(value.type_),
+                usage: Ok(value.usage),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct ImageEditPartialImageEvent {
+        b64_json: ::std::result::Result<::std::string::String, ::std::string::String>,
+        background: ::std::result::Result<
+            super::ImageEditPartialImageEventBackground,
+            ::std::string::String,
+        >,
+        created_at: ::std::result::Result<i64, ::std::string::String>,
+        output_format: ::std::result::Result<
+            super::ImageEditPartialImageEventOutputFormat,
+            ::std::string::String,
+        >,
+        partial_image_index: ::std::result::Result<i64, ::std::string::String>,
+        quality:
+            ::std::result::Result<super::ImageEditPartialImageEventQuality, ::std::string::String>,
+        size: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<super::ImageEditPartialImageEventType, ::std::string::String>,
+    }
+    impl ::std::default::Default for ImageEditPartialImageEvent {
+        fn default() -> Self {
+            Self {
+                b64_json: Err("no value supplied for b64_json".to_string()),
+                background: Err("no value supplied for background".to_string()),
+                created_at: Err("no value supplied for created_at".to_string()),
+                output_format: Err("no value supplied for output_format".to_string()),
+                partial_image_index: Err("no value supplied for partial_image_index".to_string()),
+                quality: Err("no value supplied for quality".to_string()),
+                size: Err("no value supplied for size".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl ImageEditPartialImageEvent {
+        pub fn b64_json<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.b64_json = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for b64_json: {e}"));
+            self
+        }
+        pub fn background<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImageEditPartialImageEventBackground>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.background = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for background: {e}"));
+            self
+        }
+        pub fn created_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.created_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for created_at: {e}"));
+            self
+        }
+        pub fn output_format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImageEditPartialImageEventOutputFormat>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_format: {e}"));
+            self
+        }
+        pub fn partial_image_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.partial_image_index = value.try_into().map_err(|e| {
+                format!("error converting supplied value for partial_image_index: {e}")
+            });
+            self
+        }
+        pub fn quality<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImageEditPartialImageEventQuality>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.quality = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for quality: {e}"));
+            self
+        }
+        pub fn size<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.size = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for size: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImageEditPartialImageEventType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<ImageEditPartialImageEvent> for super::ImageEditPartialImageEvent {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: ImageEditPartialImageEvent,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                b64_json: value.b64_json?,
+                background: value.background?,
+                created_at: value.created_at?,
+                output_format: value.output_format?,
+                partial_image_index: value.partial_image_index?,
+                quality: value.quality?,
+                size: value.size?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::ImageEditPartialImageEvent> for ImageEditPartialImageEvent {
+        fn from(value: super::ImageEditPartialImageEvent) -> Self {
+            Self {
+                b64_json: Ok(value.b64_json),
+                background: Ok(value.background),
+                created_at: Ok(value.created_at),
+                output_format: Ok(value.output_format),
+                partial_image_index: Ok(value.partial_image_index),
+                quality: Ok(value.quality),
+                size: Ok(value.size),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct ImageGenCompletedEvent {
+        b64_json: ::std::result::Result<::std::string::String, ::std::string::String>,
+        background:
+            ::std::result::Result<super::ImageGenCompletedEventBackground, ::std::string::String>,
+        created_at: ::std::result::Result<i64, ::std::string::String>,
+        output_format:
+            ::std::result::Result<super::ImageGenCompletedEventOutputFormat, ::std::string::String>,
+        quality: ::std::result::Result<super::ImageGenCompletedEventQuality, ::std::string::String>,
+        size: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<super::ImageGenCompletedEventType, ::std::string::String>,
+        usage: ::std::result::Result<super::ImagesUsage, ::std::string::String>,
+    }
+    impl ::std::default::Default for ImageGenCompletedEvent {
+        fn default() -> Self {
+            Self {
+                b64_json: Err("no value supplied for b64_json".to_string()),
+                background: Err("no value supplied for background".to_string()),
+                created_at: Err("no value supplied for created_at".to_string()),
+                output_format: Err("no value supplied for output_format".to_string()),
+                quality: Err("no value supplied for quality".to_string()),
+                size: Err("no value supplied for size".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+                usage: Err("no value supplied for usage".to_string()),
+            }
+        }
+    }
+    impl ImageGenCompletedEvent {
+        pub fn b64_json<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.b64_json = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for b64_json: {e}"));
+            self
+        }
+        pub fn background<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImageGenCompletedEventBackground>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.background = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for background: {e}"));
+            self
+        }
+        pub fn created_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.created_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for created_at: {e}"));
+            self
+        }
+        pub fn output_format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImageGenCompletedEventOutputFormat>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_format: {e}"));
+            self
+        }
+        pub fn quality<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImageGenCompletedEventQuality>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.quality = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for quality: {e}"));
+            self
+        }
+        pub fn size<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.size = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for size: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImageGenCompletedEventType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+        pub fn usage<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImagesUsage>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.usage = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for usage: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<ImageGenCompletedEvent> for super::ImageGenCompletedEvent {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: ImageGenCompletedEvent,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                b64_json: value.b64_json?,
+                background: value.background?,
+                created_at: value.created_at?,
+                output_format: value.output_format?,
+                quality: value.quality?,
+                size: value.size?,
+                type_: value.type_?,
+                usage: value.usage?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::ImageGenCompletedEvent> for ImageGenCompletedEvent {
+        fn from(value: super::ImageGenCompletedEvent) -> Self {
+            Self {
+                b64_json: Ok(value.b64_json),
+                background: Ok(value.background),
+                created_at: Ok(value.created_at),
+                output_format: Ok(value.output_format),
+                quality: Ok(value.quality),
+                size: Ok(value.size),
+                type_: Ok(value.type_),
+                usage: Ok(value.usage),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct ImageGenInputUsageDetails {
+        image_tokens: ::std::result::Result<i64, ::std::string::String>,
+        text_tokens: ::std::result::Result<i64, ::std::string::String>,
+    }
+    impl ::std::default::Default for ImageGenInputUsageDetails {
+        fn default() -> Self {
+            Self {
+                image_tokens: Err("no value supplied for image_tokens".to_string()),
+                text_tokens: Err("no value supplied for text_tokens".to_string()),
+            }
+        }
+    }
+    impl ImageGenInputUsageDetails {
+        pub fn image_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.image_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for image_tokens: {e}"));
+            self
+        }
+        pub fn text_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text_tokens: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<ImageGenInputUsageDetails> for super::ImageGenInputUsageDetails {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: ImageGenInputUsageDetails,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                image_tokens: value.image_tokens?,
+                text_tokens: value.text_tokens?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::ImageGenInputUsageDetails> for ImageGenInputUsageDetails {
+        fn from(value: super::ImageGenInputUsageDetails) -> Self {
+            Self {
+                image_tokens: Ok(value.image_tokens),
+                text_tokens: Ok(value.text_tokens),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct ImageGenOutputTokensDetails {
+        image_tokens: ::std::result::Result<i64, ::std::string::String>,
+        text_tokens: ::std::result::Result<i64, ::std::string::String>,
+    }
+    impl ::std::default::Default for ImageGenOutputTokensDetails {
+        fn default() -> Self {
+            Self {
+                image_tokens: Err("no value supplied for image_tokens".to_string()),
+                text_tokens: Err("no value supplied for text_tokens".to_string()),
+            }
+        }
+    }
+    impl ImageGenOutputTokensDetails {
+        pub fn image_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.image_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for image_tokens: {e}"));
+            self
+        }
+        pub fn text_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text_tokens: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<ImageGenOutputTokensDetails> for super::ImageGenOutputTokensDetails {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: ImageGenOutputTokensDetails,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                image_tokens: value.image_tokens?,
+                text_tokens: value.text_tokens?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::ImageGenOutputTokensDetails> for ImageGenOutputTokensDetails {
+        fn from(value: super::ImageGenOutputTokensDetails) -> Self {
+            Self {
+                image_tokens: Ok(value.image_tokens),
+                text_tokens: Ok(value.text_tokens),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct ImageGenPartialImageEvent {
+        b64_json: ::std::result::Result<::std::string::String, ::std::string::String>,
+        background: ::std::result::Result<
+            super::ImageGenPartialImageEventBackground,
+            ::std::string::String,
+        >,
+        created_at: ::std::result::Result<i64, ::std::string::String>,
+        output_format: ::std::result::Result<
+            super::ImageGenPartialImageEventOutputFormat,
+            ::std::string::String,
+        >,
+        partial_image_index: ::std::result::Result<i64, ::std::string::String>,
+        quality:
+            ::std::result::Result<super::ImageGenPartialImageEventQuality, ::std::string::String>,
+        size: ::std::result::Result<::std::string::String, ::std::string::String>,
+        type_: ::std::result::Result<super::ImageGenPartialImageEventType, ::std::string::String>,
+    }
+    impl ::std::default::Default for ImageGenPartialImageEvent {
+        fn default() -> Self {
+            Self {
+                b64_json: Err("no value supplied for b64_json".to_string()),
+                background: Err("no value supplied for background".to_string()),
+                created_at: Err("no value supplied for created_at".to_string()),
+                output_format: Err("no value supplied for output_format".to_string()),
+                partial_image_index: Err("no value supplied for partial_image_index".to_string()),
+                quality: Err("no value supplied for quality".to_string()),
+                size: Err("no value supplied for size".to_string()),
+                type_: Err("no value supplied for type_".to_string()),
+            }
+        }
+    }
+    impl ImageGenPartialImageEvent {
+        pub fn b64_json<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.b64_json = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for b64_json: {e}"));
+            self
+        }
+        pub fn background<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImageGenPartialImageEventBackground>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.background = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for background: {e}"));
+            self
+        }
+        pub fn created_at<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.created_at = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for created_at: {e}"));
+            self
+        }
+        pub fn output_format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImageGenPartialImageEventOutputFormat>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_format: {e}"));
+            self
+        }
+        pub fn partial_image_index<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.partial_image_index = value.try_into().map_err(|e| {
+                format!("error converting supplied value for partial_image_index: {e}")
+            });
+            self
+        }
+        pub fn quality<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImageGenPartialImageEventQuality>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.quality = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for quality: {e}"));
+            self
+        }
+        pub fn size<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::string::String>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.size = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for size: {e}"));
+            self
+        }
+        pub fn type_<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImageGenPartialImageEventType>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.type_ = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for type_: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<ImageGenPartialImageEvent> for super::ImageGenPartialImageEvent {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: ImageGenPartialImageEvent,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                b64_json: value.b64_json?,
+                background: value.background?,
+                created_at: value.created_at?,
+                output_format: value.output_format?,
+                partial_image_index: value.partial_image_index?,
+                quality: value.quality?,
+                size: value.size?,
+                type_: value.type_?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::ImageGenPartialImageEvent> for ImageGenPartialImageEvent {
+        fn from(value: super::ImageGenPartialImageEvent) -> Self {
+            Self {
+                b64_json: Ok(value.b64_json),
+                background: Ok(value.background),
+                created_at: Ok(value.created_at),
+                output_format: Ok(value.output_format),
+                partial_image_index: Ok(value.partial_image_index),
+                quality: Ok(value.quality),
+                size: Ok(value.size),
+                type_: Ok(value.type_),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct ImageGenUsage {
+        input_tokens: ::std::result::Result<i64, ::std::string::String>,
+        input_tokens_details:
+            ::std::result::Result<super::ImageGenInputUsageDetails, ::std::string::String>,
+        output_tokens: ::std::result::Result<i64, ::std::string::String>,
+        output_tokens_details: ::std::result::Result<
+            ::std::option::Option<super::ImageGenOutputTokensDetails>,
+            ::std::string::String,
+        >,
+        total_tokens: ::std::result::Result<i64, ::std::string::String>,
+    }
+    impl ::std::default::Default for ImageGenUsage {
+        fn default() -> Self {
+            Self {
+                input_tokens: Err("no value supplied for input_tokens".to_string()),
+                input_tokens_details: Err("no value supplied for input_tokens_details".to_string()),
+                output_tokens: Err("no value supplied for output_tokens".to_string()),
+                output_tokens_details: Ok(Default::default()),
+                total_tokens: Err("no value supplied for total_tokens".to_string()),
+            }
+        }
+    }
+    impl ImageGenUsage {
+        pub fn input_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for input_tokens: {e}"));
+            self
+        }
+        pub fn input_tokens_details<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImageGenInputUsageDetails>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_tokens_details = value.try_into().map_err(|e| {
+                format!("error converting supplied value for input_tokens_details: {e}")
+            });
+            self
+        }
+        pub fn output_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_tokens: {e}"));
+            self
+        }
+        pub fn output_tokens_details<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::ImageGenOutputTokensDetails>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_tokens_details = value.try_into().map_err(|e| {
+                format!("error converting supplied value for output_tokens_details: {e}")
+            });
+            self
+        }
+        pub fn total_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.total_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for total_tokens: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<ImageGenUsage> for super::ImageGenUsage {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: ImageGenUsage,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                input_tokens: value.input_tokens?,
+                input_tokens_details: value.input_tokens_details?,
+                output_tokens: value.output_tokens?,
+                output_tokens_details: value.output_tokens_details?,
+                total_tokens: value.total_tokens?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::ImageGenUsage> for ImageGenUsage {
+        fn from(value: super::ImageGenUsage) -> Self {
+            Self {
+                input_tokens: Ok(value.input_tokens),
+                input_tokens_details: Ok(value.input_tokens_details),
+                output_tokens: Ok(value.output_tokens),
+                output_tokens_details: Ok(value.output_tokens_details),
+                total_tokens: Ok(value.total_tokens),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct ImageRefParam {
+        file_id: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        image_url: ::std::result::Result<
+            ::std::option::Option<super::ImageRefParamImageUrl>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for ImageRefParam {
+        fn default() -> Self {
+            Self {
+                file_id: Ok(Default::default()),
+                image_url: Ok(Default::default()),
+            }
+        }
+    }
+    impl ImageRefParam {
+        pub fn file_id<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.file_id = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for file_id: {e}"));
+            self
+        }
+        pub fn image_url<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::ImageRefParamImageUrl>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.image_url = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for image_url: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<ImageRefParam> for super::ImageRefParam {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: ImageRefParam,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                file_id: value.file_id?,
+                image_url: value.image_url?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::ImageRefParam> for ImageRefParam {
+        fn from(value: super::ImageRefParam) -> Self {
+            Self {
+                file_id: Ok(value.file_id),
+                image_url: Ok(value.image_url),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct ImagesApiSchema {
+        create_image_edit_multipart_form_data_request:
+            ::std::result::Result<super::CreateImageEditRequest, ::std::string::String>,
+        create_image_edit_request:
+            ::std::result::Result<super::EditImageBodyJsonParam, ::std::string::String>,
+        create_image_edit_response:
+            ::std::result::Result<super::ImagesResponse, ::std::string::String>,
+        create_image_edit_stream_response:
+            ::std::result::Result<super::ImageEditStreamEvent, ::std::string::String>,
+        create_image_request:
+            ::std::result::Result<super::CreateImageRequest, ::std::string::String>,
+        create_image_response: ::std::result::Result<super::ImagesResponse, ::std::string::String>,
+        create_image_stream_response:
+            ::std::result::Result<super::ImageGenStreamEvent, ::std::string::String>,
+    }
+    impl ::std::default::Default for ImagesApiSchema {
+        fn default() -> Self {
+            Self {
+                create_image_edit_multipart_form_data_request: Err(
+                    "no value supplied for create_image_edit_multipart_form_data_request"
+                        .to_string(),
+                ),
+                create_image_edit_request: Err(
+                    "no value supplied for create_image_edit_request".to_string()
+                ),
+                create_image_edit_response: Err(
+                    "no value supplied for create_image_edit_response".to_string()
+                ),
+                create_image_edit_stream_response: Err(
+                    "no value supplied for create_image_edit_stream_response".to_string(),
+                ),
+                create_image_request: Err("no value supplied for create_image_request".to_string()),
+                create_image_response: Err(
+                    "no value supplied for create_image_response".to_string()
+                ),
+                create_image_stream_response: Err(
+                    "no value supplied for create_image_stream_response".to_string(),
+                ),
+            }
+        }
+    }
+    impl ImagesApiSchema {
+        pub fn create_image_edit_multipart_form_data_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::CreateImageEditRequest>,
+            T::Error: ::std::fmt::Display,
+        {
+            self . create_image_edit_multipart_form_data_request = value . try_into () . map_err (| e | format ! ("error converting supplied value for create_image_edit_multipart_form_data_request: {e}")) ;
+            self
+        }
+        pub fn create_image_edit_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::EditImageBodyJsonParam>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_image_edit_request = value.try_into().map_err(|e| {
+                format!("error converting supplied value for create_image_edit_request: {e}")
+            });
+            self
+        }
+        pub fn create_image_edit_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImagesResponse>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_image_edit_response = value.try_into().map_err(|e| {
+                format!("error converting supplied value for create_image_edit_response: {e}")
+            });
+            self
+        }
+        pub fn create_image_edit_stream_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImageEditStreamEvent>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_image_edit_stream_response = value.try_into().map_err(|e| {
+                format!(
+                    "error converting supplied value for create_image_edit_stream_response: {e}"
+                )
+            });
+            self
+        }
+        pub fn create_image_request<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::CreateImageRequest>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_image_request = value.try_into().map_err(|e| {
+                format!("error converting supplied value for create_image_request: {e}")
+            });
+            self
+        }
+        pub fn create_image_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImagesResponse>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_image_response = value.try_into().map_err(|e| {
+                format!("error converting supplied value for create_image_response: {e}")
+            });
+            self
+        }
+        pub fn create_image_stream_response<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImageGenStreamEvent>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.create_image_stream_response = value.try_into().map_err(|e| {
+                format!("error converting supplied value for create_image_stream_response: {e}")
+            });
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<ImagesApiSchema> for super::ImagesApiSchema {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: ImagesApiSchema,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                create_image_edit_multipart_form_data_request: value
+                    .create_image_edit_multipart_form_data_request?,
+                create_image_edit_request: value.create_image_edit_request?,
+                create_image_edit_response: value.create_image_edit_response?,
+                create_image_edit_stream_response: value.create_image_edit_stream_response?,
+                create_image_request: value.create_image_request?,
+                create_image_response: value.create_image_response?,
+                create_image_stream_response: value.create_image_stream_response?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::ImagesApiSchema> for ImagesApiSchema {
+        fn from(value: super::ImagesApiSchema) -> Self {
+            Self {
+                create_image_edit_multipart_form_data_request: Ok(
+                    value.create_image_edit_multipart_form_data_request
+                ),
+                create_image_edit_request: Ok(value.create_image_edit_request),
+                create_image_edit_response: Ok(value.create_image_edit_response),
+                create_image_edit_stream_response: Ok(value.create_image_edit_stream_response),
+                create_image_request: Ok(value.create_image_request),
+                create_image_response: Ok(value.create_image_response),
+                create_image_stream_response: Ok(value.create_image_stream_response),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct ImagesResponse {
+        background: ::std::result::Result<
+            ::std::option::Option<super::ImagesResponseBackground>,
+            ::std::string::String,
+        >,
+        created: ::std::result::Result<i64, ::std::string::String>,
+        data: ::std::result::Result<::std::vec::Vec<super::Image>, ::std::string::String>,
+        output_format: ::std::result::Result<
+            ::std::option::Option<super::ImagesResponseOutputFormat>,
+            ::std::string::String,
+        >,
+        quality: ::std::result::Result<
+            ::std::option::Option<super::ImagesResponseQuality>,
+            ::std::string::String,
+        >,
+        size: ::std::result::Result<
+            ::std::option::Option<::std::string::String>,
+            ::std::string::String,
+        >,
+        usage: ::std::result::Result<
+            ::std::option::Option<super::ImageGenUsage>,
+            ::std::string::String,
+        >,
+    }
+    impl ::std::default::Default for ImagesResponse {
+        fn default() -> Self {
+            Self {
+                background: Ok(Default::default()),
+                created: Err("no value supplied for created".to_string()),
+                data: Ok(Default::default()),
+                output_format: Ok(Default::default()),
+                quality: Ok(Default::default()),
+                size: Ok(Default::default()),
+                usage: Ok(Default::default()),
+            }
+        }
+    }
+    impl ImagesResponse {
+        pub fn background<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::ImagesResponseBackground>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.background = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for background: {e}"));
+            self
+        }
+        pub fn created<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.created = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for created: {e}"));
+            self
+        }
+        pub fn data<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::vec::Vec<super::Image>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.data = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for data: {e}"));
+            self
+        }
+        pub fn output_format<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::ImagesResponseOutputFormat>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_format = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_format: {e}"));
+            self
+        }
+        pub fn quality<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::ImagesResponseQuality>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.quality = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for quality: {e}"));
+            self
+        }
+        pub fn size<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<::std::string::String>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.size = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for size: {e}"));
+            self
+        }
+        pub fn usage<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<::std::option::Option<super::ImageGenUsage>>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.usage = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for usage: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<ImagesResponse> for super::ImagesResponse {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: ImagesResponse,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                background: value.background?,
+                created: value.created?,
+                data: value.data?,
+                output_format: value.output_format?,
+                quality: value.quality?,
+                size: value.size?,
+                usage: value.usage?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::ImagesResponse> for ImagesResponse {
+        fn from(value: super::ImagesResponse) -> Self {
+            Self {
+                background: Ok(value.background),
+                created: Ok(value.created),
+                data: Ok(value.data),
+                output_format: Ok(value.output_format),
+                quality: Ok(value.quality),
+                size: Ok(value.size),
+                usage: Ok(value.usage),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct ImagesUsage {
+        input_tokens: ::std::result::Result<i64, ::std::string::String>,
+        input_tokens_details:
+            ::std::result::Result<super::ImagesUsageInputTokensDetails, ::std::string::String>,
+        output_tokens: ::std::result::Result<i64, ::std::string::String>,
+        total_tokens: ::std::result::Result<i64, ::std::string::String>,
+    }
+    impl ::std::default::Default for ImagesUsage {
+        fn default() -> Self {
+            Self {
+                input_tokens: Err("no value supplied for input_tokens".to_string()),
+                input_tokens_details: Err("no value supplied for input_tokens_details".to_string()),
+                output_tokens: Err("no value supplied for output_tokens".to_string()),
+                total_tokens: Err("no value supplied for total_tokens".to_string()),
+            }
+        }
+    }
+    impl ImagesUsage {
+        pub fn input_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for input_tokens: {e}"));
+            self
+        }
+        pub fn input_tokens_details<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<super::ImagesUsageInputTokensDetails>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.input_tokens_details = value.try_into().map_err(|e| {
+                format!("error converting supplied value for input_tokens_details: {e}")
+            });
+            self
+        }
+        pub fn output_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.output_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for output_tokens: {e}"));
+            self
+        }
+        pub fn total_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.total_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for total_tokens: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<ImagesUsage> for super::ImagesUsage {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: ImagesUsage,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                input_tokens: value.input_tokens?,
+                input_tokens_details: value.input_tokens_details?,
+                output_tokens: value.output_tokens?,
+                total_tokens: value.total_tokens?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::ImagesUsage> for ImagesUsage {
+        fn from(value: super::ImagesUsage) -> Self {
+            Self {
+                input_tokens: Ok(value.input_tokens),
+                input_tokens_details: Ok(value.input_tokens_details),
+                output_tokens: Ok(value.output_tokens),
+                total_tokens: Ok(value.total_tokens),
+            }
+        }
+    }
+    #[derive(Clone, Debug)]
+    pub struct ImagesUsageInputTokensDetails {
+        image_tokens: ::std::result::Result<i64, ::std::string::String>,
+        text_tokens: ::std::result::Result<i64, ::std::string::String>,
+    }
+    impl ::std::default::Default for ImagesUsageInputTokensDetails {
+        fn default() -> Self {
+            Self {
+                image_tokens: Err("no value supplied for image_tokens".to_string()),
+                text_tokens: Err("no value supplied for text_tokens".to_string()),
+            }
+        }
+    }
+    impl ImagesUsageInputTokensDetails {
+        pub fn image_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.image_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for image_tokens: {e}"));
+            self
+        }
+        pub fn text_tokens<T>(mut self, value: T) -> Self
+        where
+            T: ::std::convert::TryInto<i64>,
+            T::Error: ::std::fmt::Display,
+        {
+            self.text_tokens = value
+                .try_into()
+                .map_err(|e| format!("error converting supplied value for text_tokens: {e}"));
+            self
+        }
+    }
+    impl ::std::convert::TryFrom<ImagesUsageInputTokensDetails>
+        for super::ImagesUsageInputTokensDetails
+    {
+        type Error = super::error::ConversionError;
+        fn try_from(
+            value: ImagesUsageInputTokensDetails,
+        ) -> ::std::result::Result<Self, super::error::ConversionError> {
+            Ok(Self {
+                image_tokens: value.image_tokens?,
+                text_tokens: value.text_tokens?,
+            })
+        }
+    }
+    impl ::std::convert::From<super::ImagesUsageInputTokensDetails> for ImagesUsageInputTokensDetails {
+        fn from(value: super::ImagesUsageInputTokensDetails) -> Self {
+            Self {
+                image_tokens: Ok(value.image_tokens),
+                text_tokens: Ok(value.text_tokens),
+            }
+        }
     }
 }
 #[doc = " Error types."]

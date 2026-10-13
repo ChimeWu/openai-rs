@@ -62,6 +62,39 @@ async fn stream(client: &OpenAIClient, request: &types::CreateResponse)
 
 Responses 操作通过 `client.responses()` 访问。创建请求可使用 `CreateOptions` 附加单次请求 headers 和 schema 尚未覆盖的顶层字段；其他端点可使用 `RequestOptions` 附加 headers。`Authorization`、`Content-Type` 和 `Accept` 由 SDK 管理，不能覆盖。
 
+固定 OpenAPI 规范生成的协议结构体均提供 `builder()`，覆盖请求、响应、流事件和嵌套对象。`try_into()` 会检查必填字段并转换字段值；可选字段可以省略。实现 OpenAI 兼容 provider 时，也可以用同一套构造方式创建响应类型。枚举通过变体构造，标量 newtype 使用其转换接口：
+
+```rust,no_run
+use openai_rs::types;
+
+fn build_protocol_models() -> Result<(), Box<dyn std::error::Error>> {
+    let speech: types::audio::CreateSpeechRequest = types::audio::CreateSpeechRequest::builder()
+        .input("Hello from an OpenAI-compatible provider")
+        .model("gpt-4o-mini-tts")
+        .voice(types::audio::Voice::VoiceIdsShared(
+            types::audio::VoiceIdsShared("marin".to_owned()),
+        ))
+        .try_into()?;
+
+    let usage: types::embeddings::CreateEmbeddingResponseUsage =
+        types::embeddings::CreateEmbeddingResponseUsage::builder()
+            .prompt_tokens(0)
+            .total_tokens(0)
+            .try_into()?;
+
+    let embedding_response: types::embeddings::CreateEmbeddingResponse =
+        types::embeddings::CreateEmbeddingResponse::builder()
+            .data(Vec::new())
+            .model("example-embedding-model")
+            .object(types::embeddings::CreateEmbeddingResponseObject::List)
+            .usage(usage)
+            .try_into()?;
+
+    let _ = (speech, embedding_response);
+    Ok(())
+}
+```
+
 客户端可分别配置连接超时、JSON 请求/流连接建立超时和 SSE idle timeout：`connect_timeout` 限制连接建立，`request_timeout` 限制收到 JSON 响应及建立 SSE 连接的等待时间，`stream_idle_timeout` 限制 SSE 两个事件之间的最长空闲时间。三者默认都不设置，因此长时间生成的 SSE 不会被总时限截断。
 
 重试默认关闭。通过 `ClientBuilder::retry_policy(RetryPolicy::new(...))` 显式启用后，最多重试三次连接错误、408、429 和 5xx；GET/HEAD 可重试，写请求必须在本次请求 options 中提供 `idempotency-key`。JSON 请求体可重放。SSE 请求只会在流建立前重试；WebSocket 只会在握手成功前重试，不会重放已开始的会话。退避带 jitter 并受最大延迟限制；`Retry-After` 的秒数及三种 HTTP-date 格式会优先用于等待，HTTP 错误保留原始 `Retry-After` 值。
@@ -176,7 +209,7 @@ cargo test --features live-api,multipart --test deepseek_live
 
 ## 更新生成的协议类型
 
-固定 OpenAI OpenAPI 提交、文件 SHA-256 和生成器版本记录在 `spec/VERSION.json`。`spec/API_SCOPE.json` 逐项记录此快照中的所有操作及纳入/排除理由；`spec/CLIENT_COVERAGE.json` 将每个纳入 operation 映射到资源 API 和公开方法。安装固定生成器后可检查范围清单、生成文件和客户端入口覆盖：
+固定 OpenAI OpenAPI 提交、文件 SHA-256 和生成器版本记录在 `spec/VERSION.json`。`spec/API_SCOPE.json` 逐项记录此快照中的所有操作及纳入/排除理由；`spec/CLIENT_COVERAGE.json` 将每个纳入 operation 映射到资源 API 和公开方法。安装固定生成器后可检查范围清单、生成文件、客户端入口覆盖和所有对象结构体的 Builder：
 
 ```sh
 cargo install cargo-typify --version 0.8.0 --locked
