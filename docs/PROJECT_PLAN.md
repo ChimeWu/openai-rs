@@ -54,5 +54,5 @@
 - 协议来源固定为 `openai/openai-openapi` 提交 `77618e641a840768f1e58197ca53ddedffea6df9` 的 `spec/openai-openapi.json`。`spec/VERSION.json` 记录上游 SHA-256；`scripts/extract_responses_schema.py` 提取 Responses 操作及传递引用，`scripts/generate-types.sh` 固定使用 `cargo-typify 0.8.0`。
 - 官方规范的模型 ID 是有限清单；提取脚本将 `ModelIdsResponses` 规范化为字符串，以兼容新增模型及 OpenAI-compatible 服务商模型。按 DeepSeek 实际响应，将响应 `access_programs` 和 `usage.input_tokens_details.cache_write_tokens` 处理为可缺省字段；其余请求、响应和事件结构仍从官方 schema 生成。未识别响应字段通过原始 JSON 保留。
 - 离线检查：`cargo check` 通过，`cargo test --lib` 10 项通过，`cargo fmt --all -- --check` 通过，`scripts/generate-types.sh --check` 通过，`cargo tree` 未发现 Codex 内部依赖。生成 crate 的上游字段文档包含非 Rust fenced example，因此关闭了生成库 doctest。
-- 独立消费者和 Git 依赖验证待提交后执行；仓库尚未配置远端地址，将通过本地 Git URL 测试独立 crate 消费。
+- 独立消费者验证通过：临时 crate 通过本地 Git URL 和 revision `0d5ada3` 加入依赖，离线编译并运行成功；依赖树无 Codex crate。仓库尚未配置远端地址，因此示例 README 中的仓库 URL 需在发布前替换为实际地址。
 - DeepSeek 在线 smoke：使用继承的 `DEEPSEEK_TOKEN`，`deepseek-flash`，各发送一条短 JSON 和 SSE 请求；两者均通过，SSE 收到文本 delta 和 `response.completed`/`response.incomplete` 终止事件。请求可能计费，实际金额未单独测量。没有启动本地 mock 服务。
