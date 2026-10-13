@@ -12,9 +12,8 @@ mod stream;
 mod websocket;
 
 pub mod types {
-    pub use crate::generated::responses::*;
-
-    include!("generated/type_families.rs");
+    pub use openai_api_types::responses::*;
+    pub use openai_api_types::*;
 }
 
 pub use audio_stream::{AudioContentStream, AudioEventPayload, AudioEventStream, AudioStreamEvent};

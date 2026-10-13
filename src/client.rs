@@ -1875,7 +1875,7 @@ impl ConversationsApi<'_> {
         options: RequestOptions,
     ) -> Result<ApiResponse<types::conversations::ConversationItemList>, Error> {
         let mut endpoint = self.endpoint(Some(conversation_id), &["items"])?;
-        append_query(&mut endpoint, params)?;
+        append_query_omitting(&mut endpoint, params, &["conversation_id"])?;
         send_typed(self.client, Method::GET, endpoint, None, &options.headers).await
     }
 
@@ -1922,7 +1922,7 @@ impl ConversationsApi<'_> {
         options: RequestOptions,
     ) -> Result<ApiResponse<types::conversations::ConversationItemList>, Error> {
         let mut endpoint = self.endpoint(Some(conversation_id), &["items"])?;
-        append_query(&mut endpoint, params)?;
+        append_query_omitting(&mut endpoint, params, &["conversation_id"])?;
         send_typed(
             self.client,
             Method::POST,
@@ -1953,7 +1953,7 @@ impl ConversationsApi<'_> {
         options: RequestOptions,
     ) -> Result<ApiResponse<types::conversations::ConversationItem>, Error> {
         let mut endpoint = self.endpoint(Some(conversation_id), &["items", item_id])?;
-        append_query(&mut endpoint, params)?;
+        append_query_omitting(&mut endpoint, params, &["conversation_id", "item_id"])?;
         send_typed(self.client, Method::GET, endpoint, None, &options.headers).await
     }
 
@@ -2135,7 +2135,7 @@ impl ContainersApi<'_> {
         options: RequestOptions,
     ) -> Result<ApiResponse<types::containers::ContainerFileListResource>, Error> {
         let mut endpoint = self.endpoint(Some(container_id), &["files"])?;
-        append_query(&mut endpoint, params)?;
+        append_query_omitting(&mut endpoint, params, &["container_id"])?;
         send_typed(self.client, Method::GET, endpoint, None, &options.headers).await
     }
 
@@ -2818,7 +2818,7 @@ impl FineTuningApi<'_> {
         params: &types::fine_tuning::ListFineTuningEventsParams,
     ) -> Result<ApiResponse<types::fine_tuning::ListFineTuningJobEventsResponse>, Error> {
         let mut endpoint = self.endpoint(&["jobs", job_id, "events"])?;
-        append_query(&mut endpoint, params)?;
+        append_query_omitting(&mut endpoint, params, &["fine_tuning_job_id"])?;
         send_typed(self.client, Method::GET, endpoint, None, &HeaderMap::new()).await
     }
 
@@ -2853,7 +2853,7 @@ impl FineTuningApi<'_> {
         params: &types::fine_tuning::ListFineTuningJobCheckpointsParams,
     ) -> Result<ApiResponse<types::fine_tuning::ListFineTuningJobCheckpointsResponse>, Error> {
         let mut endpoint = self.endpoint(&["jobs", job_id, "checkpoints"])?;
-        append_query(&mut endpoint, params)?;
+        append_query_omitting(&mut endpoint, params, &["fine_tuning_job_id"])?;
         send_typed(self.client, Method::GET, endpoint, None, &HeaderMap::new()).await
     }
 
@@ -2889,7 +2889,7 @@ impl FineTuningApi<'_> {
     ) -> Result<ApiResponse<types::fine_tuning::ListFineTuningCheckpointPermissionResponse>, Error>
     {
         let mut endpoint = self.endpoint(&["checkpoints", checkpoint, "permissions"])?;
-        append_query(&mut endpoint, params)?;
+        append_query_omitting(&mut endpoint, params, &["fine_tuned_model_checkpoint"])?;
         send_typed(self.client, Method::GET, endpoint, None, &HeaderMap::new()).await
     }
 
@@ -3215,7 +3215,7 @@ impl VectorStoresApi<'_> {
     ) -> Result<ApiResponse<types::vector_stores::ListVectorStoreFilesResponse>, Error> {
         let mut endpoint =
             self.endpoint(Some(vector_store_id), &["file_batches", batch_id, "files"])?;
-        append_query(&mut endpoint, params)?;
+        append_query_omitting(&mut endpoint, params, &["vector_store_id", "batch_id"])?;
         send_typed(self.client, Method::GET, endpoint, None, &options.headers).await
     }
 
@@ -3263,7 +3263,7 @@ impl VectorStoresApi<'_> {
         options: RequestOptions,
     ) -> Result<ApiResponse<types::vector_stores::ListVectorStoreFilesResponse>, Error> {
         let mut endpoint = self.endpoint(Some(vector_store_id), &["files"])?;
-        append_query(&mut endpoint, params)?;
+        append_query_omitting(&mut endpoint, params, &["vector_store_id"])?;
         send_typed(self.client, Method::GET, endpoint, None, &options.headers).await
     }
 
@@ -4295,7 +4295,7 @@ impl ChatCompletionsApi<'_> {
             &self.client.base_url,
             &["chat", "completions", completion_id, "messages"],
         )?;
-        append_query(&mut endpoint, params)?;
+        append_query_omitting(&mut endpoint, params, &["completion_id"])?;
         let response = self
             .client
             .send(Method::GET, endpoint, None, ACCEPT_JSON, &options.headers)
@@ -4949,12 +4949,23 @@ fn append_path_segments(base_url: &Url, segments: &[&str]) -> Result<Url, Error>
 }
 
 fn append_query<T: Serialize>(endpoint: &mut Url, params: &T) -> Result<(), Error> {
+    append_query_omitting(endpoint, params, &[])
+}
+
+fn append_query_omitting<T: Serialize>(
+    endpoint: &mut Url,
+    params: &T,
+    omitted: &[&str],
+) -> Result<(), Error> {
     let params = serde_json::to_value(params)?;
     let Some(params) = params.as_object() else {
         return Ok(());
     };
     let mut query = endpoint.query_pairs_mut();
     for (key, value) in params {
+        if omitted.contains(&key.as_str()) {
+            continue;
+        }
         append_query_value(&mut query, key, value)?;
     }
     Ok(())
@@ -5217,11 +5228,11 @@ pub(crate) fn request_id(headers: &HeaderMap) -> Option<String> {
 mod tests {
     use super::{
         ClientBuilder, CreateOptions, FileContentStream, RequestOptions, RetryDecision,
-        RetryPolicy, append_path_segments, append_query, days_from_civil, is_retryable_status,
-        jittered_backoff, make_http_date, next_batch_params, next_container_file_params,
-        next_container_params, next_conversation_items_params, next_input_page_params,
-        next_webhook_endpoint_params, parse_http_date, parse_retry_after, request_body,
-        response_stream_url, retry_allowed, retry_request, validate_request_headers,
+        RetryPolicy, append_path_segments, append_query, append_query_omitting, days_from_civil,
+        is_retryable_status, jittered_backoff, make_http_date, next_batch_params,
+        next_container_file_params, next_container_params, next_conversation_items_params,
+        next_input_page_params, next_webhook_endpoint_params, parse_http_date, parse_retry_after,
+        request_body, response_stream_url, retry_allowed, retry_request, validate_request_headers,
     };
     use crate::Error;
     use crate::types;
@@ -5450,18 +5461,20 @@ mod tests {
     fn encodes_conversation_item_query_parameters() {
         let params = types::conversations::ListConversationItemsParams {
             after: Some("item cursor".to_owned()),
+            conversation_id: "conv_1".to_owned(),
             include: vec![types::conversations::IncludeEnum::ReasoningEncryptedContent],
             limit: Some(15),
             order: Some(types::conversations::ListConversationItemsParamsOrder::Asc),
         };
         let mut endpoint =
             Url::parse("https://api.openai.com/v1/conversations/conv_1/items").unwrap();
-        append_query(&mut endpoint, &params).unwrap();
+        append_query_omitting(&mut endpoint, &params, &["conversation_id"]).unwrap();
         let pairs = endpoint.query_pairs().collect::<Vec<_>>();
         assert!(pairs.contains(&("after".into(), "item cursor".into())));
         assert!(pairs.contains(&("limit".into(), "15".into())));
         assert!(pairs.contains(&("order".into(), "asc".into())));
         assert!(pairs.contains(&("include".into(), "reasoning.encrypted_content".into())));
+        assert!(!pairs.iter().any(|(key, _)| key == "conversation_id"));
     }
 
     #[test]
@@ -5482,15 +5495,17 @@ mod tests {
 
         let params = types::containers::ListContainerFilesParams {
             after: Some("file cursor".to_owned()),
+            container_id: "c_1".to_owned(),
             limit: Some(7),
             order: Some(types::containers::ListContainerFilesParamsOrder::Asc),
         };
         let mut endpoint = Url::parse("https://api.openai.com/v1/containers/c_1/files").unwrap();
-        append_query(&mut endpoint, &params).unwrap();
+        append_query_omitting(&mut endpoint, &params, &["container_id"]).unwrap();
         let pairs = endpoint.query_pairs().collect::<Vec<_>>();
         assert!(pairs.contains(&("after".into(), "file cursor".into())));
         assert!(pairs.contains(&("limit".into(), "7".into())));
         assert!(pairs.contains(&("order".into(), "asc".into())));
+        assert!(!pairs.iter().any(|(key, _)| key == "container_id"));
     }
 
     #[test]
@@ -5601,8 +5616,10 @@ mod tests {
         ));
 
         let files = types::containers::ListContainerFilesParams {
+            after: None,
+            container_id: "c_1".to_owned(),
             limit: Some(8),
-            ..Default::default()
+            order: None,
         };
         let next = next_container_file_params(&files, true, "file_2")
             .unwrap()
@@ -5640,9 +5657,11 @@ mod tests {
     #[test]
     fn advances_conversation_cursor_and_rejects_empty_or_repeated_values() {
         let params = types::conversations::ListConversationItemsParams {
+            after: None,
+            conversation_id: "conv_1".to_owned(),
             include: vec![types::conversations::IncludeEnum::ReasoningEncryptedContent],
             limit: Some(9),
-            ..Default::default()
+            order: None,
         };
         let next = next_conversation_items_params(&params, true, "item_2")
             .unwrap()
@@ -5658,7 +5677,10 @@ mod tests {
 
         let repeated = types::conversations::ListConversationItemsParams {
             after: Some("item_2".to_owned()),
-            ..Default::default()
+            conversation_id: "conv_1".to_owned(),
+            include: Vec::new(),
+            limit: None,
+            order: None,
         };
         assert!(matches!(
             next_conversation_items_params(&repeated, true, "item_2"),

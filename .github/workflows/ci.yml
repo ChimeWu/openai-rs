@@ -17,11 +17,17 @@ jobs:
         run: cargo install cargo-typify --version 0.8.0 --locked
       - name: Check generated protocol types
         run: scripts/generate-types.sh --check
+      - name: Check protocol coverage and family features
+        run: |
+          python3 scripts/check_protocol_coverage.py
+          scripts/check_protocol_features.sh
       - name: Check formatting
         run: cargo fmt --all -- --check
       - name: Check crate
         run: cargo check --locked
       - name: Check all targets and optional features
         run: cargo check --all-targets --all-features --locked
+      - name: Run protocol Serde checks
+        run: cargo test --locked -p openai-api-types --no-default-features --features responses --test serde
       - name: Run offline tests
         run: cargo test --locked

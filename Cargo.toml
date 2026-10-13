@@ -9,6 +9,10 @@ homepage = "https://github.com/ChimeWu/openai-rs"
 repository = "https://github.com/ChimeWu/openai-rs"
 documentation = "https://docs.rs/openai-rs/0.2.0"
 
+[workspace]
+members = ["crates/openai-api-types"]
+resolver = "3"
+
 [lib]
 name = "openai_rs"
 path = "src/lib.rs"
@@ -47,8 +51,10 @@ required-features = ["websocket"]
 live-api = []
 multipart = []
 websocket = ["dep:tokio-tungstenite"]
+full-protocol-types = ["openai-api-types/full"]
 
 [dependencies]
+openai-api-types = { path = "crates/openai-api-types", version = "0.1.0", default-features = false, features = ["audio", "batches", "chat_completions", "containers", "content_provenance", "conversations", "embeddings", "files", "fine_tuning", "images", "live", "models", "moderations", "realtime", "responses", "uploads", "vector_stores", "webhooks"] }
 async-stream = "0.3"
 bytes = "1"
 eventsource-stream = "0.2"

@@ -1,5 +1,7 @@
 # 从 Codex 抽取独立的 Rust OpenAI SDK
 
+> 后续协议层拆分与完整 OpenAPI 类型覆盖计划见 [`PLAN_PROTOCOL_TYPES_CRATE.md`](PLAN_PROTOCOL_TYPES_CRATE.md)。该计划将协议类型覆盖与客户端运行时支持范围分开；本文件记录的首版实现状态仍作为历史基线。
+
 ## 项目目标
 
 在当前仓库构建一个可通过 Git 依赖使用的独立 Rust crate。以本地 Codex 源码 `/home/chimewu/Projects/codex` 中的 Responses API 实现为行为参考，以 OpenAI 官方 OpenAPI 规范为协议类型来源。首版提供 Tokio 异步 HTTP 与 SSE 流式 Responses API，不依赖任何 Codex 内部 crate 或类型。

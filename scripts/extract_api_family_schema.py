@@ -207,11 +207,14 @@ def parameter_schema(spec: dict[str, Any], parameter: dict[str, Any]) -> dict[st
     return {"type": "string"}
 
 
-def extract(spec: dict[str, Any], scope: dict[str, Any], family: str) -> dict[str, Any]:
+def extract(
+    spec: dict[str, Any], scope: dict[str, Any], family: str, all_operations: bool = False
+) -> dict[str, Any]:
     operations = [
         item
         for item in scope["operations"]
-        if item["family"] == family and item["decision"] == "include"
+        if item["family"] == family
+        and (all_operations or item["decision"] == "include")
     ]
     if not operations:
         raise ValueError(f"API_SCOPE.json has no included operations for family {family!r}")
@@ -234,7 +237,7 @@ def extract(spec: dict[str, Any], scope: dict[str, Any], family: str) -> dict[st
         serializable_parameters = [
             parameter
             for parameter in parameter_map.values()
-            if parameter.get("in") == "query"
+            if parameter.get("in") in {"path", "query"}
         ]
         if serializable_parameters:
             properties = {
@@ -287,16 +290,14 @@ def extract(spec: dict[str, Any], scope: dict[str, Any], family: str) -> dict[st
 
         response_map: dict[str, Any] = {}
         for status, raw_response in operation.get("responses", {}).items():
-            if not status.startswith("2"):
-                continue
             response = resolve_component(spec, raw_response, "responses")
             for media_type, media in response.get("content", {}).items():
                 if not isinstance(media, dict) or not isinstance(media.get("schema"), dict):
                     continue
                 if media_type == "application/json":
-                    suffix = "Response"
+                    suffix = "Response" if status.startswith("2") else f"Error{status}"
                 elif media_type == "text/event-stream":
-                    suffix = "StreamResponse"
+                    suffix = "StreamResponse" if status.startswith("2") else f"StreamError{status}"
                 else:
                     continue
                 root_name = f"{prefix}{suffix}"
@@ -341,7 +342,17 @@ def extract(spec: dict[str, Any], scope: dict[str, Any], family: str) -> dict[st
             continue
         if name not in schemas:
             raise ValueError(f"unresolved OpenAPI schema reference: {name}")
-        schema = schemas[name]
+        schema = copy.deepcopy(schemas[name])
+        if family == "Audio" and name == "CreateSpeechRequest":
+            # The OpenAPI document publishes the speech voice both inline and
+            # as a named union component. Referencing the component preserves
+            # the established `audio::Voice` enum API after shared schemas are
+            # factored out.
+            properties = schema.get("properties", {})
+            if isinstance(properties.get("voice"), dict):
+                properties["voice"] = {
+                    "$ref": "#/components/schemas/VoiceIdsOrCustomVoice"
+                }
         selected[name] = schema
         discovered: set[str] = set()
         collect_refs(schema, discovered)
@@ -369,10 +380,15 @@ def main() -> None:
     parser.add_argument("output", type=Path)
     parser.add_argument("--spec", type=Path, default=Path("spec/openai-openapi.json"))
     parser.add_argument("--scope", type=Path, default=Path("spec/API_SCOPE.json"))
+    parser.add_argument(
+        "--all-operations",
+        action="store_true",
+        help="include operations regardless of API_SCOPE.json client decision",
+    )
     args = parser.parse_args()
     spec = json.loads(args.spec.read_text())
     scope = json.loads(args.scope.read_text())
-    schema = extract(spec, scope, args.family)
+    schema = extract(spec, scope, args.family, args.all_operations)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(schema, indent=2, ensure_ascii=False) + "\n")
     print(f"extracted {len(schema['definitions'])} schemas for {args.family}")

@@ -2,6 +2,8 @@
 
 一个可独立使用的 Rust OpenAI API SDK，包含 Responses、Chat Completions、Audio、Models、Embeddings、Moderations、Files/Uploads、Batches、Webhooks、Content Provenance、Images、Conversations、Containers、Vector Stores、Fine-tuning、Live 和 Realtime API。请求、响应和流事件类型从 OpenAI 官方 OpenAPI 规范生成；HTTP 客户端与 SSE 运行时代码独立实现，不依赖 Codex 内部 crate。
 
+完整固定规范类型也作为独立 workspace crate `openai-api-types` 提供。它按 OpenAPI API 家族启用 Cargo feature，默认不启用家族，并包含客户端当前未实现的 Admin、Beta、Legacy、Agent 等操作类型。SDK 默认只启用当前客户端所需的类型家族；启用 `full-protocol-types` 可从 `openai_rs::types` 访问全部协议家族和独立组件 schema。协议覆盖不代表 SDK 运行时支持或 provider 互操作已验证。SDK 重导出的类型与 `openai_api_types` 中的类型具有相同类型身份。生成和覆盖规则见 [`docs/PROTOCOL_TYPES.md`](docs/PROTOCOL_TYPES.md)。
+
 ## 使用
 
 ```toml

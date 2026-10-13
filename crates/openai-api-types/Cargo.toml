@@ -1,0 +1,69 @@
+[package]
+name = "openai-api-types"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+description = "Generated protocol types for the OpenAI API"
+repository = "https://github.com/ChimeWu/openai-rs"
+
+[lib]
+name = "openai_api_types"
+path = "src/lib.rs"
+doctest = false
+
+[features]
+default = []
+components = []
+common = []
+agents = ["common"]
+assistants = ["common"]
+audio = ["common"]
+audit_logs = ["common"]
+batches = ["common"]
+certificates = ["common"]
+chat_completions = ["common"]
+chatkit = ["common"]
+completions = ["common"]
+containers = ["common"]
+content_provenance = ["common"]
+conversations = ["common"]
+data_retention = ["common"]
+decisions = ["common"]
+embeddings = ["common"]
+evals = ["common"]
+files = ["common"]
+fine_tuning = ["common"]
+group_organization_role_assignments = ["common"]
+group_users = ["common"]
+groups = ["common"]
+hosted_tools = ["common"]
+images = ["common"]
+invites = ["common"]
+live = ["common"]
+models = ["common"]
+moderations = ["common"]
+project_group_role_assignments = ["common"]
+project_groups = ["common"]
+project_user_role_assignments = ["common"]
+projects = ["common"]
+realtime = ["common"]
+responses = ["common"]
+roles = ["common"]
+safety = ["common"]
+skills = ["common"]
+spend_alerts = ["common"]
+uncategorized = ["common"]
+uploads = ["common"]
+usage = ["common"]
+user_organization_role_assignments = ["common"]
+users = ["common"]
+vaults = ["common"]
+vector_stores = ["common"]
+videos = ["common"]
+webhooks = ["common"]
+full = ["components", "common", "agents", "assistants", "audio", "audit_logs", "batches", "certificates", "chat_completions", "chatkit", "completions", "containers", "content_provenance", "conversations", "data_retention", "decisions", "embeddings", "evals", "files", "fine_tuning", "group_organization_role_assignments", "group_users", "groups", "hosted_tools", "images", "invites", "live", "models", "moderations", "project_group_role_assignments", "project_groups", "project_user_role_assignments", "projects", "realtime", "responses", "roles", "safety", "skills", "spend_alerts", "uncategorized", "uploads", "usage", "user_organization_role_assignments", "users", "vaults", "vector_stores", "videos", "webhooks"]
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+regress = "0.12"

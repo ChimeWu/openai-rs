@@ -18,36 +18,22 @@ esac
 
 TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT HUP INT TERM
-cargo typify --additional-derive PartialEq \
-    --output "$TMP/responses.rs" "$ROOT/spec/responses.schema.json"
-python3 - "$TMP/responses.rs" <<'PY'
-import sys
-from pathlib import Path
-
-path = Path(sys.argv[1])
-lines = path.read_text().splitlines()
-while lines and (lines[0].startswith("#![allow(") or not lines[0].strip()):
-    lines.pop(0)
-path.write_text("\n".join(lines) + "\n")
-PY
 python3 "$ROOT/scripts/generate_known_events.py" \
     "$ROOT/spec/responses.schema.json" "$TMP/event_types.rs"
 
 if [ "$MODE" = "--write" ]; then
-    cp "$TMP/responses.rs" "$ROOT/src/generated/responses.rs"
     cp "$TMP/event_types.rs" "$ROOT/src/generated/event_types.rs"
 else
-    for generated in responses.rs event_types.rs; do
-        if ! cmp -s "$TMP/$generated" "$ROOT/src/generated/$generated"; then
-            echo "generated file is stale: src/generated/$generated (run scripts/generate-types.sh --write)" >&2
-            exit 1
-        fi
-    done
+    if ! cmp -s "$TMP/event_types.rs" "$ROOT/src/generated/event_types.rs"; then
+        echo "generated file is stale: src/generated/event_types.rs (run scripts/generate-types.sh --write)" >&2
+        exit 1
+    fi
 fi
 if [ "$MODE" = "--write" ]; then
-    python3 "$ROOT/scripts/generate_api_types.py" write
+    python3 "$ROOT/scripts/generate_protocol_types_crate.py" write
 else
-    python3 "$ROOT/scripts/generate_api_types.py" check
+    python3 "$ROOT/scripts/generate_protocol_types_crate.py" check
+    python3 "$ROOT/scripts/check_protocol_coverage.py"
     python3 "$ROOT/scripts/check_client_coverage.py"
 fi
 python3 "$ROOT/scripts/check_generated_builders.py"
