@@ -2252,6 +2252,207 @@ impl ::std::convert::TryFrom<::std::string::String> for CodeInterpreterToolType 
         value.parse()
     }
 }
+#[doc = "`CompactResource`"]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
+pub struct CompactResource {
+    #[doc = "Unix timestamp (in seconds) when the compacted conversation was created."]
+    pub created_at: i64,
+    #[doc = "The unique identifier for the compacted response."]
+    pub id: ::std::string::String,
+    #[doc = "The object type. Always `response.compaction`."]
+    pub object: CompactResourceObject,
+    #[doc = "The compacted list of output items."]
+    pub output: ::std::vec::Vec<ItemField>,
+    #[doc = "Token accounting for the compaction pass, including cached, reasoning, and total tokens."]
+    pub usage: ResponseUsage,
+}
+#[doc = "The object type. Always `response.compaction`."]
+#[derive(
+    :: serde :: Deserialize,
+    :: serde :: Serialize,
+    Clone,
+    Copy,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd,
+)]
+pub enum CompactResourceObject {
+    #[serde(rename = "response.compaction")]
+    ResponseCompaction,
+}
+impl ::std::fmt::Display for CompactResourceObject {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        match *self {
+            Self::ResponseCompaction => f.write_str("response.compaction"),
+        }
+    }
+}
+impl ::std::str::FromStr for CompactResourceObject {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        match value {
+            "response.compaction" => Ok(Self::ResponseCompaction),
+            _ => Err("invalid value".into()),
+        }
+    }
+}
+impl ::std::convert::TryFrom<&str> for CompactResourceObject {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for CompactResourceObject {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+#[doc = "`CompactResponseMethodPublicBody`"]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
+pub struct CompactResponseMethodPublicBody {
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub input: ::std::option::Option<CompactResponseMethodPublicBodyInput>,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub instructions: ::std::option::Option<::std::string::String>,
+    pub model: ModelIdsCompaction,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub previous_response_id: ::std::option::Option<::std::string::String>,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub prompt_cache_key: ::std::option::Option<CompactResponseMethodPublicBodyPromptCacheKey>,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub prompt_cache_options: ::std::option::Option<PromptCacheOptionsParam>,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub prompt_cache_retention: ::std::option::Option<PromptCacheRetentionEnum>,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub service_tier: ::std::option::Option<ServiceTierEnum>,
+}
+#[doc = "Text, image, or file inputs to the model, used to generate a response"]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
+#[serde(untagged)]
+pub enum CompactResponseMethodPublicBodyInput {
+    String(CompactResponseMethodPublicBodyInputString),
+    Array(::std::vec::Vec<InputItem>),
+}
+impl ::std::convert::From<CompactResponseMethodPublicBodyInputString>
+    for CompactResponseMethodPublicBodyInput
+{
+    fn from(value: CompactResponseMethodPublicBodyInputString) -> Self {
+        Self::String(value)
+    }
+}
+impl ::std::convert::From<::std::vec::Vec<InputItem>> for CompactResponseMethodPublicBodyInput {
+    fn from(value: ::std::vec::Vec<InputItem>) -> Self {
+        Self::Array(value)
+    }
+}
+#[doc = "A text input to the model, equivalent to a text input with the `user` role."]
+#[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[serde(transparent)]
+pub struct CompactResponseMethodPublicBodyInputString(::std::string::String);
+impl ::std::ops::Deref for CompactResponseMethodPublicBodyInputString {
+    type Target = ::std::string::String;
+    fn deref(&self) -> &::std::string::String {
+        &self.0
+    }
+}
+impl ::std::convert::From<CompactResponseMethodPublicBodyInputString> for ::std::string::String {
+    fn from(value: CompactResponseMethodPublicBodyInputString) -> Self {
+        value.0
+    }
+}
+impl ::std::str::FromStr for CompactResponseMethodPublicBodyInputString {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        if value.chars().count() > 10485760usize {
+            return Err("longer than 10485760 characters".into());
+        }
+        Ok(Self(value.to_string()))
+    }
+}
+impl ::std::convert::TryFrom<&str> for CompactResponseMethodPublicBodyInputString {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for CompactResponseMethodPublicBodyInputString {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl<'de> ::serde::Deserialize<'de> for CompactResponseMethodPublicBodyInputString {
+    fn deserialize<D>(deserializer: D) -> ::std::result::Result<Self, D::Error>
+    where
+        D: ::serde::Deserializer<'de>,
+    {
+        ::std::string::String::deserialize(deserializer)?
+            .parse()
+            .map_err(|e: self::error::ConversionError| {
+                <D::Error as ::serde::de::Error>::custom(e.to_string())
+            })
+    }
+}
+#[doc = "A key to use when reading from or writing to the prompt cache."]
+#[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[serde(transparent)]
+pub struct CompactResponseMethodPublicBodyPromptCacheKey(::std::string::String);
+impl ::std::ops::Deref for CompactResponseMethodPublicBodyPromptCacheKey {
+    type Target = ::std::string::String;
+    fn deref(&self) -> &::std::string::String {
+        &self.0
+    }
+}
+impl ::std::convert::From<CompactResponseMethodPublicBodyPromptCacheKey> for ::std::string::String {
+    fn from(value: CompactResponseMethodPublicBodyPromptCacheKey) -> Self {
+        value.0
+    }
+}
+impl ::std::str::FromStr for CompactResponseMethodPublicBodyPromptCacheKey {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        if value.chars().count() > 64usize {
+            return Err("longer than 64 characters".into());
+        }
+        Ok(Self(value.to_string()))
+    }
+}
+impl ::std::convert::TryFrom<&str> for CompactResponseMethodPublicBodyPromptCacheKey {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String>
+    for CompactResponseMethodPublicBodyPromptCacheKey
+{
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl<'de> ::serde::Deserialize<'de> for CompactResponseMethodPublicBodyPromptCacheKey {
+    fn deserialize<D>(deserializer: D) -> ::std::result::Result<Self, D::Error>
+    where
+        D: ::serde::Deserializer<'de>,
+    {
+        ::std::string::String::deserialize(deserializer)?
+            .parse()
+            .map_err(|e: self::error::ConversionError| {
+                <D::Error as ::serde::de::Error>::custom(e.to_string())
+            })
+    }
+}
 #[doc = "A compaction item generated by the [`v1/responses/compact` API](https://developers.openai.com/api/reference/resources/responses/methods/compact)."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct CompactionBody {
@@ -3005,6 +3206,68 @@ impl ::std::convert::TryFrom<&str> for ComputerEnvironment {
     }
 }
 impl ::std::convert::TryFrom<::std::string::String> for ComputerEnvironment {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+#[doc = "A screenshot of a computer."]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
+pub struct ComputerScreenshotContent {
+    #[doc = "The detail level of the screenshot image to be sent to the model. One of `high`, `low`, `auto`, or `original`. Defaults to `auto`."]
+    pub detail: ImageDetail,
+    #[serde(deserialize_with = "::std::option::Option::deserialize")]
+    pub file_id: ::std::option::Option<::std::string::String>,
+    #[serde(deserialize_with = "::std::option::Option::deserialize")]
+    pub image_url: ::std::option::Option<::std::string::String>,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub prompt_cache_breakpoint: ::std::option::Option<PromptCacheBreakpointConfig>,
+    #[doc = "Specifies the event type. For a computer screenshot, this property is always set to `computer_screenshot`."]
+    #[serde(rename = "type")]
+    pub type_: ComputerScreenshotContentType,
+}
+#[doc = "Specifies the event type. For a computer screenshot, this property is always set to `computer_screenshot`."]
+#[derive(
+    :: serde :: Deserialize,
+    :: serde :: Serialize,
+    Clone,
+    Copy,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd,
+)]
+pub enum ComputerScreenshotContentType {
+    #[serde(rename = "computer_screenshot")]
+    ComputerScreenshot,
+}
+impl ::std::fmt::Display for ComputerScreenshotContentType {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        match *self {
+            Self::ComputerScreenshot => f.write_str("computer_screenshot"),
+        }
+    }
+}
+impl ::std::str::FromStr for ComputerScreenshotContentType {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        match value {
+            "computer_screenshot" => Ok(Self::ComputerScreenshot),
+            _ => Err("invalid value".into()),
+        }
+    }
+}
+impl ::std::convert::TryFrom<&str> for ComputerScreenshotContentType {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for ComputerScreenshotContentType {
     type Error = self::error::ConversionError;
     fn try_from(
         value: ::std::string::String,
@@ -4844,6 +5107,83 @@ impl ::std::convert::TryFrom<::std::string::String> for CustomToolCallOutputType
         value.parse()
     }
 }
+#[doc = "`CustomToolCallResource`"]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
+pub struct CustomToolCallResource {
+    #[doc = "Whether the custom tool call runs asynchronously.\n"]
+    #[serde(
+        rename = "async",
+        skip_serializing_if = "::std::option::Option::is_none"
+    )]
+    pub async_: ::std::option::Option<bool>,
+    #[doc = "An identifier used to map this custom tool call to a tool call output.\n"]
+    pub call_id: ::std::string::String,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub caller: ::std::option::Option<ToolCallCaller>,
+    #[doc = "The identifier of the actor that created the item.\n"]
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub created_by: ::std::option::Option<::std::string::String>,
+    pub id: ::std::string::String,
+    #[doc = "The input for the custom tool call generated by the model.\n"]
+    pub input: ::std::string::String,
+    #[doc = "The name of the custom tool being called.\n"]
+    pub name: ::std::string::String,
+    #[doc = "The namespace of the custom tool being called.\n"]
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub namespace: ::std::option::Option<::std::string::String>,
+    #[doc = "The status of the item. One of `in_progress`, `completed`, or\n`incomplete`. Populated when items are returned via API.\n"]
+    pub status: FunctionCallStatus,
+    #[doc = "The type of the custom tool call. Always `custom_tool_call`.\n"]
+    #[serde(rename = "type")]
+    pub type_: CustomToolCallResourceType,
+}
+#[doc = "The type of the custom tool call. Always `custom_tool_call`.\n"]
+#[derive(
+    :: serde :: Deserialize,
+    :: serde :: Serialize,
+    Clone,
+    Copy,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd,
+)]
+pub enum CustomToolCallResourceType {
+    #[serde(rename = "custom_tool_call")]
+    CustomToolCall,
+}
+impl ::std::fmt::Display for CustomToolCallResourceType {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        match *self {
+            Self::CustomToolCall => f.write_str("custom_tool_call"),
+        }
+    }
+}
+impl ::std::str::FromStr for CustomToolCallResourceType {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        match value {
+            "custom_tool_call" => Ok(Self::CustomToolCall),
+            _ => Err("invalid value".into()),
+        }
+    }
+}
+impl ::std::convert::TryFrom<&str> for CustomToolCallResourceType {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for CustomToolCallResourceType {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
 #[doc = "The type of the custom tool call. Always `custom_tool_call`.\n"]
 #[derive(
     :: serde :: Deserialize,
@@ -5029,6 +5369,60 @@ impl ::std::convert::TryFrom<&str> for CyberAccessProgramEnum {
     }
 }
 impl ::std::convert::TryFrom<::std::string::String> for CyberAccessProgramEnum {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+#[doc = "`DeleteResponse`"]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
+pub struct DeleteResponse {
+    pub deleted: bool,
+    pub id: ::std::string::String,
+    pub object: DeleteResponseObject,
+}
+#[doc = "`DeleteResponseObject`"]
+#[derive(
+    :: serde :: Deserialize,
+    :: serde :: Serialize,
+    Clone,
+    Copy,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd,
+)]
+pub enum DeleteResponseObject {
+    #[serde(rename = "response.deleted")]
+    ResponseDeleted,
+}
+impl ::std::fmt::Display for DeleteResponseObject {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        match *self {
+            Self::ResponseDeleted => f.write_str("response.deleted"),
+        }
+    }
+}
+impl ::std::str::FromStr for DeleteResponseObject {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        match value {
+            "response.deleted" => Ok(Self::ResponseDeleted),
+            _ => Err("invalid value".into()),
+        }
+    }
+}
+impl ::std::convert::TryFrom<&str> for DeleteResponseObject {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for DeleteResponseObject {
     type Error = self::error::ConversionError;
     fn try_from(
         value: ::std::string::String,
@@ -7795,6 +8189,83 @@ impl ::std::convert::TryFrom<::std::string::String> for FunctionToolCallOutputTy
         value.parse()
     }
 }
+#[doc = "`FunctionToolCallResource`"]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
+pub struct FunctionToolCallResource {
+    #[doc = "A JSON string of the arguments to pass to the function.\n"]
+    pub arguments: ::std::string::String,
+    #[doc = "Whether the function tool call runs asynchronously.\n"]
+    #[serde(
+        rename = "async",
+        skip_serializing_if = "::std::option::Option::is_none"
+    )]
+    pub async_: ::std::option::Option<bool>,
+    #[doc = "The unique ID of the function tool call generated by the model.\n"]
+    pub call_id: ::std::string::String,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub caller: ::std::option::Option<ToolCallCaller>,
+    #[doc = "The identifier of the actor that created the item.\n"]
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub created_by: ::std::option::Option<::std::string::String>,
+    pub id: ::std::string::String,
+    #[doc = "The name of the function to run.\n"]
+    pub name: ::std::string::String,
+    #[doc = "The namespace of the function to run.\n"]
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub namespace: ::std::option::Option<::std::string::String>,
+    #[doc = "The status of the item. One of `in_progress`, `completed`, or\n`incomplete`. Populated when items are returned via API.\n"]
+    pub status: FunctionCallStatus,
+    #[doc = "The type of the function tool call. Always `function_call`.\n"]
+    #[serde(rename = "type")]
+    pub type_: FunctionToolCallResourceType,
+}
+#[doc = "The type of the function tool call. Always `function_call`.\n"]
+#[derive(
+    :: serde :: Deserialize,
+    :: serde :: Serialize,
+    Clone,
+    Copy,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd,
+)]
+pub enum FunctionToolCallResourceType {
+    #[serde(rename = "function_call")]
+    FunctionCall,
+}
+impl ::std::fmt::Display for FunctionToolCallResourceType {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        match *self {
+            Self::FunctionCall => f.write_str("function_call"),
+        }
+    }
+}
+impl ::std::str::FromStr for FunctionToolCallResourceType {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        match value {
+            "function_call" => Ok(Self::FunctionCall),
+            _ => Err("invalid value".into()),
+        }
+    }
+}
+impl ::std::convert::TryFrom<&str> for FunctionToolCallResourceType {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for FunctionToolCallResourceType {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
 #[doc = "The status of the item. One of `in_progress`, `completed`, or\n`incomplete`. Populated when items are returned via API.\n"]
 #[derive(
     :: serde :: Deserialize,
@@ -9959,6 +10430,178 @@ impl ::std::convert::From<::std::vec::Vec<InputContent>> for InputMessageContent
         Self(value)
     }
 }
+#[doc = "`InputMessageResource`"]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
+pub struct InputMessageResource {
+    pub content: InputMessageContentList,
+    #[doc = "The unique ID of the message input.\n"]
+    pub id: ::std::string::String,
+    #[doc = "The role of the message input. One of `user`, `system`, or `developer`.\n"]
+    pub role: InputMessageResourceRole,
+    #[doc = "The status of item. One of `in_progress`, `completed`, or\n`incomplete`. Populated when items are returned via API.\n"]
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub status: ::std::option::Option<InputMessageResourceStatus>,
+    #[doc = "The type of the message input. Always set to `message`.\n"]
+    #[serde(rename = "type")]
+    pub type_: InputMessageResourceType,
+}
+#[doc = "The role of the message input. One of `user`, `system`, or `developer`.\n"]
+#[derive(
+    :: serde :: Deserialize,
+    :: serde :: Serialize,
+    Clone,
+    Copy,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd,
+)]
+pub enum InputMessageResourceRole {
+    #[serde(rename = "user")]
+    User,
+    #[serde(rename = "system")]
+    System,
+    #[serde(rename = "developer")]
+    Developer,
+}
+impl ::std::fmt::Display for InputMessageResourceRole {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        match *self {
+            Self::User => f.write_str("user"),
+            Self::System => f.write_str("system"),
+            Self::Developer => f.write_str("developer"),
+        }
+    }
+}
+impl ::std::str::FromStr for InputMessageResourceRole {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        match value {
+            "user" => Ok(Self::User),
+            "system" => Ok(Self::System),
+            "developer" => Ok(Self::Developer),
+            _ => Err("invalid value".into()),
+        }
+    }
+}
+impl ::std::convert::TryFrom<&str> for InputMessageResourceRole {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for InputMessageResourceRole {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+#[doc = "The status of item. One of `in_progress`, `completed`, or\n`incomplete`. Populated when items are returned via API.\n"]
+#[derive(
+    :: serde :: Deserialize,
+    :: serde :: Serialize,
+    Clone,
+    Copy,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd,
+)]
+pub enum InputMessageResourceStatus {
+    #[serde(rename = "in_progress")]
+    InProgress,
+    #[serde(rename = "completed")]
+    Completed,
+    #[serde(rename = "incomplete")]
+    Incomplete,
+}
+impl ::std::fmt::Display for InputMessageResourceStatus {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        match *self {
+            Self::InProgress => f.write_str("in_progress"),
+            Self::Completed => f.write_str("completed"),
+            Self::Incomplete => f.write_str("incomplete"),
+        }
+    }
+}
+impl ::std::str::FromStr for InputMessageResourceStatus {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        match value {
+            "in_progress" => Ok(Self::InProgress),
+            "completed" => Ok(Self::Completed),
+            "incomplete" => Ok(Self::Incomplete),
+            _ => Err("invalid value".into()),
+        }
+    }
+}
+impl ::std::convert::TryFrom<&str> for InputMessageResourceStatus {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for InputMessageResourceStatus {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+#[doc = "The type of the message input. Always set to `message`.\n"]
+#[derive(
+    :: serde :: Deserialize,
+    :: serde :: Serialize,
+    Clone,
+    Copy,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd,
+)]
+pub enum InputMessageResourceType {
+    #[serde(rename = "message")]
+    Message,
+}
+impl ::std::fmt::Display for InputMessageResourceType {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        match *self {
+            Self::Message => f.write_str("message"),
+        }
+    }
+}
+impl ::std::str::FromStr for InputMessageResourceType {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        match value {
+            "message" => Ok(Self::Message),
+            _ => Err("invalid value".into()),
+        }
+    }
+}
+impl ::std::convert::TryFrom<&str> for InputMessageResourceType {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for InputMessageResourceType {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
 #[doc = "The role of the message input. One of `user`, `system`, or `developer`.\n"]
 #[derive(
     :: serde :: Deserialize,
@@ -10467,6 +11110,179 @@ impl ::std::convert::From<CustomToolCall> for Item {
         Self::CustomToolCall(value)
     }
 }
+#[doc = "An item representing a message, tool call, tool output, reasoning, or other response element."]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
+#[serde(untagged)]
+pub enum ItemField {
+    Message(Message),
+    Program(Program),
+    ProgramOutput(ProgramOutput),
+    FunctionToolCall(FunctionToolCall),
+    ToolSearchCall(ToolSearchCall),
+    ToolSearchOutput(ToolSearchOutput),
+    AdditionalTools(AdditionalTools),
+    FunctionToolCallOutput(FunctionToolCallOutput),
+    FileSearchToolCall(FileSearchToolCall),
+    WebSearchToolCall(WebSearchToolCall),
+    ImageGenToolCall(ImageGenToolCall),
+    ComputerToolCall(ComputerToolCall),
+    ComputerToolCallOutputResource(ComputerToolCallOutputResource),
+    ReasoningItem(ReasoningItem),
+    CompactionBody(CompactionBody),
+    CodeInterpreterToolCall(CodeInterpreterToolCall),
+    LocalShellToolCall(LocalShellToolCall),
+    LocalShellToolCallOutput(LocalShellToolCallOutput),
+    FunctionShellCall(FunctionShellCall),
+    FunctionShellCallOutput(FunctionShellCallOutput),
+    ApplyPatchToolCall(ApplyPatchToolCall),
+    ApplyPatchToolCallOutput(ApplyPatchToolCallOutput),
+    McpListTools(McpListTools),
+    McpApprovalRequest(McpApprovalRequest),
+    McpApprovalResponseResource(McpApprovalResponseResource),
+    McpToolCall(McpToolCall),
+    CustomToolCall(CustomToolCall),
+    CustomToolCallOutput(CustomToolCallOutput),
+}
+impl ::std::convert::From<Message> for ItemField {
+    fn from(value: Message) -> Self {
+        Self::Message(value)
+    }
+}
+impl ::std::convert::From<Program> for ItemField {
+    fn from(value: Program) -> Self {
+        Self::Program(value)
+    }
+}
+impl ::std::convert::From<ProgramOutput> for ItemField {
+    fn from(value: ProgramOutput) -> Self {
+        Self::ProgramOutput(value)
+    }
+}
+impl ::std::convert::From<FunctionToolCall> for ItemField {
+    fn from(value: FunctionToolCall) -> Self {
+        Self::FunctionToolCall(value)
+    }
+}
+impl ::std::convert::From<ToolSearchCall> for ItemField {
+    fn from(value: ToolSearchCall) -> Self {
+        Self::ToolSearchCall(value)
+    }
+}
+impl ::std::convert::From<ToolSearchOutput> for ItemField {
+    fn from(value: ToolSearchOutput) -> Self {
+        Self::ToolSearchOutput(value)
+    }
+}
+impl ::std::convert::From<AdditionalTools> for ItemField {
+    fn from(value: AdditionalTools) -> Self {
+        Self::AdditionalTools(value)
+    }
+}
+impl ::std::convert::From<FunctionToolCallOutput> for ItemField {
+    fn from(value: FunctionToolCallOutput) -> Self {
+        Self::FunctionToolCallOutput(value)
+    }
+}
+impl ::std::convert::From<FileSearchToolCall> for ItemField {
+    fn from(value: FileSearchToolCall) -> Self {
+        Self::FileSearchToolCall(value)
+    }
+}
+impl ::std::convert::From<WebSearchToolCall> for ItemField {
+    fn from(value: WebSearchToolCall) -> Self {
+        Self::WebSearchToolCall(value)
+    }
+}
+impl ::std::convert::From<ImageGenToolCall> for ItemField {
+    fn from(value: ImageGenToolCall) -> Self {
+        Self::ImageGenToolCall(value)
+    }
+}
+impl ::std::convert::From<ComputerToolCall> for ItemField {
+    fn from(value: ComputerToolCall) -> Self {
+        Self::ComputerToolCall(value)
+    }
+}
+impl ::std::convert::From<ComputerToolCallOutputResource> for ItemField {
+    fn from(value: ComputerToolCallOutputResource) -> Self {
+        Self::ComputerToolCallOutputResource(value)
+    }
+}
+impl ::std::convert::From<ReasoningItem> for ItemField {
+    fn from(value: ReasoningItem) -> Self {
+        Self::ReasoningItem(value)
+    }
+}
+impl ::std::convert::From<CompactionBody> for ItemField {
+    fn from(value: CompactionBody) -> Self {
+        Self::CompactionBody(value)
+    }
+}
+impl ::std::convert::From<CodeInterpreterToolCall> for ItemField {
+    fn from(value: CodeInterpreterToolCall) -> Self {
+        Self::CodeInterpreterToolCall(value)
+    }
+}
+impl ::std::convert::From<LocalShellToolCall> for ItemField {
+    fn from(value: LocalShellToolCall) -> Self {
+        Self::LocalShellToolCall(value)
+    }
+}
+impl ::std::convert::From<LocalShellToolCallOutput> for ItemField {
+    fn from(value: LocalShellToolCallOutput) -> Self {
+        Self::LocalShellToolCallOutput(value)
+    }
+}
+impl ::std::convert::From<FunctionShellCall> for ItemField {
+    fn from(value: FunctionShellCall) -> Self {
+        Self::FunctionShellCall(value)
+    }
+}
+impl ::std::convert::From<FunctionShellCallOutput> for ItemField {
+    fn from(value: FunctionShellCallOutput) -> Self {
+        Self::FunctionShellCallOutput(value)
+    }
+}
+impl ::std::convert::From<ApplyPatchToolCall> for ItemField {
+    fn from(value: ApplyPatchToolCall) -> Self {
+        Self::ApplyPatchToolCall(value)
+    }
+}
+impl ::std::convert::From<ApplyPatchToolCallOutput> for ItemField {
+    fn from(value: ApplyPatchToolCallOutput) -> Self {
+        Self::ApplyPatchToolCallOutput(value)
+    }
+}
+impl ::std::convert::From<McpListTools> for ItemField {
+    fn from(value: McpListTools) -> Self {
+        Self::McpListTools(value)
+    }
+}
+impl ::std::convert::From<McpApprovalRequest> for ItemField {
+    fn from(value: McpApprovalRequest) -> Self {
+        Self::McpApprovalRequest(value)
+    }
+}
+impl ::std::convert::From<McpApprovalResponseResource> for ItemField {
+    fn from(value: McpApprovalResponseResource) -> Self {
+        Self::McpApprovalResponseResource(value)
+    }
+}
+impl ::std::convert::From<McpToolCall> for ItemField {
+    fn from(value: McpToolCall) -> Self {
+        Self::McpToolCall(value)
+    }
+}
+impl ::std::convert::From<CustomToolCall> for ItemField {
+    fn from(value: CustomToolCall) -> Self {
+        Self::CustomToolCall(value)
+    }
+}
+impl ::std::convert::From<CustomToolCallOutput> for ItemField {
+    fn from(value: CustomToolCallOutput) -> Self {
+        Self::CustomToolCallOutput(value)
+    }
+}
 #[doc = "An internal identifier for an item to reference."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct ItemReferenceParam {
@@ -10525,6 +11341,191 @@ impl ::std::convert::TryFrom<::std::string::String> for ItemReferenceParamType {
         value.parse()
     }
 }
+#[doc = "Content item used to generate a response.\n"]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
+#[serde(untagged)]
+pub enum ItemResource {
+    InputMessageResource(InputMessageResource),
+    OutputMessage(OutputMessage),
+    FileSearchToolCall(FileSearchToolCall),
+    ComputerToolCall(ComputerToolCall),
+    ComputerToolCallOutputResource(ComputerToolCallOutputResource),
+    WebSearchToolCall(WebSearchToolCall),
+    FunctionToolCallResource(FunctionToolCallResource),
+    FunctionToolCallOutputResource(FunctionToolCallOutputResource),
+    ToolSearchCall(ToolSearchCall),
+    ToolSearchOutput(ToolSearchOutput),
+    AdditionalTools(AdditionalTools),
+    ResponseConfigurationUpdate(ResponseConfigurationUpdate),
+    ReasoningItem(ReasoningItem),
+    Program(Program),
+    ProgramOutput(ProgramOutput),
+    CompactionBody(CompactionBody),
+    ImageGenToolCall(ImageGenToolCall),
+    CodeInterpreterToolCall(CodeInterpreterToolCall),
+    LocalShellToolCall(LocalShellToolCall),
+    LocalShellToolCallOutput(LocalShellToolCallOutput),
+    FunctionShellCall(FunctionShellCall),
+    FunctionShellCallOutput(FunctionShellCallOutput),
+    ApplyPatchToolCall(ApplyPatchToolCall),
+    ApplyPatchToolCallOutput(ApplyPatchToolCallOutput),
+    McpListTools(McpListTools),
+    McpApprovalRequest(McpApprovalRequest),
+    McpApprovalResponseResource(McpApprovalResponseResource),
+    McpToolCall(McpToolCall),
+    CustomToolCallResource(CustomToolCallResource),
+    CustomToolCallOutputResource(CustomToolCallOutputResource),
+}
+impl ::std::convert::From<InputMessageResource> for ItemResource {
+    fn from(value: InputMessageResource) -> Self {
+        Self::InputMessageResource(value)
+    }
+}
+impl ::std::convert::From<OutputMessage> for ItemResource {
+    fn from(value: OutputMessage) -> Self {
+        Self::OutputMessage(value)
+    }
+}
+impl ::std::convert::From<FileSearchToolCall> for ItemResource {
+    fn from(value: FileSearchToolCall) -> Self {
+        Self::FileSearchToolCall(value)
+    }
+}
+impl ::std::convert::From<ComputerToolCall> for ItemResource {
+    fn from(value: ComputerToolCall) -> Self {
+        Self::ComputerToolCall(value)
+    }
+}
+impl ::std::convert::From<ComputerToolCallOutputResource> for ItemResource {
+    fn from(value: ComputerToolCallOutputResource) -> Self {
+        Self::ComputerToolCallOutputResource(value)
+    }
+}
+impl ::std::convert::From<WebSearchToolCall> for ItemResource {
+    fn from(value: WebSearchToolCall) -> Self {
+        Self::WebSearchToolCall(value)
+    }
+}
+impl ::std::convert::From<FunctionToolCallResource> for ItemResource {
+    fn from(value: FunctionToolCallResource) -> Self {
+        Self::FunctionToolCallResource(value)
+    }
+}
+impl ::std::convert::From<FunctionToolCallOutputResource> for ItemResource {
+    fn from(value: FunctionToolCallOutputResource) -> Self {
+        Self::FunctionToolCallOutputResource(value)
+    }
+}
+impl ::std::convert::From<ToolSearchCall> for ItemResource {
+    fn from(value: ToolSearchCall) -> Self {
+        Self::ToolSearchCall(value)
+    }
+}
+impl ::std::convert::From<ToolSearchOutput> for ItemResource {
+    fn from(value: ToolSearchOutput) -> Self {
+        Self::ToolSearchOutput(value)
+    }
+}
+impl ::std::convert::From<AdditionalTools> for ItemResource {
+    fn from(value: AdditionalTools) -> Self {
+        Self::AdditionalTools(value)
+    }
+}
+impl ::std::convert::From<ResponseConfigurationUpdate> for ItemResource {
+    fn from(value: ResponseConfigurationUpdate) -> Self {
+        Self::ResponseConfigurationUpdate(value)
+    }
+}
+impl ::std::convert::From<ReasoningItem> for ItemResource {
+    fn from(value: ReasoningItem) -> Self {
+        Self::ReasoningItem(value)
+    }
+}
+impl ::std::convert::From<Program> for ItemResource {
+    fn from(value: Program) -> Self {
+        Self::Program(value)
+    }
+}
+impl ::std::convert::From<ProgramOutput> for ItemResource {
+    fn from(value: ProgramOutput) -> Self {
+        Self::ProgramOutput(value)
+    }
+}
+impl ::std::convert::From<CompactionBody> for ItemResource {
+    fn from(value: CompactionBody) -> Self {
+        Self::CompactionBody(value)
+    }
+}
+impl ::std::convert::From<ImageGenToolCall> for ItemResource {
+    fn from(value: ImageGenToolCall) -> Self {
+        Self::ImageGenToolCall(value)
+    }
+}
+impl ::std::convert::From<CodeInterpreterToolCall> for ItemResource {
+    fn from(value: CodeInterpreterToolCall) -> Self {
+        Self::CodeInterpreterToolCall(value)
+    }
+}
+impl ::std::convert::From<LocalShellToolCall> for ItemResource {
+    fn from(value: LocalShellToolCall) -> Self {
+        Self::LocalShellToolCall(value)
+    }
+}
+impl ::std::convert::From<LocalShellToolCallOutput> for ItemResource {
+    fn from(value: LocalShellToolCallOutput) -> Self {
+        Self::LocalShellToolCallOutput(value)
+    }
+}
+impl ::std::convert::From<FunctionShellCall> for ItemResource {
+    fn from(value: FunctionShellCall) -> Self {
+        Self::FunctionShellCall(value)
+    }
+}
+impl ::std::convert::From<FunctionShellCallOutput> for ItemResource {
+    fn from(value: FunctionShellCallOutput) -> Self {
+        Self::FunctionShellCallOutput(value)
+    }
+}
+impl ::std::convert::From<ApplyPatchToolCall> for ItemResource {
+    fn from(value: ApplyPatchToolCall) -> Self {
+        Self::ApplyPatchToolCall(value)
+    }
+}
+impl ::std::convert::From<ApplyPatchToolCallOutput> for ItemResource {
+    fn from(value: ApplyPatchToolCallOutput) -> Self {
+        Self::ApplyPatchToolCallOutput(value)
+    }
+}
+impl ::std::convert::From<McpListTools> for ItemResource {
+    fn from(value: McpListTools) -> Self {
+        Self::McpListTools(value)
+    }
+}
+impl ::std::convert::From<McpApprovalRequest> for ItemResource {
+    fn from(value: McpApprovalRequest) -> Self {
+        Self::McpApprovalRequest(value)
+    }
+}
+impl ::std::convert::From<McpApprovalResponseResource> for ItemResource {
+    fn from(value: McpApprovalResponseResource) -> Self {
+        Self::McpApprovalResponseResource(value)
+    }
+}
+impl ::std::convert::From<McpToolCall> for ItemResource {
+    fn from(value: McpToolCall) -> Self {
+        Self::McpToolCall(value)
+    }
+}
+impl ::std::convert::From<CustomToolCallResource> for ItemResource {
+    fn from(value: CustomToolCallResource) -> Self {
+        Self::CustomToolCallResource(value)
+    }
+}
+impl ::std::convert::From<CustomToolCallOutputResource> for ItemResource {
+    fn from(value: CustomToolCallOutputResource) -> Self {
+        Self::CustomToolCallOutputResource(value)
+    }
+}
 #[doc = "A collection of keypresses the model would like to perform."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct KeyPressAction {
@@ -10574,6 +11575,69 @@ impl ::std::convert::TryFrom<&str> for KeyPressActionType {
     }
 }
 impl ::std::convert::TryFrom<::std::string::String> for KeyPressActionType {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+#[doc = "`ListInputItemsParams`"]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
+pub struct ListInputItemsParams {
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub after: ::std::option::Option<::std::string::String>,
+    #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+    pub include: ::std::vec::Vec<IncludeEnum>,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub limit: ::std::option::Option<i64>,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub order: ::std::option::Option<ListInputItemsParamsOrder>,
+}
+#[doc = "`ListInputItemsParamsOrder`"]
+#[derive(
+    :: serde :: Deserialize,
+    :: serde :: Serialize,
+    Clone,
+    Copy,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd,
+)]
+pub enum ListInputItemsParamsOrder {
+    #[serde(rename = "asc")]
+    Asc,
+    #[serde(rename = "desc")]
+    Desc,
+}
+impl ::std::fmt::Display for ListInputItemsParamsOrder {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        match *self {
+            Self::Asc => f.write_str("asc"),
+            Self::Desc => f.write_str("desc"),
+        }
+    }
+}
+impl ::std::str::FromStr for ListInputItemsParamsOrder {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        match value {
+            "asc" => Ok(Self::Asc),
+            "desc" => Ok(Self::Desc),
+            _ => Err("invalid value".into()),
+        }
+    }
+}
+impl ::std::convert::TryFrom<&str> for ListInputItemsParamsOrder {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for ListInputItemsParamsOrder {
     type Error = self::error::ConversionError;
     fn try_from(
         value: ::std::string::String,
@@ -11897,6 +12961,82 @@ impl ::std::convert::TryFrom<::std::string::String> for McpToolType {
         value.parse()
     }
 }
+#[doc = "A message to or from the model."]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
+pub struct Message {
+    #[doc = "The content of the message"]
+    pub content: ::std::vec::Vec<MessageContentItem>,
+    #[doc = "The unique ID of the message."]
+    pub id: ::std::string::String,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub phase: ::std::option::Option<MessagePhase2>,
+    #[doc = "The role of the message. One of `unknown`, `user`, `assistant`, `system`, `critic`, `discriminator`, `developer`, or `tool`."]
+    pub role: MessageRole,
+    #[doc = "The status of item. One of `in_progress`, `completed`, or `incomplete`. Populated when items are returned via API."]
+    pub status: MessageStatus,
+    #[doc = "The type of the message. Always set to `message`."]
+    #[serde(rename = "type")]
+    pub type_: MessageType,
+}
+#[doc = "A content part that makes up an input or output item."]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
+#[serde(untagged)]
+pub enum MessageContentItem {
+    InputTextContent(InputTextContent),
+    OutputTextContent(OutputTextContent),
+    TextContent(TextContent),
+    SummaryTextContent(SummaryTextContent),
+    ReasoningTextContent(ReasoningTextContent),
+    RefusalContent(RefusalContent),
+    InputImageContent(InputImageContent),
+    ComputerScreenshotContent(ComputerScreenshotContent),
+    InputFileContent(InputFileContent),
+}
+impl ::std::convert::From<InputTextContent> for MessageContentItem {
+    fn from(value: InputTextContent) -> Self {
+        Self::InputTextContent(value)
+    }
+}
+impl ::std::convert::From<OutputTextContent> for MessageContentItem {
+    fn from(value: OutputTextContent) -> Self {
+        Self::OutputTextContent(value)
+    }
+}
+impl ::std::convert::From<TextContent> for MessageContentItem {
+    fn from(value: TextContent) -> Self {
+        Self::TextContent(value)
+    }
+}
+impl ::std::convert::From<SummaryTextContent> for MessageContentItem {
+    fn from(value: SummaryTextContent) -> Self {
+        Self::SummaryTextContent(value)
+    }
+}
+impl ::std::convert::From<ReasoningTextContent> for MessageContentItem {
+    fn from(value: ReasoningTextContent) -> Self {
+        Self::ReasoningTextContent(value)
+    }
+}
+impl ::std::convert::From<RefusalContent> for MessageContentItem {
+    fn from(value: RefusalContent) -> Self {
+        Self::RefusalContent(value)
+    }
+}
+impl ::std::convert::From<InputImageContent> for MessageContentItem {
+    fn from(value: InputImageContent) -> Self {
+        Self::InputImageContent(value)
+    }
+}
+impl ::std::convert::From<ComputerScreenshotContent> for MessageContentItem {
+    fn from(value: ComputerScreenshotContent) -> Self {
+        Self::ComputerScreenshotContent(value)
+    }
+}
+impl ::std::convert::From<InputFileContent> for MessageContentItem {
+    fn from(value: InputFileContent) -> Self {
+        Self::InputFileContent(value)
+    }
+}
 #[doc = "Labels an `assistant` message as intermediate commentary (`commentary`) or the final answer (`final_answer`).\nFor models like `gpt-5.3-codex` and beyond, when sending follow-up requests, preserve and resend\nphase on all assistant messages — dropping it can degrade performance. Not used for user messages.\n"]
 #[derive(
     :: serde :: Deserialize,
@@ -11941,6 +13081,57 @@ impl ::std::convert::TryFrom<&str> for MessagePhase {
     }
 }
 impl ::std::convert::TryFrom<::std::string::String> for MessagePhase {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+#[doc = "`MessagePhase2`"]
+#[derive(
+    :: serde :: Deserialize,
+    :: serde :: Serialize,
+    Clone,
+    Copy,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd,
+)]
+pub enum MessagePhase2 {
+    #[serde(rename = "commentary")]
+    Commentary,
+    #[serde(rename = "final_answer")]
+    FinalAnswer,
+}
+impl ::std::fmt::Display for MessagePhase2 {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        match *self {
+            Self::Commentary => f.write_str("commentary"),
+            Self::FinalAnswer => f.write_str("final_answer"),
+        }
+    }
+}
+impl ::std::str::FromStr for MessagePhase2 {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        match value {
+            "commentary" => Ok(Self::Commentary),
+            "final_answer" => Ok(Self::FinalAnswer),
+            _ => Err("invalid value".into()),
+        }
+    }
+}
+impl ::std::convert::TryFrom<&str> for MessagePhase2 {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for MessagePhase2 {
     type Error = self::error::ConversionError;
     fn try_from(
         value: ::std::string::String,
@@ -12016,6 +13207,108 @@ impl ::std::convert::TryFrom<&str> for MessageRole {
     }
 }
 impl ::std::convert::TryFrom<::std::string::String> for MessageRole {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+#[doc = "`MessageStatus`"]
+#[derive(
+    :: serde :: Deserialize,
+    :: serde :: Serialize,
+    Clone,
+    Copy,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd,
+)]
+pub enum MessageStatus {
+    #[serde(rename = "in_progress")]
+    InProgress,
+    #[serde(rename = "completed")]
+    Completed,
+    #[serde(rename = "incomplete")]
+    Incomplete,
+}
+impl ::std::fmt::Display for MessageStatus {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        match *self {
+            Self::InProgress => f.write_str("in_progress"),
+            Self::Completed => f.write_str("completed"),
+            Self::Incomplete => f.write_str("incomplete"),
+        }
+    }
+}
+impl ::std::str::FromStr for MessageStatus {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        match value {
+            "in_progress" => Ok(Self::InProgress),
+            "completed" => Ok(Self::Completed),
+            "incomplete" => Ok(Self::Incomplete),
+            _ => Err("invalid value".into()),
+        }
+    }
+}
+impl ::std::convert::TryFrom<&str> for MessageStatus {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for MessageStatus {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+#[doc = "The type of the message. Always set to `message`."]
+#[derive(
+    :: serde :: Deserialize,
+    :: serde :: Serialize,
+    Clone,
+    Copy,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd,
+)]
+pub enum MessageType {
+    #[serde(rename = "message")]
+    Message,
+}
+impl ::std::fmt::Display for MessageType {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        match *self {
+            Self::Message => f.write_str("message"),
+        }
+    }
+}
+impl ::std::str::FromStr for MessageType {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        match value {
+            "message" => Ok(Self::Message),
+            _ => Err("invalid value".into()),
+        }
+    }
+}
+impl ::std::convert::TryFrom<&str> for MessageType {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for MessageType {
     type Error = self::error::ConversionError;
     fn try_from(
         value: ::std::string::String,
@@ -12226,6 +13519,16 @@ impl ::std::convert::TryFrom<::std::string::String> for MisalignmentErrorTypeSub
 pub struct MisalignmentSteer {
     #[doc = "The public continuation instruction."]
     pub message: ::std::string::String,
+}
+#[doc = "Model ID used to generate the response, like `gpt-6-astra`. OpenAI offers a wide range of models with different capabilities, performance characteristics, and price points. Refer to the [model guide](https://developers.openai.com/api/docs/models) to browse and compare available models."]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
+pub struct ModelIdsCompaction {
+    #[serde(flatten, skip_serializing_if = "::std::option::Option::is_none")]
+    pub subtype_0: ::std::option::Option<ModelIdsResponses>,
+    #[serde(flatten, skip_serializing_if = "::std::option::Option::is_none")]
+    pub subtype_1: ::std::option::Option<::std::string::String>,
+    #[serde(flatten, skip_serializing_if = "::std::option::Option::is_none")]
+    pub subtype_2: ::std::option::Option<()>,
 }
 #[doc = "`ModelIdsResponses`"]
 #[derive(
@@ -13716,6 +15019,65 @@ impl ::std::convert::TryFrom<::std::string::String> for OutputTextContentType {
         value.parse()
     }
 }
+#[doc = "`PersonalityEnum`"]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
+pub struct PersonalityEnum {
+    #[serde(flatten, skip_serializing_if = "::std::option::Option::is_none")]
+    pub subtype_0: ::std::option::Option<::std::string::String>,
+    #[serde(flatten, skip_serializing_if = "::std::option::Option::is_none")]
+    pub subtype_1: ::std::option::Option<PersonalityEnumSubtype1>,
+}
+#[doc = "`PersonalityEnumSubtype1`"]
+#[derive(
+    :: serde :: Deserialize,
+    :: serde :: Serialize,
+    Clone,
+    Copy,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd,
+)]
+pub enum PersonalityEnumSubtype1 {
+    #[serde(rename = "friendly")]
+    Friendly,
+    #[serde(rename = "pragmatic")]
+    Pragmatic,
+}
+impl ::std::fmt::Display for PersonalityEnumSubtype1 {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        match *self {
+            Self::Friendly => f.write_str("friendly"),
+            Self::Pragmatic => f.write_str("pragmatic"),
+        }
+    }
+}
+impl ::std::str::FromStr for PersonalityEnumSubtype1 {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        match value {
+            "friendly" => Ok(Self::Friendly),
+            "pragmatic" => Ok(Self::Pragmatic),
+            _ => Err("invalid value".into()),
+        }
+    }
+}
+impl ::std::convert::TryFrom<&str> for PersonalityEnumSubtype1 {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for PersonalityEnumSubtype1 {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
 #[doc = "`Program`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct Program {
@@ -14935,6 +16297,57 @@ pub struct PromptCacheOptionsParam {
     #[doc = "The minimum lifetime applied to every implicit and explicit cache breakpoint written by the request. Defaults to `30m`, which is currently the only supported value. The backend may retain cache entries for longer."]
     #[serde(skip_serializing_if = "::std::option::Option::is_none")]
     pub ttl: ::std::option::Option<PromptCacheTtlEnum>,
+}
+#[doc = "`PromptCacheRetentionEnum`"]
+#[derive(
+    :: serde :: Deserialize,
+    :: serde :: Serialize,
+    Clone,
+    Copy,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd,
+)]
+pub enum PromptCacheRetentionEnum {
+    #[serde(rename = "in_memory")]
+    InMemory,
+    #[serde(rename = "24h")]
+    X24h,
+}
+impl ::std::fmt::Display for PromptCacheRetentionEnum {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        match *self {
+            Self::InMemory => f.write_str("in_memory"),
+            Self::X24h => f.write_str("24h"),
+        }
+    }
+}
+impl ::std::str::FromStr for PromptCacheRetentionEnum {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        match value {
+            "in_memory" => Ok(Self::InMemory),
+            "24h" => Ok(Self::X24h),
+            _ => Err("invalid value".into()),
+        }
+    }
+}
+impl ::std::convert::TryFrom<&str> for PromptCacheRetentionEnum {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for PromptCacheRetentionEnum {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
 }
 #[doc = "`PromptCacheTtlEnum`"]
 #[derive(
@@ -16434,6 +17847,17 @@ impl ::std::convert::TryFrom<::std::string::String> for ResponseCompletedEventTy
         value.parse()
     }
 }
+#[doc = "A configuration update that applies to subsequent responses until it is\nreplaced by another configuration update.\n"]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
+pub struct ResponseConfigurationUpdate {
+    #[doc = "The unique ID of the configuration update item."]
+    pub id: ::std::string::String,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub reasoning: ::std::option::Option<ResponseConfigurationUpdateReasoning>,
+    #[doc = "The item type. Always `configuration_update`."]
+    #[serde(rename = "type")]
+    pub type_: ResponseConfigurationUpdateType,
+}
 #[doc = "An update to the conversation's response configuration. The configuration\nremains in effect for subsequent responses until it is replaced by another\nconfiguration update.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct ResponseConfigurationUpdateItemParam {
@@ -16492,6 +17916,60 @@ impl ::std::convert::TryFrom<&str> for ResponseConfigurationUpdateItemParamType 
     }
 }
 impl ::std::convert::TryFrom<::std::string::String> for ResponseConfigurationUpdateItemParamType {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+#[doc = "The reasoning configuration applied by this update."]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
+pub struct ResponseConfigurationUpdateReasoning {
+    #[doc = "The reasoning effort used for subsequent responses until another\nconfiguration update replaces it.\n"]
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub effort: ::std::option::Option<ReasoningEffort>,
+}
+#[doc = "The item type. Always `configuration_update`."]
+#[derive(
+    :: serde :: Deserialize,
+    :: serde :: Serialize,
+    Clone,
+    Copy,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd,
+)]
+pub enum ResponseConfigurationUpdateType {
+    #[serde(rename = "configuration_update")]
+    ConfigurationUpdate,
+}
+impl ::std::fmt::Display for ResponseConfigurationUpdateType {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        match *self {
+            Self::ConfigurationUpdate => f.write_str("configuration_update"),
+        }
+    }
+}
+impl ::std::str::FromStr for ResponseConfigurationUpdateType {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        match value {
+            "configuration_update" => Ok(Self::ConfigurationUpdate),
+            _ => Err("invalid value".into()),
+        }
+    }
+}
+impl ::std::convert::TryFrom<&str> for ResponseConfigurationUpdateType {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for ResponseConfigurationUpdateType {
     type Error = self::error::ConversionError;
     fn try_from(
         value: ::std::string::String,
@@ -18010,6 +19488,67 @@ pub enum ResponseInstructions {
 impl ::std::convert::From<::std::vec::Vec<InputItem>> for ResponseInstructions {
     fn from(value: ::std::vec::Vec<InputItem>) -> Self {
         Self::InputItemList(value)
+    }
+}
+#[doc = "A list of Response items."]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
+pub struct ResponseItemList {
+    #[doc = "A list of items used to generate this response."]
+    pub data: ::std::vec::Vec<ItemResource>,
+    #[doc = "The ID of the first item in the list."]
+    pub first_id: ::std::string::String,
+    #[doc = "Whether there are more items available."]
+    pub has_more: bool,
+    #[doc = "The ID of the last item in the list."]
+    pub last_id: ::std::string::String,
+    #[doc = "The type of object returned, must be `list`."]
+    pub object: ResponseItemListObject,
+}
+#[doc = "The type of object returned, must be `list`."]
+#[derive(
+    :: serde :: Deserialize,
+    :: serde :: Serialize,
+    Clone,
+    Copy,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd,
+)]
+pub enum ResponseItemListObject {
+    #[serde(rename = "list")]
+    List,
+}
+impl ::std::fmt::Display for ResponseItemListObject {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        match *self {
+            Self::List => f.write_str("list"),
+        }
+    }
+}
+impl ::std::str::FromStr for ResponseItemListObject {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        match value {
+            "list" => Ok(Self::List),
+            _ => Err("invalid value".into()),
+        }
+    }
+}
+impl ::std::convert::TryFrom<&str> for ResponseItemListObject {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for ResponseItemListObject {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
     }
 }
 #[doc = "A logprob is the logarithmic probability that the model assigns to producing \na particular token at a given position in the sequence. Less-negative (higher) \nlogprob values indicate greater model confidence in that token choice.\n"]
@@ -20924,14 +22463,48 @@ impl ::std::convert::TryFrom<::std::string::String> for ResponseWebSearchCallSea
 #[doc = "`ResponsesApiSchema`"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 pub struct ResponsesApiSchema {
+    #[serde(rename = "CompactResource")]
+    pub compact_resource: CompactResource,
+    #[serde(rename = "CompactResponseBody")]
+    pub compact_response_body: CompactResponseMethodPublicBody,
     #[serde(rename = "CreateResponse")]
     pub create_response: CreateResponse,
+    #[serde(rename = "DeleteResponse")]
+    pub delete_response: DeleteResponse,
     #[serde(rename = "ErrorResponse")]
     pub error_response: ErrorResponse,
+    #[serde(rename = "ListInputItemsParams")]
+    pub list_input_items_params: ListInputItemsParams,
     #[serde(rename = "Response")]
     pub response: Response,
+    #[serde(rename = "ResponseItemList")]
+    pub response_item_list: ResponseItemList,
     #[serde(rename = "ResponseStreamEvent")]
     pub response_stream_event: ResponseStreamEvent,
+    #[serde(rename = "RetrieveResponseParams")]
+    pub retrieve_response_params: RetrieveResponseParams,
+    #[serde(rename = "RetrieveResponseStreamParams")]
+    pub retrieve_response_stream_params: RetrieveResponseStreamParams,
+    #[serde(rename = "TokenCountsBody")]
+    pub token_counts_body: TokenCountsBody,
+    #[serde(rename = "TokenCountsResource")]
+    pub token_counts_resource: TokenCountsResource,
+}
+#[doc = "`RetrieveResponseParams`"]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
+pub struct RetrieveResponseParams {
+    #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+    pub include: ::std::vec::Vec<IncludeEnum>,
+}
+#[doc = "`RetrieveResponseStreamParams`"]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
+pub struct RetrieveResponseStreamParams {
+    #[serde(default, skip_serializing_if = "::std::vec::Vec::is_empty")]
+    pub include: ::std::vec::Vec<IncludeEnum>,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub include_obfuscation: ::std::option::Option<bool>,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub starting_after: ::std::option::Option<i64>,
 }
 #[doc = "A screenshot action."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
@@ -21150,6 +22723,69 @@ impl ::std::convert::TryFrom<&str> for SearchContextSize {
     }
 }
 impl ::std::convert::TryFrom<::std::string::String> for SearchContextSize {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+#[doc = "`ServiceTierEnum`"]
+#[derive(
+    :: serde :: Deserialize,
+    :: serde :: Serialize,
+    Clone,
+    Copy,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd,
+)]
+pub enum ServiceTierEnum {
+    #[serde(rename = "auto")]
+    Auto,
+    #[serde(rename = "default")]
+    Default,
+    #[serde(rename = "fast")]
+    Fast,
+    #[serde(rename = "flex")]
+    Flex,
+    #[serde(rename = "priority")]
+    Priority,
+}
+impl ::std::fmt::Display for ServiceTierEnum {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        match *self {
+            Self::Auto => f.write_str("auto"),
+            Self::Default => f.write_str("default"),
+            Self::Fast => f.write_str("fast"),
+            Self::Flex => f.write_str("flex"),
+            Self::Priority => f.write_str("priority"),
+        }
+    }
+}
+impl ::std::str::FromStr for ServiceTierEnum {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        match value {
+            "auto" => Ok(Self::Auto),
+            "default" => Ok(Self::Default),
+            "fast" => Ok(Self::Fast),
+            "flex" => Ok(Self::Flex),
+            "priority" => Ok(Self::Priority),
+            _ => Err("invalid value".into()),
+        }
+    }
+}
+impl ::std::convert::TryFrom<&str> for ServiceTierEnum {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for ServiceTierEnum {
     type Error = self::error::ConversionError;
     fn try_from(
         value: ::std::string::String,
@@ -21609,6 +23245,60 @@ impl ::std::convert::TryFrom<::std::string::String> for SummaryTextContentType {
         value.parse()
     }
 }
+#[doc = "A text content."]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
+pub struct TextContent {
+    pub text: ::std::string::String,
+    #[serde(rename = "type")]
+    pub type_: TextContentType,
+}
+#[doc = "`TextContentType`"]
+#[derive(
+    :: serde :: Deserialize,
+    :: serde :: Serialize,
+    Clone,
+    Copy,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd,
+)]
+pub enum TextContentType {
+    #[serde(rename = "text")]
+    Text,
+}
+impl ::std::fmt::Display for TextContentType {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        match *self {
+            Self::Text => f.write_str("text"),
+        }
+    }
+}
+impl ::std::str::FromStr for TextContentType {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        match value {
+            "text" => Ok(Self::Text),
+            _ => Err("invalid value".into()),
+        }
+    }
+}
+impl ::std::convert::TryFrom<&str> for TextContentType {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for TextContentType {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
 #[doc = "An object specifying the format that the model must output.\n\nConfiguring `{ \"type\": \"json_schema\" }` enables Structured Outputs,\nwhich ensures the model will match your supplied JSON schema. Learn more in the\n[Structured Outputs guide](https://developers.openai.com/api/docs/guides/structured-outputs).\n\nThe default format is `{ \"type\": \"text\" }` with no additional options.\n\n**Not recommended for gpt-4o and newer models:**\n\nSetting to `{ \"type\": \"json_object\" }` enables the older JSON mode, which\nensures the message the model generates is valid JSON. Using `json_schema`\nis preferred for models that support it.\n"]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
 #[serde(untagged)]
@@ -21687,6 +23377,156 @@ impl ::std::convert::TryFrom<&str> for TextResponseFormatJsonSchemaType {
     }
 }
 impl ::std::convert::TryFrom<::std::string::String> for TextResponseFormatJsonSchemaType {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+#[doc = "`TokenCountsBody`"]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, Default, PartialEq)]
+pub struct TokenCountsBody {
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub conversation: ::std::option::Option<ConversationParam>,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub input: ::std::option::Option<TokenCountsBodyInput>,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub instructions: ::std::option::Option<::std::string::String>,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub model: ::std::option::Option<::std::string::String>,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub parallel_tool_calls: ::std::option::Option<bool>,
+    #[doc = "A model-owned style preset to apply to this request. Omit this parameter to use the model's default style. Supported values may expand over time. Values must be at most 64 characters."]
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub personality: ::std::option::Option<PersonalityEnum>,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub previous_response_id: ::std::option::Option<::std::string::String>,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub reasoning: ::std::option::Option<Reasoning>,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub text: ::std::option::Option<ResponseTextParam>,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub tool_choice: ::std::option::Option<ToolChoiceParam>,
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub tools: ::std::option::Option<::std::vec::Vec<Tool>>,
+    #[doc = "The truncation strategy to use for the model response. - `auto`: If the input to this Response exceeds the model's context window size, the model will truncate the response to fit the context window by dropping items from the beginning of the conversation. - `disabled` (default): If the input size will exceed the context window size for a model, the request will fail with a 400 error."]
+    #[serde(skip_serializing_if = "::std::option::Option::is_none")]
+    pub truncation: ::std::option::Option<TruncationEnum>,
+}
+#[doc = "Text, image, or file inputs to the model, used to generate a response"]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
+#[serde(untagged)]
+pub enum TokenCountsBodyInput {
+    String(TokenCountsBodyInputString),
+    Array(::std::vec::Vec<InputItem>),
+}
+impl ::std::convert::From<TokenCountsBodyInputString> for TokenCountsBodyInput {
+    fn from(value: TokenCountsBodyInputString) -> Self {
+        Self::String(value)
+    }
+}
+impl ::std::convert::From<::std::vec::Vec<InputItem>> for TokenCountsBodyInput {
+    fn from(value: ::std::vec::Vec<InputItem>) -> Self {
+        Self::Array(value)
+    }
+}
+#[doc = "A text input to the model, equivalent to a text input with the `user` role."]
+#[derive(:: serde :: Serialize, Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[serde(transparent)]
+pub struct TokenCountsBodyInputString(::std::string::String);
+impl ::std::ops::Deref for TokenCountsBodyInputString {
+    type Target = ::std::string::String;
+    fn deref(&self) -> &::std::string::String {
+        &self.0
+    }
+}
+impl ::std::convert::From<TokenCountsBodyInputString> for ::std::string::String {
+    fn from(value: TokenCountsBodyInputString) -> Self {
+        value.0
+    }
+}
+impl ::std::str::FromStr for TokenCountsBodyInputString {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        if value.chars().count() > 10485760usize {
+            return Err("longer than 10485760 characters".into());
+        }
+        Ok(Self(value.to_string()))
+    }
+}
+impl ::std::convert::TryFrom<&str> for TokenCountsBodyInputString {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for TokenCountsBodyInputString {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl<'de> ::serde::Deserialize<'de> for TokenCountsBodyInputString {
+    fn deserialize<D>(deserializer: D) -> ::std::result::Result<Self, D::Error>
+    where
+        D: ::serde::Deserializer<'de>,
+    {
+        ::std::string::String::deserialize(deserializer)?
+            .parse()
+            .map_err(|e: self::error::ConversionError| {
+                <D::Error as ::serde::de::Error>::custom(e.to_string())
+            })
+    }
+}
+#[doc = "`TokenCountsResource`"]
+#[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]
+pub struct TokenCountsResource {
+    pub input_tokens: i64,
+    pub object: TokenCountsResourceObject,
+}
+#[doc = "`TokenCountsResourceObject`"]
+#[derive(
+    :: serde :: Deserialize,
+    :: serde :: Serialize,
+    Clone,
+    Copy,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd,
+)]
+pub enum TokenCountsResourceObject {
+    #[serde(rename = "response.input_tokens")]
+    ResponseInputTokens,
+}
+impl ::std::fmt::Display for TokenCountsResourceObject {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        match *self {
+            Self::ResponseInputTokens => f.write_str("response.input_tokens"),
+        }
+    }
+}
+impl ::std::str::FromStr for TokenCountsResourceObject {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        match value {
+            "response.input_tokens" => Ok(Self::ResponseInputTokens),
+            _ => Err("invalid value".into()),
+        }
+    }
+}
+impl ::std::convert::TryFrom<&str> for TokenCountsResourceObject {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for TokenCountsResourceObject {
     type Error = self::error::ConversionError;
     fn try_from(
         value: ::std::string::String,
@@ -23177,6 +25017,57 @@ pub struct TopLogProb {
     pub bytes: ::std::vec::Vec<i64>,
     pub logprob: f64,
     pub token: ::std::string::String,
+}
+#[doc = "`TruncationEnum`"]
+#[derive(
+    :: serde :: Deserialize,
+    :: serde :: Serialize,
+    Clone,
+    Copy,
+    Debug,
+    Eq,
+    Hash,
+    Ord,
+    PartialEq,
+    PartialOrd,
+)]
+pub enum TruncationEnum {
+    #[serde(rename = "auto")]
+    Auto,
+    #[serde(rename = "disabled")]
+    Disabled,
+}
+impl ::std::fmt::Display for TruncationEnum {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        match *self {
+            Self::Auto => f.write_str("auto"),
+            Self::Disabled => f.write_str("disabled"),
+        }
+    }
+}
+impl ::std::str::FromStr for TruncationEnum {
+    type Err = self::error::ConversionError;
+    fn from_str(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        match value {
+            "auto" => Ok(Self::Auto),
+            "disabled" => Ok(Self::Disabled),
+            _ => Err("invalid value".into()),
+        }
+    }
+}
+impl ::std::convert::TryFrom<&str> for TruncationEnum {
+    type Error = self::error::ConversionError;
+    fn try_from(value: &str) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
+}
+impl ::std::convert::TryFrom<::std::string::String> for TruncationEnum {
+    type Error = self::error::ConversionError;
+    fn try_from(
+        value: ::std::string::String,
+    ) -> ::std::result::Result<Self, self::error::ConversionError> {
+        value.parse()
+    }
 }
 #[doc = "An action to type in text."]
 #[derive(:: serde :: Deserialize, :: serde :: Serialize, Clone, Debug, PartialEq)]

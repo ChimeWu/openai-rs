@@ -3,12 +3,13 @@ use crate::ResponseStream;
 use crate::types;
 use reqwest::header::{ACCEPT, AUTHORIZATION, CONTENT_TYPE, HeaderMap, HeaderName, HeaderValue};
 use reqwest::{Method, Url};
+use serde::Serialize;
+use serde::de::DeserializeOwned;
 use serde_json::{Map, Value};
 use std::ops::Deref;
 use std::time::Duration;
 
 const DEFAULT_BASE_URL: &str = "https://api.openai.com/v1";
-const RESPONSES_PATH: &str = "responses";
 
 #[derive(Clone)]
 pub struct OpenAIClient {
@@ -22,117 +23,361 @@ impl OpenAIClient {
         ClientBuilder::default()
     }
 
-    /// Creates a non-streaming response and preserves its original JSON body.
-    pub async fn create(&self, request: &types::CreateResponse) -> Result<ResponseWithRaw, Error> {
-        self.create_with_extensions_and_headers(request, Map::new(), HeaderMap::new())
+    /// Returns the Responses API resource bound to this client.
+    pub fn responses(&self) -> ResponsesApi<'_> {
+        ResponsesApi { client: self }
+    }
+
+    async fn send(
+        &self,
+        method: Method,
+        endpoint: Url,
+        body: Option<Value>,
+        accept: &'static str,
+        headers: &HeaderMap,
+    ) -> Result<reqwest::Response, Error> {
+        validate_request_headers(headers)?;
+        let request = self
+            .http
+            .request(method, endpoint)
+            .headers(headers.clone())
+            .header(AUTHORIZATION, format!("Bearer {}", self.api_key))
+            .header(CONTENT_TYPE, "application/json")
+            .header(ACCEPT, accept);
+        let request = if let Some(body) = body {
+            request.json(&body)
+        } else {
+            request
+        };
+        Ok(request.send().await?)
+    }
+}
+
+/// Responses API methods for an [`OpenAIClient`].
+pub struct ResponsesApi<'a> {
+    client: &'a OpenAIClient,
+}
+
+impl ResponsesApi<'_> {
+    /// Creates a response and preserves its original JSON body and request ID.
+    pub async fn create(
+        &self,
+        request: &types::CreateResponse,
+    ) -> Result<ApiResponse<types::Response>, Error> {
+        self.create_with_options(request, CreateOptions::default())
             .await
     }
 
-    /// Creates a response with additional top-level request fields.
-    pub async fn create_with_extensions(
+    /// Creates a response with per-request headers and extra top-level fields.
+    pub async fn create_with_options(
         &self,
         request: &types::CreateResponse,
-        extensions: Map<String, Value>,
-    ) -> Result<ResponseWithRaw, Error> {
-        self.create_with_extensions_and_headers(request, extensions, HeaderMap::new())
-            .await
-    }
-
-    /// Creates a response with additional HTTP headers for this request.
-    pub async fn create_with_headers(
-        &self,
-        request: &types::CreateResponse,
-        headers: HeaderMap,
-    ) -> Result<ResponseWithRaw, Error> {
-        self.create_with_extensions_and_headers(request, Map::new(), headers)
-            .await
-    }
-
-    /// Creates a response with extra request fields and HTTP headers.
-    pub async fn create_with_extensions_and_headers(
-        &self,
-        request: &types::CreateResponse,
-        extensions: Map<String, Value>,
-        headers: HeaderMap,
-    ) -> Result<ResponseWithRaw, Error> {
+        options: CreateOptions,
+    ) -> Result<ApiResponse<types::Response>, Error> {
         let mut request = request.clone();
         request.stream = Some(false);
-        let body = request_body(&request, extensions)?;
+        let body = request_body(&request, options.extensions)?;
         let response = self
-            .send_json(Method::POST, body, ACCEPT_JSON, headers)
+            .client
+            .send(
+                Method::POST,
+                responses_url(&self.client.base_url)?,
+                Some(body),
+                ACCEPT_JSON,
+                &options.request.headers,
+            )
             .await?;
         decode_response(response).await
     }
 
-    /// Creates a streaming response. The returned stream ends after a semantic
-    /// Responses terminal event, or reports an error if the connection closes
-    /// first.
+    /// Creates a streaming response, ending at a semantic terminal event.
     pub async fn create_stream(
         &self,
         request: &types::CreateResponse,
     ) -> Result<ResponseStream, Error> {
-        self.create_stream_with_extensions_and_headers(request, Map::new(), HeaderMap::new())
+        self.create_stream_with_options(request, CreateOptions::default())
             .await
     }
 
-    /// Creates a streaming response with additional top-level request fields.
-    pub async fn create_stream_with_extensions(
+    /// Creates a streaming response with per-request headers and extra fields.
+    pub async fn create_stream_with_options(
         &self,
         request: &types::CreateResponse,
-        extensions: Map<String, Value>,
-    ) -> Result<ResponseStream, Error> {
-        self.create_stream_with_extensions_and_headers(request, extensions, HeaderMap::new())
-            .await
-    }
-
-    /// Creates a streaming response with additional HTTP headers for this request.
-    pub async fn create_stream_with_headers(
-        &self,
-        request: &types::CreateResponse,
-        headers: HeaderMap,
-    ) -> Result<ResponseStream, Error> {
-        self.create_stream_with_extensions_and_headers(request, Map::new(), headers)
-            .await
-    }
-
-    /// Creates a streaming response with extra request fields and HTTP headers.
-    pub async fn create_stream_with_extensions_and_headers(
-        &self,
-        request: &types::CreateResponse,
-        extensions: Map<String, Value>,
-        headers: HeaderMap,
+        options: CreateOptions,
     ) -> Result<ResponseStream, Error> {
         let mut request = request.clone();
         request.stream = Some(true);
-        let body = request_body(&request, extensions)?;
+        let body = request_body(&request, options.extensions)?;
+        self.send_stream(
+            Method::POST,
+            responses_url(&self.client.base_url)?,
+            Some(body),
+            &options.request.headers,
+        )
+        .await
+    }
+
+    /// Retrieves a stored response as JSON.
+    pub async fn retrieve(
+        &self,
+        response_id: &str,
+        params: &types::RetrieveResponseParams,
+    ) -> Result<ApiResponse<types::Response>, Error> {
+        self.retrieve_with_options(response_id, params, RequestOptions::default())
+            .await
+    }
+
+    /// Retrieves a stored response with per-request headers.
+    pub async fn retrieve_with_options(
+        &self,
+        response_id: &str,
+        params: &types::RetrieveResponseParams,
+        options: RequestOptions,
+    ) -> Result<ApiResponse<types::Response>, Error> {
+        let mut endpoint = response_url(&self.client.base_url, response_id, &[])?;
+        append_query(&mut endpoint, params)?;
         let response = self
-            .send_json(Method::POST, body, ACCEPT_EVENTS, headers)
+            .client
+            .send(Method::GET, endpoint, None, ACCEPT_JSON, &options.headers)
+            .await?;
+        decode_response(response).await
+    }
+
+    /// Resumes a response event stream, optionally after a sequence number.
+    pub async fn retrieve_stream(
+        &self,
+        response_id: &str,
+        params: &types::RetrieveResponseStreamParams,
+    ) -> Result<ResponseStream, Error> {
+        self.retrieve_stream_with_options(response_id, params, RequestOptions::default())
+            .await
+    }
+
+    /// Resumes a response event stream with per-request headers.
+    pub async fn retrieve_stream_with_options(
+        &self,
+        response_id: &str,
+        params: &types::RetrieveResponseStreamParams,
+        options: RequestOptions,
+    ) -> Result<ResponseStream, Error> {
+        let endpoint = response_stream_url(&self.client.base_url, response_id, params)?;
+        self.send_stream(Method::GET, endpoint, None, &options.headers)
+            .await
+    }
+
+    /// Deletes a stored response.
+    pub async fn delete(
+        &self,
+        response_id: &str,
+    ) -> Result<ApiResponse<types::DeleteResponse>, Error> {
+        self.delete_with_options(response_id, RequestOptions::default())
+            .await
+    }
+
+    /// Deletes a stored response with per-request headers.
+    pub async fn delete_with_options(
+        &self,
+        response_id: &str,
+        options: RequestOptions,
+    ) -> Result<ApiResponse<types::DeleteResponse>, Error> {
+        let response = self
+            .client
+            .send(
+                Method::DELETE,
+                response_url(&self.client.base_url, response_id, &[])?,
+                None,
+                ACCEPT_JSON,
+                &options.headers,
+            )
+            .await?;
+        decode_response(response).await
+    }
+
+    /// Cancels an in-progress response.
+    pub async fn cancel(&self, response_id: &str) -> Result<ApiResponse<types::Response>, Error> {
+        self.cancel_with_options(response_id, RequestOptions::default())
+            .await
+    }
+
+    /// Cancels an in-progress response with per-request headers.
+    pub async fn cancel_with_options(
+        &self,
+        response_id: &str,
+        options: RequestOptions,
+    ) -> Result<ApiResponse<types::Response>, Error> {
+        let response = self
+            .client
+            .send(
+                Method::POST,
+                response_url(&self.client.base_url, response_id, &["cancel"])?,
+                None,
+                ACCEPT_JSON,
+                &options.headers,
+            )
+            .await?;
+        decode_response(response).await
+    }
+
+    /// Lists one page of input items for a response.
+    pub async fn list_input_items(
+        &self,
+        response_id: &str,
+        params: &types::ListInputItemsParams,
+    ) -> Result<ApiResponse<types::ResponseItemList>, Error> {
+        self.list_input_items_with_options(response_id, params, RequestOptions::default())
+            .await
+    }
+
+    /// Lists one page of input items with per-request headers.
+    pub async fn list_input_items_with_options(
+        &self,
+        response_id: &str,
+        params: &types::ListInputItemsParams,
+        options: RequestOptions,
+    ) -> Result<ApiResponse<types::ResponseItemList>, Error> {
+        let mut endpoint = response_url(&self.client.base_url, response_id, &["input_items"])?;
+        append_query(&mut endpoint, params)?;
+        let response = self
+            .client
+            .send(Method::GET, endpoint, None, ACCEPT_JSON, &options.headers)
+            .await?;
+        decode_response(response).await
+    }
+
+    /// Counts the input tokens for a Responses request.
+    pub async fn count_input_tokens(
+        &self,
+        request: &types::TokenCountsBody,
+    ) -> Result<ApiResponse<types::TokenCountsResource>, Error> {
+        self.count_input_tokens_with_options(request, RequestOptions::default())
+            .await
+    }
+
+    /// Counts input tokens with per-request headers.
+    pub async fn count_input_tokens_with_options(
+        &self,
+        request: &types::TokenCountsBody,
+        options: RequestOptions,
+    ) -> Result<ApiResponse<types::TokenCountsResource>, Error> {
+        let response = self
+            .client
+            .send(
+                Method::POST,
+                responses_subresource_url(&self.client.base_url, "input_tokens")?,
+                Some(serde_json::to_value(request)?),
+                ACCEPT_JSON,
+                &options.headers,
+            )
+            .await?;
+        decode_response(response).await
+    }
+
+    /// Compacts a conversation into a reduced context representation.
+    pub async fn compact(
+        &self,
+        request: &types::CompactResponseMethodPublicBody,
+    ) -> Result<ApiResponse<types::CompactResource>, Error> {
+        self.compact_with_options(request, RequestOptions::default())
+            .await
+    }
+
+    /// Compacts a conversation with per-request headers.
+    pub async fn compact_with_options(
+        &self,
+        request: &types::CompactResponseMethodPublicBody,
+        options: RequestOptions,
+    ) -> Result<ApiResponse<types::CompactResource>, Error> {
+        let response = self
+            .client
+            .send(
+                Method::POST,
+                responses_subresource_url(&self.client.base_url, "compact")?,
+                Some(serde_json::to_value(request)?),
+                ACCEPT_JSON,
+                &options.headers,
+            )
+            .await?;
+        decode_response(response).await
+    }
+
+    async fn send_stream(
+        &self,
+        method: Method,
+        endpoint: Url,
+        body: Option<Value>,
+        headers: &HeaderMap,
+    ) -> Result<ResponseStream, Error> {
+        let response = self
+            .client
+            .send(method, endpoint, body, ACCEPT_EVENTS, headers)
             .await?;
         if !response.status().is_success() {
             return Err(read_http_error(response).await);
         }
         Ok(ResponseStream::new(response))
     }
+}
 
-    async fn send_json(
-        &self,
-        method: Method,
-        body: Value,
-        accept: &'static str,
-        headers: HeaderMap,
-    ) -> Result<reqwest::Response, Error> {
-        validate_request_headers(&headers)?;
-        let endpoint = responses_url(&self.base_url)?;
-        Ok(self
-            .http
-            .request(method, endpoint)
-            .headers(headers)
-            .header(AUTHORIZATION, format!("Bearer {}", self.api_key))
-            .header(CONTENT_TYPE, "application/json")
-            .header(ACCEPT, accept)
-            .json(&body)
-            .send()
-            .await?)
+/// Per-call HTTP headers. Protocol headers managed by the SDK are rejected.
+#[derive(Clone, Debug, Default)]
+pub struct RequestOptions {
+    pub headers: HeaderMap,
+}
+
+impl RequestOptions {
+    pub fn header(mut self, name: HeaderName, value: HeaderValue) -> Self {
+        self.headers.insert(name, value);
+        self
+    }
+
+    pub fn headers(mut self, headers: HeaderMap) -> Self {
+        self.headers = headers;
+        self
+    }
+}
+
+/// Per-call options for response creation.
+#[derive(Clone, Debug, Default)]
+pub struct CreateOptions {
+    pub request: RequestOptions,
+    pub extensions: Map<String, Value>,
+}
+
+impl CreateOptions {
+    pub fn extension(mut self, name: impl Into<String>, value: Value) -> Self {
+        self.extensions.insert(name.into(), value);
+        self
+    }
+
+    pub fn request(mut self, request: RequestOptions) -> Self {
+        self.request = request;
+        self
+    }
+}
+
+/// A typed API response paired with its original JSON and request ID.
+#[derive(Clone, Debug, PartialEq)]
+pub struct ApiResponse<T> {
+    pub data: T,
+    raw: Value,
+    request_id: Option<String>,
+}
+
+impl<T> ApiResponse<T> {
+    pub fn raw(&self) -> &Value {
+        &self.raw
+    }
+
+    pub fn request_id(&self) -> Option<&str> {
+        self.request_id.as_deref()
+    }
+}
+
+impl<T> Deref for ApiResponse<T> {
+    type Target = T;
+
+    fn deref(&self) -> &Self::Target {
+        &self.data
     }
 }
 
@@ -221,32 +466,6 @@ impl ClientBuilder {
     }
 }
 
-/// A typed Responses object paired with the unmodified JSON body and request ID.
-#[derive(Clone, Debug, PartialEq)]
-pub struct ResponseWithRaw {
-    pub response: types::Response,
-    raw: Value,
-    request_id: Option<String>,
-}
-
-impl ResponseWithRaw {
-    pub fn raw(&self) -> &Value {
-        &self.raw
-    }
-
-    pub fn request_id(&self) -> Option<&str> {
-        self.request_id.as_deref()
-    }
-}
-
-impl Deref for ResponseWithRaw {
-    type Target = types::Response;
-
-    fn deref(&self) -> &Self::Target {
-        &self.response
-    }
-}
-
 fn request_body(
     request: &types::CreateResponse,
     extensions: Map<String, Value>,
@@ -265,26 +484,91 @@ fn request_body(
 }
 
 fn responses_url(base_url: &Url) -> Result<Url, Error> {
-    let mut endpoint = base_url.clone();
-    let path = format!(
-        "{}/{}",
-        endpoint.path().trim_end_matches('/'),
-        RESPONSES_PATH
-    );
-    endpoint.set_path(&path);
+    append_path_segments(base_url, &["responses"])
+}
+
+fn responses_subresource_url(base_url: &Url, resource: &str) -> Result<Url, Error> {
+    append_path_segments(base_url, &["responses", resource])
+}
+
+fn response_url(base_url: &Url, response_id: &str, suffix: &[&str]) -> Result<Url, Error> {
+    let mut segments = vec!["responses", response_id];
+    segments.extend_from_slice(suffix);
+    append_path_segments(base_url, &segments)
+}
+
+fn response_stream_url(
+    base_url: &Url,
+    response_id: &str,
+    params: &types::RetrieveResponseStreamParams,
+) -> Result<Url, Error> {
+    let mut endpoint = response_url(base_url, response_id, &[])?;
+    append_query(&mut endpoint, params)?;
+    endpoint.query_pairs_mut().append_pair("stream", "true");
     Ok(endpoint)
 }
 
-async fn decode_response(response: reqwest::Response) -> Result<ResponseWithRaw, Error> {
+fn append_path_segments(base_url: &Url, segments: &[&str]) -> Result<Url, Error> {
+    let mut endpoint = base_url.clone();
+    let mut path = endpoint
+        .path_segments_mut()
+        .map_err(|_| Error::InvalidBaseUrl(base_url.to_string()))?;
+    path.pop_if_empty();
+    path.extend(segments.iter().copied());
+    drop(path);
+    Ok(endpoint)
+}
+
+fn append_query<T: Serialize>(endpoint: &mut Url, params: &T) -> Result<(), Error> {
+    let params = serde_json::to_value(params)?;
+    let Some(params) = params.as_object() else {
+        return Ok(());
+    };
+    let mut query = endpoint.query_pairs_mut();
+    for (key, value) in params {
+        match value {
+            Value::Null => {}
+            Value::Array(values) => {
+                for value in values {
+                    append_query_value(&mut query, key, value)?;
+                }
+            }
+            value => append_query_value(&mut query, key, value)?,
+        }
+    }
+    Ok(())
+}
+
+fn append_query_value(
+    query: &mut url::form_urlencoded::Serializer<'_, url::UrlQuery>,
+    key: &str,
+    value: &Value,
+) -> Result<(), Error> {
+    let value = match value {
+        Value::String(value) => value.clone(),
+        Value::Number(value) => value.to_string(),
+        Value::Bool(value) => value.to_string(),
+        Value::Null => return Ok(()),
+        _ => {
+            return Err(Error::InvalidQueryParameter(key.to_string()));
+        }
+    };
+    query.append_pair(key, &value);
+    Ok(())
+}
+
+async fn decode_response<T: DeserializeOwned>(
+    response: reqwest::Response,
+) -> Result<ApiResponse<T>, Error> {
     if !response.status().is_success() {
         return Err(read_http_error(response).await);
     }
     let request_id = request_id(response.headers());
     let bytes = response.bytes().await?;
     let raw: Value = serde_json::from_slice(&bytes)?;
-    let response = serde_json::from_value(raw.clone())?;
-    Ok(ResponseWithRaw {
-        response,
+    let data = serde_json::from_value(raw.clone())?;
+    Ok(ApiResponse {
+        data,
         raw,
         request_id,
     })
@@ -314,7 +598,10 @@ fn request_id(headers: &HeaderMap) -> Option<String> {
 
 #[cfg(test)]
 mod tests {
-    use super::{ClientBuilder, request_body, responses_url, validate_request_headers};
+    use super::{
+        ClientBuilder, CreateOptions, RequestOptions, append_path_segments, append_query,
+        request_body, response_stream_url, validate_request_headers,
+    };
     use crate::Error;
     use crate::types;
     use reqwest::header::{ACCEPT, AUTHORIZATION, CONTENT_TYPE, HeaderMap, HeaderValue};
@@ -354,17 +641,119 @@ mod tests {
     }
 
     #[test]
-    fn appends_responses_path_to_openai_and_compatible_api_roots() {
+    fn builds_endpoint_paths_without_losing_base_url_prefix() {
         let openai = Url::parse("https://api.openai.com/v1").unwrap();
         let deepseek = Url::parse("https://api.deepseek.com").unwrap();
         assert_eq!(
-            responses_url(&openai).unwrap().as_str(),
+            append_path_segments(&openai, &["responses"])
+                .unwrap()
+                .as_str(),
             "https://api.openai.com/v1/responses"
         );
         assert_eq!(
-            responses_url(&deepseek).unwrap().as_str(),
-            "https://api.deepseek.com/responses"
+            append_path_segments(&deepseek, &["responses", "resp_1", "input_items"])
+                .unwrap()
+                .as_str(),
+            "https://api.deepseek.com/responses/resp_1/input_items"
         );
+    }
+
+    #[test]
+    fn encodes_typed_query_values_using_openapi_form_style() {
+        let params = types::ListInputItemsParams {
+            after: Some("item 2".to_string()),
+            include: vec![
+                types::IncludeEnum::MessageInputImageImageUrl,
+                types::IncludeEnum::ReasoningEncryptedContent,
+            ],
+            limit: Some(12),
+            order: Some(types::ListInputItemsParamsOrder::Asc),
+        };
+        let mut endpoint =
+            Url::parse("https://api.openai.com/v1/responses/resp_1/input_items").unwrap();
+        append_query(&mut endpoint, &params).unwrap();
+        let pairs = endpoint.query_pairs().collect::<Vec<_>>();
+        assert!(pairs.contains(&("after".into(), "item 2".into())));
+        assert!(pairs.contains(&("limit".into(), "12".into())));
+        assert!(pairs.contains(&("order".into(), "asc".into())));
+        let include_values = pairs
+            .iter()
+            .filter(|(key, _)| key == "include")
+            .map(|(_, value)| value.as_ref())
+            .collect::<Vec<_>>();
+        assert_eq!(
+            include_values,
+            [
+                "message.input_image.image_url",
+                "reasoning.encrypted_content"
+            ]
+        );
+    }
+
+    #[test]
+    fn resumes_response_stream_after_sequence_number() {
+        let params = types::RetrieveResponseStreamParams {
+            include: vec![],
+            include_obfuscation: Some(false),
+            starting_after: Some(7),
+        };
+        let endpoint = response_stream_url(
+            &Url::parse("https://api.openai.com/v1").unwrap(),
+            "resp_1",
+            &params,
+        )
+        .unwrap();
+        let pairs = endpoint.query_pairs().collect::<Vec<_>>();
+        assert!(pairs.contains(&("starting_after".into(), "7".into())));
+        assert!(pairs.contains(&("include_obfuscation".into(), "false".into())));
+        assert!(pairs.contains(&("stream".into(), "true".into())));
+    }
+
+    #[test]
+    fn encodes_response_ids_as_single_path_segments() {
+        let endpoint = append_path_segments(
+            &Url::parse("https://api.openai.com/v1").unwrap(),
+            &["responses", "id/with?reserved"],
+        )
+        .unwrap();
+        assert_eq!(endpoint.path(), "/v1/responses/id%2Fwith%3Freserved");
+    }
+
+    #[test]
+    fn rejects_non_scalar_query_values() {
+        let mut endpoint = Url::parse("https://api.openai.com/v1/responses").unwrap();
+        assert!(matches!(
+            append_query(&mut endpoint, &json!({"invalid": {"nested": true}})),
+            Err(Error::InvalidQueryParameter(name)) if name == "invalid"
+        ));
+    }
+
+    #[test]
+    fn generated_new_endpoint_types_deserialize() {
+        let delete: types::DeleteResponse = serde_json::from_value(json!({
+            "id": "resp_1",
+            "object": "response.deleted",
+            "deleted": true
+        }))
+        .unwrap();
+        assert!(delete.deleted);
+
+        let counts: types::TokenCountsResource = serde_json::from_value(json!({
+            "object": "response.input_tokens",
+            "input_tokens": 12
+        }))
+        .unwrap();
+        assert_eq!(counts.input_tokens, 12);
+
+        let list: types::ResponseItemList = serde_json::from_value(json!({
+            "object": "list",
+            "data": [],
+            "first_id": "item_1",
+            "last_id": "item_1",
+            "has_more": true
+        }))
+        .unwrap();
+        assert!(list.has_more);
     }
 
     #[test]
@@ -384,9 +773,11 @@ mod tests {
 
     #[test]
     fn allows_extra_request_headers_but_reserves_protocol_headers() {
-        let mut headers = HeaderMap::new();
-        headers.insert("x-tenant", HeaderValue::from_static("demo"));
-        assert!(validate_request_headers(&headers).is_ok());
+        let headers = RequestOptions::default().header(
+            "x-tenant".parse().unwrap(),
+            HeaderValue::from_static("demo"),
+        );
+        assert!(validate_request_headers(&headers.headers).is_ok());
 
         for name in [AUTHORIZATION, CONTENT_TYPE, ACCEPT] {
             let mut headers = HeaderMap::new();
@@ -402,5 +793,8 @@ mod tests {
             .default_header(ACCEPT, HeaderValue::from_static("text/plain"))
             .build();
         assert!(matches!(error, Err(Error::ReservedHeader(header)) if header == "accept"));
+
+        let create = CreateOptions::default().extension("cache_control", json!("ephemeral"));
+        assert_eq!(create.extensions["cache_control"], "ephemeral");
     }
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Extract the Responses create operation's schemas from OpenAI OpenAPI JSON."""
+"""Extract the supported Responses HTTP operations from OpenAI OpenAPI JSON."""
 
 from __future__ import annotations
 
@@ -78,22 +78,84 @@ def normalize_nullable_aliases(selected: dict[str, Any]) -> None:
         selected[name] = wrapper
 
 
-def extract(spec: dict[str, Any]) -> dict[str, Any]:
-    operation = spec["paths"]["/responses"]["post"]
-    roots: dict[str, Any] = {}
-    request_content = operation["requestBody"]["content"]
-    roots["CreateResponse"] = request_content["application/json"]["schema"]
-
-    success = operation["responses"]["200"]["content"]
-    roots["Response"] = success["application/json"]["schema"]
-    roots["ResponseStreamEvent"] = success["text/event-stream"]["schema"]
-
-    for status, response in operation["responses"].items():
-        if status.startswith("2"):
+def query_schema(
+    operation: dict[str, Any], name: str, *, include: set[str] | None = None
+) -> dict[str, Any]:
+    properties: dict[str, Any] = {}
+    for parameter in operation.get("parameters", []):
+        if parameter.get("in") != "query":
             continue
-        collect_refs(response, refs := set())
-        for name in refs:
-            roots.setdefault(name, {"$ref": f"#/components/schemas/{name}"})
+        parameter_name = parameter["name"]
+        if include is not None and parameter_name not in include:
+            continue
+        properties[parameter_name] = parameter["schema"]
+    return {"title": name, "type": "object", "properties": properties}
+
+
+def extract(spec: dict[str, Any]) -> dict[str, Any]:
+    paths = spec["paths"]
+    operations = {
+        "create": paths["/responses"]["post"],
+        "retrieve": paths["/responses/{response_id}"]["get"],
+        "delete": paths["/responses/{response_id}"]["delete"],
+        "cancel": paths["/responses/{response_id}/cancel"]["post"],
+        "list_input_items": paths["/responses/{response_id}/input_items"]["get"],
+        "count_input_tokens": paths["/responses/input_tokens"]["post"],
+        "compact": paths["/responses/compact"]["post"],
+    }
+
+    roots: dict[str, Any] = {}
+    roots["CreateResponse"] = operations["create"]["requestBody"]["content"][
+        "application/json"
+    ]["schema"]
+    roots["Response"] = operations["create"]["responses"]["200"]["content"][
+        "application/json"
+    ]["schema"]
+    roots["ResponseStreamEvent"] = operations["create"]["responses"]["200"][
+        "content"
+    ]["text/event-stream"]["schema"]
+
+    roots["DeleteResponse"] = copy.deepcopy(
+        operations["delete"]["responses"]["200"]["content"]["application/json"][
+            "schema"
+        ]
+    )
+    roots["DeleteResponse"]["title"] = "DeleteResponse"
+    roots["ResponseItemList"] = operations["list_input_items"]["responses"]["200"][
+        "content"
+    ]["application/json"]["schema"]
+    roots["TokenCountsBody"] = operations["count_input_tokens"]["requestBody"][
+        "content"
+    ]["application/json"]["schema"]
+    roots["TokenCountsResource"] = operations["count_input_tokens"]["responses"][
+        "200"
+    ]["content"]["application/json"]["schema"]
+    roots["CompactResponseBody"] = operations["compact"]["requestBody"]["content"][
+        "application/json"
+    ]["schema"]
+    roots["CompactResource"] = operations["compact"]["responses"]["200"]["content"][
+        "application/json"
+    ]["schema"]
+
+    roots["RetrieveResponseParams"] = query_schema(
+        operations["retrieve"], "RetrieveResponseParams", include={"include"}
+    )
+    roots["RetrieveResponseStreamParams"] = query_schema(
+        operations["retrieve"],
+        "RetrieveResponseStreamParams",
+        include={"include", "starting_after", "include_obfuscation"},
+    )
+    roots["ListInputItemsParams"] = query_schema(
+        operations["list_input_items"], "ListInputItemsParams"
+    )
+
+    for operation in operations.values():
+        for status, response in operation["responses"].items():
+            if status.startswith("2"):
+                continue
+            collect_refs(response, refs := set())
+            for name in refs:
+                roots.setdefault(name, {"$ref": f"#/components/schemas/{name}"})
 
     refs: set[str] = set()
     collect_refs(roots, refs)

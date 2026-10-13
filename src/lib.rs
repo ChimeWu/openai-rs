@@ -10,7 +10,9 @@ pub mod types {
     pub use crate::generated::responses::*;
 }
 
-pub use client::{ClientBuilder, OpenAIClient, ResponseWithRaw};
+pub use client::{
+    ApiResponse, ClientBuilder, CreateOptions, OpenAIClient, RequestOptions, ResponsesApi,
+};
 pub use error::Error;
 pub use event::ResponseStreamEvent;
 pub use reqwest::header::{HeaderMap, HeaderName, HeaderValue};

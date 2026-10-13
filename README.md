@@ -12,7 +12,7 @@ tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 ```
 
 ```rust,no_run
-use openai_rs::{HeaderMap, HeaderValue, OpenAIClient, types};
+use openai_rs::{CreateOptions, OpenAIClient, RequestOptions, types};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -23,9 +23,14 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         "input": "用一句话介绍 Rust。"
     }))?;
 
-    let mut headers = HeaderMap::new();
-    headers.insert("x-client-tag", HeaderValue::from_static("example"));
-    let response = client.create_with_headers(&request, headers).await?;
+    let options = CreateOptions::default().request(RequestOptions::default().header(
+        "x-client-tag".parse()?,
+        "example".parse()?,
+    ));
+    let response = client
+        .responses()
+        .create_with_options(&request, options)
+        .await?;
     println!("{}", response.output_text.as_deref().unwrap_or(""));
     Ok(())
 }
@@ -41,7 +46,7 @@ use openai_rs::{OpenAIClient, types};
 async fn stream(client: &OpenAIClient, request: &types::CreateResponse)
     -> Result<(), Box<dyn std::error::Error>>
 {
-    let mut events = client.create_stream(request).await?;
+    let mut events = client.responses().create_stream(request).await?;
     while let Some(event) = events.next_event().await {
         let event = event?;
         if event.event_type() == "response.output_text.delta" {
@@ -54,7 +59,43 @@ async fn stream(client: &OpenAIClient, request: &types::CreateResponse)
 }
 ```
 
-可用 `create_with_extensions` 或 `create_stream_with_extensions` 传递官方 schema 尚未覆盖的请求顶层字段；`create_with_headers` 和 `create_stream_with_headers` 支持单次请求附加 HTTP headers。`create_with_extensions_and_headers` 及流式对应方法可同时传入两类扩展。`Authorization`、`Content-Type` 和 `Accept` 由 SDK 管理，不能通过请求级 headers 覆盖。
+Responses 操作通过 `client.responses()` 访问。创建请求可使用 `CreateOptions` 附加单次请求 headers 和 schema 尚未覆盖的顶层字段；其他端点可使用 `RequestOptions` 附加 headers。`Authorization`、`Content-Type` 和 `Accept` 由 SDK 管理，不能覆盖。
+
+SDK 支持创建与流式创建、响应 JSON 检索与 SSE 恢复、删除、取消、输入项分页、token 计数和上下文 compact。列表端点返回单页结果；使用返回的 `last_id` 作为 `ListInputItemsParams.after` 可继续获取下一页。JSON 响应以 `ApiResponse<T>` 返回，`data` 保存生成的强类型结果，`raw()` 和 `request_id()` 分别提供原始 JSON 与请求 ID。
+
+例如，检索已保存的 response 并继续读取下一页输入项：
+
+```rust,no_run
+use openai_rs::{OpenAIClient, types};
+
+async fn inspect(client: &OpenAIClient, response_id: &str) -> Result<(), openai_rs::Error> {
+    let response = client
+        .responses()
+        .retrieve(response_id, &types::RetrieveResponseParams::default())
+        .await?;
+    println!("response status: {:?}", response.status);
+
+    let page = client
+        .responses()
+        .list_input_items(response_id, &types::ListInputItemsParams::default())
+        .await?;
+    if page.has_more {
+        let next_page = types::ListInputItemsParams {
+            after: Some(page.last_id.clone()),
+            ..Default::default()
+        };
+        let _ = client
+            .responses()
+            .list_input_items(response_id, &next_page)
+            .await?;
+    }
+    Ok(())
+}
+```
+
+`count_input_tokens` 与 `compact` 分别接收生成的 `types::TokenCountsBody` 和 `types::CompactResponseMethodPublicBody`。`retrieve_stream` 接收 `types::RetrieveResponseStreamParams`，可设置 `starting_after` 从指定事件序号继续读取。
+
+0.2.0 将 0.1.0 的 `client.create(...)` 和 `client.create_stream(...)` 改为 `client.responses().create(...)` 和 `client.responses().create_stream(...)`。单次请求自定义项统一通过 `CreateOptions` 和 `RequestOptions` 传递。
 
 ## 验证
 
