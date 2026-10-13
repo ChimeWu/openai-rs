@@ -2,5 +2,28 @@
 name = "openai-rs"
 version = "0.1.0"
 edition = "2024"
+license = "MIT"
+description = "An independent Rust SDK for the OpenAI Responses API"
+readme = "README.md"
+
+[lib]
+name = "openai_rs"
+path = "src/lib.rs"
+doctest = false
+
+[features]
+live-api = []
 
 [dependencies]
+async-stream = "0.3"
+bytes = "1"
+eventsource-stream = "0.2"
+futures-core = "0.3"
+futures-util = "0.3"
+regress = "0.12"
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls", "stream"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+tokio = { version = "1", features = ["macros", "rt", "rt-multi-thread"] }
+url = "2"
