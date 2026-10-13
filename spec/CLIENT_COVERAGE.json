@@ -1,0 +1,671 @@
+{
+  "openapi_commit": "77618e641a840768f1e58197ca53ddedffea6df9",
+  "operations": [
+    {
+      "operation_id": "accept-live-session",
+      "client_method": "live.accept_session",
+      "method": "POST",
+      "path": "/live/sessions/{session_id}/accept"
+    },
+    {
+      "operation_id": "accept-realtime-call",
+      "client_method": "realtime.accept_call",
+      "method": "POST",
+      "path": "/realtime/calls/{call_id}/accept"
+    },
+    {
+      "operation_id": "addUploadPart",
+      "client_method": "uploads.add_part",
+      "method": "POST",
+      "path": "/uploads/{upload_id}/parts"
+    },
+    {
+      "operation_id": "cancelBatch",
+      "client_method": "batches.cancel",
+      "method": "POST",
+      "path": "/batches/{batch_id}/cancel"
+    },
+    {
+      "operation_id": "cancelFineTuningJob",
+      "client_method": "fine_tuning.cancel_job",
+      "method": "POST",
+      "path": "/fine_tuning/jobs/{fine_tuning_job_id}/cancel"
+    },
+    {
+      "operation_id": "cancelResponse",
+      "client_method": "responses.cancel",
+      "method": "POST",
+      "path": "/responses/{response_id}/cancel"
+    },
+    {
+      "operation_id": "cancelUpload",
+      "client_method": "uploads.cancel",
+      "method": "POST",
+      "path": "/uploads/{upload_id}/cancel"
+    },
+    {
+      "operation_id": "cancelVectorStoreFileBatch",
+      "client_method": "vector_stores.cancel_file_batch",
+      "method": "POST",
+      "path": "/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel"
+    },
+    {
+      "operation_id": "Compactconversation",
+      "client_method": "responses.compact",
+      "method": "POST",
+      "path": "/responses/compact"
+    },
+    {
+      "operation_id": "completeUpload",
+      "client_method": "uploads.complete",
+      "method": "POST",
+      "path": "/uploads/{upload_id}/complete"
+    },
+    {
+      "operation_id": "create-live",
+      "client_method": "live.create_session",
+      "method": "POST",
+      "path": "/live/sessions"
+    },
+    {
+      "operation_id": "create-realtime-call",
+      "client_method": "realtime.create_call",
+      "method": "POST",
+      "path": "/realtime/calls"
+    },
+    {
+      "operation_id": "create-realtime-client-secret",
+      "client_method": "realtime.create_client_secret",
+      "method": "POST",
+      "path": "/realtime/client_secrets"
+    },
+    {
+      "operation_id": "create-realtime-session",
+      "client_method": "realtime.create_session",
+      "method": "POST",
+      "path": "/realtime/sessions"
+    },
+    {
+      "operation_id": "create-realtime-transcription-session",
+      "client_method": "realtime.create_transcription_session",
+      "method": "POST",
+      "path": "/realtime/transcription_sessions"
+    },
+    {
+      "operation_id": "create-realtime-translation-client-secret",
+      "client_method": "realtime.create_translation_client_secret",
+      "method": "POST",
+      "path": "/realtime/translations/client_secrets"
+    },
+    {
+      "operation_id": "createBatch",
+      "client_method": "batches.create",
+      "method": "POST",
+      "path": "/batches"
+    },
+    {
+      "operation_id": "createChatCompletion",
+      "client_method": "chat_completions.create",
+      "method": "POST",
+      "path": "/chat/completions"
+    },
+    {
+      "operation_id": "CreateContainer",
+      "client_method": "containers.create",
+      "method": "POST",
+      "path": "/containers"
+    },
+    {
+      "operation_id": "CreateContainerFile",
+      "client_method": "containers.create_file",
+      "method": "POST",
+      "path": "/containers/{container_id}/files"
+    },
+    {
+      "operation_id": "Createcontentprovenancecheck",
+      "client_method": "content_provenance.check",
+      "method": "POST",
+      "path": "/content_provenance_checks"
+    },
+    {
+      "operation_id": "createConversation",
+      "client_method": "conversations.create",
+      "method": "POST",
+      "path": "/conversations"
+    },
+    {
+      "operation_id": "createConversationItems",
+      "client_method": "conversations.create_items",
+      "method": "POST",
+      "path": "/conversations/{conversation_id}/items"
+    },
+    {
+      "operation_id": "createEmbedding",
+      "client_method": "embeddings.create",
+      "method": "POST",
+      "path": "/embeddings"
+    },
+    {
+      "operation_id": "createFile",
+      "client_method": "files.create",
+      "method": "POST",
+      "path": "/files"
+    },
+    {
+      "operation_id": "createFineTuningCheckpointPermission",
+      "client_method": "fine_tuning.create_checkpoint_permissions",
+      "method": "POST",
+      "path": "/fine_tuning/checkpoints/{fine_tuned_model_checkpoint}/permissions"
+    },
+    {
+      "operation_id": "createFineTuningJob",
+      "client_method": "fine_tuning.create_job",
+      "method": "POST",
+      "path": "/fine_tuning/jobs"
+    },
+    {
+      "operation_id": "createImage",
+      "client_method": "images.generate",
+      "method": "POST",
+      "path": "/images/generations"
+    },
+    {
+      "operation_id": "createImageEdit",
+      "client_method": "images.edit",
+      "method": "POST",
+      "path": "/images/edits"
+    },
+    {
+      "operation_id": "createModeration",
+      "client_method": "moderations.create",
+      "method": "POST",
+      "path": "/moderations"
+    },
+    {
+      "operation_id": "createResponse",
+      "client_method": "responses.create",
+      "method": "POST",
+      "path": "/responses"
+    },
+    {
+      "operation_id": "createSpeech",
+      "client_method": "audio.create_speech",
+      "method": "POST",
+      "path": "/audio/speech"
+    },
+    {
+      "operation_id": "createTranscription",
+      "client_method": "audio.transcribe",
+      "method": "POST",
+      "path": "/audio/transcriptions"
+    },
+    {
+      "operation_id": "createTranslation",
+      "client_method": "audio.translate",
+      "method": "POST",
+      "path": "/audio/translations"
+    },
+    {
+      "operation_id": "createUpload",
+      "client_method": "uploads.create",
+      "method": "POST",
+      "path": "/uploads"
+    },
+    {
+      "operation_id": "createVectorStore",
+      "client_method": "vector_stores.create",
+      "method": "POST",
+      "path": "/vector_stores"
+    },
+    {
+      "operation_id": "createVectorStoreFile",
+      "client_method": "vector_stores.create_file",
+      "method": "POST",
+      "path": "/vector_stores/{vector_store_id}/files"
+    },
+    {
+      "operation_id": "createVectorStoreFileBatch",
+      "client_method": "vector_stores.create_file_batch",
+      "method": "POST",
+      "path": "/vector_stores/{vector_store_id}/file_batches"
+    },
+    {
+      "operation_id": "createVoice",
+      "client_method": "audio.create_voice",
+      "method": "POST",
+      "path": "/audio/voices"
+    },
+    {
+      "operation_id": "createVoiceConsent",
+      "client_method": "audio.create_voice_consent",
+      "method": "POST",
+      "path": "/audio/voice_consents"
+    },
+    {
+      "operation_id": "CreateWebhookEndpoint",
+      "client_method": "webhooks.create",
+      "method": "POST",
+      "path": "/webhook_endpoints"
+    },
+    {
+      "operation_id": "deleteChatCompletion",
+      "client_method": "chat_completions.delete",
+      "method": "DELETE",
+      "path": "/chat/completions/{completion_id}"
+    },
+    {
+      "operation_id": "DeleteContainer",
+      "client_method": "containers.delete",
+      "method": "DELETE",
+      "path": "/containers/{container_id}"
+    },
+    {
+      "operation_id": "DeleteContainerFile",
+      "client_method": "containers.delete_file",
+      "method": "DELETE",
+      "path": "/containers/{container_id}/files/{file_id}"
+    },
+    {
+      "operation_id": "deleteConversation",
+      "client_method": "conversations.delete",
+      "method": "DELETE",
+      "path": "/conversations/{conversation_id}"
+    },
+    {
+      "operation_id": "deleteConversationItem",
+      "client_method": "conversations.delete_item",
+      "method": "DELETE",
+      "path": "/conversations/{conversation_id}/items/{item_id}"
+    },
+    {
+      "operation_id": "deleteFile",
+      "client_method": "files.delete",
+      "method": "DELETE",
+      "path": "/files/{file_id}"
+    },
+    {
+      "operation_id": "deleteFineTuningCheckpointPermission",
+      "client_method": "fine_tuning.delete_checkpoint_permission",
+      "method": "DELETE",
+      "path": "/fine_tuning/checkpoints/{fine_tuned_model_checkpoint}/permissions/{permission_id}"
+    },
+    {
+      "operation_id": "deleteModel",
+      "client_method": "models.delete",
+      "method": "DELETE",
+      "path": "/models/{model}"
+    },
+    {
+      "operation_id": "deleteResponse",
+      "client_method": "responses.delete",
+      "method": "DELETE",
+      "path": "/responses/{response_id}"
+    },
+    {
+      "operation_id": "deleteVectorStore",
+      "client_method": "vector_stores.delete",
+      "method": "DELETE",
+      "path": "/vector_stores/{vector_store_id}"
+    },
+    {
+      "operation_id": "deleteVectorStoreFile",
+      "client_method": "vector_stores.delete_file",
+      "method": "DELETE",
+      "path": "/vector_stores/{vector_store_id}/files/{file_id}"
+    },
+    {
+      "operation_id": "deleteVoiceConsent",
+      "client_method": "audio.delete_voice_consent",
+      "method": "DELETE",
+      "path": "/audio/voice_consents/{consent_id}"
+    },
+    {
+      "operation_id": "DeleteWebhookEndpoint",
+      "client_method": "webhooks.delete",
+      "method": "DELETE",
+      "path": "/webhook_endpoints/{webhook_endpoint_id}"
+    },
+    {
+      "operation_id": "download-live-recording",
+      "client_method": "live.download_recording",
+      "method": "GET",
+      "path": "/live/sessions/{session_id}/content"
+    },
+    {
+      "operation_id": "downloadFile",
+      "client_method": "files.download",
+      "method": "GET",
+      "path": "/files/{file_id}/content"
+    },
+    {
+      "operation_id": "fork-live-session",
+      "client_method": "live.fork_session",
+      "method": "POST",
+      "path": "/live/sessions/{session_id}/fork"
+    },
+    {
+      "operation_id": "getChatCompletion",
+      "client_method": "chat_completions.retrieve",
+      "method": "GET",
+      "path": "/chat/completions/{completion_id}"
+    },
+    {
+      "operation_id": "getChatCompletionMessages",
+      "client_method": "chat_completions.list_messages",
+      "method": "GET",
+      "path": "/chat/completions/{completion_id}/messages"
+    },
+    {
+      "operation_id": "getConversation",
+      "client_method": "conversations.retrieve",
+      "method": "GET",
+      "path": "/conversations/{conversation_id}"
+    },
+    {
+      "operation_id": "getConversationItem",
+      "client_method": "conversations.retrieve_item",
+      "method": "GET",
+      "path": "/conversations/{conversation_id}/items/{item_id}"
+    },
+    {
+      "operation_id": "Getinputtokencounts",
+      "client_method": "responses.count_input_tokens",
+      "method": "POST",
+      "path": "/responses/input_tokens"
+    },
+    {
+      "operation_id": "getResponse",
+      "client_method": "responses.retrieve",
+      "method": "GET",
+      "path": "/responses/{response_id}"
+    },
+    {
+      "operation_id": "getVectorStore",
+      "client_method": "vector_stores.retrieve",
+      "method": "GET",
+      "path": "/vector_stores/{vector_store_id}"
+    },
+    {
+      "operation_id": "getVectorStoreFile",
+      "client_method": "vector_stores.retrieve_file",
+      "method": "GET",
+      "path": "/vector_stores/{vector_store_id}/files/{file_id}"
+    },
+    {
+      "operation_id": "getVectorStoreFileBatch",
+      "client_method": "vector_stores.retrieve_file_batch",
+      "method": "GET",
+      "path": "/vector_stores/{vector_store_id}/file_batches/{batch_id}"
+    },
+    {
+      "operation_id": "getVoiceConsent",
+      "client_method": "audio.retrieve_voice_consent",
+      "method": "GET",
+      "path": "/audio/voice_consents/{consent_id}"
+    },
+    {
+      "operation_id": "hangup-live-session",
+      "client_method": "live.hangup_session",
+      "method": "POST",
+      "path": "/live/sessions/{session_id}/hangup"
+    },
+    {
+      "operation_id": "hangup-realtime-call",
+      "client_method": "realtime.hangup_call",
+      "method": "POST",
+      "path": "/realtime/calls/{call_id}/hangup"
+    },
+    {
+      "operation_id": "listBatches",
+      "client_method": "batches.list",
+      "method": "GET",
+      "path": "/batches"
+    },
+    {
+      "operation_id": "listChatCompletions",
+      "client_method": "chat_completions.list",
+      "method": "GET",
+      "path": "/chat/completions"
+    },
+    {
+      "operation_id": "ListContainerFiles",
+      "client_method": "containers.list_files",
+      "method": "GET",
+      "path": "/containers/{container_id}/files"
+    },
+    {
+      "operation_id": "ListContainers",
+      "client_method": "containers.list",
+      "method": "GET",
+      "path": "/containers"
+    },
+    {
+      "operation_id": "listConversationItems",
+      "client_method": "conversations.list_items",
+      "method": "GET",
+      "path": "/conversations/{conversation_id}/items"
+    },
+    {
+      "operation_id": "listFiles",
+      "client_method": "files.list",
+      "method": "GET",
+      "path": "/files"
+    },
+    {
+      "operation_id": "listFilesInVectorStoreBatch",
+      "client_method": "vector_stores.list_file_batch_files",
+      "method": "GET",
+      "path": "/vector_stores/{vector_store_id}/file_batches/{batch_id}/files"
+    },
+    {
+      "operation_id": "listFineTuningCheckpointPermissions",
+      "client_method": "fine_tuning.list_checkpoint_permissions",
+      "method": "GET",
+      "path": "/fine_tuning/checkpoints/{fine_tuned_model_checkpoint}/permissions"
+    },
+    {
+      "operation_id": "listFineTuningEvents",
+      "client_method": "fine_tuning.list_events",
+      "method": "GET",
+      "path": "/fine_tuning/jobs/{fine_tuning_job_id}/events"
+    },
+    {
+      "operation_id": "listFineTuningJobCheckpoints",
+      "client_method": "fine_tuning.list_checkpoints",
+      "method": "GET",
+      "path": "/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints"
+    },
+    {
+      "operation_id": "listInputItems",
+      "client_method": "responses.list_input_items",
+      "method": "GET",
+      "path": "/responses/{response_id}/input_items"
+    },
+    {
+      "operation_id": "listModels",
+      "client_method": "models.list",
+      "method": "GET",
+      "path": "/models"
+    },
+    {
+      "operation_id": "listPaginatedFineTuningJobs",
+      "client_method": "fine_tuning.list_jobs",
+      "method": "GET",
+      "path": "/fine_tuning/jobs"
+    },
+    {
+      "operation_id": "listVectorStoreFiles",
+      "client_method": "vector_stores.list_files",
+      "method": "GET",
+      "path": "/vector_stores/{vector_store_id}/files"
+    },
+    {
+      "operation_id": "listVectorStores",
+      "client_method": "vector_stores.list",
+      "method": "GET",
+      "path": "/vector_stores"
+    },
+    {
+      "operation_id": "listVoiceConsents",
+      "client_method": "audio.list_voice_consents",
+      "method": "GET",
+      "path": "/audio/voice_consents"
+    },
+    {
+      "operation_id": "ListWebhookEndpoints",
+      "client_method": "webhooks.list",
+      "method": "GET",
+      "path": "/webhook_endpoints"
+    },
+    {
+      "operation_id": "ListWebhookEventTypes",
+      "client_method": "webhooks.list_event_types",
+      "method": "GET",
+      "path": "/webhook_event_types"
+    },
+    {
+      "operation_id": "modifyVectorStore",
+      "client_method": "vector_stores.update",
+      "method": "POST",
+      "path": "/vector_stores/{vector_store_id}"
+    },
+    {
+      "operation_id": "pauseFineTuningJob",
+      "client_method": "fine_tuning.pause_job",
+      "method": "POST",
+      "path": "/fine_tuning/jobs/{fine_tuning_job_id}/pause"
+    },
+    {
+      "operation_id": "refer-live-session",
+      "client_method": "live.refer_session",
+      "method": "POST",
+      "path": "/live/sessions/{session_id}/refer"
+    },
+    {
+      "operation_id": "refer-realtime-call",
+      "client_method": "realtime.refer_call",
+      "method": "POST",
+      "path": "/realtime/calls/{call_id}/refer"
+    },
+    {
+      "operation_id": "reject-live-session",
+      "client_method": "live.reject_session",
+      "method": "POST",
+      "path": "/live/sessions/{session_id}/reject"
+    },
+    {
+      "operation_id": "reject-realtime-call",
+      "client_method": "realtime.reject_call",
+      "method": "POST",
+      "path": "/realtime/calls/{call_id}/reject"
+    },
+    {
+      "operation_id": "resumeFineTuningJob",
+      "client_method": "fine_tuning.resume_job",
+      "method": "POST",
+      "path": "/fine_tuning/jobs/{fine_tuning_job_id}/resume"
+    },
+    {
+      "operation_id": "retrieveBatch",
+      "client_method": "batches.retrieve",
+      "method": "GET",
+      "path": "/batches/{batch_id}"
+    },
+    {
+      "operation_id": "RetrieveContainer",
+      "client_method": "containers.retrieve",
+      "method": "GET",
+      "path": "/containers/{container_id}"
+    },
+    {
+      "operation_id": "RetrieveContainerFile",
+      "client_method": "containers.retrieve_file",
+      "method": "GET",
+      "path": "/containers/{container_id}/files/{file_id}"
+    },
+    {
+      "operation_id": "RetrieveContainerFileContent",
+      "client_method": "containers.download_file",
+      "method": "GET",
+      "path": "/containers/{container_id}/files/{file_id}/content"
+    },
+    {
+      "operation_id": "retrieveFile",
+      "client_method": "files.retrieve",
+      "method": "GET",
+      "path": "/files/{file_id}"
+    },
+    {
+      "operation_id": "retrieveFineTuningJob",
+      "client_method": "fine_tuning.retrieve_job",
+      "method": "GET",
+      "path": "/fine_tuning/jobs/{fine_tuning_job_id}"
+    },
+    {
+      "operation_id": "retrieveModel",
+      "client_method": "models.retrieve",
+      "method": "GET",
+      "path": "/models/{model}"
+    },
+    {
+      "operation_id": "retrieveVectorStoreFileContent",
+      "client_method": "vector_stores.retrieve_file_content",
+      "method": "GET",
+      "path": "/vector_stores/{vector_store_id}/files/{file_id}/content"
+    },
+    {
+      "operation_id": "RetrieveWebhookEndpoint",
+      "client_method": "webhooks.retrieve",
+      "method": "GET",
+      "path": "/webhook_endpoints/{webhook_endpoint_id}"
+    },
+    {
+      "operation_id": "RotateWebhookEndpointSigningSecret",
+      "client_method": "webhooks.rotate_secret",
+      "method": "POST",
+      "path": "/webhook_endpoints/{webhook_endpoint_id}/rotate_secret"
+    },
+    {
+      "operation_id": "searchVectorStore",
+      "client_method": "vector_stores.search",
+      "method": "POST",
+      "path": "/vector_stores/{vector_store_id}/search"
+    },
+    {
+      "operation_id": "TestWebhookEndpoint",
+      "client_method": "webhooks.test",
+      "method": "POST",
+      "path": "/webhook_endpoints/{webhook_endpoint_id}/test"
+    },
+    {
+      "operation_id": "updateChatCompletion",
+      "client_method": "chat_completions.update",
+      "method": "POST",
+      "path": "/chat/completions/{completion_id}"
+    },
+    {
+      "operation_id": "updateConversation",
+      "client_method": "conversations.update",
+      "method": "POST",
+      "path": "/conversations/{conversation_id}"
+    },
+    {
+      "operation_id": "updateVectorStoreFileAttributes",
+      "client_method": "vector_stores.update_file_attributes",
+      "method": "POST",
+      "path": "/vector_stores/{vector_store_id}/files/{file_id}"
+    },
+    {
+      "operation_id": "updateVoiceConsent",
+      "client_method": "audio.update_voice_consent",
+      "method": "POST",
+      "path": "/audio/voice_consents/{consent_id}"
+    },
+    {
+      "operation_id": "UpdateWebhookEndpoint",
+      "client_method": "webhooks.update",
+      "method": "POST",
+      "path": "/webhook_endpoints/{webhook_endpoint_id}"
+    }
+  ]
+}

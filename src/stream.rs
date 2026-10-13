@@ -8,16 +8,29 @@ use futures_util::StreamExt;
 use std::fmt::Display;
 use std::pin::Pin;
 use std::task::{Context, Poll};
+use std::time::Duration;
 
 pub struct ResponseStream {
     inner: Pin<Box<dyn Stream<Item = Result<ResponseStreamEvent, Error>> + Send>>,
+    request_id: Option<String>,
 }
 
 impl ResponseStream {
-    pub(crate) fn new(response: reqwest::Response) -> Self {
+    pub(crate) fn new(response: reqwest::Response, idle_timeout: Option<Duration>) -> Self {
+        let request_id = crate::client::request_id(response.headers());
         Self {
-            inner: Box::pin(parse_sse(response.bytes_stream())),
+            inner: Box::pin(parse_sse(
+                response.bytes_stream(),
+                idle_timeout,
+                request_id.clone(),
+            )),
+            request_id,
         }
+    }
+
+    /// Returns the request ID associated with the streaming HTTP response, if provided.
+    pub fn request_id(&self) -> Option<&str> {
+        self.request_id.as_deref()
     }
 
     pub async fn next_event(&mut self) -> Option<Result<ResponseStreamEvent, Error>> {
@@ -25,7 +38,11 @@ impl ResponseStream {
     }
 }
 
-fn parse_sse<S, E>(source: S) -> impl Stream<Item = Result<ResponseStreamEvent, Error>> + Send
+fn parse_sse<S, E>(
+    source: S,
+    idle_timeout: Option<Duration>,
+    request_id: Option<String>,
+) -> impl Stream<Item = Result<ResponseStreamEvent, Error>> + Send
 where
     S: Stream<Item = Result<Bytes, E>> + Send + Unpin + 'static,
     E: Display + Send + 'static,
@@ -33,7 +50,19 @@ where
     let mut source = source.eventsource();
     stream! {
             let mut terminal = false;
-            while let Some(frame) = source.next().await {
+            loop {
+                let next = if let Some(timeout) = idle_timeout {
+                    match tokio::time::timeout(timeout, source.next()).await {
+                        Ok(next) => next,
+                        Err(_) => {
+                            yield Err(Error::StreamIdleTimeout);
+                            return;
+                        }
+                    }
+                } else {
+                    source.next().await
+                };
+                let Some(frame) = next else { break };
                 let frame = match frame {
                     Ok(frame) => frame,
                     Err(error) => {
@@ -60,6 +89,13 @@ where
                         return;
                     }
                 };
+                if event.event_type() == "response.failed" {
+                    yield Err(Error::ResponseFailed {
+                        body: event.data().clone(),
+                        request_id: request_id.clone(),
+                    });
+                    return;
+                }
                 terminal = event.is_terminal();
                 yield Ok(event);
                 if terminal {
@@ -94,6 +130,7 @@ mod tests {
     use bytes::Bytes;
     use futures_util::StreamExt;
     use std::convert::Infallible;
+    use std::time::Duration;
 
     fn completed_response() -> serde_json::Value {
         serde_json::json!({
@@ -154,7 +191,7 @@ mod tests {
             "event: response.output_text.delta\r\ndata: {delta}\r\n\r\nevent: response.completed\ndata: {completed}\n\n"
         );
         let chunks = byte_chunks(payload.as_bytes(), &[1, 2, 7, 3, 11]);
-        let events = parse_sse(futures_util::stream::iter(chunks))
+        let events = parse_sse(futures_util::stream::iter(chunks), None, None)
             .collect::<Vec<_>>()
             .await;
 
@@ -194,25 +231,39 @@ mod tests {
                 "response": response
             });
             let frame = format!("event: {event_type}\ndata: {event}\n\n");
-            let events = parse_sse(futures_util::stream::iter(vec![Ok::<_, Infallible>(
-                Bytes::from(frame),
-            )]))
+            let request_id = (event_type == "response.failed").then(|| "req_fixture".to_owned());
+            let events = parse_sse(
+                futures_util::stream::iter(vec![Ok::<_, Infallible>(Bytes::from(frame))]),
+                None,
+                request_id,
+            )
             .collect::<Vec<_>>()
             .await;
 
-            assert_eq!(events.len(), 1, "{event_type} should finish the stream");
-            let terminal = events[0].as_ref().unwrap();
-            assert_eq!(terminal.event_type(), event_type);
-            assert!(terminal.typed().is_some());
+            if event_type == "response.failed" {
+                assert!(matches!(
+                    events.as_slice(),
+                    [Err(Error::ResponseFailed { body, request_id })]
+                        if body["type"] == "response.failed"
+                            && request_id.as_deref() == Some("req_fixture")
+                ));
+            } else {
+                assert_eq!(events.len(), 1, "{event_type} should finish the stream");
+                let terminal = events[0].as_ref().unwrap();
+                assert_eq!(terminal.event_type(), event_type);
+                assert!(terminal.typed().is_some());
+            }
         }
     }
 
     #[tokio::test]
     async fn preserves_unknown_event_payload_and_reports_unterminated_stream() {
         let payload = b"event: response.future_event\ndata: {\"type\":\"response.future_event\",\"new_field\":7}\n\n";
-        let events = parse_sse(futures_util::stream::iter(vec![Ok::<_, Infallible>(
-            Bytes::from_static(payload),
-        )]))
+        let events = parse_sse(
+            futures_util::stream::iter(vec![Ok::<_, Infallible>(Bytes::from_static(payload))]),
+            None,
+            None,
+        )
         .collect::<Vec<_>>()
         .await;
 
@@ -227,19 +278,32 @@ mod tests {
     #[tokio::test]
     async fn rejects_malformed_known_event_and_accepts_done_terminator() {
         let malformed = b"data: {\"type\":\"response.output_text.delta\"}\n\n";
-        let malformed_events = parse_sse(futures_util::stream::iter(vec![Ok::<_, Infallible>(
-            Bytes::from_static(malformed),
-        )]))
+        let malformed_events = parse_sse(
+            futures_util::stream::iter(vec![Ok::<_, Infallible>(Bytes::from_static(malformed))]),
+            None,
+            None,
+        )
         .collect::<Vec<_>>()
         .await;
         assert!(matches!(malformed_events.as_slice(), [Err(Error::Json(_))]));
 
         let done = b"data: [DONE]\n\n";
-        let done_events = parse_sse(futures_util::stream::iter(vec![Ok::<_, Infallible>(
-            Bytes::from_static(done),
-        )]))
+        let done_events = parse_sse(
+            futures_util::stream::iter(vec![Ok::<_, Infallible>(Bytes::from_static(done))]),
+            None,
+            None,
+        )
         .collect::<Vec<_>>()
         .await;
         assert!(done_events.is_empty());
+    }
+
+    #[tokio::test]
+    async fn reports_configured_idle_timeout() {
+        let source = futures_util::stream::pending::<Result<Bytes, Infallible>>();
+        let events = parse_sse(source, Some(Duration::ZERO), None)
+            .collect::<Vec<_>>()
+            .await;
+        assert!(matches!(events.as_slice(), [Err(Error::StreamIdleTimeout)]));
     }
 }

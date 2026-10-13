@@ -1,0 +1,2889 @@
+{
+  "openapi_commit": "77618e641a840768f1e58197ca53ddedffea6df9",
+  "openapi_file_sha256": "cf31ebfa19c49cf081757985deec50b28d10f9b7900e5f391eb1a899c1ce22f5",
+  "operation_count": 360,
+  "included_count": 111,
+  "excluded_count": 249,
+  "operations": [
+    {
+      "operation_id": "listAgents",
+      "method": "GET",
+      "path": "/agents",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "createAgent",
+      "method": "POST",
+      "path": "/agents",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "listAgentEnvironments",
+      "method": "GET",
+      "path": "/agents/environments",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "createAgentEnvironment",
+      "method": "POST",
+      "path": "/agents/environments",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "listAgentEnvironmentTemplates",
+      "method": "GET",
+      "path": "/agents/environments/templates",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "createAgentEnvironmentTemplate",
+      "method": "POST",
+      "path": "/agents/environments/templates",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "deleteAgentEnvironmentTemplate",
+      "method": "DELETE",
+      "path": "/agents/environments/templates/{environment_template_id}",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "retrieveAgentEnvironmentTemplate",
+      "method": "GET",
+      "path": "/agents/environments/templates/{environment_template_id}",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "updateAgentEnvironmentTemplate",
+      "method": "POST",
+      "path": "/agents/environments/templates/{environment_template_id}",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "retrieveAgentEnvironment",
+      "method": "GET",
+      "path": "/agents/environments/{environment_id}",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "listAgentEnvironmentFiles",
+      "method": "GET",
+      "path": "/agents/environments/{environment_id}/files",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "createAgentEnvironmentFile",
+      "method": "POST",
+      "path": "/agents/environments/{environment_id}/files",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "listAgentSessions",
+      "method": "GET",
+      "path": "/agents/sessions",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "createAgentSession",
+      "method": "POST",
+      "path": "/agents/sessions",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "deleteAgentSession",
+      "method": "DELETE",
+      "path": "/agents/sessions/{session_id}",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "retrieveAgentSession",
+      "method": "GET",
+      "path": "/agents/sessions/{session_id}",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "updateAgentSession",
+      "method": "POST",
+      "path": "/agents/sessions/{session_id}",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "listAgentSessionArtifacts",
+      "method": "GET",
+      "path": "/agents/sessions/{session_id}/artifacts",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "deleteAgentSessionArtifact",
+      "method": "DELETE",
+      "path": "/agents/sessions/{session_id}/artifacts/{artifact_id}",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "retrieveAgentSessionArtifact",
+      "method": "GET",
+      "path": "/agents/sessions/{session_id}/artifacts/{artifact_id}",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "retrieveAgentSessionArtifactContent",
+      "method": "GET",
+      "path": "/agents/sessions/{session_id}/artifacts/{artifact_id}/content",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "listAgentSessionEvents",
+      "method": "GET",
+      "path": "/agents/sessions/{session_id}/events",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "createAgentSessionEvents",
+      "method": "POST",
+      "path": "/agents/sessions/{session_id}/events",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "listAgentSessionItems",
+      "method": "GET",
+      "path": "/agents/sessions/{session_id}/items",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "listAgentSessionSubagents",
+      "method": "GET",
+      "path": "/agents/sessions/{session_id}/subagents",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "retrieveAgentSessionSubagent",
+      "method": "GET",
+      "path": "/agents/sessions/{session_id}/subagents/{subagent_id}",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "listAgentSessionSubagentItems",
+      "method": "GET",
+      "path": "/agents/sessions/{session_id}/subagents/{subagent_id}/items",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "listAgentSessionSubagentTurns",
+      "method": "GET",
+      "path": "/agents/sessions/{session_id}/subagents/{subagent_id}/turns",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "retrieveAgentSessionSubagentTurn",
+      "method": "GET",
+      "path": "/agents/sessions/{session_id}/subagents/{subagent_id}/turns/{turn_id}",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "listAgentSessionSubagentTurnItems",
+      "method": "GET",
+      "path": "/agents/sessions/{session_id}/subagents/{subagent_id}/turns/{turn_id}/items",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "listAgentSessionTraces",
+      "method": "GET",
+      "path": "/agents/sessions/{session_id}/traces",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "listAgentSessionTurns",
+      "method": "GET",
+      "path": "/agents/sessions/{session_id}/turns",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "retrieveAgentSessionTurn",
+      "method": "GET",
+      "path": "/agents/sessions/{session_id}/turns/{turn_id}",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "listAgentSessionTurnItems",
+      "method": "GET",
+      "path": "/agents/sessions/{session_id}/turns/{turn_id}/items",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "deleteAgent",
+      "method": "DELETE",
+      "path": "/agents/{agent_id}",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "retrieveAgent",
+      "method": "GET",
+      "path": "/agents/{agent_id}",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "updateAgent",
+      "method": "POST",
+      "path": "/agents/{agent_id}",
+      "family": "Agents",
+      "decision": "exclude",
+      "reason": "Agents platform API; outside this SDK's ordinary public model API scope."
+    },
+    {
+      "operation_id": "listAssistants",
+      "method": "GET",
+      "path": "/assistants",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "createAssistant",
+      "method": "POST",
+      "path": "/assistants",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "deleteAssistant",
+      "method": "DELETE",
+      "path": "/assistants/{assistant_id}",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "getAssistant",
+      "method": "GET",
+      "path": "/assistants/{assistant_id}",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "modifyAssistant",
+      "method": "POST",
+      "path": "/assistants/{assistant_id}",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "createThread",
+      "method": "POST",
+      "path": "/threads",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "createThreadAndRun",
+      "method": "POST",
+      "path": "/threads/runs",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "deleteThread",
+      "method": "DELETE",
+      "path": "/threads/{thread_id}",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "getThread",
+      "method": "GET",
+      "path": "/threads/{thread_id}",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "modifyThread",
+      "method": "POST",
+      "path": "/threads/{thread_id}",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "listMessages",
+      "method": "GET",
+      "path": "/threads/{thread_id}/messages",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "createMessage",
+      "method": "POST",
+      "path": "/threads/{thread_id}/messages",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "deleteMessage",
+      "method": "DELETE",
+      "path": "/threads/{thread_id}/messages/{message_id}",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "getMessage",
+      "method": "GET",
+      "path": "/threads/{thread_id}/messages/{message_id}",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "modifyMessage",
+      "method": "POST",
+      "path": "/threads/{thread_id}/messages/{message_id}",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "listRuns",
+      "method": "GET",
+      "path": "/threads/{thread_id}/runs",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "createRun",
+      "method": "POST",
+      "path": "/threads/{thread_id}/runs",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "getRun",
+      "method": "GET",
+      "path": "/threads/{thread_id}/runs/{run_id}",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "modifyRun",
+      "method": "POST",
+      "path": "/threads/{thread_id}/runs/{run_id}",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "cancelRun",
+      "method": "POST",
+      "path": "/threads/{thread_id}/runs/{run_id}/cancel",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "listRunSteps",
+      "method": "GET",
+      "path": "/threads/{thread_id}/runs/{run_id}/steps",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "getRunStep",
+      "method": "GET",
+      "path": "/threads/{thread_id}/runs/{run_id}/steps/{step_id}",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "submitToolOuputsToRun",
+      "method": "POST",
+      "path": "/threads/{thread_id}/runs/{run_id}/submit_tool_outputs",
+      "family": "Assistants",
+      "decision": "exclude",
+      "reason": "Assistants/Threads API was sunset on 2026-08-26."
+    },
+    {
+      "operation_id": "createSpeech",
+      "method": "POST",
+      "path": "/audio/speech",
+      "family": "Audio",
+      "decision": "include",
+      "reason": "Stable public Audio API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "createTranscription",
+      "method": "POST",
+      "path": "/audio/transcriptions",
+      "family": "Audio",
+      "decision": "include",
+      "reason": "Stable public Audio API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "createTranslation",
+      "method": "POST",
+      "path": "/audio/translations",
+      "family": "Audio",
+      "decision": "include",
+      "reason": "Stable public Audio API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "listVoiceConsents",
+      "method": "GET",
+      "path": "/audio/voice_consents",
+      "family": "Audio",
+      "decision": "include",
+      "reason": "Stable public Audio API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "createVoiceConsent",
+      "method": "POST",
+      "path": "/audio/voice_consents",
+      "family": "Audio",
+      "decision": "include",
+      "reason": "Stable public Audio API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "deleteVoiceConsent",
+      "method": "DELETE",
+      "path": "/audio/voice_consents/{consent_id}",
+      "family": "Audio",
+      "decision": "include",
+      "reason": "Stable public Audio API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "getVoiceConsent",
+      "method": "GET",
+      "path": "/audio/voice_consents/{consent_id}",
+      "family": "Audio",
+      "decision": "include",
+      "reason": "Stable public Audio API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "updateVoiceConsent",
+      "method": "POST",
+      "path": "/audio/voice_consents/{consent_id}",
+      "family": "Audio",
+      "decision": "include",
+      "reason": "Stable public Audio API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "createVoice",
+      "method": "POST",
+      "path": "/audio/voices",
+      "family": "Audio",
+      "decision": "include",
+      "reason": "Stable public Audio API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "list-audit-logs",
+      "method": "GET",
+      "path": "/organization/audit_logs",
+      "family": "Audit Logs",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "listBatches",
+      "method": "GET",
+      "path": "/batches",
+      "family": "Batch",
+      "decision": "include",
+      "reason": "Stable public Batch API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "createBatch",
+      "method": "POST",
+      "path": "/batches",
+      "family": "Batch",
+      "decision": "include",
+      "reason": "Stable public Batch API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "retrieveBatch",
+      "method": "GET",
+      "path": "/batches/{batch_id}",
+      "family": "Batch",
+      "decision": "include",
+      "reason": "Stable public Batch API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "cancelBatch",
+      "method": "POST",
+      "path": "/batches/{batch_id}/cancel",
+      "family": "Batch",
+      "decision": "include",
+      "reason": "Stable public Batch API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "listOrganizationCertificates",
+      "method": "GET",
+      "path": "/organization/certificates",
+      "family": "Certificates",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "uploadCertificate",
+      "method": "POST",
+      "path": "/organization/certificates",
+      "family": "Certificates",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "activateOrganizationCertificates",
+      "method": "POST",
+      "path": "/organization/certificates/activate",
+      "family": "Certificates",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "deactivateOrganizationCertificates",
+      "method": "POST",
+      "path": "/organization/certificates/deactivate",
+      "family": "Certificates",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "deleteCertificate",
+      "method": "DELETE",
+      "path": "/organization/certificates/{certificate_id}",
+      "family": "Certificates",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "getCertificate",
+      "method": "GET",
+      "path": "/organization/certificates/{certificate_id}",
+      "family": "Certificates",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "modifyCertificate",
+      "method": "POST",
+      "path": "/organization/certificates/{certificate_id}",
+      "family": "Certificates",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "listProjectCertificates",
+      "method": "GET",
+      "path": "/organization/projects/{project_id}/certificates",
+      "family": "Certificates",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "activateProjectCertificates",
+      "method": "POST",
+      "path": "/organization/projects/{project_id}/certificates/activate",
+      "family": "Certificates",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "deactivateProjectCertificates",
+      "method": "POST",
+      "path": "/organization/projects/{project_id}/certificates/deactivate",
+      "family": "Certificates",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "listChatCompletions",
+      "method": "GET",
+      "path": "/chat/completions",
+      "family": "Chat",
+      "decision": "include",
+      "reason": "Stable public Chat API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "createChatCompletion",
+      "method": "POST",
+      "path": "/chat/completions",
+      "family": "Chat",
+      "decision": "include",
+      "reason": "Stable public Chat API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "deleteChatCompletion",
+      "method": "DELETE",
+      "path": "/chat/completions/{completion_id}",
+      "family": "Chat",
+      "decision": "include",
+      "reason": "Stable public Chat API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "getChatCompletion",
+      "method": "GET",
+      "path": "/chat/completions/{completion_id}",
+      "family": "Chat",
+      "decision": "include",
+      "reason": "Stable public Chat API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "updateChatCompletion",
+      "method": "POST",
+      "path": "/chat/completions/{completion_id}",
+      "family": "Chat",
+      "decision": "include",
+      "reason": "Stable public Chat API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "getChatCompletionMessages",
+      "method": "GET",
+      "path": "/chat/completions/{completion_id}/messages",
+      "family": "Chat",
+      "decision": "include",
+      "reason": "Stable public Chat API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "CreateChatSessionMethod",
+      "method": "POST",
+      "path": "/chatkit/sessions",
+      "family": "ChatKit",
+      "decision": "exclude",
+      "reason": "ChatKit currently requires the OpenAI-Beta chatkit_beta=v1 header."
+    },
+    {
+      "operation_id": "CancelChatSessionMethod",
+      "method": "POST",
+      "path": "/chatkit/sessions/{session_id}/cancel",
+      "family": "ChatKit",
+      "decision": "exclude",
+      "reason": "ChatKit currently requires the OpenAI-Beta chatkit_beta=v1 header."
+    },
+    {
+      "operation_id": "ListThreadsMethod",
+      "method": "GET",
+      "path": "/chatkit/threads",
+      "family": "ChatKit",
+      "decision": "exclude",
+      "reason": "ChatKit currently requires the OpenAI-Beta chatkit_beta=v1 header."
+    },
+    {
+      "operation_id": "DeleteThreadMethod",
+      "method": "DELETE",
+      "path": "/chatkit/threads/{thread_id}",
+      "family": "ChatKit",
+      "decision": "exclude",
+      "reason": "ChatKit currently requires the OpenAI-Beta chatkit_beta=v1 header."
+    },
+    {
+      "operation_id": "GetThreadMethod",
+      "method": "GET",
+      "path": "/chatkit/threads/{thread_id}",
+      "family": "ChatKit",
+      "decision": "exclude",
+      "reason": "ChatKit currently requires the OpenAI-Beta chatkit_beta=v1 header."
+    },
+    {
+      "operation_id": "ListThreadItemsMethod",
+      "method": "GET",
+      "path": "/chatkit/threads/{thread_id}/items",
+      "family": "ChatKit",
+      "decision": "exclude",
+      "reason": "ChatKit currently requires the OpenAI-Beta chatkit_beta=v1 header."
+    },
+    {
+      "operation_id": "createCompletion",
+      "method": "POST",
+      "path": "/completions",
+      "family": "Completions",
+      "decision": "exclude",
+      "reason": "Legacy Completions API; excluded in favor of Chat Completions and Responses."
+    },
+    {
+      "operation_id": "ListContainers",
+      "method": "GET",
+      "path": "/containers",
+      "family": "Containers",
+      "decision": "include",
+      "reason": "Stable public Containers API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "CreateContainer",
+      "method": "POST",
+      "path": "/containers",
+      "family": "Containers",
+      "decision": "include",
+      "reason": "Stable public Containers API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "DeleteContainer",
+      "method": "DELETE",
+      "path": "/containers/{container_id}",
+      "family": "Containers",
+      "decision": "include",
+      "reason": "Stable public Containers API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "RetrieveContainer",
+      "method": "GET",
+      "path": "/containers/{container_id}",
+      "family": "Containers",
+      "decision": "include",
+      "reason": "Stable public Containers API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "ListContainerFiles",
+      "method": "GET",
+      "path": "/containers/{container_id}/files",
+      "family": "Containers",
+      "decision": "include",
+      "reason": "Stable public Containers API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "CreateContainerFile",
+      "method": "POST",
+      "path": "/containers/{container_id}/files",
+      "family": "Containers",
+      "decision": "include",
+      "reason": "Stable public Containers API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "DeleteContainerFile",
+      "method": "DELETE",
+      "path": "/containers/{container_id}/files/{file_id}",
+      "family": "Containers",
+      "decision": "include",
+      "reason": "Stable public Containers API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "RetrieveContainerFile",
+      "method": "GET",
+      "path": "/containers/{container_id}/files/{file_id}",
+      "family": "Containers",
+      "decision": "include",
+      "reason": "Stable public Containers API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "RetrieveContainerFileContent",
+      "method": "GET",
+      "path": "/containers/{container_id}/files/{file_id}/content",
+      "family": "Containers",
+      "decision": "include",
+      "reason": "Stable public Containers API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "Createcontentprovenancecheck",
+      "method": "POST",
+      "path": "/content_provenance_checks",
+      "family": "Content provenance",
+      "decision": "include",
+      "reason": "Stable public Content provenance API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "createConversation",
+      "method": "POST",
+      "path": "/conversations",
+      "family": "Conversations",
+      "decision": "include",
+      "reason": "Stable public Conversations API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "deleteConversation",
+      "method": "DELETE",
+      "path": "/conversations/{conversation_id}",
+      "family": "Conversations",
+      "decision": "include",
+      "reason": "Stable public Conversations API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "getConversation",
+      "method": "GET",
+      "path": "/conversations/{conversation_id}",
+      "family": "Conversations",
+      "decision": "include",
+      "reason": "Stable public Conversations API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "updateConversation",
+      "method": "POST",
+      "path": "/conversations/{conversation_id}",
+      "family": "Conversations",
+      "decision": "include",
+      "reason": "Stable public Conversations API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "listConversationItems",
+      "method": "GET",
+      "path": "/conversations/{conversation_id}/items",
+      "family": "Conversations",
+      "decision": "include",
+      "reason": "Stable public Conversations API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "createConversationItems",
+      "method": "POST",
+      "path": "/conversations/{conversation_id}/items",
+      "family": "Conversations",
+      "decision": "include",
+      "reason": "Stable public Conversations API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "deleteConversationItem",
+      "method": "DELETE",
+      "path": "/conversations/{conversation_id}/items/{item_id}",
+      "family": "Conversations",
+      "decision": "include",
+      "reason": "Stable public Conversations API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "getConversationItem",
+      "method": "GET",
+      "path": "/conversations/{conversation_id}/items/{item_id}",
+      "family": "Conversations",
+      "decision": "include",
+      "reason": "Stable public Conversations API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "retrieve-organization-data-retention",
+      "method": "GET",
+      "path": "/organization/data_retention",
+      "family": "Data retention",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "update-organization-data-retention",
+      "method": "POST",
+      "path": "/organization/data_retention",
+      "family": "Data retention",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "retrieve-project-data-retention",
+      "method": "GET",
+      "path": "/organization/projects/{project_id}/data_retention",
+      "family": "Data retention",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "update-project-data-retention",
+      "method": "POST",
+      "path": "/organization/projects/{project_id}/data_retention",
+      "family": "Data retention",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "createDecision",
+      "method": "POST",
+      "path": "/decisions",
+      "family": "Decisions",
+      "decision": "exclude",
+      "reason": "Decisions is listed under Beta APIs in the official API reference."
+    },
+    {
+      "operation_id": "createEmbedding",
+      "method": "POST",
+      "path": "/embeddings",
+      "family": "Embeddings",
+      "decision": "include",
+      "reason": "Stable public Embeddings API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "listEvals",
+      "method": "GET",
+      "path": "/evals",
+      "family": "Evals",
+      "decision": "exclude",
+      "reason": "Evals API is scheduled to shut down on 2026-11-30."
+    },
+    {
+      "operation_id": "createEval",
+      "method": "POST",
+      "path": "/evals",
+      "family": "Evals",
+      "decision": "exclude",
+      "reason": "Evals API is scheduled to shut down on 2026-11-30."
+    },
+    {
+      "operation_id": "deleteEval",
+      "method": "DELETE",
+      "path": "/evals/{eval_id}",
+      "family": "Evals",
+      "decision": "exclude",
+      "reason": "Evals API is scheduled to shut down on 2026-11-30."
+    },
+    {
+      "operation_id": "getEval",
+      "method": "GET",
+      "path": "/evals/{eval_id}",
+      "family": "Evals",
+      "decision": "exclude",
+      "reason": "Evals API is scheduled to shut down on 2026-11-30."
+    },
+    {
+      "operation_id": "updateEval",
+      "method": "POST",
+      "path": "/evals/{eval_id}",
+      "family": "Evals",
+      "decision": "exclude",
+      "reason": "Evals API is scheduled to shut down on 2026-11-30."
+    },
+    {
+      "operation_id": "getEvalRuns",
+      "method": "GET",
+      "path": "/evals/{eval_id}/runs",
+      "family": "Evals",
+      "decision": "exclude",
+      "reason": "Evals API is scheduled to shut down on 2026-11-30."
+    },
+    {
+      "operation_id": "createEvalRun",
+      "method": "POST",
+      "path": "/evals/{eval_id}/runs",
+      "family": "Evals",
+      "decision": "exclude",
+      "reason": "Evals API is scheduled to shut down on 2026-11-30."
+    },
+    {
+      "operation_id": "deleteEvalRun",
+      "method": "DELETE",
+      "path": "/evals/{eval_id}/runs/{run_id}",
+      "family": "Evals",
+      "decision": "exclude",
+      "reason": "Evals API is scheduled to shut down on 2026-11-30."
+    },
+    {
+      "operation_id": "getEvalRun",
+      "method": "GET",
+      "path": "/evals/{eval_id}/runs/{run_id}",
+      "family": "Evals",
+      "decision": "exclude",
+      "reason": "Evals API is scheduled to shut down on 2026-11-30."
+    },
+    {
+      "operation_id": "cancelEvalRun",
+      "method": "POST",
+      "path": "/evals/{eval_id}/runs/{run_id}/cancel",
+      "family": "Evals",
+      "decision": "exclude",
+      "reason": "Evals API is scheduled to shut down on 2026-11-30."
+    },
+    {
+      "operation_id": "getEvalRunOutputItems",
+      "method": "GET",
+      "path": "/evals/{eval_id}/runs/{run_id}/output_items",
+      "family": "Evals",
+      "decision": "exclude",
+      "reason": "Evals API is scheduled to shut down on 2026-11-30."
+    },
+    {
+      "operation_id": "getEvalRunOutputItem",
+      "method": "GET",
+      "path": "/evals/{eval_id}/runs/{run_id}/output_items/{output_item_id}",
+      "family": "Evals",
+      "decision": "exclude",
+      "reason": "Evals API is scheduled to shut down on 2026-11-30."
+    },
+    {
+      "operation_id": "listFiles",
+      "method": "GET",
+      "path": "/files",
+      "family": "Files",
+      "decision": "include",
+      "reason": "Stable public Files API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "createFile",
+      "method": "POST",
+      "path": "/files",
+      "family": "Files",
+      "decision": "include",
+      "reason": "Stable public Files API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "deleteFile",
+      "method": "DELETE",
+      "path": "/files/{file_id}",
+      "family": "Files",
+      "decision": "include",
+      "reason": "Stable public Files API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "retrieveFile",
+      "method": "GET",
+      "path": "/files/{file_id}",
+      "family": "Files",
+      "decision": "include",
+      "reason": "Stable public Files API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "downloadFile",
+      "method": "GET",
+      "path": "/files/{file_id}/content",
+      "family": "Files",
+      "decision": "include",
+      "reason": "Stable public Files API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "runGrader",
+      "method": "POST",
+      "path": "/fine_tuning/alpha/graders/run",
+      "family": "Fine-tuning",
+      "decision": "exclude",
+      "reason": "Alpha API operation; this SDK includes stable public APIs only."
+    },
+    {
+      "operation_id": "validateGrader",
+      "method": "POST",
+      "path": "/fine_tuning/alpha/graders/validate",
+      "family": "Fine-tuning",
+      "decision": "exclude",
+      "reason": "Alpha API operation; this SDK includes stable public APIs only."
+    },
+    {
+      "operation_id": "listFineTuningCheckpointPermissions",
+      "method": "GET",
+      "path": "/fine_tuning/checkpoints/{fine_tuned_model_checkpoint}/permissions",
+      "family": "Fine-tuning",
+      "decision": "include",
+      "reason": "Stable public Fine-tuning API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "createFineTuningCheckpointPermission",
+      "method": "POST",
+      "path": "/fine_tuning/checkpoints/{fine_tuned_model_checkpoint}/permissions",
+      "family": "Fine-tuning",
+      "decision": "include",
+      "reason": "Stable public Fine-tuning API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "deleteFineTuningCheckpointPermission",
+      "method": "DELETE",
+      "path": "/fine_tuning/checkpoints/{fine_tuned_model_checkpoint}/permissions/{permission_id}",
+      "family": "Fine-tuning",
+      "decision": "include",
+      "reason": "Stable public Fine-tuning API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "listPaginatedFineTuningJobs",
+      "method": "GET",
+      "path": "/fine_tuning/jobs",
+      "family": "Fine-tuning",
+      "decision": "include",
+      "reason": "Stable public Fine-tuning API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "createFineTuningJob",
+      "method": "POST",
+      "path": "/fine_tuning/jobs",
+      "family": "Fine-tuning",
+      "decision": "include",
+      "reason": "Stable public Fine-tuning API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "retrieveFineTuningJob",
+      "method": "GET",
+      "path": "/fine_tuning/jobs/{fine_tuning_job_id}",
+      "family": "Fine-tuning",
+      "decision": "include",
+      "reason": "Stable public Fine-tuning API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "cancelFineTuningJob",
+      "method": "POST",
+      "path": "/fine_tuning/jobs/{fine_tuning_job_id}/cancel",
+      "family": "Fine-tuning",
+      "decision": "include",
+      "reason": "Stable public Fine-tuning API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "listFineTuningJobCheckpoints",
+      "method": "GET",
+      "path": "/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints",
+      "family": "Fine-tuning",
+      "decision": "include",
+      "reason": "Stable public Fine-tuning API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "listFineTuningEvents",
+      "method": "GET",
+      "path": "/fine_tuning/jobs/{fine_tuning_job_id}/events",
+      "family": "Fine-tuning",
+      "decision": "include",
+      "reason": "Stable public Fine-tuning API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "pauseFineTuningJob",
+      "method": "POST",
+      "path": "/fine_tuning/jobs/{fine_tuning_job_id}/pause",
+      "family": "Fine-tuning",
+      "decision": "include",
+      "reason": "Stable public Fine-tuning API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "resumeFineTuningJob",
+      "method": "POST",
+      "path": "/fine_tuning/jobs/{fine_tuning_job_id}/resume",
+      "family": "Fine-tuning",
+      "decision": "include",
+      "reason": "Stable public Fine-tuning API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "list-group-role-assignments",
+      "method": "GET",
+      "path": "/organization/groups/{group_id}/roles",
+      "family": "Group organization role assignments",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "assign-group-role",
+      "method": "POST",
+      "path": "/organization/groups/{group_id}/roles",
+      "family": "Group organization role assignments",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "unassign-group-role",
+      "method": "DELETE",
+      "path": "/organization/groups/{group_id}/roles/{role_id}",
+      "family": "Group organization role assignments",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "retrieve-group-role",
+      "method": "GET",
+      "path": "/organization/groups/{group_id}/roles/{role_id}",
+      "family": "Group organization role assignments",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "list-group-users",
+      "method": "GET",
+      "path": "/organization/groups/{group_id}/users",
+      "family": "Group users",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "add-group-user",
+      "method": "POST",
+      "path": "/organization/groups/{group_id}/users",
+      "family": "Group users",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "remove-group-user",
+      "method": "DELETE",
+      "path": "/organization/groups/{group_id}/users/{user_id}",
+      "family": "Group users",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "retrieve-group-user",
+      "method": "GET",
+      "path": "/organization/groups/{group_id}/users/{user_id}",
+      "family": "Group users",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "list-groups",
+      "method": "GET",
+      "path": "/organization/groups",
+      "family": "Groups",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "create-group",
+      "method": "POST",
+      "path": "/organization/groups",
+      "family": "Groups",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "delete-group",
+      "method": "DELETE",
+      "path": "/organization/groups/{group_id}",
+      "family": "Groups",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "retrieve-group",
+      "method": "GET",
+      "path": "/organization/groups/{group_id}",
+      "family": "Groups",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "update-group",
+      "method": "POST",
+      "path": "/organization/groups/{group_id}",
+      "family": "Groups",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "retrieve-project-hosted-tool-permissions",
+      "method": "GET",
+      "path": "/organization/projects/{project_id}/hosted_tool_permissions",
+      "family": "Hosted tools",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "update-project-hosted-tool-permissions",
+      "method": "POST",
+      "path": "/organization/projects/{project_id}/hosted_tool_permissions",
+      "family": "Hosted tools",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "createImageEdit",
+      "method": "POST",
+      "path": "/images/edits",
+      "family": "Images",
+      "decision": "include",
+      "reason": "Stable public Images API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "createImage",
+      "method": "POST",
+      "path": "/images/generations",
+      "family": "Images",
+      "decision": "include",
+      "reason": "Stable public Images API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "createImageVariation",
+      "method": "POST",
+      "path": "/images/variations",
+      "family": "Images",
+      "decision": "exclude",
+      "reason": "Deprecated by the pinned OpenAPI snapshot."
+    },
+    {
+      "operation_id": "list-invites",
+      "method": "GET",
+      "path": "/organization/invites",
+      "family": "Invites",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "inviteUser",
+      "method": "POST",
+      "path": "/organization/invites",
+      "family": "Invites",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "delete-invite",
+      "method": "DELETE",
+      "path": "/organization/invites/{invite_id}",
+      "family": "Invites",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "retrieve-invite",
+      "method": "GET",
+      "path": "/organization/invites/{invite_id}",
+      "family": "Invites",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "create-live",
+      "method": "POST",
+      "path": "/live/sessions",
+      "family": "Live",
+      "decision": "include",
+      "reason": "Stable public Live API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "accept-live-session",
+      "method": "POST",
+      "path": "/live/sessions/{session_id}/accept",
+      "family": "Live",
+      "decision": "include",
+      "reason": "Stable public Live API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "download-live-recording",
+      "method": "GET",
+      "path": "/live/sessions/{session_id}/content",
+      "family": "Live",
+      "decision": "include",
+      "reason": "Stable public Live API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "fork-live-session",
+      "method": "POST",
+      "path": "/live/sessions/{session_id}/fork",
+      "family": "Live",
+      "decision": "include",
+      "reason": "Stable public Live API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "hangup-live-session",
+      "method": "POST",
+      "path": "/live/sessions/{session_id}/hangup",
+      "family": "Live",
+      "decision": "include",
+      "reason": "Stable public Live API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "refer-live-session",
+      "method": "POST",
+      "path": "/live/sessions/{session_id}/refer",
+      "family": "Live",
+      "decision": "include",
+      "reason": "Stable public Live API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "reject-live-session",
+      "method": "POST",
+      "path": "/live/sessions/{session_id}/reject",
+      "family": "Live",
+      "decision": "include",
+      "reason": "Stable public Live API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "listModels",
+      "method": "GET",
+      "path": "/models",
+      "family": "Models",
+      "decision": "include",
+      "reason": "Stable public Models API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "deleteModel",
+      "method": "DELETE",
+      "path": "/models/{model}",
+      "family": "Models",
+      "decision": "include",
+      "reason": "Stable public Models API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "retrieveModel",
+      "method": "GET",
+      "path": "/models/{model}",
+      "family": "Models",
+      "decision": "include",
+      "reason": "Stable public Models API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "createModeration",
+      "method": "POST",
+      "path": "/moderations",
+      "family": "Moderations",
+      "decision": "include",
+      "reason": "Stable public Moderations API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "list-project-group-role-assignments",
+      "method": "GET",
+      "path": "/projects/{project_id}/groups/{group_id}/roles",
+      "family": "Project group role assignments",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "assign-project-group-role",
+      "method": "POST",
+      "path": "/projects/{project_id}/groups/{group_id}/roles",
+      "family": "Project group role assignments",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "unassign-project-group-role",
+      "method": "DELETE",
+      "path": "/projects/{project_id}/groups/{group_id}/roles/{role_id}",
+      "family": "Project group role assignments",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "retrieve-project-group-role",
+      "method": "GET",
+      "path": "/projects/{project_id}/groups/{group_id}/roles/{role_id}",
+      "family": "Project group role assignments",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "list-project-groups",
+      "method": "GET",
+      "path": "/organization/projects/{project_id}/groups",
+      "family": "Project groups",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "add-project-group",
+      "method": "POST",
+      "path": "/organization/projects/{project_id}/groups",
+      "family": "Project groups",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "remove-project-group",
+      "method": "DELETE",
+      "path": "/organization/projects/{project_id}/groups/{group_id}",
+      "family": "Project groups",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "retrieve-project-group",
+      "method": "GET",
+      "path": "/organization/projects/{project_id}/groups/{group_id}",
+      "family": "Project groups",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "list-project-user-role-assignments",
+      "method": "GET",
+      "path": "/projects/{project_id}/users/{user_id}/roles",
+      "family": "Project user role assignments",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "assign-project-user-role",
+      "method": "POST",
+      "path": "/projects/{project_id}/users/{user_id}/roles",
+      "family": "Project user role assignments",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "unassign-project-user-role",
+      "method": "DELETE",
+      "path": "/projects/{project_id}/users/{user_id}/roles/{role_id}",
+      "family": "Project user role assignments",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "retrieve-project-user-role",
+      "method": "GET",
+      "path": "/projects/{project_id}/users/{user_id}/roles/{role_id}",
+      "family": "Project user role assignments",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "list-projects",
+      "method": "GET",
+      "path": "/organization/projects",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "create-project",
+      "method": "POST",
+      "path": "/organization/projects",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "retrieve-project",
+      "method": "GET",
+      "path": "/organization/projects/{project_id}",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "modify-project",
+      "method": "POST",
+      "path": "/organization/projects/{project_id}",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "list-project-api-keys",
+      "method": "GET",
+      "path": "/organization/projects/{project_id}/api_keys",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "delete-project-api-key",
+      "method": "DELETE",
+      "path": "/organization/projects/{project_id}/api_keys/{api_key_id}",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "retrieve-project-api-key",
+      "method": "GET",
+      "path": "/organization/projects/{project_id}/api_keys/{api_key_id}",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "update-project-api-key",
+      "method": "POST",
+      "path": "/organization/projects/{project_id}/api_keys/{api_key_id}",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "archive-project",
+      "method": "POST",
+      "path": "/organization/projects/{project_id}/archive",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "delete-project-model-permissions",
+      "method": "DELETE",
+      "path": "/organization/projects/{project_id}/model_permissions",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "retrieve-project-model-permissions",
+      "method": "GET",
+      "path": "/organization/projects/{project_id}/model_permissions",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "update-project-model-permissions",
+      "method": "POST",
+      "path": "/organization/projects/{project_id}/model_permissions",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "list-project-rate-limits",
+      "method": "GET",
+      "path": "/organization/projects/{project_id}/rate_limits",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "update-project-rate-limits",
+      "method": "POST",
+      "path": "/organization/projects/{project_id}/rate_limits/{rate_limit_id}",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "list-project-service-accounts",
+      "method": "GET",
+      "path": "/organization/projects/{project_id}/service_accounts",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "create-project-service-account",
+      "method": "POST",
+      "path": "/organization/projects/{project_id}/service_accounts",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "delete-project-service-account",
+      "method": "DELETE",
+      "path": "/organization/projects/{project_id}/service_accounts/{service_account_id}",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "retrieve-project-service-account",
+      "method": "GET",
+      "path": "/organization/projects/{project_id}/service_accounts/{service_account_id}",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "update-project-service-account",
+      "method": "POST",
+      "path": "/organization/projects/{project_id}/service_accounts/{service_account_id}",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "list-project-users",
+      "method": "GET",
+      "path": "/organization/projects/{project_id}/users",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "create-project-user",
+      "method": "POST",
+      "path": "/organization/projects/{project_id}/users",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "delete-project-user",
+      "method": "DELETE",
+      "path": "/organization/projects/{project_id}/users/{user_id}",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "retrieve-project-user",
+      "method": "GET",
+      "path": "/organization/projects/{project_id}/users/{user_id}",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "modify-project-user",
+      "method": "POST",
+      "path": "/organization/projects/{project_id}/users/{user_id}",
+      "family": "Projects",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "create-realtime-call",
+      "method": "POST",
+      "path": "/realtime/calls",
+      "family": "Realtime",
+      "decision": "include",
+      "reason": "Stable public Realtime API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "accept-realtime-call",
+      "method": "POST",
+      "path": "/realtime/calls/{call_id}/accept",
+      "family": "Realtime",
+      "decision": "include",
+      "reason": "Stable public Realtime API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "hangup-realtime-call",
+      "method": "POST",
+      "path": "/realtime/calls/{call_id}/hangup",
+      "family": "Realtime",
+      "decision": "include",
+      "reason": "Stable public Realtime API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "refer-realtime-call",
+      "method": "POST",
+      "path": "/realtime/calls/{call_id}/refer",
+      "family": "Realtime",
+      "decision": "include",
+      "reason": "Stable public Realtime API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "reject-realtime-call",
+      "method": "POST",
+      "path": "/realtime/calls/{call_id}/reject",
+      "family": "Realtime",
+      "decision": "include",
+      "reason": "Stable public Realtime API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "create-realtime-client-secret",
+      "method": "POST",
+      "path": "/realtime/client_secrets",
+      "family": "Realtime",
+      "decision": "include",
+      "reason": "Stable public Realtime API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "create-realtime-session",
+      "method": "POST",
+      "path": "/realtime/sessions",
+      "family": "Realtime",
+      "decision": "include",
+      "reason": "Stable public Realtime API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "create-realtime-transcription-session",
+      "method": "POST",
+      "path": "/realtime/transcription_sessions",
+      "family": "Realtime",
+      "decision": "include",
+      "reason": "Stable public Realtime API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "create-realtime-translation-client-secret",
+      "method": "POST",
+      "path": "/realtime/translations/client_secrets",
+      "family": "Realtime",
+      "decision": "include",
+      "reason": "Stable public Realtime API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "createResponse",
+      "method": "POST",
+      "path": "/responses",
+      "family": "Responses",
+      "decision": "include",
+      "reason": "Stable public Responses API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "Compactconversation",
+      "method": "POST",
+      "path": "/responses/compact",
+      "family": "Responses",
+      "decision": "include",
+      "reason": "Stable public Responses API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "beta_Compactconversation",
+      "method": "POST",
+      "path": "/responses/compact?beta=true",
+      "family": "Responses",
+      "decision": "exclude",
+      "reason": "Beta operation; this SDK includes stable public APIs only."
+    },
+    {
+      "operation_id": "Getinputtokencounts",
+      "method": "POST",
+      "path": "/responses/input_tokens",
+      "family": "Responses",
+      "decision": "include",
+      "reason": "Stable public Responses API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "beta_Getinputtokencounts",
+      "method": "POST",
+      "path": "/responses/input_tokens?beta=true",
+      "family": "Responses",
+      "decision": "exclude",
+      "reason": "Beta operation; this SDK includes stable public APIs only."
+    },
+    {
+      "operation_id": "deleteResponse",
+      "method": "DELETE",
+      "path": "/responses/{response_id}",
+      "family": "Responses",
+      "decision": "include",
+      "reason": "Stable public Responses API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "getResponse",
+      "method": "GET",
+      "path": "/responses/{response_id}",
+      "family": "Responses",
+      "decision": "include",
+      "reason": "Stable public Responses API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "cancelResponse",
+      "method": "POST",
+      "path": "/responses/{response_id}/cancel",
+      "family": "Responses",
+      "decision": "include",
+      "reason": "Stable public Responses API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "beta_cancelResponse",
+      "method": "POST",
+      "path": "/responses/{response_id}/cancel?beta=true",
+      "family": "Responses",
+      "decision": "exclude",
+      "reason": "Beta operation; this SDK includes stable public APIs only."
+    },
+    {
+      "operation_id": "listInputItems",
+      "method": "GET",
+      "path": "/responses/{response_id}/input_items",
+      "family": "Responses",
+      "decision": "include",
+      "reason": "Stable public Responses API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "beta_listInputItems",
+      "method": "GET",
+      "path": "/responses/{response_id}/input_items?beta=true",
+      "family": "Responses",
+      "decision": "exclude",
+      "reason": "Beta operation; this SDK includes stable public APIs only."
+    },
+    {
+      "operation_id": "beta_deleteResponse",
+      "method": "DELETE",
+      "path": "/responses/{response_id}?beta=true",
+      "family": "Responses",
+      "decision": "exclude",
+      "reason": "Beta operation; this SDK includes stable public APIs only."
+    },
+    {
+      "operation_id": "beta_getResponse",
+      "method": "GET",
+      "path": "/responses/{response_id}?beta=true",
+      "family": "Responses",
+      "decision": "exclude",
+      "reason": "Beta operation; this SDK includes stable public APIs only."
+    },
+    {
+      "operation_id": "beta_createResponse",
+      "method": "POST",
+      "path": "/responses?beta=true",
+      "family": "Responses",
+      "decision": "exclude",
+      "reason": "Beta operation; this SDK includes stable public APIs only."
+    },
+    {
+      "operation_id": "list-roles",
+      "method": "GET",
+      "path": "/organization/roles",
+      "family": "Roles",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "create-role",
+      "method": "POST",
+      "path": "/organization/roles",
+      "family": "Roles",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "delete-role",
+      "method": "DELETE",
+      "path": "/organization/roles/{role_id}",
+      "family": "Roles",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "retrieve-role",
+      "method": "GET",
+      "path": "/organization/roles/{role_id}",
+      "family": "Roles",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "update-role",
+      "method": "POST",
+      "path": "/organization/roles/{role_id}",
+      "family": "Roles",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "list-project-roles",
+      "method": "GET",
+      "path": "/projects/{project_id}/roles",
+      "family": "Roles",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "create-project-role",
+      "method": "POST",
+      "path": "/projects/{project_id}/roles",
+      "family": "Roles",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "delete-project-role",
+      "method": "DELETE",
+      "path": "/projects/{project_id}/roles/{role_id}",
+      "family": "Roles",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "retrieve-project-role",
+      "method": "GET",
+      "path": "/projects/{project_id}/roles/{role_id}",
+      "family": "Roles",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "update-project-role",
+      "method": "POST",
+      "path": "/projects/{project_id}/roles/{role_id}",
+      "family": "Roles",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "Getprojectsafetyalert",
+      "method": "GET",
+      "path": "/safety/alerts/{id}",
+      "family": "Safety",
+      "decision": "exclude",
+      "reason": "Safety administration API; outside ordinary project API-key scope."
+    },
+    {
+      "operation_id": "Getsafetycase",
+      "method": "GET",
+      "path": "/safety/cases/{id}",
+      "family": "Safety",
+      "decision": "exclude",
+      "reason": "Safety administration API; outside ordinary project API-key scope."
+    },
+    {
+      "operation_id": "ListSkills",
+      "method": "GET",
+      "path": "/skills",
+      "family": "Skills",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "CreateSkill",
+      "method": "POST",
+      "path": "/skills",
+      "family": "Skills",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "DeleteSkill",
+      "method": "DELETE",
+      "path": "/skills/{skill_id}",
+      "family": "Skills",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "GetSkill",
+      "method": "GET",
+      "path": "/skills/{skill_id}",
+      "family": "Skills",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "UpdateSkillDefaultVersion",
+      "method": "POST",
+      "path": "/skills/{skill_id}",
+      "family": "Skills",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "GetSkillContent",
+      "method": "GET",
+      "path": "/skills/{skill_id}/content",
+      "family": "Skills",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "ListSkillVersions",
+      "method": "GET",
+      "path": "/skills/{skill_id}/versions",
+      "family": "Skills",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "CreateSkillVersion",
+      "method": "POST",
+      "path": "/skills/{skill_id}/versions",
+      "family": "Skills",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "DeleteSkillVersion",
+      "method": "DELETE",
+      "path": "/skills/{skill_id}/versions/{version}",
+      "family": "Skills",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "GetSkillVersion",
+      "method": "GET",
+      "path": "/skills/{skill_id}/versions/{version}",
+      "family": "Skills",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "GetSkillVersionContent",
+      "method": "GET",
+      "path": "/skills/{skill_id}/versions/{version}/content",
+      "family": "Skills",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "list-project-spend-alerts",
+      "method": "GET",
+      "path": "/organization/projects/{project_id}/spend_alerts",
+      "family": "Spend alerts",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "create-project-spend-alert",
+      "method": "POST",
+      "path": "/organization/projects/{project_id}/spend_alerts",
+      "family": "Spend alerts",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "delete-project-spend-alert",
+      "method": "DELETE",
+      "path": "/organization/projects/{project_id}/spend_alerts/{alert_id}",
+      "family": "Spend alerts",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "retrieve-project-spend-alert",
+      "method": "GET",
+      "path": "/organization/projects/{project_id}/spend_alerts/{alert_id}",
+      "family": "Spend alerts",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "update-project-spend-alert",
+      "method": "POST",
+      "path": "/organization/projects/{project_id}/spend_alerts/{alert_id}",
+      "family": "Spend alerts",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "list-organization-spend-alerts",
+      "method": "GET",
+      "path": "/organization/spend_alerts",
+      "family": "Spend alerts",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "create-organization-spend-alert",
+      "method": "POST",
+      "path": "/organization/spend_alerts",
+      "family": "Spend alerts",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "delete-organization-spend-alert",
+      "method": "DELETE",
+      "path": "/organization/spend_alerts/{alert_id}",
+      "family": "Spend alerts",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "retrieve-organization-spend-alert",
+      "method": "GET",
+      "path": "/organization/spend_alerts/{alert_id}",
+      "family": "Spend alerts",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "update-organization-spend-alert",
+      "method": "POST",
+      "path": "/organization/spend_alerts/{alert_id}",
+      "family": "Spend alerts",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "admin-api-keys-list",
+      "method": "GET",
+      "path": "/organization/admin_api_keys",
+      "family": "Uncategorized",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "admin-api-keys-create",
+      "method": "POST",
+      "path": "/organization/admin_api_keys",
+      "family": "Uncategorized",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "admin-api-keys-delete",
+      "method": "DELETE",
+      "path": "/organization/admin_api_keys/{key_id}",
+      "family": "Uncategorized",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "admin-api-keys-get",
+      "method": "GET",
+      "path": "/organization/admin_api_keys/{key_id}",
+      "family": "Uncategorized",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "Listexternalstorageconfigurations",
+      "method": "GET",
+      "path": "/organization/external_storage",
+      "family": "Uncategorized",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "Createanexternalstorageconfiguration",
+      "method": "POST",
+      "path": "/organization/external_storage",
+      "family": "Uncategorized",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "Deleteanexternalstorageconfiguration",
+      "method": "DELETE",
+      "path": "/organization/external_storage/{external_storage_id}",
+      "family": "Uncategorized",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "Getanexternalstorageconfiguration",
+      "method": "GET",
+      "path": "/organization/external_storage/{external_storage_id}",
+      "family": "Uncategorized",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "Validateanexternalstorageconfiguration",
+      "method": "POST",
+      "path": "/organization/external_storage/{external_storage_id}/validate",
+      "family": "Uncategorized",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "CreateanAPIkeyforaserviceaccount",
+      "method": "POST",
+      "path": "/organization/projects/{project_id}/service_accounts/{service_account_id}/api_keys",
+      "family": "Uncategorized",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "Deleteprojectspendlimit",
+      "method": "DELETE",
+      "path": "/organization/projects/{project_id}/spend_limit",
+      "family": "Uncategorized",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "Getprojectspendlimit",
+      "method": "GET",
+      "path": "/organization/projects/{project_id}/spend_limit",
+      "family": "Uncategorized",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "Updateprojectspendlimit",
+      "method": "POST",
+      "path": "/organization/projects/{project_id}/spend_limit",
+      "family": "Uncategorized",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "Deleteorganizationspendlimit",
+      "method": "DELETE",
+      "path": "/organization/spend_limit",
+      "family": "Uncategorized",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "Getorganizationspendlimit",
+      "method": "GET",
+      "path": "/organization/spend_limit",
+      "family": "Uncategorized",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "Updateorganizationspendlimit",
+      "method": "POST",
+      "path": "/organization/spend_limit",
+      "family": "Uncategorized",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "OrganizationDecisionsusage",
+      "method": "GET",
+      "path": "/organization/usage/decisions",
+      "family": "Uncategorized",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "createUpload",
+      "method": "POST",
+      "path": "/uploads",
+      "family": "Uploads",
+      "decision": "include",
+      "reason": "Stable public Uploads API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "cancelUpload",
+      "method": "POST",
+      "path": "/uploads/{upload_id}/cancel",
+      "family": "Uploads",
+      "decision": "include",
+      "reason": "Stable public Uploads API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "completeUpload",
+      "method": "POST",
+      "path": "/uploads/{upload_id}/complete",
+      "family": "Uploads",
+      "decision": "include",
+      "reason": "Stable public Uploads API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "addUploadPart",
+      "method": "POST",
+      "path": "/uploads/{upload_id}/parts",
+      "family": "Uploads",
+      "decision": "include",
+      "reason": "Stable public Uploads API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "usage-costs",
+      "method": "GET",
+      "path": "/organization/costs",
+      "family": "Usage",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "usage-audio-speeches",
+      "method": "GET",
+      "path": "/organization/usage/audio_speeches",
+      "family": "Usage",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "usage-audio-transcriptions",
+      "method": "GET",
+      "path": "/organization/usage/audio_transcriptions",
+      "family": "Usage",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "usage-code-interpreter-sessions",
+      "method": "GET",
+      "path": "/organization/usage/code_interpreter_sessions",
+      "family": "Usage",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "usage-completions",
+      "method": "GET",
+      "path": "/organization/usage/completions",
+      "family": "Usage",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "usage-embeddings",
+      "method": "GET",
+      "path": "/organization/usage/embeddings",
+      "family": "Usage",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "usage-file-search-calls",
+      "method": "GET",
+      "path": "/organization/usage/file_search_calls",
+      "family": "Usage",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "usage-images",
+      "method": "GET",
+      "path": "/organization/usage/images",
+      "family": "Usage",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "usage-moderations",
+      "method": "GET",
+      "path": "/organization/usage/moderations",
+      "family": "Usage",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "usage-vector-stores",
+      "method": "GET",
+      "path": "/organization/usage/vector_stores",
+      "family": "Usage",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "usage-web-search-calls",
+      "method": "GET",
+      "path": "/organization/usage/web_search_calls",
+      "family": "Usage",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "list-user-role-assignments",
+      "method": "GET",
+      "path": "/organization/users/{user_id}/roles",
+      "family": "User organization role assignments",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "assign-user-role",
+      "method": "POST",
+      "path": "/organization/users/{user_id}/roles",
+      "family": "User organization role assignments",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "unassign-user-role",
+      "method": "DELETE",
+      "path": "/organization/users/{user_id}/roles/{role_id}",
+      "family": "User organization role assignments",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "retrieve-user-role",
+      "method": "GET",
+      "path": "/organization/users/{user_id}/roles/{role_id}",
+      "family": "User organization role assignments",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "list-users",
+      "method": "GET",
+      "path": "/organization/users",
+      "family": "Users",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "delete-user",
+      "method": "DELETE",
+      "path": "/organization/users/{user_id}",
+      "family": "Users",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "retrieve-user",
+      "method": "GET",
+      "path": "/organization/users/{user_id}",
+      "family": "Users",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "modify-user",
+      "method": "POST",
+      "path": "/organization/users/{user_id}",
+      "family": "Users",
+      "decision": "exclude",
+      "reason": "Organization or project administration API; requires administrative scope."
+    },
+    {
+      "operation_id": "listVaults",
+      "method": "GET",
+      "path": "/vaults",
+      "family": "Vaults",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "createVault",
+      "method": "POST",
+      "path": "/vaults",
+      "family": "Vaults",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "deleteVault",
+      "method": "DELETE",
+      "path": "/vaults/{vault_id}",
+      "family": "Vaults",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "retrieveVault",
+      "method": "GET",
+      "path": "/vaults/{vault_id}",
+      "family": "Vaults",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "updateVault",
+      "method": "POST",
+      "path": "/vaults/{vault_id}",
+      "family": "Vaults",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "listVaultCredentials",
+      "method": "GET",
+      "path": "/vaults/{vault_id}/credentials",
+      "family": "Vaults",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "createVaultCredential",
+      "method": "POST",
+      "path": "/vaults/{vault_id}/credentials",
+      "family": "Vaults",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "deleteVaultCredential",
+      "method": "DELETE",
+      "path": "/vaults/{vault_id}/credentials/{credential_id}",
+      "family": "Vaults",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "retrieveVaultCredential",
+      "method": "GET",
+      "path": "/vaults/{vault_id}/credentials/{credential_id}",
+      "family": "Vaults",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "rotateVaultCredential",
+      "method": "POST",
+      "path": "/vaults/{vault_id}/credentials/{credential_id}",
+      "family": "Vaults",
+      "decision": "exclude",
+      "reason": "Agent workspace or credential-management API; outside the public model API scope."
+    },
+    {
+      "operation_id": "listVectorStores",
+      "method": "GET",
+      "path": "/vector_stores",
+      "family": "Vector stores",
+      "decision": "include",
+      "reason": "Stable public Vector stores API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "createVectorStore",
+      "method": "POST",
+      "path": "/vector_stores",
+      "family": "Vector stores",
+      "decision": "include",
+      "reason": "Stable public Vector stores API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "deleteVectorStore",
+      "method": "DELETE",
+      "path": "/vector_stores/{vector_store_id}",
+      "family": "Vector stores",
+      "decision": "include",
+      "reason": "Stable public Vector stores API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "getVectorStore",
+      "method": "GET",
+      "path": "/vector_stores/{vector_store_id}",
+      "family": "Vector stores",
+      "decision": "include",
+      "reason": "Stable public Vector stores API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "modifyVectorStore",
+      "method": "POST",
+      "path": "/vector_stores/{vector_store_id}",
+      "family": "Vector stores",
+      "decision": "include",
+      "reason": "Stable public Vector stores API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "createVectorStoreFileBatch",
+      "method": "POST",
+      "path": "/vector_stores/{vector_store_id}/file_batches",
+      "family": "Vector stores",
+      "decision": "include",
+      "reason": "Stable public Vector stores API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "getVectorStoreFileBatch",
+      "method": "GET",
+      "path": "/vector_stores/{vector_store_id}/file_batches/{batch_id}",
+      "family": "Vector stores",
+      "decision": "include",
+      "reason": "Stable public Vector stores API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "cancelVectorStoreFileBatch",
+      "method": "POST",
+      "path": "/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel",
+      "family": "Vector stores",
+      "decision": "include",
+      "reason": "Stable public Vector stores API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "listFilesInVectorStoreBatch",
+      "method": "GET",
+      "path": "/vector_stores/{vector_store_id}/file_batches/{batch_id}/files",
+      "family": "Vector stores",
+      "decision": "include",
+      "reason": "Stable public Vector stores API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "listVectorStoreFiles",
+      "method": "GET",
+      "path": "/vector_stores/{vector_store_id}/files",
+      "family": "Vector stores",
+      "decision": "include",
+      "reason": "Stable public Vector stores API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "createVectorStoreFile",
+      "method": "POST",
+      "path": "/vector_stores/{vector_store_id}/files",
+      "family": "Vector stores",
+      "decision": "include",
+      "reason": "Stable public Vector stores API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "deleteVectorStoreFile",
+      "method": "DELETE",
+      "path": "/vector_stores/{vector_store_id}/files/{file_id}",
+      "family": "Vector stores",
+      "decision": "include",
+      "reason": "Stable public Vector stores API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "getVectorStoreFile",
+      "method": "GET",
+      "path": "/vector_stores/{vector_store_id}/files/{file_id}",
+      "family": "Vector stores",
+      "decision": "include",
+      "reason": "Stable public Vector stores API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "updateVectorStoreFileAttributes",
+      "method": "POST",
+      "path": "/vector_stores/{vector_store_id}/files/{file_id}",
+      "family": "Vector stores",
+      "decision": "include",
+      "reason": "Stable public Vector stores API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "retrieveVectorStoreFileContent",
+      "method": "GET",
+      "path": "/vector_stores/{vector_store_id}/files/{file_id}/content",
+      "family": "Vector stores",
+      "decision": "include",
+      "reason": "Stable public Vector stores API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "searchVectorStore",
+      "method": "POST",
+      "path": "/vector_stores/{vector_store_id}/search",
+      "family": "Vector stores",
+      "decision": "include",
+      "reason": "Stable public Vector stores API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "ListVideos",
+      "method": "GET",
+      "path": "/videos",
+      "family": "Videos",
+      "decision": "exclude",
+      "reason": "Videos API shut down on 2026-09-24."
+    },
+    {
+      "operation_id": "createVideo",
+      "method": "POST",
+      "path": "/videos",
+      "family": "Videos",
+      "decision": "exclude",
+      "reason": "Videos API shut down on 2026-09-24."
+    },
+    {
+      "operation_id": "CreateVideoCharacter",
+      "method": "POST",
+      "path": "/videos/characters",
+      "family": "Videos",
+      "decision": "exclude",
+      "reason": "Videos API shut down on 2026-09-24."
+    },
+    {
+      "operation_id": "GetVideoCharacter",
+      "method": "GET",
+      "path": "/videos/characters/{character_id}",
+      "family": "Videos",
+      "decision": "exclude",
+      "reason": "Videos API shut down on 2026-09-24."
+    },
+    {
+      "operation_id": "CreateVideoEdit",
+      "method": "POST",
+      "path": "/videos/edits",
+      "family": "Videos",
+      "decision": "exclude",
+      "reason": "Videos API shut down on 2026-09-24."
+    },
+    {
+      "operation_id": "CreateVideoExtend",
+      "method": "POST",
+      "path": "/videos/extensions",
+      "family": "Videos",
+      "decision": "exclude",
+      "reason": "Videos API shut down on 2026-09-24."
+    },
+    {
+      "operation_id": "DeleteVideo",
+      "method": "DELETE",
+      "path": "/videos/{video_id}",
+      "family": "Videos",
+      "decision": "exclude",
+      "reason": "Videos API shut down on 2026-09-24."
+    },
+    {
+      "operation_id": "GetVideo",
+      "method": "GET",
+      "path": "/videos/{video_id}",
+      "family": "Videos",
+      "decision": "exclude",
+      "reason": "Videos API shut down on 2026-09-24."
+    },
+    {
+      "operation_id": "RetrieveVideoContent",
+      "method": "GET",
+      "path": "/videos/{video_id}/content",
+      "family": "Videos",
+      "decision": "exclude",
+      "reason": "Videos API shut down on 2026-09-24."
+    },
+    {
+      "operation_id": "CreateVideoRemix",
+      "method": "POST",
+      "path": "/videos/{video_id}/remix",
+      "family": "Videos",
+      "decision": "exclude",
+      "reason": "Videos API shut down on 2026-09-24."
+    },
+    {
+      "operation_id": "ListWebhookEndpoints",
+      "method": "GET",
+      "path": "/webhook_endpoints",
+      "family": "Webhooks",
+      "decision": "include",
+      "reason": "Stable public Webhooks API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "CreateWebhookEndpoint",
+      "method": "POST",
+      "path": "/webhook_endpoints",
+      "family": "Webhooks",
+      "decision": "include",
+      "reason": "Stable public Webhooks API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "DeleteWebhookEndpoint",
+      "method": "DELETE",
+      "path": "/webhook_endpoints/{webhook_endpoint_id}",
+      "family": "Webhooks",
+      "decision": "include",
+      "reason": "Stable public Webhooks API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "RetrieveWebhookEndpoint",
+      "method": "GET",
+      "path": "/webhook_endpoints/{webhook_endpoint_id}",
+      "family": "Webhooks",
+      "decision": "include",
+      "reason": "Stable public Webhooks API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "UpdateWebhookEndpoint",
+      "method": "POST",
+      "path": "/webhook_endpoints/{webhook_endpoint_id}",
+      "family": "Webhooks",
+      "decision": "include",
+      "reason": "Stable public Webhooks API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "RotateWebhookEndpointSigningSecret",
+      "method": "POST",
+      "path": "/webhook_endpoints/{webhook_endpoint_id}/rotate_secret",
+      "family": "Webhooks",
+      "decision": "include",
+      "reason": "Stable public Webhooks API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "TestWebhookEndpoint",
+      "method": "POST",
+      "path": "/webhook_endpoints/{webhook_endpoint_id}/test",
+      "family": "Webhooks",
+      "decision": "include",
+      "reason": "Stable public Webhooks API operation for ordinary project API keys."
+    },
+    {
+      "operation_id": "ListWebhookEventTypes",
+      "method": "GET",
+      "path": "/webhook_event_types",
+      "family": "Webhooks",
+      "decision": "include",
+      "reason": "Stable public Webhooks API operation for ordinary project API keys."
+    }
+  ]
+}

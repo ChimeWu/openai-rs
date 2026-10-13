@@ -1,0 +1,20 @@
+{
+  "Models": {
+    "Model": {
+      "optional_properties": [
+        "created"
+      ],
+      "reason": "DeepSeek's documented GET /models response omits OpenAI's required created timestamp while retaining the standard id, object, and owned_by fields.",
+      "source": "https://api-docs.deepseek.com/api/list-models/"
+    }
+  },
+  "Files": {
+    "OpenAIFile": {
+      "optional_properties": [
+        "status"
+      ],
+      "reason": "DeepSeek's OpenAI-compatible upload and retrieve file responses omit OpenAI's deprecated status field while retaining the other documented file fields.",
+      "source": "https://api-docs.deepseek.com/api/create-file/"
+    }
+  }
+}

@@ -20,3 +20,7 @@ version_path.write_text(json.dumps(version, indent=2) + "\n")
 PY
 python3 "$ROOT/scripts/extract_responses_schema.py" \
     "$ROOT/spec/openai-openapi.json" "$ROOT/spec/responses.schema.json"
+python3 "$ROOT/scripts/generate_api_scope.py" \
+    --spec "$ROOT/spec/openai-openapi.json" \
+    --version "$ROOT/spec/VERSION.json" \
+    --output "$ROOT/spec/API_SCOPE.json"

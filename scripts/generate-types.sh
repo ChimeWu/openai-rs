@@ -9,6 +9,7 @@ if [ "$MODE" != "--check" ] && [ "$MODE" != "--write" ]; then
 fi
 
 python3 "$ROOT/scripts/check_schema.py"
+python3 "$ROOT/scripts/generate_api_scope.py" --check
 GENERATOR_VERSION=$(cargo typify --version)
 case "$GENERATOR_VERSION" in
     *"0.8.0"*) ;;
@@ -42,5 +43,11 @@ else
             exit 1
         fi
     done
-    echo "generated Rust types are up to date"
 fi
+if [ "$MODE" = "--write" ]; then
+    python3 "$ROOT/scripts/generate_api_types.py" write
+else
+    python3 "$ROOT/scripts/generate_api_types.py" check
+    python3 "$ROOT/scripts/check_client_coverage.py"
+fi
+echo "generated Rust protocol types are up to date"

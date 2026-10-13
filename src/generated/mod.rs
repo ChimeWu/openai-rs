@@ -6,4 +6,6 @@ pub mod responses {
     include!("responses.rs");
 }
 
+include!("api_families.rs");
+
 include!("event_types.rs");
