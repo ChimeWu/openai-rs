@@ -1,0 +1,8 @@
+{
+  "repository": "https://github.com/openai/openai-openapi",
+  "commit": "77618e641a840768f1e58197ca53ddedffea6df9",
+  "file": "openapi.json",
+  "sha256": "cf31ebfa19c49cf081757985deec50b28d10f9b7900e5f391eb1a899c1ce22f5",
+  "type_generator": "cargo-typify",
+  "type_generator_version": "0.8.0"
+}
