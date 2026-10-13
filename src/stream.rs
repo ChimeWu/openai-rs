@@ -169,6 +169,45 @@ mod tests {
     }
 
     #[tokio::test]
+    async fn stops_after_each_schema_typed_terminal_event() {
+        for event_type in [
+            "response.completed",
+            "response.incomplete",
+            "response.failed",
+        ] {
+            let mut response = completed_response();
+            response["status"] = serde_json::json!(match event_type {
+                "response.completed" => "completed",
+                "response.incomplete" => "incomplete",
+                _ => "failed",
+            });
+            if event_type == "response.incomplete" {
+                response["incomplete_details"] = serde_json::json!({"reason": "max_output_tokens"});
+            }
+            if event_type == "response.failed" {
+                response["error"] =
+                    serde_json::json!({"code": "server_error", "message": "failed"});
+            }
+            let event = serde_json::json!({
+                "type": event_type,
+                "sequence_number": 1,
+                "response": response
+            });
+            let frame = format!("event: {event_type}\ndata: {event}\n\n");
+            let events = parse_sse(futures_util::stream::iter(vec![Ok::<_, Infallible>(
+                Bytes::from(frame),
+            )]))
+            .collect::<Vec<_>>()
+            .await;
+
+            assert_eq!(events.len(), 1, "{event_type} should finish the stream");
+            let terminal = events[0].as_ref().unwrap();
+            assert_eq!(terminal.event_type(), event_type);
+            assert!(terminal.typed().is_some());
+        }
+    }
+
+    #[tokio::test]
     async fn preserves_unknown_event_payload_and_reports_unterminated_stream() {
         let payload = b"event: response.future_event\ndata: {\"type\":\"response.future_event\",\"new_field\":7}\n\n";
         let events = parse_sse(futures_util::stream::iter(vec![Ok::<_, Infallible>(
