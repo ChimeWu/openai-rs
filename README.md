@@ -6,12 +6,10 @@
 
 ```toml
 [dependencies]
-openai-rs = { git = "https://github.com/REPLACE_WITH_OWNER/openai-rs" }
+openai-rs = { git = "https://github.com/ChimeWu/openai-rs" }
 serde_json = "1"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 ```
-
-将示例中的 Git URL 替换为本项目仓库地址。
 
 ```rust,no_run
 use openai_rs::{HeaderMap, HeaderValue, OpenAIClient, types};
