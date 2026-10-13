@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - name: Install pinned schema generator
+        run: cargo install cargo-typify --version 0.8.0 --locked
+      - name: Check generated protocol types
+        run: scripts/generate-types.sh --check
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+      - name: Check crate
+        run: cargo check --locked
+      - name: Check all targets and optional features
+        run: cargo check --all-targets --all-features --locked
+      - name: Run offline tests
+        run: cargo test --locked

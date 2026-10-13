@@ -54,11 +54,15 @@ impl ResponseStreamEvent {
     }
 
     pub fn is_terminal(&self) -> bool {
-        matches!(
-            self.event_type.as_str(),
-            "response.completed" | "response.incomplete" | "response.failed"
-        )
+        is_terminal_event_type(&self.event_type)
     }
+}
+
+fn is_terminal_event_type(event_type: &str) -> bool {
+    matches!(
+        event_type,
+        "response.completed" | "response.incomplete" | "response.failed"
+    )
 }
 
 #[cfg(test)]
@@ -96,5 +100,17 @@ mod tests {
             serde_json::from_value(json!({ "cached_tokens": 3 })).unwrap();
         assert_eq!(details.cached_tokens, 3);
         assert_eq!(details.cache_write_tokens, None);
+    }
+
+    #[test]
+    fn classifies_all_responses_terminal_event_types() {
+        for event_type in [
+            "response.completed",
+            "response.incomplete",
+            "response.failed",
+        ] {
+            assert!(super::is_terminal_event_type(event_type));
+        }
+        assert!(!super::is_terminal_event_type("response.output_text.delta"));
     }
 }

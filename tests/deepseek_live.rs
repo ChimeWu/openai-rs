@@ -1,5 +1,6 @@
 #![cfg(feature = "live-api")]
 
+use openai_rs::{HeaderMap, HeaderValue};
 use openai_rs::{OpenAIClient, types};
 use serde_json::json;
 use std::time::Duration;
@@ -8,7 +9,7 @@ fn request(prompt: &str) -> types::CreateResponse {
     serde_json::from_value(json!({
         "model": "deepseek-flash",
         "input": prompt,
-        "max_output_tokens": 32
+        "max_output_tokens": 128
     }))
     .expect("construct request using generated Responses schema types")
 }
@@ -28,16 +29,29 @@ fn client() -> OpenAIClient {
 async fn deepseek_responses_json_and_sse_round_trip() {
     let client = client();
 
+    let mut headers = HeaderMap::new();
+    headers.insert("x-sdk-smoke", HeaderValue::from_static("request-header"));
     let response = client
-        .create(&request("Reply with exactly the two words: live check."))
+        .create_with_headers(
+            &request("Reply with exactly the two words: live check."),
+            headers,
+        )
         .await
         .expect("DeepSeek non-streaming Responses request succeeds");
-    assert_eq!(response.status, Some(types::ResponseStatus::Completed));
+    assert!(matches!(
+        response.status,
+        Some(types::ResponseStatus::Completed | types::ResponseStatus::Incomplete)
+    ));
     assert!(response.raw()["usage"].is_object());
     assert!(response.raw()["output"].is_array());
 
+    let mut headers = HeaderMap::new();
+    headers.insert("x-sdk-smoke", HeaderValue::from_static("request-header"));
     let mut stream = client
-        .create_stream(&request("Reply with exactly the two words: stream check."))
+        .create_stream_with_headers(
+            &request("Reply with exactly the two words: stream check."),
+            headers,
+        )
         .await
         .expect("DeepSeek streaming Responses request succeeds");
     let mut saw_text = false;

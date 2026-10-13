@@ -14,7 +14,7 @@ tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 将示例中的 Git URL 替换为本项目仓库地址。
 
 ```rust,no_run
-use openai_rs::{OpenAIClient, types};
+use openai_rs::{HeaderMap, HeaderValue, OpenAIClient, types};
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -25,7 +25,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         "input": "用一句话介绍 Rust。"
     }))?;
 
-    let response = client.create(&request).await?;
+    let mut headers = HeaderMap::new();
+    headers.insert("x-client-tag", HeaderValue::from_static("example"));
+    let response = client.create_with_headers(&request, headers).await?;
     println!("{}", response.output_text.as_deref().unwrap_or(""));
     Ok(())
 }
@@ -54,7 +56,7 @@ async fn stream(client: &OpenAIClient, request: &types::CreateResponse)
 }
 ```
 
-可用 `create_with_extensions` 或 `create_stream_with_extensions` 传递官方 schema 尚未覆盖的请求顶层字段。
+可用 `create_with_extensions` 或 `create_stream_with_extensions` 传递官方 schema 尚未覆盖的请求顶层字段；`create_with_headers` 和 `create_stream_with_headers` 支持单次请求附加 HTTP headers。`create_with_extensions_and_headers` 及流式对应方法可同时传入两类扩展。`Authorization`、`Content-Type` 和 `Accept` 由 SDK 管理，不能通过请求级 headers 覆盖。
 
 ## 验证
 

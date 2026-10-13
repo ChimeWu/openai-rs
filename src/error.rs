@@ -22,6 +22,8 @@ pub enum Error {
     MissingApiKey,
     #[error("request extension field conflicts with a typed request field: {0}")]
     ExtensionFieldConflict(String),
+    #[error("header is managed by the SDK and cannot be overridden: {0}")]
+    ReservedHeader(String),
 }
 
 impl Error {

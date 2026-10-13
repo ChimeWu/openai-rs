@@ -24,7 +24,8 @@ impl OpenAIClient {
 
     /// Creates a non-streaming response and preserves its original JSON body.
     pub async fn create(&self, request: &types::CreateResponse) -> Result<ResponseWithRaw, Error> {
-        self.create_with_extensions(request, Map::new()).await
+        self.create_with_extensions_and_headers(request, Map::new(), HeaderMap::new())
+            .await
     }
 
     /// Creates a response with additional top-level request fields.
@@ -33,10 +34,33 @@ impl OpenAIClient {
         request: &types::CreateResponse,
         extensions: Map<String, Value>,
     ) -> Result<ResponseWithRaw, Error> {
+        self.create_with_extensions_and_headers(request, extensions, HeaderMap::new())
+            .await
+    }
+
+    /// Creates a response with additional HTTP headers for this request.
+    pub async fn create_with_headers(
+        &self,
+        request: &types::CreateResponse,
+        headers: HeaderMap,
+    ) -> Result<ResponseWithRaw, Error> {
+        self.create_with_extensions_and_headers(request, Map::new(), headers)
+            .await
+    }
+
+    /// Creates a response with extra request fields and HTTP headers.
+    pub async fn create_with_extensions_and_headers(
+        &self,
+        request: &types::CreateResponse,
+        extensions: Map<String, Value>,
+        headers: HeaderMap,
+    ) -> Result<ResponseWithRaw, Error> {
         let mut request = request.clone();
         request.stream = Some(false);
         let body = request_body(&request, extensions)?;
-        let response = self.send_json(Method::POST, body, ACCEPT_JSON).await?;
+        let response = self
+            .send_json(Method::POST, body, ACCEPT_JSON, headers)
+            .await?;
         decode_response(response).await
     }
 
@@ -47,7 +71,7 @@ impl OpenAIClient {
         &self,
         request: &types::CreateResponse,
     ) -> Result<ResponseStream, Error> {
-        self.create_stream_with_extensions(request, Map::new())
+        self.create_stream_with_extensions_and_headers(request, Map::new(), HeaderMap::new())
             .await
     }
 
@@ -57,10 +81,33 @@ impl OpenAIClient {
         request: &types::CreateResponse,
         extensions: Map<String, Value>,
     ) -> Result<ResponseStream, Error> {
+        self.create_stream_with_extensions_and_headers(request, extensions, HeaderMap::new())
+            .await
+    }
+
+    /// Creates a streaming response with additional HTTP headers for this request.
+    pub async fn create_stream_with_headers(
+        &self,
+        request: &types::CreateResponse,
+        headers: HeaderMap,
+    ) -> Result<ResponseStream, Error> {
+        self.create_stream_with_extensions_and_headers(request, Map::new(), headers)
+            .await
+    }
+
+    /// Creates a streaming response with extra request fields and HTTP headers.
+    pub async fn create_stream_with_extensions_and_headers(
+        &self,
+        request: &types::CreateResponse,
+        extensions: Map<String, Value>,
+        headers: HeaderMap,
+    ) -> Result<ResponseStream, Error> {
         let mut request = request.clone();
         request.stream = Some(true);
         let body = request_body(&request, extensions)?;
-        let response = self.send_json(Method::POST, body, ACCEPT_EVENTS).await?;
+        let response = self
+            .send_json(Method::POST, body, ACCEPT_EVENTS, headers)
+            .await?;
         if !response.status().is_success() {
             return Err(read_http_error(response).await);
         }
@@ -72,11 +119,14 @@ impl OpenAIClient {
         method: Method,
         body: Value,
         accept: &'static str,
+        headers: HeaderMap,
     ) -> Result<reqwest::Response, Error> {
+        validate_request_headers(&headers)?;
         let endpoint = responses_url(&self.base_url)?;
         Ok(self
             .http
             .request(method, endpoint)
+            .headers(headers)
             .header(AUTHORIZATION, format!("Bearer {}", self.api_key))
             .header(CONTENT_TYPE, "application/json")
             .header(ACCEPT, accept)
@@ -88,6 +138,15 @@ impl OpenAIClient {
 
 const ACCEPT_JSON: &str = "application/json";
 const ACCEPT_EVENTS: &str = "text/event-stream";
+
+fn validate_request_headers(headers: &HeaderMap) -> Result<(), Error> {
+    for name in [AUTHORIZATION, CONTENT_TYPE, ACCEPT] {
+        if headers.contains_key(&name) {
+            return Err(Error::ReservedHeader(name.as_str().to_string()));
+        }
+    }
+    Ok(())
+}
 
 #[derive(Default)]
 pub struct ClientBuilder {
@@ -126,6 +185,7 @@ impl ClientBuilder {
     }
 
     pub fn build(self) -> Result<OpenAIClient, Error> {
+        validate_request_headers(&self.default_headers)?;
         let api_key = self
             .api_key
             .filter(|key| !key.trim().is_empty())
@@ -254,9 +314,10 @@ fn request_id(headers: &HeaderMap) -> Option<String> {
 
 #[cfg(test)]
 mod tests {
-    use super::{ClientBuilder, request_body, responses_url};
+    use super::{ClientBuilder, request_body, responses_url, validate_request_headers};
     use crate::Error;
     use crate::types;
+    use reqwest::header::{ACCEPT, AUTHORIZATION, CONTENT_TYPE, HeaderMap, HeaderValue};
     use serde_json::{Map, json};
     use url::Url;
 
@@ -319,5 +380,27 @@ mod tests {
                 .build(),
             Err(Error::InvalidBaseUrl(_))
         ));
+    }
+
+    #[test]
+    fn allows_extra_request_headers_but_reserves_protocol_headers() {
+        let mut headers = HeaderMap::new();
+        headers.insert("x-tenant", HeaderValue::from_static("demo"));
+        assert!(validate_request_headers(&headers).is_ok());
+
+        for name in [AUTHORIZATION, CONTENT_TYPE, ACCEPT] {
+            let mut headers = HeaderMap::new();
+            headers.insert(name.clone(), HeaderValue::from_static("override"));
+            assert!(matches!(
+                validate_request_headers(&headers),
+                Err(Error::ReservedHeader(header)) if header == name.as_str()
+            ));
+        }
+
+        let error = ClientBuilder::default()
+            .api_key("test")
+            .default_header(ACCEPT, HeaderValue::from_static("text/plain"))
+            .build();
+        assert!(matches!(error, Err(Error::ReservedHeader(header)) if header == "accept"));
     }
 }

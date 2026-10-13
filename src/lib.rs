@@ -13,5 +13,6 @@ pub mod types {
 pub use client::{ClientBuilder, OpenAIClient, ResponseWithRaw};
 pub use error::Error;
 pub use event::ResponseStreamEvent;
+pub use reqwest::header::{HeaderMap, HeaderName, HeaderValue};
 pub use stream::ResponseStream;
 pub use types::{CreateResponse, Response};
