@@ -1,6 +1,6 @@
 # 从 Codex 抽取独立的 Rust OpenAI SDK
 
-> 后续协议层拆分与完整 OpenAPI 类型覆盖计划见 [`PLAN_PROTOCOL_TYPES_CRATE.md`](PLAN_PROTOCOL_TYPES_CRATE.md)。该计划将协议类型覆盖与客户端运行时支持范围分开；本文件记录的首版实现状态仍作为历史基线。
+> 后续协议层拆分与完整 OpenAPI 类型覆盖计划见 [`PLAN_PROTOCOL_TYPES_CRATE.md`](PLAN_PROTOCOL_TYPES_CRATE.md)，新流式客户端 API 设计见 [`PLAN_STREAMING_CLIENT_API.md`](PLAN_STREAMING_CLIENT_API.md)。协议类型覆盖与客户端运行时支持范围分开；本文件记录的首版实现状态仍作为历史基线。
 
 ## 项目目标
 
