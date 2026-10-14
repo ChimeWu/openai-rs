@@ -1,3 +1,4 @@
+use futures_util::StreamExt;
 use openai_rs::{OpenAIClient, types};
 
 #[tokio::main]
@@ -12,7 +13,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     }))?;
 
     let mut events = client.images().generate_stream(&request).await?;
-    while let Some(event) = events.next_event().await {
+    while let Some(event) = events.next().await {
         let event = event?;
         println!("{}", event.event_type);
     }

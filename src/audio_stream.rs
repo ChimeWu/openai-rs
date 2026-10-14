@@ -52,10 +52,6 @@ impl AudioEventStream {
     pub fn request_id(&self) -> Option<&str> {
         self.request_id.as_deref()
     }
-
-    pub async fn next_event(&mut self) -> Option<Result<AudioStreamEvent, Error>> {
-        self.inner.next().await
-    }
 }
 
 impl Stream for AudioEventStream {
@@ -160,6 +156,7 @@ pub struct AudioContentStream {
     request_id: Option<String>,
     content_type: Option<String>,
     idle_timeout: Option<Duration>,
+    idle_sleep: Option<Pin<Box<tokio::time::Sleep>>>,
     terminated: bool,
 }
 
@@ -178,6 +175,7 @@ impl AudioContentStream {
             request_id,
             content_type,
             idle_timeout,
+            idle_sleep: idle_timeout.map(|timeout| Box::pin(tokio::time::sleep(timeout))),
             terminated: false,
         }
     }
@@ -189,31 +187,37 @@ impl AudioContentStream {
     pub fn content_type(&self) -> Option<&str> {
         self.content_type.as_deref()
     }
+}
 
-    pub async fn next_chunk(&mut self) -> Option<Result<Bytes, Error>> {
+impl Stream for AudioContentStream {
+    type Item = Result<Bytes, Error>;
+
+    fn poll_next(mut self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Option<Self::Item>> {
         if self.terminated {
-            return None;
+            return Poll::Ready(None);
         }
-        if let Some(timeout) = self.idle_timeout {
-            match tokio::time::timeout(timeout, self.inner.next()).await {
-                Ok(Some(Ok(chunk))) => Some(Ok(chunk)),
-                Ok(Some(Err(error))) => {
-                    self.terminated = true;
-                    Some(Err(error))
+        if let (Some(_timeout), Some(sleep)) = (self.idle_timeout, &mut self.idle_sleep)
+            && sleep.as_mut().poll(cx).is_ready()
+        {
+            self.terminated = true;
+            return Poll::Ready(Some(Err(Error::StreamIdleTimeout)));
+        }
+        match self.inner.as_mut().poll_next(cx) {
+            Poll::Ready(Some(Ok(chunk))) => {
+                if let (Some(timeout), Some(sleep)) = (self.idle_timeout, &mut self.idle_sleep) {
+                    sleep.as_mut().reset(tokio::time::Instant::now() + timeout);
                 }
-                Ok(None) => {
-                    self.terminated = true;
-                    None
-                }
-                Err(_) => {
-                    self.terminated = true;
-                    Some(Err(Error::StreamIdleTimeout))
-                }
+                Poll::Ready(Some(Ok(chunk)))
             }
-        } else {
-            let next = self.inner.next().await;
-            self.terminated = next.is_none() || next.as_ref().is_some_and(Result::is_err);
-            next
+            Poll::Ready(Some(Err(error))) => {
+                self.terminated = true;
+                Poll::Ready(Some(Err(error)))
+            }
+            Poll::Ready(None) => {
+                self.terminated = true;
+                Poll::Ready(None)
+            }
+            Poll::Pending => Poll::Pending,
         }
     }
 }
@@ -229,11 +233,12 @@ impl std::fmt::Debug for AudioContentStream {
 
 #[cfg(test)]
 mod tests {
-    use super::{AudioEventKind, AudioEventPayload, parse_events};
+    use super::{AudioContentStream, AudioEventKind, AudioEventPayload, parse_events};
     use crate::Error;
     use bytes::Bytes;
     use futures_util::StreamExt;
     use std::convert::Infallible;
+    use std::time::Duration;
 
     fn byte_chunks(input: &[u8], chunk_sizes: &[usize]) -> Vec<Result<Bytes, Infallible>> {
         let mut chunks = Vec::new();
@@ -288,6 +293,24 @@ mod tests {
             AudioEventPayload::Unknown(value) if value["extra"] == 1
         ));
         assert!(matches!(events[1], Err(Error::UnexpectedStreamEnd)));
+    }
+
+    #[tokio::test]
+    async fn audio_byte_stream_idle_timeout_is_reported_once() {
+        let timeout = Duration::ZERO;
+        let mut audio = AudioContentStream {
+            inner: Box::pin(futures_util::stream::pending()),
+            request_id: None,
+            content_type: None,
+            idle_timeout: Some(timeout),
+            idle_sleep: Some(Box::pin(tokio::time::sleep(timeout))),
+            terminated: false,
+        };
+        assert!(matches!(
+            audio.next().await,
+            Some(Err(Error::StreamIdleTimeout))
+        ));
+        assert!(audio.next().await.is_none());
     }
 
     #[cfg(feature = "multipart")]

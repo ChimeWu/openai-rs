@@ -13,7 +13,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut response = socket
         .create_response(Some("example-lane".to_owned()), &request)
         .await?;
-    while let Some(event) = response.next_event().await {
+    use futures_util::StreamExt;
+    while let Some(event) = response.next().await {
         println!("{}", event?.event.event_type());
     }
     socket.close().await?;

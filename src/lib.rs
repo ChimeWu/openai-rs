@@ -17,7 +17,9 @@ pub mod types {
 }
 
 pub use audio_stream::{AudioContentStream, AudioEventPayload, AudioEventStream, AudioStreamEvent};
-pub use chat_stream::{ChatCompletionStream, ChatCompletionStreamChunk};
+pub use chat_stream::{
+    ChatCompletionChoiceText, ChatCompletionStream, ChatCompletionStreamChunk, ChatCompletionText,
+};
 #[cfg(feature = "multipart")]
 pub use client::ContentProvenanceApi;
 pub use client::{
@@ -32,10 +34,10 @@ pub use error::Error;
 pub use event::ResponseStreamEvent;
 pub use image_stream::{ImageEventPayload, ImageEventStream, ImageStreamEvent};
 pub use reqwest::header::{HeaderMap, HeaderName, HeaderValue};
-pub use stream::ResponseStream;
+pub use stream::{ResponseStream, ResponseText};
 pub use types::{CreateResponse, Response};
 #[cfg(feature = "websocket")]
 pub use websocket::{
     ResponseWebSocketEvent, ResponseWebSocketStream, ResponsesWebSocket, WebSocketConnection,
-    WebSocketMessage,
+    WebSocketEvent, WebSocketReceiver, WebSocketSender,
 };

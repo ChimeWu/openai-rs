@@ -18,6 +18,7 @@ use serde_json::{Map, Value};
 use std::future::Future;
 use std::ops::Deref;
 use std::pin::Pin;
+use std::task::{Context, Poll};
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
 
 const DEFAULT_BASE_URL: &str = "https://api.openai.com/v1";
@@ -1384,6 +1385,10 @@ impl FilesApi<'_> {
             inner: Box::pin(response.bytes_stream()),
             request_id,
             idle_timeout: self.client.stream_idle_timeout,
+            idle_sleep: self
+                .client
+                .stream_idle_timeout
+                .map(|timeout| Box::pin(tokio::time::sleep(timeout))),
             terminated: false,
         })
     }
@@ -2312,6 +2317,10 @@ impl ContainersApi<'_> {
             inner: Box::pin(response.bytes_stream()),
             request_id,
             idle_timeout: self.client.stream_idle_timeout,
+            idle_sleep: self
+                .client
+                .stream_idle_timeout
+                .map(|timeout| Box::pin(tokio::time::sleep(timeout))),
             terminated: false,
         })
     }
@@ -2329,10 +2338,14 @@ impl RealtimeApi<'_> {
     pub async fn connect_websocket(
         &self,
         model: &str,
-    ) -> Result<crate::WebSocketConnection, Error> {
+    ) -> Result<crate::WebSocketConnection<types::realtime::RealtimeServerEvent>, Error> {
         let mut endpoint = append_path_segments(&self.client.base_url, &["realtime"])?;
         endpoint.query_pairs_mut().append_pair("model", model);
-        crate::websocket::WebSocketConnection::connect(self.client, endpoint).await
+        crate::websocket::WebSocketConnection::<types::realtime::RealtimeServerEvent>::connect(
+            self.client,
+            endpoint,
+        )
+        .await
     }
 
     fn endpoint(&self, suffix: &[&str]) -> Result<Url, Error> {
@@ -2543,9 +2556,15 @@ pub struct LiveApi<'a> {
 impl LiveApi<'_> {
     /// Opens the Live WebSocket session endpoint for bidirectional JSON/audio events.
     #[cfg(feature = "websocket")]
-    pub async fn connect_websocket(&self) -> Result<crate::WebSocketConnection, Error> {
+    pub async fn connect_websocket(
+        &self,
+    ) -> Result<crate::WebSocketConnection<types::live::LiveServerEvent>, Error> {
         let endpoint = append_path_segments(&self.client.base_url, &["live", "sessions"])?;
-        crate::websocket::WebSocketConnection::connect(self.client, endpoint).await
+        crate::websocket::WebSocketConnection::<types::live::LiveServerEvent>::connect(
+            self.client,
+            endpoint,
+        )
+        .await
     }
 
     fn endpoint(&self, session_id: Option<&str>, suffix: &[&str]) -> Result<Url, Error> {
@@ -2606,6 +2625,10 @@ impl LiveApi<'_> {
             inner: Box::pin(response.bytes_stream()),
             request_id,
             idle_timeout: self.client.stream_idle_timeout,
+            idle_sleep: self
+                .client
+                .stream_idle_timeout
+                .map(|timeout| Box::pin(tokio::time::sleep(timeout))),
             terminated: false,
         })
     }
@@ -4057,6 +4080,7 @@ pub struct FileContentStream {
     inner: Pin<Box<dyn Stream<Item = Result<bytes::Bytes, reqwest::Error>> + Send>>,
     request_id: Option<String>,
     idle_timeout: Option<Duration>,
+    idle_sleep: Option<Pin<Box<tokio::time::Sleep>>>,
     terminated: bool,
 }
 
@@ -4065,33 +4089,37 @@ impl FileContentStream {
     pub fn request_id(&self) -> Option<&str> {
         self.request_id.as_deref()
     }
+}
 
-    /// Reads the next content chunk. Dropping this value cancels remaining reads.
-    pub async fn next_chunk(&mut self) -> Option<Result<bytes::Bytes, Error>> {
+impl Stream for FileContentStream {
+    type Item = Result<bytes::Bytes, Error>;
+
+    fn poll_next(mut self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Option<Self::Item>> {
         if self.terminated {
-            return None;
+            return Poll::Ready(None);
         }
-        let next = if let Some(timeout) = self.idle_timeout {
-            match tokio::time::timeout(timeout, self.inner.next()).await {
-                Ok(next) => next,
-                Err(_) => {
-                    self.terminated = true;
-                    return Some(Err(Error::StreamIdleTimeout));
+        if let (Some(_timeout), Some(sleep)) = (self.idle_timeout, &mut self.idle_sleep)
+            && sleep.as_mut().poll(cx).is_ready()
+        {
+            self.terminated = true;
+            return Poll::Ready(Some(Err(Error::StreamIdleTimeout)));
+        }
+        match self.inner.as_mut().poll_next(cx) {
+            Poll::Ready(Some(Ok(bytes))) => {
+                if let (Some(timeout), Some(sleep)) = (self.idle_timeout, &mut self.idle_sleep) {
+                    sleep.as_mut().reset(tokio::time::Instant::now() + timeout);
                 }
+                Poll::Ready(Some(Ok(bytes)))
             }
-        } else {
-            self.inner.next().await
-        };
-        match next {
-            Some(Ok(bytes)) => Some(Ok(bytes)),
-            Some(Err(error)) => {
+            Poll::Ready(Some(Err(error))) => {
                 self.terminated = true;
-                Some(Err(Error::Http(error)))
+                Poll::Ready(Some(Err(Error::Http(error))))
             }
-            None => {
+            Poll::Ready(None) => {
                 self.terminated = true;
-                None
+                Poll::Ready(None)
             }
+            Poll::Pending => Poll::Pending,
         }
     }
 }
@@ -5237,12 +5265,33 @@ mod tests {
     use crate::Error;
     use crate::types;
     use bytes::Bytes;
-    use futures_util::stream;
+    use futures_core::Stream;
+    use futures_util::{StreamExt, stream};
     use reqwest::header::{ACCEPT, AUTHORIZATION, CONTENT_TYPE, HeaderMap, HeaderValue};
     use reqwest::{Method, StatusCode};
     use serde_json::{Map, json};
+    use std::pin::Pin;
+    use std::sync::Arc;
+    use std::sync::atomic::{AtomicBool, Ordering};
+    use std::task::{Context, Poll};
     use std::time::{Duration, UNIX_EPOCH};
     use url::Url;
+
+    struct FileDropProbe(Arc<AtomicBool>);
+
+    impl Stream for FileDropProbe {
+        type Item = Result<Bytes, reqwest::Error>;
+
+        fn poll_next(self: Pin<&mut Self>, _cx: &mut Context<'_>) -> Poll<Option<Self::Item>> {
+            Poll::Pending
+        }
+    }
+
+    impl Drop for FileDropProbe {
+        fn drop(&mut self) {
+            self.0.store(true, Ordering::Release);
+        }
+    }
 
     #[test]
     fn serializes_generated_request_and_keeps_compatible_extensions() {
@@ -5701,12 +5750,43 @@ mod tests {
             ])),
             request_id: Some("req_file".to_owned()),
             idle_timeout: None,
+            idle_sleep: None,
             terminated: false,
         };
         assert_eq!(download.request_id(), Some("req_file"));
-        assert_eq!(download.next_chunk().await.unwrap().unwrap(), "part-1");
-        assert_eq!(download.next_chunk().await.unwrap().unwrap(), "part-2");
-        assert!(download.next_chunk().await.is_none());
+        assert_eq!(download.next().await.unwrap().unwrap(), "part-1");
+        assert_eq!(download.next().await.unwrap().unwrap(), "part-2");
+        assert!(download.next().await.is_none());
+    }
+
+    #[tokio::test]
+    async fn file_download_idle_timeout_is_reported_once() {
+        let mut download = FileContentStream {
+            inner: Box::pin(futures_util::stream::pending()),
+            request_id: None,
+            idle_timeout: Some(Duration::ZERO),
+            idle_sleep: Some(Box::pin(tokio::time::sleep(Duration::ZERO))),
+            terminated: false,
+        };
+        assert!(matches!(
+            download.next().await,
+            Some(Err(Error::StreamIdleTimeout))
+        ));
+        assert!(download.next().await.is_none());
+    }
+
+    #[test]
+    fn dropping_file_download_stream_cancels_the_underlying_read() {
+        let dropped = Arc::new(AtomicBool::new(false));
+        let download = FileContentStream {
+            inner: Box::pin(FileDropProbe(dropped.clone())),
+            request_id: None,
+            idle_timeout: None,
+            idle_sleep: None,
+            terminated: false,
+        };
+        drop(download);
+        assert!(dropped.load(Ordering::Acquire));
     }
 
     #[cfg(feature = "multipart")]

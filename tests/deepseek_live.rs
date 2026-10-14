@@ -1,5 +1,6 @@
 #![cfg(feature = "live-api")]
 
+use futures_util::StreamExt;
 use openai_rs::{CreateOptions, OpenAIClient, RequestOptions, types};
 use serde_json::json;
 use std::time::Duration;
@@ -77,7 +78,7 @@ async fn deepseek_responses_json_and_sse_round_trip() {
         .expect("DeepSeek streaming Responses request succeeds");
     let mut saw_text = false;
     let mut saw_terminal = false;
-    while let Some(event) = stream.next_event().await {
+    while let Some(event) = stream.next().await {
         let event = event.expect("Responses SSE event decodes");
         assert_ne!(event.event_type(), "response.failed");
         saw_text |= event.event_type() == "response.output_text.delta";
@@ -122,7 +123,7 @@ async fn deepseek_chat_completions_json_and_sse_round_trip() {
         .expect("DeepSeek streaming Chat Completions request succeeds");
     let mut saw_text = false;
     let mut saw_finish = false;
-    while let Some(chunk) = stream.next_chunk().await {
+    while let Some(chunk) = stream.next().await {
         let chunk = chunk.expect("Chat Completions SSE chunk decodes");
         saw_text |= chunk.data()["choices"][0]["delta"]["content"]
             .as_str()
@@ -143,7 +144,7 @@ async fn deepseek_files_accept_one_shot_multipart_upload_and_cleanup() {
     let client = client();
     let request = types::files::CreateFileRequest {
         expires_after: Some(types::files::FileExpirationAfter {
-            anchor: types::files::FileExpirationAfterAnchor::CreatedAt,
+            anchor: types::common::FileExpirationAfterAnchor::CreatedAt,
             seconds: 3600,
         }),
         file: "openai-rs-smoke.gif".to_owned(),

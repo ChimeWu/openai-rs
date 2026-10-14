@@ -1,4 +1,5 @@
-use openai_rs::{OpenAIClient, WebSocketMessage, types};
+use futures_util::StreamExt;
+use openai_rs::{OpenAIClient, WebSocketEvent, types};
 use serde_json::{Value, json};
 use std::error::Error;
 use std::io;
@@ -12,7 +13,8 @@ async fn main() -> Result<(), Box<dyn Error>> {
         .stream_idle_timeout(Duration::from_secs(60))
         .build()?;
 
-    let mut socket = client.live().connect_websocket().await?;
+    let connection = client.live().connect_websocket().await?;
+    let (sender, mut receiver) = connection.split();
     let start: types::live::LiveSessionStartEvent = serde_json::from_value(json!({
         "type": "session.start",
         "event_id": "rust-example-start",
@@ -25,10 +27,10 @@ async fn main() -> Result<(), Box<dyn Error>> {
             }
         }
     }))?;
-    socket.send_json(&start).await?;
+    sender.send_json(&start).await?;
 
     loop {
-        let event = next_json_event(&mut socket).await?;
+        let event = next_json_event(&mut receiver).await?;
         match event["type"].as_str() {
             Some("session.started") => {
                 println!("Live session started");
@@ -41,10 +43,10 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     let close: types::live::LiveSessionCloseParam =
         serde_json::from_value(json!({"type": "session.close"}))?;
-    socket.send_json(&close).await?;
+    sender.send_json(&close).await?;
 
     loop {
-        let event = next_json_event(&mut socket).await?;
+        let event = next_json_event(&mut receiver).await?;
         match event["type"].as_str() {
             Some("session.closed") => {
                 println!("Live session closed");
@@ -55,20 +57,21 @@ async fn main() -> Result<(), Box<dyn Error>> {
         }
     }
 
-    socket.close().await?;
+    sender.close().await?;
     Ok(())
 }
 
 async fn next_json_event(
-    socket: &mut openai_rs::WebSocketConnection,
+    socket: &mut openai_rs::WebSocketReceiver<types::live::LiveServerEvent>,
 ) -> Result<Value, Box<dyn Error>> {
     match socket
-        .next_message()
+        .next()
         .await
         .ok_or_else(|| io::Error::other("Live WebSocket closed before the expected event"))??
     {
-        WebSocketMessage::Json(event) => Ok(event),
-        WebSocketMessage::Binary(_) => Err(io::Error::other("expected a JSON Live event").into()),
+        WebSocketEvent::Event(event) => Ok(serde_json::to_value(event)?),
+        WebSocketEvent::Unknown(event) => Ok(event),
+        WebSocketEvent::Binary(_) => Err(io::Error::other("expected a JSON Live event").into()),
     }
 }
 

@@ -33,9 +33,56 @@ impl ResponseStream {
         self.request_id.as_deref()
     }
 
-    pub async fn next_event(&mut self) -> Option<Result<ResponseStreamEvent, Error>> {
-        self.inner.next().await
+    /// Maps response events to generated text deltas, ignoring other event types.
+    pub fn text_deltas(self) -> impl Stream<Item = Result<String, Error>> + Send {
+        self.filter_map(|item| async move {
+            match item {
+                Err(error) => Some(Err(error)),
+                Ok(event) if event.event_type() == "response.output_text.delta" => event
+                    .data()
+                    .get("delta")
+                    .and_then(serde_json::Value::as_str)
+                    .map(|delta| Ok(delta.to_owned())),
+                Ok(_) => None,
+            }
+        })
     }
+
+    /// Consumes the stream, collecting text in event order and the final response.
+    pub async fn collect_text(mut self) -> Result<ResponseText, Error> {
+        let mut text = String::new();
+        let mut response = None;
+        while let Some(item) = self.next().await {
+            let event = item?;
+            if event.event_type() == "response.output_text.delta"
+                && let Some(delta) = event
+                    .data()
+                    .get("delta")
+                    .and_then(serde_json::Value::as_str)
+            {
+                text.push_str(delta);
+            }
+            if event.is_terminal() {
+                response = event
+                    .data()
+                    .get("response")
+                    .cloned()
+                    .map(serde_json::from_value)
+                    .transpose()?;
+            }
+        }
+        Ok(ResponseText {
+            text,
+            response: response.ok_or(Error::UnexpectedStreamEnd)?,
+        })
+    }
+}
+
+/// Text collected from a Responses stream and its terminal response object.
+#[derive(Clone, Debug, PartialEq)]
+pub struct ResponseText {
+    pub text: String,
+    pub response: crate::Response,
 }
 
 fn parse_sse<S, E>(
@@ -125,12 +172,33 @@ impl std::fmt::Debug for ResponseStream {
 
 #[cfg(test)]
 mod tests {
-    use super::parse_sse;
+    use super::{ResponseStream, parse_sse};
     use crate::Error;
     use bytes::Bytes;
+    use futures_core::Stream;
     use futures_util::StreamExt;
     use std::convert::Infallible;
+    use std::pin::Pin;
+    use std::sync::Arc;
+    use std::sync::atomic::{AtomicBool, Ordering};
+    use std::task::{Context, Poll};
     use std::time::Duration;
+
+    struct DropProbe(Arc<AtomicBool>);
+
+    impl Stream for DropProbe {
+        type Item = Result<Bytes, Infallible>;
+
+        fn poll_next(self: Pin<&mut Self>, _cx: &mut Context<'_>) -> Poll<Option<Self::Item>> {
+            Poll::Pending
+        }
+    }
+
+    impl Drop for DropProbe {
+        fn drop(&mut self) {
+            self.0.store(true, Ordering::Release);
+        }
+    }
 
     fn completed_response() -> serde_json::Value {
         serde_json::json!({
@@ -305,5 +373,57 @@ mod tests {
             .collect::<Vec<_>>()
             .await;
         assert!(matches!(events.as_slice(), [Err(Error::StreamIdleTimeout)]));
+    }
+
+    #[tokio::test]
+    async fn collects_text_and_final_response_from_terminal_event() {
+        let delta = serde_json::json!({
+            "type":"response.output_text.delta",
+            "sequence_number":1,
+            "item_id":"msg_1",
+            "output_index":0,
+            "content_index":0,
+            "delta":"hello ",
+            "logprobs":[]
+        });
+        let terminal = serde_json::json!({
+            "type":"response.completed",
+            "sequence_number":2,
+            "response":completed_response()
+        });
+        let input = format!("data: {delta}\n\ndata: {terminal}\n\n");
+        let source = futures_util::stream::iter(byte_chunks(input.as_bytes(), &[2, 5, 1]));
+        let response = ResponseStream {
+            inner: Box::pin(parse_sse(source, None, None)),
+            request_id: None,
+        };
+        let text = response.collect_text().await.unwrap();
+        assert_eq!(text.text, "hello ");
+        assert_eq!(text.response.id, "resp_fixture");
+
+        let source = futures_util::stream::iter(byte_chunks(input.as_bytes(), &[4, 1, 8]));
+        let response = ResponseStream {
+            inner: Box::pin(parse_sse(source, None, None)),
+            request_id: None,
+        };
+        assert_eq!(
+            response
+                .text_deltas()
+                .map(Result::unwrap)
+                .collect::<Vec<_>>()
+                .await,
+            vec!["hello ".to_owned()]
+        );
+    }
+
+    #[test]
+    fn dropping_response_stream_drops_the_underlying_read() {
+        let dropped = Arc::new(AtomicBool::new(false));
+        let response = ResponseStream {
+            inner: Box::pin(parse_sse(DropProbe(dropped.clone()), None, None)),
+            request_id: None,
+        };
+        drop(response);
+        assert!(dropped.load(Ordering::Acquire));
     }
 }

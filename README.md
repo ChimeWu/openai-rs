@@ -10,6 +10,7 @@
 [dependencies]
 openai-rs = { git = "https://github.com/ChimeWu/openai-rs", features = ["multipart"] }
 bytes = "1"
+futures-util = "0.3"
 serde_json = "1"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 ```
@@ -50,7 +51,8 @@ async fn stream(client: &OpenAIClient, request: &types::CreateResponse)
     -> Result<(), Box<dyn std::error::Error>>
 {
     let mut events = client.responses().create_stream(request).await?;
-    while let Some(event) = events.next_event().await {
+    use futures_util::StreamExt;
+    while let Some(event) = events.next().await {
         let event = event?;
         if event.event_type() == "response.output_text.delta" {
             if let Some(delta) = event.data().get("delta").and_then(serde_json::Value::as_str) {
@@ -113,7 +115,9 @@ Moderations API 通过 `client.moderations().create(&request)` 访问，支持�
 
 Audio API 提供文本转语音、音频转录/翻译及自定义语音同意记录管理。语音返回逐块读取的 `AudioContentStream`；设置 SSE 模式时返回保留未知事件的 `AudioEventStream`。转录和翻译文件上传需要 `multipart` feature。示例见 [`examples/audio.rs`](examples/audio.rs)。
 
-Files API 支持列表、元数据检索/删除及逐块下载。使用 `multipart` feature 后，可通过 `client.files().create(&request, bytes::Bytes)` 上传可重放的内存内容，或用 `create_stream` 从一次性 byte stream 上传；一次性流不会自动重试。文件响应中的 OpenAI deprecated `status` 字段为 `Option`，以兼容 DeepSeek 官方 OpenAI-compatible Files 响应中的省略行为。`multipart` feature 默认关闭。下载返回 `FileContentStream`，逐次调用 `next_chunk()` 读取，不会将整个文件一次性载入内存。
+Files API 支持列表、元数据检索/删除及逐块下载。使用 `multipart` feature 后，可通过 `client.files().create(&request, bytes::Bytes)` 上传可重放的内存内容，或用 `create_stream` 从一次性 byte stream 上传；一次性流不会自动重试。文件响应中的 OpenAI deprecated `status` 字段为 `Option`，以兼容 DeepSeek 官方 OpenAI-compatible Files 响应中的省略行为。`multipart` feature 默认关闭。下载返回实现 `Stream<Item = Result<Bytes, Error>>` 的 `FileContentStream`，通过 `StreamExt::next()` 逐块读取，不会将整个文件一次性载入内存。
+
+0.3.0 将 SSE、字节流与 WebSocket 接收端统一为 `Stream`，并移除了 `next_event`、`next_chunk`、`next_message`。Responses 与 Chat Completions 流支持 `text_deltas()` 和 `collect_text()`；Realtime 与 Live WebSocket 连接通过 `split()` 得到可并发使用的 sender 和类型化 receiver。迁移示例见 [`docs/MIGRATION_0.3.0.md`](docs/MIGRATION_0.3.0.md)。
 
 大型文件可使用 Uploads API 的 `create`、`add_part`、`complete` 和 `cancel` 操作。上传 part 使用 `multipart` feature；`add_part` 接受可重放的 `bytes::Bytes`，`add_part_stream` 接受 `Result<Bytes, std::io::Error>` byte stream 且不会自动重试。完成请求中的 part ID 顺序决定最终文件内容顺序。示例见 [`examples/uploads.rs`](examples/uploads.rs)。
 
@@ -197,6 +201,8 @@ async fn inspect(client: &OpenAIClient, response_id: &str) -> Result<(), openai_
 `count_input_tokens` 与 `compact` 分别接收生成的 `types::TokenCountsBody` 和 `types::CompactResponseMethodPublicBody`。`retrieve_stream` 接收 `types::RetrieveResponseStreamParams`，可设置 `starting_after` 从指定事件序号继续读取。
 
 0.2.0 将 0.1.0 的 `client.create(...)` 和 `client.create_stream(...)` 改为 `client.responses().create(...)` 和 `client.responses().create_stream(...)`。单次请求自定义项统一通过 `CreateOptions` 和 `RequestOptions` 传递。
+
+0.3.0 的统一流式接口迁移方式见 [`docs/MIGRATION_0.3.0.md`](docs/MIGRATION_0.3.0.md)。
 
 ## 验证
 

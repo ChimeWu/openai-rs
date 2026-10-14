@@ -1,4 +1,5 @@
 use bytes::Bytes;
+use futures_util::StreamExt;
 use openai_rs::{AudioFile, AudioSpeechResponse, AudioTranscriptionResponse, OpenAIClient, types};
 use std::path::Path;
 
@@ -21,13 +22,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     match client.audio().create_speech(&speech).await? {
         AudioSpeechResponse::Audio(mut audio) => {
             let mut contents = Vec::new();
-            while let Some(chunk) = audio.next_chunk().await {
+            while let Some(chunk) = audio.next().await {
                 contents.extend_from_slice(&chunk?);
             }
             std::fs::write("speech.mp3", contents)?;
         }
         AudioSpeechResponse::Events(mut events) => {
-            while let Some(event) = events.next_event().await {
+            while let Some(event) = events.next().await {
                 println!("{}", event?.event_type);
             }
         }
@@ -61,7 +62,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         },
         AudioTranscriptionResponse::Text(response) => println!("{}", response.text),
         AudioTranscriptionResponse::Events(mut events) => {
-            while let Some(event) = events.next_event().await {
+            while let Some(event) = events.next().await {
                 println!("{}", event?.event_type);
             }
         }

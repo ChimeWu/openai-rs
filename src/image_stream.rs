@@ -51,10 +51,6 @@ impl ImageEventStream {
     pub fn request_id(&self) -> Option<&str> {
         self.request_id.as_deref()
     }
-
-    pub async fn next_event(&mut self) -> Option<Result<ImageStreamEvent, Error>> {
-        self.inner.next().await
-    }
 }
 
 impl Stream for ImageEventStream {

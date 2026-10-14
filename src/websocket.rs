@@ -1,16 +1,17 @@
 use crate::{Error, OpenAIClient, types};
 use bytes::Bytes;
 use futures_util::{SinkExt, StreamExt};
-use serde::Serialize;
+use serde::{Serialize, de::DeserializeOwned};
 use serde_json::Value;
 use std::collections::{HashMap, HashSet, VecDeque};
+use std::marker::PhantomData;
 use std::pin::Pin;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::{Arc, Mutex};
 use std::task::{Context, Poll};
 use std::time::Duration;
 use tokio::net::TcpStream;
-use tokio::sync::mpsc;
+use tokio::sync::{mpsc, watch};
 use tokio_tungstenite::tungstenite::client::IntoClientRequest;
 use tokio_tungstenite::tungstenite::http::HeaderValue;
 use tokio_tungstenite::tungstenite::http::header::AUTHORIZATION;
@@ -19,7 +20,12 @@ use tokio_tungstenite::{MaybeTlsStream, WebSocketStream, connect_async};
 
 type Socket = WebSocketStream<MaybeTlsStream<TcpStream>>;
 type SocketSink = futures_util::stream::SplitSink<Socket, Message>;
-type SocketSource = futures_util::stream::SplitStream<Socket>;
+type SocketSource = Pin<
+    Box<
+        dyn futures_core::Stream<Item = Result<Message, tokio_tungstenite::tungstenite::Error>>
+            + Send,
+    >,
+>;
 type EventRoutes = Arc<Mutex<RouteRegistry>>;
 
 const CHANNEL_CAPACITY: usize = 32;
@@ -32,22 +38,26 @@ struct RouteRegistry {
     named_ids: HashSet<String>,
 }
 
-/// An inbound Realtime/Live websocket message.
+/// An inbound typed event or an event unknown to the pinned schema.
 #[derive(Clone, Debug, PartialEq)]
-pub enum WebSocketMessage {
-    Json(Value),
+pub enum WebSocketEvent<T> {
+    Event(T),
+    Unknown(Value),
     Binary(Bytes),
 }
 
-/// A bidirectional OpenAI WebSocket connection for Realtime or Live events.
-pub struct WebSocketConnection {
-    sink: SocketSink,
+/// A bidirectional OpenAI WebSocket connection for one API family's events.
+pub struct WebSocketConnection<T> {
+    outgoing: mpsc::Sender<Message>,
     source: SocketSource,
     request_id: Option<String>,
     idle_timeout: Option<Duration>,
+    closed: Arc<AtomicBool>,
+    close_signal: watch::Sender<bool>,
+    _event: PhantomData<fn() -> T>,
 }
 
-impl WebSocketConnection {
+impl<T> WebSocketConnection<T> {
     pub(crate) async fn connect(
         client: &OpenAIClient,
         mut endpoint: reqwest::Url,
@@ -80,29 +90,19 @@ impl WebSocketConnection {
         };
         let request_id = websocket_request_id(handshake.headers());
         let (sink, source) = socket.split();
+        let (outgoing, outgoing_rx) = mpsc::channel(CHANNEL_CAPACITY);
+        let closed = Arc::new(AtomicBool::new(false));
+        let (close_signal, close_rx) = watch::channel(false);
+        tokio::spawn(write_loop(sink, outgoing_rx, close_rx, closed.clone()));
         Ok(Self {
-            sink,
-            source,
+            outgoing,
+            source: Box::pin(source),
             request_id,
             idle_timeout: client.stream_idle_timeout,
+            closed,
+            close_signal,
+            _event: PhantomData,
         })
-    }
-
-    /// Sends a JSON event without changing its wire shape.
-    pub async fn send_json<T: Serialize>(&mut self, event: &T) -> Result<(), Error> {
-        let text = serde_json::to_string(event)?;
-        self.sink
-            .send(Message::Text(text.into()))
-            .await
-            .map_err(|error| Error::WebSocket(error.to_string()))
-    }
-
-    /// Sends a binary media frame.
-    pub async fn send_binary(&mut self, bytes: Bytes) -> Result<(), Error> {
-        self.sink
-            .send(Message::Binary(bytes))
-            .await
-            .map_err(|error| Error::WebSocket(error.to_string()))
     }
 
     /// Returns the request ID supplied with the WebSocket handshake response, if any.
@@ -110,44 +110,175 @@ impl WebSocketConnection {
         self.request_id.as_deref()
     }
 
-    /// Reads the next JSON event or binary frame. `None` means a clean close.
-    pub async fn next_message(&mut self) -> Option<Result<WebSocketMessage, Error>> {
+    /// Separates concurrent sending and typed event reception.
+    pub fn split(self) -> (WebSocketSender, WebSocketReceiver<T>)
+    where
+        T: DeserializeOwned + Send + 'static,
+    {
+        let sender = WebSocketSender {
+            outgoing: self.outgoing.clone(),
+            closed: self.closed.clone(),
+            close_signal: self.close_signal.clone(),
+        };
+        let receiver = WebSocketReceiver {
+            source: self.source,
+            outgoing: self.outgoing,
+            closed: self.closed,
+            close_signal: self.close_signal,
+            request_id: self.request_id,
+            idle_timeout: self.idle_timeout,
+            idle_sleep: self
+                .idle_timeout
+                .map(|timeout| Box::pin(tokio::time::sleep(timeout))),
+            terminated: false,
+            _event: PhantomData,
+        };
+        (sender, receiver)
+    }
+}
+
+/// The sending half of a split Realtime or Live WebSocket.
+#[derive(Clone)]
+pub struct WebSocketSender {
+    outgoing: mpsc::Sender<Message>,
+    closed: Arc<AtomicBool>,
+    close_signal: watch::Sender<bool>,
+}
+
+impl WebSocketSender {
+    /// Sends a JSON event without changing its wire shape.
+    pub async fn send_json<T: Serialize>(&self, event: &T) -> Result<(), Error> {
+        if self.closed.load(Ordering::Acquire) {
+            return Err(Error::WebSocketClosed);
+        }
+        let text = serde_json::to_string(event)?;
+        self.outgoing
+            .send(Message::Text(text.into()))
+            .await
+            .map_err(|_| Error::WebSocketClosed)
+    }
+
+    /// Sends a binary media frame.
+    pub async fn send_binary(&self, bytes: Bytes) -> Result<(), Error> {
+        if self.closed.load(Ordering::Acquire) {
+            return Err(Error::WebSocketClosed);
+        }
+        self.outgoing
+            .send(Message::Binary(bytes))
+            .await
+            .map_err(|_| Error::WebSocketClosed)
+    }
+
+    /// Closes the connection and makes future sends fail with `WebSocketClosed`.
+    pub async fn close(&self) -> Result<(), Error> {
+        if self.closed.swap(true, Ordering::AcqRel) {
+            return Err(Error::WebSocketClosed);
+        }
+        self.close_signal.send_replace(true);
+        Ok(())
+    }
+}
+
+/// The typed receiving half of a split Realtime or Live WebSocket.
+pub struct WebSocketReceiver<T> {
+    source: SocketSource,
+    outgoing: mpsc::Sender<Message>,
+    closed: Arc<AtomicBool>,
+    close_signal: watch::Sender<bool>,
+    request_id: Option<String>,
+    idle_timeout: Option<Duration>,
+    idle_sleep: Option<Pin<Box<tokio::time::Sleep>>>,
+    terminated: bool,
+    _event: PhantomData<fn() -> T>,
+}
+
+impl<T> WebSocketReceiver<T> {
+    pub fn request_id(&self) -> Option<&str> {
+        self.request_id.as_deref()
+    }
+}
+
+impl<T: DeserializeOwned> futures_core::Stream for WebSocketReceiver<T> {
+    type Item = Result<WebSocketEvent<T>, Error>;
+
+    fn poll_next(mut self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Option<Self::Item>> {
+        if self.terminated {
+            return Poll::Ready(None);
+        }
+        if let (Some(_timeout), Some(sleep)) = (self.idle_timeout, &mut self.idle_sleep)
+            && sleep.as_mut().poll(cx).is_ready()
+        {
+            self.terminate();
+            return Poll::Ready(Some(Err(Error::StreamIdleTimeout)));
+        }
         loop {
-            let message = if let Some(timeout) = self.idle_timeout {
-                match tokio::time::timeout(timeout, self.source.next()).await {
-                    Ok(message) => message,
-                    Err(_) => return Some(Err(Error::StreamIdleTimeout)),
+            match self.source.as_mut().poll_next(cx) {
+                Poll::Pending => return Poll::Pending,
+                Poll::Ready(None) | Poll::Ready(Some(Ok(Message::Close(_)))) => {
+                    self.terminate();
+                    return Poll::Ready(None);
                 }
-            } else {
-                self.source.next().await
-            }?;
-            match message {
-                Ok(Message::Text(text)) => {
-                    return Some(
-                        serde_json::from_str(text.as_str())
-                            .map(WebSocketMessage::Json)
-                            .map_err(Error::Json),
-                    );
+                Poll::Ready(Some(Err(error))) => {
+                    self.terminate();
+                    return Poll::Ready(Some(Err(Error::WebSocket(error.to_string()))));
                 }
-                Ok(Message::Binary(bytes)) => return Some(Ok(WebSocketMessage::Binary(bytes))),
-                Ok(Message::Close(_)) => return None,
-                Ok(Message::Ping(payload)) => {
-                    if let Err(error) = self.sink.send(Message::Pong(payload)).await {
-                        return Some(Err(Error::WebSocket(error.to_string())));
+                Poll::Ready(Some(Ok(Message::Text(text)))) => {
+                    let value: Value = match serde_json::from_str(text.as_str()) {
+                        Ok(value) => value,
+                        Err(error) => {
+                            self.terminate();
+                            return Poll::Ready(Some(Err(Error::Json(error))));
+                        }
+                    };
+                    if value["type"] == "error" {
+                        self.terminate();
+                        return Poll::Ready(Some(Err(Error::WebSocketServerEvent {
+                            body: value,
+                            request_id: self.request_id.clone(),
+                        })));
+                    }
+                    if let (Some(timeout), Some(sleep)) = (self.idle_timeout, &mut self.idle_sleep)
+                    {
+                        sleep.as_mut().reset(tokio::time::Instant::now() + timeout);
+                    }
+                    return Poll::Ready(Some(match serde_json::from_value(value.clone()) {
+                        Ok(event) => Ok(WebSocketEvent::Event(event)),
+                        Err(_) => Ok(WebSocketEvent::Unknown(value)),
+                    }));
+                }
+                Poll::Ready(Some(Ok(Message::Binary(bytes)))) => {
+                    if let (Some(timeout), Some(sleep)) = (self.idle_timeout, &mut self.idle_sleep)
+                    {
+                        sleep.as_mut().reset(tokio::time::Instant::now() + timeout);
+                    }
+                    return Poll::Ready(Some(Ok(WebSocketEvent::Binary(bytes))));
+                }
+                Poll::Ready(Some(Ok(Message::Ping(payload)))) => {
+                    if self.outgoing.try_send(Message::Pong(payload)).is_err() {
+                        self.terminate();
+                        return Poll::Ready(Some(Err(Error::WebSocketClosed)));
                     }
                 }
-                Ok(Message::Pong(_) | Message::Frame(_)) => continue,
-                Err(error) => return Some(Err(Error::WebSocket(error.to_string()))),
+                Poll::Ready(Some(Ok(Message::Pong(_) | Message::Frame(_)))) => continue,
             }
         }
     }
+}
 
-    /// Closes the connection and waits for the close frame to be sent.
-    pub async fn close(mut self) -> Result<(), Error> {
-        self.sink
-            .send(Message::Close(None))
-            .await
-            .map_err(|error| Error::WebSocket(error.to_string()))
+impl<T> WebSocketReceiver<T> {
+    fn terminate(&mut self) {
+        self.terminated = true;
+        self.closed.store(true, Ordering::Release);
+        self.close_signal.send_replace(true);
+    }
+}
+
+impl<T> Drop for WebSocketReceiver<T> {
+    fn drop(&mut self) {
+        if !self.terminated {
+            self.terminate();
+            let _ = self.outgoing.try_send(Message::Close(None));
+        }
     }
 }
 
@@ -221,65 +352,6 @@ impl ResponseWebSocketStream {
 
     pub fn request_id(&self) -> Option<&str> {
         self.request_id.as_deref()
-    }
-
-    pub async fn next_event(&mut self) -> Option<Result<ResponseWebSocketEvent, Error>> {
-        if self.terminated {
-            return None;
-        }
-        let message = if let Some(timeout) = self.idle_timeout {
-            match tokio::time::timeout(timeout, self.receiver.recv()).await {
-                Ok(message) => message,
-                Err(_) => {
-                    self.terminated = true;
-                    return Some(Err(Error::StreamIdleTimeout));
-                }
-            }
-        } else {
-            self.receiver.recv().await
-        };
-        let Some(message) = message else {
-            self.terminated = true;
-            return Some(Err(Error::WebSocketClosed));
-        };
-        let value = match message {
-            Ok(value) => value,
-            Err(error) => {
-                self.terminated = true;
-                return Some(Err(route_failure(error)));
-            }
-        };
-        if value.get("type").and_then(Value::as_str) == Some("error") {
-            self.terminated = true;
-            return Some(Err(Error::WebSocketServerEvent {
-                body: value,
-                request_id: self.request_id.clone(),
-            }));
-        }
-        let event = match crate::ResponseStreamEvent::decode(&value.to_string(), None) {
-            Ok(event) => event,
-            Err(error) => {
-                self.terminated = true;
-                return Some(Err(error));
-            }
-        };
-        if event.event_type() == "response.failed" {
-            self.terminated = true;
-            return Some(Err(Error::ResponseFailed {
-                body: value,
-                request_id: self.request_id.clone(),
-            }));
-        }
-        let terminal = event.is_terminal();
-        if terminal {
-            self.terminated = true;
-        } else if let (Some(timeout), Some(sleep)) = (self.idle_timeout, &mut self.idle_sleep) {
-            sleep.as_mut().reset(tokio::time::Instant::now() + timeout);
-        }
-        Some(Ok(ResponseWebSocketEvent {
-            stream_id: self.stream_id.clone(),
-            event,
-        }))
     }
 }
 
@@ -358,6 +430,7 @@ pub struct ResponsesWebSocket {
     outgoing: mpsc::Sender<Message>,
     routes: EventRoutes,
     closed: Arc<AtomicBool>,
+    close_signal: watch::Sender<bool>,
     request_id: Option<String>,
     idle_timeout: Option<Duration>,
 }
@@ -365,25 +438,27 @@ pub struct ResponsesWebSocket {
 impl ResponsesWebSocket {
     pub(crate) async fn connect(client: &OpenAIClient) -> Result<Self, Error> {
         let endpoint = append_path_segments(&client.base_url, &["responses"])?;
-        let connection = WebSocketConnection::connect(client, endpoint).await?;
+        let connection = WebSocketConnection::<Value>::connect(client, endpoint).await?;
         let idle_timeout = connection.idle_timeout;
         let request_id = connection.request_id.clone();
-        let (sink, source) = (connection.sink, connection.source);
-        let (outgoing, outgoing_rx) = mpsc::channel::<Message>(CHANNEL_CAPACITY);
+        let outgoing = connection.outgoing;
+        let source = connection.source;
         let routes: EventRoutes = Arc::new(Mutex::new(RouteRegistry::default()));
-        let closed = Arc::new(AtomicBool::new(false));
-        tokio::spawn(write_loop(sink, outgoing_rx, closed.clone()));
+        let closed = connection.closed;
+        let close_signal = connection.close_signal;
         tokio::spawn(read_responses_loop(
             source,
             routes.clone(),
             outgoing.clone(),
             closed.clone(),
+            close_signal.clone(),
             idle_timeout,
         ));
         Ok(Self {
             outgoing,
             routes,
             closed,
+            close_signal,
             request_id,
             idle_timeout,
         })
@@ -454,13 +529,11 @@ impl ResponsesWebSocket {
 
     /// Closes the shared Responses socket. Existing lane receivers then report closure.
     pub async fn close(&self) -> Result<(), Error> {
-        let result = self
-            .outgoing
-            .send(Message::Close(None))
-            .await
-            .map_err(|_| Error::WebSocketClosed);
-        self.closed.store(true, Ordering::Release);
-        result
+        if self.closed.swap(true, Ordering::AcqRel) {
+            return Err(Error::WebSocketClosed);
+        }
+        self.close_signal.send_replace(true);
+        Ok(())
     }
 }
 
@@ -514,13 +587,25 @@ fn websocket_request_id(
 async fn write_loop(
     mut sink: SocketSink,
     mut receiver: mpsc::Receiver<Message>,
+    mut close_signal: watch::Receiver<bool>,
     closed: Arc<AtomicBool>,
 ) {
-    while let Some(message) = receiver.recv().await {
-        let close = matches!(message, Message::Close(_));
-        if sink.send(message).await.is_err() || close {
-            closed.store(true, Ordering::Release);
-            break;
+    loop {
+        tokio::select! {
+            biased;
+            changed = close_signal.changed() => {
+                if changed.is_ok() && *close_signal.borrow() {
+                    let _ = sink.send(Message::Close(None)).await;
+                    break;
+                }
+            }
+            message = receiver.recv() => {
+                let Some(message) = message else { break };
+                let close = matches!(message, Message::Close(_));
+                if sink.send(message).await.is_err() || close {
+                    break;
+                }
+            }
         }
     }
     let _ = sink.close().await;
@@ -540,6 +625,7 @@ async fn read_responses_loop(
     routes: EventRoutes,
     outgoing: mpsc::Sender<Message>,
     closed: Arc<AtomicBool>,
+    close_signal: watch::Sender<bool>,
     idle_timeout: Option<Duration>,
 ) {
     loop {
@@ -547,7 +633,13 @@ async fn read_responses_loop(
             match tokio::time::timeout(timeout, source.next()).await {
                 Ok(message) => message,
                 Err(_) => {
-                    fail_responses(&routes, &closed, "Responses WebSocket idle timeout").await;
+                    fail_responses(
+                        &routes,
+                        &closed,
+                        &close_signal,
+                        "Responses WebSocket idle timeout",
+                    )
+                    .await;
                     return;
                 }
             }
@@ -555,14 +647,26 @@ async fn read_responses_loop(
             source.next().await
         };
         let Some(message) = message else {
-            fail_responses(&routes, &closed, "Responses WebSocket closed").await;
+            fail_responses(
+                &routes,
+                &closed,
+                &close_signal,
+                "Responses WebSocket closed",
+            )
+            .await;
             return;
         };
         let message = match message {
             Ok(Message::Text(text)) => text.to_string(),
             Ok(Message::Ping(payload)) => {
                 if outgoing.send(Message::Pong(payload)).await.is_err() {
-                    fail_responses(&routes, &closed, "Responses WebSocket writer closed").await;
+                    fail_responses(
+                        &routes,
+                        &closed,
+                        &close_signal,
+                        "Responses WebSocket writer closed",
+                    )
+                    .await;
                     return;
                 }
                 continue;
@@ -570,20 +674,27 @@ async fn read_responses_loop(
             Ok(Message::Pong(_) | Message::Frame(_)) => continue,
             Ok(Message::Close(_)) => {
                 let _ = outgoing.send(Message::Close(None)).await;
-                fail_responses(&routes, &closed, "Responses WebSocket closed").await;
+                fail_responses(
+                    &routes,
+                    &closed,
+                    &close_signal,
+                    "Responses WebSocket closed",
+                )
+                .await;
                 return;
             }
             Ok(Message::Binary(_)) => {
                 fail_responses(
                     &routes,
                     &closed,
+                    &close_signal,
                     "unexpected binary frame on Responses WebSocket",
                 )
                 .await;
                 return;
             }
             Err(error) => {
-                fail_responses(&routes, &closed, &error.to_string()).await;
+                fail_responses(&routes, &closed, &close_signal, &error.to_string()).await;
                 return;
             }
         };
@@ -593,6 +704,7 @@ async fn read_responses_loop(
                 fail_responses(
                     &routes,
                     &closed,
+                    &close_signal,
                     &format!("invalid Responses event JSON: {error}"),
                 )
                 .await;
@@ -620,6 +732,7 @@ async fn read_responses_loop(
                 fail_responses(
                     &routes,
                     &closed,
+                    &close_signal,
                     &format!("connection-level Responses error event: {value}"),
                 )
                 .await;
@@ -645,8 +758,14 @@ async fn read_responses_loop(
     }
 }
 
-async fn fail_responses(routes: &EventRoutes, closed: &AtomicBool, reason: &str) {
+async fn fail_responses(
+    routes: &EventRoutes,
+    closed: &AtomicBool,
+    close_signal: &watch::Sender<bool>,
+    reason: &str,
+) {
     closed.store(true, Ordering::Release);
+    close_signal.send_replace(true);
     let senders = routes
         .lock()
         .expect("websocket route mutex poisoned")
@@ -700,12 +819,20 @@ fn response_create_payload(
 mod tests {
     use super::{
         CHANNEL_CAPACITY, MAX_NAMED_STREAMS, ResponseWebSocketStream, RouteRegistry,
-        handshake_retry_after, response_create_payload, validate_stream_id, websocket_scheme,
+        WebSocketEvent, WebSocketReceiver, WebSocketSender, handshake_retry_after,
+        response_create_payload, validate_stream_id, websocket_scheme,
     };
     use crate::Error;
+    use crate::types;
+    use futures_util::StreamExt;
+    use futures_util::stream;
     use serde_json::{Value, json};
+    use std::marker::PhantomData;
+    use std::sync::Arc;
+    use std::sync::atomic::AtomicBool;
     use std::time::Duration;
-    use tokio::sync::mpsc;
+    use tokio::sync::{mpsc, watch};
+    use tokio_tungstenite::tungstenite::protocol::Message;
 
     #[test]
     fn websocket_handshake_retry_classifies_only_connection_and_retryable_http_errors() {
@@ -763,6 +890,113 @@ mod tests {
             },
             sender,
         )
+    }
+
+    fn websocket_halves<T>(
+        messages: Vec<Message>,
+    ) -> (
+        WebSocketSender,
+        WebSocketReceiver<T>,
+        mpsc::Receiver<Message>,
+        watch::Receiver<bool>,
+    ) {
+        let (outgoing, written) = mpsc::channel(CHANNEL_CAPACITY);
+        let source = Box::pin(stream::iter(messages.into_iter().map(Ok)));
+        let closed = Arc::new(AtomicBool::new(false));
+        let (close_signal, close_rx) = watch::channel(false);
+        let sender = WebSocketSender {
+            outgoing: outgoing.clone(),
+            closed: closed.clone(),
+            close_signal: close_signal.clone(),
+        };
+        let receiver = WebSocketReceiver {
+            source,
+            outgoing,
+            closed,
+            close_signal,
+            request_id: Some("req_socket".to_owned()),
+            idle_timeout: None,
+            idle_sleep: None,
+            terminated: false,
+            _event: PhantomData,
+        };
+        (sender, receiver, written, close_rx)
+    }
+
+    #[tokio::test]
+    async fn typed_websocket_receiver_preserves_unknown_and_binary_frames() {
+        let known = json!({
+            "type":"response.output_text.delta",
+            "event_id":"evt_1",
+            "response_id":"resp_1",
+            "item_id":"item_1",
+            "output_index":0,
+            "content_index":0,
+            "delta":"hello"
+        });
+        let unknown = json!({"type":"server.new_event","extra":42});
+        let (sender, mut receiver, mut written, _close_rx) =
+            websocket_halves::<types::realtime::RealtimeServerEvent>(vec![
+                Message::Text(known.to_string().into()),
+                Message::Text(unknown.to_string().into()),
+                Message::Binary(bytes::Bytes::from_static(b"audio")),
+            ]);
+        let outbound = json!({"type":"client.event"});
+        let (send_result, receive_result) =
+            tokio::join!(sender.send_json(&outbound), receiver.next());
+        send_result.unwrap();
+        assert!(matches!(written.recv().await, Some(Message::Text(_))));
+
+        let event = receive_result.unwrap().unwrap();
+        assert!(matches!(
+            event,
+            WebSocketEvent::Event(types::realtime::RealtimeServerEvent::ResponseTextDelta(_))
+        ));
+        assert_eq!(
+            receiver.next().await.unwrap().unwrap(),
+            WebSocketEvent::Unknown(unknown)
+        );
+        assert_eq!(
+            receiver.next().await.unwrap().unwrap(),
+            WebSocketEvent::Binary(bytes::Bytes::from_static(b"audio"))
+        );
+        assert!(receiver.next().await.is_none());
+    }
+
+    #[tokio::test]
+    async fn websocket_protocol_error_is_reported_once() {
+        let error = json!({"type":"error","error":{"message":"bad request"}});
+        let (_sender, mut receiver, _written, _close_rx) =
+            websocket_halves::<types::realtime::RealtimeServerEvent>(vec![Message::Text(
+                error.to_string().into(),
+            )]);
+        assert!(matches!(
+            receiver.next().await.unwrap(),
+            Err(Error::WebSocketServerEvent { body, .. }) if body == error
+        ));
+        assert!(receiver.next().await.is_none());
+    }
+
+    #[tokio::test]
+    async fn websocket_sender_close_and_receiver_drop_stop_future_sends() {
+        let (sender, receiver, _written, close_rx) =
+            websocket_halves::<types::live::LiveServerEvent>(vec![]);
+        sender.close().await.unwrap();
+        assert!(*close_rx.borrow());
+        assert!(matches!(
+            sender.send_json(&json!({"type":"later"})).await,
+            Err(Error::WebSocketClosed)
+        ));
+        drop(receiver);
+
+        let (sender, receiver, _written, close_rx) =
+            websocket_halves::<types::live::LiveServerEvent>(vec![]);
+        drop(receiver);
+        assert!(matches!(
+            sender.send_binary(bytes::Bytes::from_static(b"x")).await,
+            Err(Error::WebSocketClosed)
+        ));
+        assert!(*close_rx.borrow());
     }
 
     fn response_value(status: &str) -> Value {
@@ -883,13 +1117,13 @@ mod tests {
             })))
             .await
             .unwrap();
-        let event = stream.next_event().await.unwrap().unwrap();
+        let event = stream.next().await.unwrap().unwrap();
         assert_eq!(event.event.event_type(), "response.future_event");
         assert_eq!(event.event.data()["extra"]["n"], 3);
         assert!(event.event.typed().is_none());
-        let terminal = stream.next_event().await.unwrap().unwrap();
+        let terminal = stream.next().await.unwrap().unwrap();
         assert_eq!(terminal.event.event_type(), "response.incomplete");
-        assert!(stream.next_event().await.is_none());
+        assert!(stream.next().await.is_none());
     }
 
     #[tokio::test]
@@ -902,7 +1136,7 @@ mod tests {
         });
         failed_tx.send(Ok(failure.clone())).await.unwrap();
         assert!(matches!(
-            failed.next_event().await.unwrap(),
+            failed.next().await.unwrap(),
             Err(Error::ResponseFailed { body, request_id })
                 if body == failure && request_id.as_deref() == Some("req_fixture")
         ));
@@ -920,7 +1154,7 @@ mod tests {
         });
         error_tx.send(Ok(error.clone())).await.unwrap();
         assert!(matches!(
-            server_error.next_event().await.unwrap(),
+            server_error.next().await.unwrap(),
             Err(Error::WebSocketServerEvent { body, request_id })
                 if body == error && request_id.as_deref() == Some("req_fixture")
         ));
@@ -931,20 +1165,20 @@ mod tests {
         let (mut stream, sender) = response_stream(1, None);
         drop(sender);
         assert!(matches!(
-            stream.next_event().await.unwrap(),
+            stream.next().await.unwrap(),
             Err(Error::WebSocketClosed)
         ));
-        assert!(stream.next_event().await.is_none());
+        assert!(stream.next().await.is_none());
     }
 
     #[tokio::test]
     async fn response_stream_reports_idle_timeout() {
         let (mut stream, _sender) = response_stream(1, Some(Duration::from_millis(5)));
         assert!(matches!(
-            stream.next_event().await.unwrap(),
+            stream.next().await.unwrap(),
             Err(Error::StreamIdleTimeout)
         ));
-        assert!(stream.next_event().await.is_none());
+        assert!(stream.next().await.is_none());
     }
 
     #[tokio::test]
